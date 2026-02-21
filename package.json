@@ -8,8 +8,9 @@
 		"lint:fix": "biome check --write .",
 		"test": "vitest run",
 		"bench": "vitest bench",
-		"test:visual": "playwright test",
-		"test:visual:update": "playwright test --update-snapshots"
+		"test:visual": "playwright test --grep-invert demo",
+		"test:visual:update": "playwright test --grep-invert demo --update-snapshots",
+		"test:visual:record": "playwright test --grep demo && ./tests/visual/convert-to-gif.sh"
 	},
 	"volta": {
 		"node": "22.14.0",
