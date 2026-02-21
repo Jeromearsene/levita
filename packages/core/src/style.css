@@ -1,0 +1,52 @@
+.levita {
+	--levita-x: 0deg;
+	--levita-y: 0deg;
+	--levita-scale: 1;
+	--levita-perspective: 1000px;
+	--levita-speed: 400ms;
+	--levita-easing: ease-out;
+
+	transform: perspective(var(--levita-perspective)) rotateX(var(--levita-x))
+		rotateY(var(--levita-y)) scale3d(var(--levita-scale), var(--levita-scale), var(--levita-scale));
+	transform-style: preserve-3d;
+	transition: transform var(--levita-speed) var(--levita-easing);
+	will-change: transform;
+}
+
+/* Glare overlay */
+.levita-glare {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	pointer-events: none;
+	border-radius: inherit;
+}
+
+.levita-glare-inner {
+	--levita-glare-opacity: 0;
+	--levita-glare-x: 50%;
+	--levita-glare-y: 50%;
+
+	position: absolute;
+	inset: -50%;
+	background: radial-gradient(
+		circle at var(--levita-glare-x) var(--levita-glare-y),
+		rgba(255, 255, 255, var(--levita-glare-opacity)),
+		transparent 60%
+	);
+	transition: opacity var(--levita-speed) var(--levita-easing);
+}
+
+/* Dynamic shadow */
+.levita-shadow {
+	--levita-shadow-x: 0px;
+	--levita-shadow-y: 0px;
+
+	filter: drop-shadow(var(--levita-shadow-x) var(--levita-shadow-y) 20px rgba(0, 0, 0, 0.2));
+}
+
+/* Layers */
+[data-levita-offset] {
+	transform: translateZ(calc(var(--levita-offset, 0) * 1px));
+	transition: transform var(--levita-speed, 400ms) var(--levita-easing, ease-out);
+}
