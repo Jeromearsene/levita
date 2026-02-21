@@ -14,6 +14,14 @@ Lightweight 3D tilt & parallax library with accelerometer support.
 - **Multi-layer parallax** — `data-levita-offset` on children for depth layering.
 - **React & Vue** — First-class wrappers with identical API.
 
+## Effects
+
+| Tilt | Glare |
+|:----:|:-----:|
+| ![Tilt](docs/animations/tilt.gif) | ![Glare](docs/animations/glare.gif) |
+| **Shadow** | **Combined** |
+| ![Shadow](docs/animations/shadow.gif) | ![Combined](docs/animations/combined.gif) |
+
 ## Install
 
 ```bash
