@@ -218,6 +218,10 @@ pnpm lint
 pnpm --filter levita-demo dev
 ```
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=jeromearsene/levita&type=Date)](https://star-history.com/#jeromearsene/levita&Date)
+
 ## License
 
 MIT
