@@ -1,5 +1,5 @@
 import type { LevitaOptions } from "levita";
-import { Levita } from "levita";
+import { buildOptions, Levita } from "levita";
 import {
 	forwardRef,
 	type HTMLAttributes,
@@ -8,23 +8,6 @@ import {
 	useImperativeHandle,
 	useRef,
 } from "react";
-
-/** Keys of LevitaOptions used to extract tilt props from component props. */
-const OPTION_KEYS: readonly (keyof LevitaOptions)[] = [
-	"max",
-	"perspective",
-	"scale",
-	"speed",
-	"easing",
-	"reverse",
-	"axis",
-	"reset",
-	"glare",
-	"maxGlare",
-	"shadow",
-	"gyroscope",
-	"disabled",
-] as const;
 
 /** Props accepted by the `<Tilt>` component. */
 export interface TiltProps
@@ -42,21 +25,6 @@ export interface TiltRef {
 	/** Request accelerometer permission (must be called from a user gesture on iOS). */
 	requestPermission: () => Promise<boolean>;
 }
-
-/**
- * Build a partial `LevitaOptions` object from component props,
- * including only keys that are explicitly defined.
- */
-const buildOptions = (props: Partial<LevitaOptions>): Partial<LevitaOptions> => {
-	const options: Partial<LevitaOptions> = {};
-	for (const key of OPTION_KEYS) {
-		if (props[key] !== undefined) {
-			// biome-ignore lint/suspicious/noExplicitAny: generic key assignment
-			(options as any)[key] = props[key];
-		}
-	}
-	return options;
-};
 
 /**
  * React wrapper for the Levita 3D tilt effect.

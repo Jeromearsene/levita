@@ -7,4 +7,4 @@ export type {
 	LevitaOptions,
 	TiltValues,
 } from "./types.js";
-export { DEFAULT_OPTIONS } from "./types.js";
+export { buildOptions, DEFAULT_OPTIONS, OPTION_KEYS } from "./types.js";
