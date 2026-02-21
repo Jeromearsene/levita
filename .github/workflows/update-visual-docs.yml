@@ -1,0 +1,47 @@
+name: Update visual docs
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.0" # major/minor releases (e.g. v1.0.0, v1.2.0)
+
+permissions:
+  contents: write
+
+jobs:
+  update-gifs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: volta-cli/action@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build core
+        run: pnpm --filter levita build
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Record animations
+        run: npx playwright test --grep demo
+
+      - name: Convert to GIF
+        run: ./tests/visual/convert-to-gif.sh
+
+      - name: Commit updated GIFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout main
+          git add docs/animations/*.gif
+          if git diff --cached --quiet; then
+            echo "No GIF changes to commit"
+          else
+            git commit -m "docs: update animated visual effects [skip ci]"
+            git push
+          fi

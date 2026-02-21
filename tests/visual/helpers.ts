@@ -36,7 +36,6 @@ const baseStyles = `
 
 /**
  * Set up a visual test page with Levita CSS and a card element.
- * Returns the card's CSS selector for further interaction.
  */
 export const setupPage = async (page: Page, bodyContent: string): Promise<void> => {
 	await page.setContent(`
@@ -45,6 +44,26 @@ export const setupPage = async (page: Page, bodyContent: string): Promise<void> 
 			<head>
 				<style>${css}</style>
 				<style>${baseStyles}</style>
+			</head>
+			<body>${bodyContent}</body>
+		</html>
+	`);
+};
+
+/**
+ * Set up a page for animated recording with faster transitions.
+ */
+export const setupAnimatedPage = async (page: Page, bodyContent: string): Promise<void> => {
+	const fastTransition = `
+		.levita { --levita-speed: 100ms; }
+	`;
+	await page.setContent(`
+		<!doctype html>
+		<html>
+			<head>
+				<style>${css}</style>
+				<style>${baseStyles}</style>
+				<style>${fastTransition}</style>
 			</head>
 			<body>${bodyContent}</body>
 		</html>
