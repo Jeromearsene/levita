@@ -1,3 +1,4 @@
+export { Levita } from "./levita.js";
 export type {
 	Axis,
 	EventCallback,
