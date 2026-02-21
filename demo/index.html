@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Levita — 3D Tilt & Parallax Demo</title>
+		<link rel="stylesheet" href="./src/style.css" />
+	</head>
+	<body>
+		<main>
+			<h1>Levita</h1>
+			<p class="subtitle">Lightweight 3D tilt & parallax with accelerometer support</p>
+
+			<section>
+				<h2>Simple Tilt</h2>
+				<div class="grid">
+					<div class="card" id="card-basic">
+						<h3>Basic Tilt</h3>
+						<p>Hover me — default settings</p>
+					</div>
+					<div class="card" id="card-glare">
+						<h3>With Glare</h3>
+						<p>Glare follows cursor</p>
+					</div>
+					<div class="card" id="card-shadow">
+						<h3>With Shadow</h3>
+						<p>Dynamic shadow offset</p>
+					</div>
+					<div class="card" id="card-full">
+						<h3>Glare + Shadow</h3>
+						<p>All effects combined</p>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2>Parallax Layers</h2>
+				<div class="grid">
+					<div class="card card-layers" id="card-parallax">
+						<div data-levita-offset="-5" class="layer bg">Background</div>
+						<div data-levita-offset="0" class="layer mid">Middle</div>
+						<div data-levita-offset="10" class="layer fg">Foreground</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2>Accelerometer</h2>
+				<p class="info" id="gyro-info">Tap the card below on a mobile device to enable gyroscope.</p>
+				<div class="grid">
+					<div class="card" id="card-gyro">
+						<h3>Gyroscope</h3>
+						<p>Tilt your device</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script type="module" src="./src/main.ts"></script>
+	</body>
+</html>
