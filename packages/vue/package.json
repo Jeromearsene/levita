@@ -36,5 +36,11 @@
 		"tsdown": "^0.20.3",
 		"vue": "^3.5.0"
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jeromearsene/levita.git",
+		"directory": "packages/vue"
+	},
+	"homepage": "https://github.com/jeromearsene/levita#readme"
 }

@@ -10,7 +10,10 @@
 		"bench": "vitest bench",
 		"test:visual": "playwright test --grep-invert demo",
 		"test:visual:update": "playwright test --grep-invert demo --update-snapshots",
-		"test:visual:record": "playwright test --grep demo && ./tests/visual/convert-to-gif.sh"
+		"test:visual:record": "playwright test --grep demo && ./tests/visual/convert-to-gif.sh",
+		"changeset": "changeset",
+		"version-packages": "changeset version",
+		"release": "pnpm build && changeset publish"
 	},
 	"volta": {
 		"node": "22.14.0",
@@ -19,6 +22,8 @@
 	"packageManager": "pnpm@10.5.2",
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.4",
+		"@changesets/changelog-github": "^0.5.2",
+		"@changesets/cli": "^2.29.8",
 		"@playwright/test": "^1.58.2",
 		"happy-dom": "^20.7.0",
 		"typescript": "^5.9.3",

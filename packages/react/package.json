@@ -40,5 +40,11 @@
 		"react-dom": "^19.1.0",
 		"tsdown": "^0.20.3"
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jeromearsene/levita.git",
+		"directory": "packages/react"
+	},
+	"homepage": "https://github.com/jeromearsene/levita#readme"
 }
