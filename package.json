@@ -1,21 +1,21 @@
 {
-  "name": "levita-monorepo",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "pnpm -r --filter './packages/*' run build",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "test": "vitest run",
-    "bench": "vitest bench"
-  },
-  "volta": {
-    "node": "22.14.0",
-    "pnpm": "10.5.2"
-  },
-  "packageManager": "pnpm@10.5.2",
-  "devDependencies": {
-    "@biomejs/biome": "^2.4.4",
-    "typescript": "^5.9.3"
-  }
+	"name": "levita-monorepo",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "pnpm -r --filter './packages/*' run build",
+		"lint": "biome check .",
+		"lint:fix": "biome check --write .",
+		"test": "vitest run",
+		"bench": "vitest bench"
+	},
+	"volta": {
+		"node": "22.14.0",
+		"pnpm": "10.5.2"
+	},
+	"packageManager": "pnpm@10.5.2",
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.4",
+		"typescript": "^5.9.3"
+	}
 }
