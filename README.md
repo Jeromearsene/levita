@@ -12,7 +12,7 @@ Lightweight 3D tilt & parallax library with accelerometer support.
 - **~5KB gzipped** — Core engine only.
 - **Accelerometer** — Auto-detects gyroscope, handles iOS permissions transparently.
 - **Multi-layer parallax** — `data-levita-offset` on children for depth layering.
-- **React & Vue** — First-class wrappers with identical API.
+- **React, Vue & Svelte** — First-class wrappers with identical API.
 
 ## Effects
 
@@ -33,6 +33,9 @@ npm install @levita/react
 
 # Vue wrapper
 npm install @levita/vue
+
+# Svelte wrapper
+npm install @levita/svelte
 ```
 
 ## Quick Start
@@ -77,6 +80,19 @@ import "levita/style.css";
     <h2>Hello</h2>
   </Tilt>
 </template>
+```
+
+### Svelte
+
+```svelte
+<script>
+  import { tilt } from "@levita/svelte";
+  import "levita/style.css";
+</script>
+
+<div use:tilt={{ glare: true, shadow: true }}>
+  <h2>Hello</h2>
+</div>
 ```
 
 ## Parallax Layers
@@ -185,6 +201,7 @@ This means:
 | Accelerometer        | Auto + manual    | No               | Partial (buggy) |
 | React                | Official         | Official         | Community       |
 | Vue                  | Official         | Web Component    | Community       |
+| Svelte               | Official         | No               | No              |
 | TypeScript           | Native           | Yes              | Types only      |
 
 ## Benchmarks
