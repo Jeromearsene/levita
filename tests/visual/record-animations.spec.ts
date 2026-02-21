@@ -31,8 +31,8 @@ const animateCircle = async (
 				if (glare) {
 					const inner = el.querySelector(".levita-glare-inner") as HTMLElement;
 					if (inner) {
-						inner.style.setProperty("--levita-glare-x", `${((nx + 1) / 2 * 100).toFixed(0)}%`);
-						inner.style.setProperty("--levita-glare-y", `${((ny + 1) / 2 * 100).toFixed(0)}%`);
+						inner.style.setProperty("--levita-glare-x", `${(((nx + 1) / 2) * 100).toFixed(0)}%`);
+						inner.style.setProperty("--levita-glare-y", `${(((ny + 1) / 2) * 100).toFixed(0)}%`);
 						inner.style.setProperty("--levita-glare-opacity", "0.4");
 					}
 				}
@@ -81,10 +81,7 @@ test("glare-demo", async ({ page }) => {
 });
 
 test("shadow-demo", async ({ page }) => {
-	await setupAnimatedPage(
-		page,
-		'<div class="card levita levita-shadow">Shadow</div>',
-	);
+	await setupAnimatedPage(page, '<div class="card levita levita-shadow">Shadow</div>');
 	await animateCircle(page, { shadow: true });
 });
 
