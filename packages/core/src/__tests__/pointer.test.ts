@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { PointerSensor } from "../sensors/pointer.js";
 
-function createEl(): HTMLElement {
+const createEl = (): HTMLElement => {
 	const el = document.createElement("div");
 	el.getBoundingClientRect = () => ({
 		x: 0,
@@ -15,11 +15,12 @@ function createEl(): HTMLElement {
 		toJSON: () => ({}),
 	});
 	return el;
-}
+};
 
-function firePointerMove(el: HTMLElement, clientX: number, clientY: number): void {
+/** Dispatch a pointermove event on the given element. */
+const firePointerMove = (el: HTMLElement, clientX: number, clientY: number): void => {
 	el.dispatchEvent(new PointerEvent("pointermove", { clientX, clientY }));
-}
+};
 
 describe("PointerSensor", () => {
 	it("normalizes pointer position to [-1, 1]", () => {

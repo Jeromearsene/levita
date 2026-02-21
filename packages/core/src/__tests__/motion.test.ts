@@ -1,12 +1,13 @@
 import { describe, expect, it, vi } from "vitest";
 import { MotionSensor } from "../sensors/motion.js";
 
-function fireOrientation(beta: number, gamma: number): void {
+/** Dispatch a deviceorientation event with the given beta/gamma values. */
+const fireOrientation = (beta: number, gamma: number): void => {
 	const event = new Event("deviceorientation");
 	Object.defineProperty(event, "beta", { value: beta });
 	Object.defineProperty(event, "gamma", { value: gamma });
 	window.dispatchEvent(event);
-}
+};
 
 describe("MotionSensor", () => {
 	it("isSupported returns true when DeviceOrientationEvent exists", () => {
