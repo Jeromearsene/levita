@@ -6,6 +6,15 @@ interface DeviceOrientationEvt extends Event {
 	gamma: number | null;
 }
 
+/**
+ * Reads device orientation (accelerometer/gyroscope) and normalizes
+ * the tilt angles to a [-1, 1] range.
+ *
+ * Handles iOS 13+ permission flow via async `requestPermission()`.
+ * On Android, permission is granted automatically.
+ *
+ * Uses exponential moving average for smoothing raw sensor data.
+ */
 export class MotionSensor {
 	private onMove: SensorCallback;
 	private axis: Axis;
@@ -17,27 +26,45 @@ export class MotionSensor {
 	private lastX = 0;
 	private lastY = 0;
 
+	/**
+	 * @param onMove - Callback receiving normalized { x, y } values
+	 * @param axis - Restrict input to a single axis, or null for both
+	 * @param minAngle - Minimum device angle mapped to -1 (default: -45)
+	 * @param maxAngle - Maximum device angle mapped to 1 (default: 45)
+	 * @param smoothing - Exponential moving average factor 0-1 (default: 0.15, lower = smoother)
+	 */
 	constructor(onMove: SensorCallback, axis: Axis, minAngle = -45, maxAngle = 45, smoothing = 0.15) {
 		this.onMove = onMove;
 		this.axis = axis;
 		this.minAngle = minAngle;
 		this.maxAngle = maxAngle;
 		this.smoothing = smoothing;
-
-		this.handleOrientation = this.handleOrientation.bind(this);
 	}
 
-	static isSupported(): boolean {
+	/** Check if the DeviceOrientationEvent API is available in this environment. */
+	static isSupported = (): boolean => {
 		return typeof window !== "undefined" && "DeviceOrientationEvent" in window;
-	}
+	};
 
-	static needsPermission(): boolean {
+	/**
+	 * Check if explicit permission is required (iOS 13+).
+	 * On Android and desktop, this returns false.
+	 */
+	static needsPermission = (): boolean => {
 		return (
 			typeof DeviceOrientationEvent !== "undefined" && "requestPermission" in DeviceOrientationEvent
 		);
-	}
+	};
 
-	async requestPermission(): Promise<boolean> {
+	/**
+	 * Request permission to access device orientation.
+	 * On Android, resolves immediately to true.
+	 * On iOS 13+, triggers the native permission dialog.
+	 * Must be called from a user gesture on iOS.
+	 *
+	 * @returns Whether permission was granted
+	 */
+	requestPermission = async (): Promise<boolean> => {
 		if (!MotionSensor.isSupported()) return false;
 
 		if (!MotionSensor.needsPermission()) {
@@ -56,25 +83,35 @@ export class MotionSensor {
 			this.permitted = false;
 			return false;
 		}
-	}
+	};
 
-	start(): void {
+	/** Start listening to deviceorientation events. Requires prior permission. */
+	start = (): void => {
 		if (this.active || !this.permitted) return;
 		this.active = true;
 		window.addEventListener("deviceorientation", this.handleOrientation);
-	}
+	};
 
-	stop(): void {
+	/** Stop listening and remove the deviceorientation event listener. */
+	stop = (): void => {
 		if (!this.active) return;
 		this.active = false;
 		window.removeEventListener("deviceorientation", this.handleOrientation);
-	}
+	};
 
-	setAxis(axis: Axis): void {
+	/** Update the axis lock at runtime. */
+	setAxis = (axis: Axis): void => {
 		this.axis = axis;
-	}
+	};
 
-	private handleOrientation(e: Event): void {
+	/**
+	 * Normalize device orientation angles to [-1, 1] and apply
+	 * exponential moving average smoothing.
+	 *
+	 * beta = X-axis rotation [-180, 180] (front-back tilt)
+	 * gamma = Y-axis rotation [-90, 90] (left-right tilt)
+	 */
+	private handleOrientation = (e: Event): void => {
 		const evt = e as DeviceOrientationEvt;
 		const beta = evt.beta ?? 0;
 		const gamma = evt.gamma ?? 0;
@@ -87,9 +124,10 @@ export class MotionSensor {
 		this.lastY = this.lastY + (rawY - this.lastY) * this.smoothing;
 
 		this.onMove({ x: this.lastX, y: this.lastY });
-	}
+	};
 
-	private clamp(value: number): number {
+	/** Clamp a value to the [-1, 1] range. */
+	private clamp = (value: number): number => {
 		return Math.max(-1, Math.min(1, value));
-	}
+	};
 }

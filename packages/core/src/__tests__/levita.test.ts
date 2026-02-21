@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { Levita } from "../levita.js";
 
-function createEl(): HTMLElement {
+const createEl = (): HTMLElement => {
 	const el = document.createElement("div");
 	el.getBoundingClientRect = () => ({
 		x: 0,
@@ -15,7 +15,7 @@ function createEl(): HTMLElement {
 		toJSON: () => ({}),
 	});
 	return el;
-}
+};
 
 describe("Levita", () => {
 	it("adds levita class to element on init", () => {

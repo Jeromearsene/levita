@@ -13,6 +13,22 @@ import {
 	type TiltValues,
 } from "./types.js";
 
+/**
+ * Main entry point for the Levita 3D tilt effect.
+ *
+ * Orchestrates sensors (pointer, accelerometer), visual effects (glare, shadow),
+ * and multi-layer parallax. All rendering is driven by CSS custom properties —
+ * no requestAnimationFrame loop runs during interaction.
+ *
+ * @example
+ * ```ts
+ * import { Levita } from 'levita';
+ * import 'levita/style.css';
+ *
+ * const tilt = new Levita(element, { glare: true, shadow: true });
+ * tilt.on('move', ({ x, y }) => console.log(x, y));
+ * ```
+ */
 export class Levita {
 	private el: HTMLElement;
 	private options: LevitaOptions;
@@ -25,6 +41,10 @@ export class Levita {
 	private destroyed = false;
 	private gyroscopeRequested = false;
 
+	/**
+	 * @param el - The DOM element to apply the tilt effect to
+	 * @param options - Configuration options (all optional, sensible defaults)
+	 */
 	constructor(el: HTMLElement, options: Partial<LevitaOptions> = {}) {
 		this.el = el;
 		this.options = { ...DEFAULT_OPTIONS, ...options };
@@ -65,6 +85,10 @@ export class Levita {
 		}
 	}
 
+	/**
+	 * On first touch (iOS auto mode), request accelerometer permission
+	 * and switch from pointer to motion sensor if granted.
+	 */
 	private handleFirstTouch = async (): Promise<void> => {
 		if (this.gyroscopeRequested || !this.motionSensor) return;
 		this.gyroscopeRequested = true;
@@ -76,20 +100,28 @@ export class Levita {
 		}
 	};
 
-	enable(): void {
+	/** Re-enable the tilt effect after a `disable()` call. */
+	enable = (): void => {
 		if (this.destroyed) return;
 		this.options.disabled = false;
 		this.pointerSensor.start();
-	}
+	};
 
-	disable(): void {
+	/** Pause the tilt effect and reset the element to its neutral position. */
+	disable = (): void => {
 		this.options.disabled = true;
 		this.pointerSensor.stop();
 		this.motionSensor?.stop();
 		this.resetTransform();
-	}
+	};
 
-	async requestPermission(): Promise<boolean> {
+	/**
+	 * Manually request accelerometer permission (for `gyroscope: true` mode).
+	 * Must be called from a user gesture on iOS 13+.
+	 *
+	 * @returns Whether permission was granted
+	 */
+	requestPermission = async (): Promise<boolean> => {
 		if (!this.motionSensor) return false;
 		const granted = await this.motionSensor.requestPermission();
 		if (granted) {
@@ -97,9 +129,13 @@ export class Levita {
 			this.motionSensor.start();
 		}
 		return granted;
-	}
+	};
 
-	destroy(): void {
+	/**
+	 * Fully clean up: stop sensors, remove effects, restore the element
+	 * to its original state. The instance cannot be reused after this.
+	 */
+	destroy = (): void => {
 		if (this.destroyed) return;
 		this.destroyed = true;
 
@@ -114,29 +150,52 @@ export class Levita {
 		this.listeners.clear();
 
 		this.el.removeEventListener("touchstart", this.handleFirstTouch);
-	}
+	};
 
-	on<K extends keyof LevitaEventMap>(event: K, callback: EventCallback<LevitaEventMap[K]>): void {
+	/**
+	 * Register an event listener.
+	 *
+	 * @param event - Event name: 'move', 'enter', or 'leave'
+	 * @param callback - Handler function
+	 */
+	on = <K extends keyof LevitaEventMap>(
+		event: K,
+		callback: EventCallback<LevitaEventMap[K]>,
+	): void => {
 		if (!this.listeners.has(event)) {
 			this.listeners.set(event, new Set());
 		}
 		this.listeners.get(event)?.add(callback as EventCallback<unknown>);
-	}
+	};
 
-	off<K extends keyof LevitaEventMap>(event: K, callback: EventCallback<LevitaEventMap[K]>): void {
+	/**
+	 * Remove a previously registered event listener.
+	 *
+	 * @param event - Event name
+	 * @param callback - The exact handler reference passed to `on()`
+	 */
+	off = <K extends keyof LevitaEventMap>(
+		event: K,
+		callback: EventCallback<LevitaEventMap[K]>,
+	): void => {
 		this.listeners.get(event)?.delete(callback as EventCallback<unknown>);
-	}
+	};
 
-	private emit<K extends keyof LevitaEventMap>(event: K, data: LevitaEventMap[K]): void {
+	/** Emit an event to all registered listeners. */
+	private emit = <K extends keyof LevitaEventMap>(event: K, data: LevitaEventMap[K]): void => {
 		const callbacks = this.listeners.get(event);
 		if (callbacks) {
 			for (const cb of callbacks) {
 				cb(data);
 			}
 		}
-	}
+	};
 
-	private handleSensorInput(input: SensorOutput): void {
+	/**
+	 * Process normalized sensor input and update CSS custom properties.
+	 * Maps sensor X/Y to rotateY/rotateX (swapped, rotateX = vertical tilt).
+	 */
+	private handleSensorInput = (input: SensorOutput): void => {
 		if (this.options.disabled) return;
 
 		const multiplier = this.options.reverse ? -1 : 1;
@@ -157,40 +216,43 @@ export class Levita {
 			percentY: input.y,
 		};
 		this.emit("move", values);
-	}
+	};
 
-	private handleEnter(): void {
+	private handleEnter = (): void => {
 		this.el.style.setProperty("--levita-scale", String(this.options.scale));
 		this.emit("enter", undefined);
-	}
+	};
 
-	private handleLeave(): void {
+	private handleLeave = (): void => {
 		if (this.options.reset) {
 			this.resetTransform();
 		}
 		this.emit("leave", undefined);
-	}
+	};
 
-	private resetTransform(): void {
+	/** Reset the element to its neutral (non-tilted) position. */
+	private resetTransform = (): void => {
 		this.el.style.setProperty("--levita-x", "0deg");
 		this.el.style.setProperty("--levita-y", "0deg");
 		this.el.style.setProperty("--levita-scale", "1");
 		this.glareEffect?.update(0, 0);
 		this.shadowEffect?.update(0, 0);
-	}
+	};
 
-	private applyBaseProperties(): void {
+	/** Apply initial CSS custom properties from options. */
+	private applyBaseProperties = (): void => {
 		this.el.style.setProperty("--levita-perspective", `${this.options.perspective}px`);
 		this.el.style.setProperty("--levita-speed", `${this.options.speed}ms`);
 		this.el.style.setProperty("--levita-easing", this.options.easing);
-	}
+	};
 
-	private removeBaseProperties(): void {
+	/** Remove all Levita CSS custom properties from the element. */
+	private removeBaseProperties = (): void => {
 		this.el.style.removeProperty("--levita-perspective");
 		this.el.style.removeProperty("--levita-speed");
 		this.el.style.removeProperty("--levita-easing");
 		this.el.style.removeProperty("--levita-x");
 		this.el.style.removeProperty("--levita-y");
 		this.el.style.removeProperty("--levita-scale");
-	}
+	};
 }
