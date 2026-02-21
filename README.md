@@ -243,6 +243,13 @@ pnpm lint
 pnpm --filter levita-demo dev
 ```
 
+## Sponsors
+
+If you find Levita useful, consider supporting its development:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jeromearsene)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/jeromearsene)
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=jeromearsene/levita&type=Date)](https://star-history.com/#jeromearsene/levita&Date)
