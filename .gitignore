@@ -8,6 +8,12 @@ dist/
 # Test coverage
 coverage/
 
+# Playwright
+playwright-report/
+test-results/
+bench-raw.txt
+bench-results.json
+
 # OS files
 .DS_Store
 
