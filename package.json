@@ -16,6 +16,8 @@
 	"packageManager": "pnpm@10.5.2",
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.4",
-		"typescript": "^5.9.3"
+		"happy-dom": "^20.7.0",
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.18"
 	}
 }
