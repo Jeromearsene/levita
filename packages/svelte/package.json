@@ -1,0 +1,45 @@
+{
+	"name": "@levita/svelte",
+	"version": "0.1.0",
+	"description": "Svelte wrapper for Levita 3D tilt & parallax",
+	"type": "module",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.mts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsdown"
+	},
+	"peerDependencies": {
+		"svelte": ">=5"
+	},
+	"dependencies": {
+		"levita": "workspace:*"
+	},
+	"devDependencies": {
+		"svelte": "^5.0.0",
+		"tsdown": "^0.20.3"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jeromearsene/levita.git",
+		"directory": "packages/svelte"
+	},
+	"homepage": "https://github.com/jeromearsene/levita#readme"
+}
