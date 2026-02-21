@@ -21,6 +21,12 @@ importers:
         specifier: ^4.0.18
         version: 4.0.18(@types/node@25.3.0)(happy-dom@20.7.0)
 
+  benchmarks:
+    dependencies:
+      levita:
+        specifier: workspace:*
+        version: link:../packages/core
+
   demo:
     dependencies:
       levita:

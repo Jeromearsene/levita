@@ -1,0 +1,8 @@
+{
+	"name": "levita-benchmarks",
+	"private": true,
+	"type": "module",
+	"dependencies": {
+		"levita": "workspace:*"
+	}
+}
