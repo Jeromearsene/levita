@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: volta-cli/action@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check
+        run: |
+          npx tsc --noEmit -p packages/core/tsconfig.json
+          npx tsc --noEmit -p packages/react/tsconfig.json
+          npx tsc --noEmit -p packages/vue/tsconfig.json
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
