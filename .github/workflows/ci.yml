@@ -38,6 +38,20 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Visual regression tests
+        run: pnpm test:visual
+
+      - name: Upload visual diff on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-test-results
+          path: test-results/
+          retention-days: 7
+
       - name: Benchmark
         run: |
           pnpm bench 2>&1 | sed 's/\x1b\[[0-9;]*m//g' > bench-raw.txt

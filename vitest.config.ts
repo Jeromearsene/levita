@@ -9,5 +9,6 @@ export default defineConfig({
 	},
 	test: {
 		environment: "happy-dom",
+		exclude: ["tests/visual/**", "node_modules/**"],
 	},
 });
