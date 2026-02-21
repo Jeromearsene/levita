@@ -45,6 +45,56 @@
 			</section>
 
 			<section>
+				<h2>Playground</h2>
+				<div class="playground">
+					<div class="playground-preview">
+						<div class="card" id="card-playground">
+							<h3>Live Preview</h3>
+							<p>Adjust the controls</p>
+						</div>
+					</div>
+					<div class="playground-controls" id="playground-controls">
+						<label>
+							<span>max <output id="out-max">15</output></span>
+							<input type="range" id="ctrl-max" min="1" max="45" value="15" />
+						</label>
+						<label>
+							<span>perspective <output id="out-perspective">1000</output></span>
+							<input type="range" id="ctrl-perspective" min="300" max="2000" value="1000" />
+						</label>
+						<label>
+							<span>scale <output id="out-scale">1.05</output></span>
+							<input type="range" id="ctrl-scale" min="1" max="1.3" step="0.01" value="1.05" />
+						</label>
+						<label>
+							<span>speed <output id="out-speed">400</output></span>
+							<input type="range" id="ctrl-speed" min="100" max="1000" value="400" />
+						</label>
+						<label class="toggle">
+							<span>reverse</span>
+							<input type="checkbox" id="ctrl-reverse" />
+						</label>
+						<label class="toggle">
+							<span>glare</span>
+							<input type="checkbox" id="ctrl-glare" />
+						</label>
+						<label>
+							<span>maxGlare <output id="out-maxGlare">0.5</output></span>
+							<input type="range" id="ctrl-maxGlare" min="0" max="1" step="0.05" value="0.5" />
+						</label>
+						<label class="toggle">
+							<span>shadow</span>
+							<input type="checkbox" id="ctrl-shadow" />
+						</label>
+						<label class="toggle">
+							<span>disabled</span>
+							<input type="checkbox" id="ctrl-disabled" />
+						</label>
+					</div>
+				</div>
+			</section>
+
+			<section>
 				<h2>Accelerometer</h2>
 				<p class="info" id="gyro-info">Tap the card below on a mobile device to enable gyroscope.</p>
 				<div class="grid">
