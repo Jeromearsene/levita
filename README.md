@@ -1,12 +1,18 @@
-# Levita
+<!-- markdownlint-disable MD033 MD041 -->
 
-[![CI](https://github.com/jeromearsene/levita/actions/workflows/ci.yml/badge.svg)](https://github.com/jeromearsene/levita/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/levita)](https://www.npmjs.com/package/levita)
-[![npm downloads](https://img.shields.io/npm/dm/levita)](https://www.npmjs.com/package/levita)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/levita)](https://bundlephobia.com/package/levita)
-[![license](https://img.shields.io/github/license/jeromearsene/levita)](./LICENSE)
+<p align="center">
+  <a href="https://github.com/jeromearsene/levita">
+    <img src="docs/banner.png" alt="Levita — Lightweight 3D tilt & parallax library with accelerometer support" width="100%" />
+  </a>
+</p>
 
-Lightweight 3D tilt & parallax library with accelerometer support.
+<p align="center">
+  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://github.com/jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://www.npmjs.com/package/levita"><img src="https://img.shields.io/npm/v/levita" alt="npm" /></a>
+  <a href="https://www.npmjs.com/package/levita"><img src="https://img.shields.io/npm/dm/levita" alt="npm downloads" /></a>
+  <a href="https://bundlephobia.com/package/levita"><img src="https://img.shields.io/bundlephobia/minzip/levita" alt="bundle size" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/jeromearsene/levita" alt="license" /></a>
+</p>
 
 - **CSS-driven** — No `requestAnimationFrame` loop. CSS custom properties + compositor = GPU-accelerated.
 - **~5KB gzipped** — Core engine only.
