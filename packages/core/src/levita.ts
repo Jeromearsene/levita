@@ -35,7 +35,6 @@ export class Levita {
 	private listeners = new Map<string, Set<EventCallback<unknown>>>();
 	private destroyed = false;
 	private gyroscopeRequested = false;
-	private enterTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	/**
 	 * @param el - The DOM element to apply the tilt effect to
@@ -217,20 +216,12 @@ export class Levita {
 	};
 
 	private handleEnter = (): void => {
-		this.setTransition(true);
+		this.setTransition(false);
 		this.el.style.setProperty("--levita-scale", String(this.options.scale));
-		this.enterTimeout = setTimeout(() => {
-			this.setTransition(false);
-			this.enterTimeout = null;
-		}, this.options.speed);
 		this.emit("enter", undefined);
 	};
 
 	private handleLeave = (): void => {
-		if (this.enterTimeout) {
-			clearTimeout(this.enterTimeout);
-			this.enterTimeout = null;
-		}
 		this.setTransition(true);
 		if (this.options.reset) {
 			this.resetTransform();

@@ -24,6 +24,7 @@ export class PointerSensor {
 	private onLeave: (() => void) | null;
 	private axis: Axis;
 	private active = false;
+	private rect: DOMRect | null = null;
 
 	constructor(
 		el: HTMLElement,
@@ -67,9 +68,9 @@ export class PointerSensor {
 	 * relative to the element's bounding rect. Respects axis locking.
 	 */
 	private handlePointerMove = (e: PointerEvent): void => {
-		const rect = this.el.getBoundingClientRect();
-		const rawX = (e.clientX - rect.left) / rect.width;
-		const rawY = (e.clientY - rect.top) / rect.height;
+		if (!this.rect) return;
+		const rawX = (e.clientX - this.rect.left) / this.rect.width;
+		const rawY = (e.clientY - this.rect.top) / this.rect.height;
 
 		const x = this.axis === "y" ? 0 : rawX * 2 - 1;
 		const y = this.axis === "x" ? 0 : rawY * 2 - 1;
@@ -78,10 +79,12 @@ export class PointerSensor {
 	};
 
 	private handlePointerEnter = (): void => {
+		this.rect = this.el.getBoundingClientRect();
 		this.onEnter?.();
 	};
 
 	private handlePointerLeave = (): void => {
+		this.rect = null;
 		this.onLeave?.();
 	};
 }
