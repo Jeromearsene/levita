@@ -25,6 +25,9 @@ jobs:
 
       - uses: volta-cli/action@v4
 
+      - name: Install toolchain
+        run: volta install node pnpm
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
