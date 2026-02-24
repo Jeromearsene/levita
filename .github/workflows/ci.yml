@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
     branches: [main]
 
@@ -41,14 +42,8 @@ jobs:
       - name: Measure bundle sizes
         run: pnpm size:json
 
-      - name: Store size results
-        if: github.ref == 'refs/heads/main'
+      - name: Generate size badges
         run: |
-          git fetch origin gh-pages:gh-pages || true
-          git worktree add /tmp/gh-pages gh-pages || (git worktree add /tmp/gh-pages --detach && cd /tmp/gh-pages && git checkout --orphan gh-pages && git reset --hard)
-
-          cp size-results.json /tmp/gh-pages/size-results.json
-
           node -e "
             const data = JSON.parse(require('fs').readFileSync('size-results.json', 'utf8'));
             const fs = require('fs');
@@ -56,22 +51,12 @@ jobs:
               const sizeKB = (entry.size / 1024).toFixed(1);
               const slug = entry.name.replace(/[^a-z0-9]/gi, '-').toLowerCase();
               const badge = { schemaVersion: 1, label: 'gzip', message: sizeKB + ' kB', color: 'brightgreen' };
-              fs.writeFileSync('/tmp/gh-pages/badge-size-' + slug + '.json', JSON.stringify(badge));
+              fs.writeFileSync('badge-size-' + slug + '.json', JSON.stringify(badge));
             }
             const core = data.find(d => d.name.includes('core'));
             const coreBadge = { schemaVersion: 1, label: 'gzip', message: (core.size / 1024).toFixed(1) + ' kB', color: 'brightgreen' };
-            fs.writeFileSync('/tmp/gh-pages/badge-size.json', JSON.stringify(coreBadge));
+            fs.writeFileSync('badge-size.json', JSON.stringify(coreBadge));
           "
-
-          cd /tmp/gh-pages
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add size-results.json badge-size.json badge-size-*.json
-          git diff --cached --quiet || git commit -m 'chore: update size results'
-          git push origin gh-pages
-
-          cd -
-          git worktree remove /tmp/gh-pages --force
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
@@ -103,3 +88,34 @@ jobs:
           comment-on-alert: true
           summary-always: true
           comment-always: ${{ github.event_name == 'pull_request' }}
+
+      - name: Generate benchmark badges
+        run: |
+          node -e "
+            const data = JSON.parse(require('fs').readFileSync('bench-results.json', 'utf8'));
+            const fs = require('fs');
+            for (const entry of data) {
+              const slug = entry.name.replace(/[^a-z0-9]/gi, '-').toLowerCase();
+              const value = entry.value >= 1000 ? '~' + Math.round(entry.value / 1000) + ',' + String(Math.round(entry.value) % 1000).padStart(3, '0') : String(Math.round(entry.value));
+              const badge = { schemaVersion: 1, label: entry.name, message: value + ' ops/s', color: 'blue' };
+              fs.writeFileSync('badge-bench-' + slug + '.json', JSON.stringify(badge));
+            }
+          "
+
+      - name: Publish badges to GitHub Pages
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          git fetch origin gh-pages:gh-pages || true
+          git worktree add /tmp/gh-pages gh-pages || (git worktree add /tmp/gh-pages --detach && cd /tmp/gh-pages && git checkout --orphan gh-pages && git reset --hard)
+
+          cp size-results.json badge-size*.json badge-bench-*.json /tmp/gh-pages/
+
+          cd /tmp/gh-pages
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add size-results.json badge-size*.json badge-bench-*.json
+          git diff --cached --quiet || git commit -m 'chore: update size and benchmark badges'
+          git push origin gh-pages
+
+          cd -
+          git worktree remove /tmp/gh-pages --force
