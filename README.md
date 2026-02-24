@@ -147,7 +147,7 @@ new Levita(el, { gyroscope: false });
 | `max`         | `number`             | `15`         | Max tilt angle in degrees |
 | `perspective` | `number`             | `1000`       | CSS perspective in px     |
 | `scale`       | `number`             | `1.05`       | Scale factor on hover     |
-| `speed`       | `number`             | `400`        | Transition duration in ms |
+| `speed`       | `number`             | `200`        | Transition duration in ms |
 | `easing`      | `string`             | `'ease-out'` | CSS easing function       |
 | `reverse`     | `boolean`            | `false`      | Invert tilt direction     |
 | `axis`        | `'x' \| 'y' \| null` | `null`       | Lock to single axis       |

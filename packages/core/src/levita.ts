@@ -5,13 +5,8 @@ import { cleanupLayers, scanLayers } from "./layers.js";
 import { MotionSensor } from "./sensors/motion.js";
 import type { SensorOutput } from "./sensors/pointer.js";
 import { PointerSensor } from "./sensors/pointer.js";
-import {
-	DEFAULT_OPTIONS,
-	type EventCallback,
-	type LevitaEventMap,
-	type LevitaOptions,
-	type TiltValues,
-} from "./types.js";
+import { DEFAULT_OPTIONS } from "./constants.js";
+import type { EventCallback, LevitaEventMap, LevitaOptions, TiltValues } from "./types.js";
 
 /**
  * Main entry point for the Levita 3D tilt effect.
