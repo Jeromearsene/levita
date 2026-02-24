@@ -10,7 +10,7 @@
   <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://github.com/jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.npmjs.com/package/levita"><img src="https://img.shields.io/npm/v/levita" alt="npm" /></a>
   <a href="https://www.npmjs.com/package/levita"><img src="https://img.shields.io/npm/dm/levita" alt="npm downloads" /></a>
-  <a href="https://bundlephobia.com/package/levita"><img src="https://img.shields.io/bundlephobia/minzip/levita" alt="bundle size" /></a>
+  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size.json" alt="bundle size" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/jeromearsene/levita" alt="license" /></a>
 </p>
 
@@ -209,6 +209,19 @@ This means:
 | Vue                  | Official         | Web Component    | Community       |
 | Svelte               | Official         | No               | No              |
 | TypeScript           | Native           | Yes              | Types only      |
+
+## Bundle Size
+
+Measured with [size-limit](https://github.com/ai/size-limit) (tree-shaken, gzipped):
+
+| Package | Size (gzip) |
+| ------- | ----------- |
+| `levita` (core) | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita--core-.json) |
+| `@levita/react` | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-react.json) |
+| `@levita/vue` | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-vue.json) |
+| `@levita/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-svelte.json) |
+
+> Sizes are automatically measured on each push to `main`.
 
 ## Benchmarks
 
