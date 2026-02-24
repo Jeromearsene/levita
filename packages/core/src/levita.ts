@@ -40,6 +40,7 @@ export class Levita {
 	private listeners = new Map<string, Set<EventCallback<unknown>>>();
 	private destroyed = false;
 	private gyroscopeRequested = false;
+	private enterTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	/**
 	 * @param el - The DOM element to apply the tilt effect to
@@ -96,6 +97,7 @@ export class Levita {
 		const granted = await this.motionSensor.requestPermission();
 		if (granted) {
 			this.pointerSensor.stop();
+			this.setTransition(false);
 			this.motionSensor.start();
 		}
 	};
@@ -126,6 +128,7 @@ export class Levita {
 		const granted = await this.motionSensor.requestPermission();
 		if (granted) {
 			this.pointerSensor.stop();
+			this.setTransition(false);
 			this.motionSensor.start();
 		}
 		return granted;
@@ -219,15 +222,33 @@ export class Levita {
 	};
 
 	private handleEnter = (): void => {
+		this.setTransition(true);
 		this.el.style.setProperty("--levita-scale", String(this.options.scale));
+		this.enterTimeout = setTimeout(() => {
+			this.setTransition(false);
+			this.enterTimeout = null;
+		}, this.options.speed);
 		this.emit("enter", undefined);
 	};
 
 	private handleLeave = (): void => {
+		if (this.enterTimeout) {
+			clearTimeout(this.enterTimeout);
+			this.enterTimeout = null;
+		}
+		this.setTransition(true);
 		if (this.options.reset) {
 			this.resetTransform();
 		}
 		this.emit("leave", undefined);
+	};
+
+	/** Toggle the CSS transition on or off. */
+	private setTransition = (on: boolean): void => {
+		this.el.style.setProperty(
+			"--levita-speed",
+			on ? `${this.options.speed}ms` : "0ms",
+		);
 	};
 
 	/** Reset the element to its neutral (non-tilted) position. */
