@@ -12,10 +12,11 @@
   <a href="https://www.npmjs.com/package/levita"><img src="https://img.shields.io/npm/dm/levita" alt="npm downloads" /></a>
   <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size.json" alt="bundle size" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/jeromearsene/levita" alt="license" /></a>
+  <a href="https://jeromearsene.github.io/levita/"><img src="https://img.shields.io/badge/demo-live-blueviolet" alt="demo" /></a>
 </p>
 
 - **CSS-driven** — No `requestAnimationFrame` loop. CSS custom properties + compositor = GPU-accelerated.
-- **~5KB gzipped** — Core engine only.
+- **~2KB gzipped** — Core engine only.
 - **Accelerometer** — Auto-detects gyroscope, handles iOS permissions transparently.
 - **Multi-layer parallax** — `data-levita-offset` on children for depth layering.
 - **React, Vue & Svelte** — First-class wrappers with identical API.
@@ -200,15 +201,16 @@ This means:
 
 | Feature              | Levita           | Atropos          | vanilla-tilt    |
 | -------------------- | ---------------- | ---------------- | --------------- |
-| Bundle size (gzip)   | ~5KB             | ~2KB             | ~3-4KB          |
+| Bundle size (gzip)   | ~2KB             | ~2KB             | ~3-4KB          |
 | Animation            | CSS custom props | CSS transitions  | rAF loop        |
-| Tree-shakeable       | Yes              | No               | No              |
-| Multi-layer parallax | Yes (data attrs) | Yes (data attrs) | No (manual)     |
-| Accelerometer        | Auto + manual    | No               | Partial (buggy) |
+| Tree-shakeable       | ✅               | ❌               | ❌              |
+| Multi-layer parallax | ✅ (data attrs)  | ✅ (data attrs)  | ❌ (manual)     |
+| Accelerometer        | Auto + manual    | ❌               | Partial (buggy) |
 | React                | Official         | Official         | Community       |
 | Vue                  | Official         | Web Component    | Community       |
-| Svelte               | Official         | No               | No              |
-| TypeScript           | Native           | Yes              | Types only      |
+| Svelte               | Official         | ❌               | ❌              |
+| TypeScript           | Native           | ✅               | Types only      |
+| Maintained           | ✅               | ❌               | ❌              |
 
 ## Bundle Size
 
@@ -235,7 +237,7 @@ Measured with [Vitest bench](https://vitest.dev/guide/features.html#benchmarking
 | Pointer move update               | ~15,500 |
 | Pointer move with glare + shadow  | ~8,400  |
 
-Run locally: `pnpm bench`
+Run locally: `pnpm bench` — [View history](https://jeromearsene.github.io/levita/dev/bench/)
 
 ## Development
 
