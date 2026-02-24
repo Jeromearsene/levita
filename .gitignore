@@ -17,5 +17,8 @@ bench-results.json
 # OS files
 .DS_Store
 
+# Size-limit
+size-results.json
+
 # Internal docs (design plans, brainstorming)
 docs/plans/

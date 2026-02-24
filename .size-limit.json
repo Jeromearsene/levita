@@ -1,0 +1,26 @@
+[
+	{
+		"name": "levita (core)",
+		"path": "packages/core/dist/index.mjs",
+		"import": "{ Levita }",
+		"gzip": true
+	},
+	{
+		"name": "@levita/react",
+		"path": "packages/react/dist/index.mjs",
+		"import": "{ Tilt }",
+		"gzip": true
+	},
+	{
+		"name": "@levita/vue",
+		"path": "packages/vue/dist/index.mjs",
+		"import": "{ Tilt }",
+		"gzip": true
+	},
+	{
+		"name": "@levita/svelte",
+		"path": "packages/svelte/dist/index.mjs",
+		"import": "{ tilt }",
+		"gzip": true
+	}
+]
