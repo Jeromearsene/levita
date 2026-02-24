@@ -55,10 +55,11 @@ init("card-parallax", { glare: true, gyroscope: false });
 }
 
 // Gyroscope
-init("card-gyro", { gyroscope: "auto", glare: true, shadow: true });
-
-// Update gyro info
+const gyroInstance = init("card-gyro", { gyroscope: "auto", glare: true, shadow: true });
 const gyroInfo = document.getElementById("gyro-info");
-if (gyroInfo && !("DeviceOrientationEvent" in window)) {
-	gyroInfo.textContent = "Gyroscope not available on this device.";
+
+if (gyroInstance && gyroInfo) {
+	gyroInstance.on("move", ({ x, y }) => {
+		gyroInfo.textContent = `Gyro active — x: ${x.toFixed(1)}° y: ${y.toFixed(1)}°`;
+	});
 }

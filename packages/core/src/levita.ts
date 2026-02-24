@@ -76,7 +76,7 @@ export class Levita {
 			);
 
 			if (this.options.gyroscope === "auto") {
-				this.el.addEventListener("touchstart", this.handleFirstTouch, { once: true });
+				this.el.addEventListener("click", this.handleFirstTouch, { once: true });
 			}
 		}
 
@@ -149,7 +149,7 @@ export class Levita {
 		this.removeBaseProperties();
 		this.listeners.clear();
 
-		this.el.removeEventListener("touchstart", this.handleFirstTouch);
+		this.el.removeEventListener("click", this.handleFirstTouch);
 	};
 
 	/**
