@@ -1,172 +1,72 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+@import "tailwindcss";
+
+@theme {
+	--color-bg: #111827;
+	--color-surface: #1f2937;
+	--color-border: rgba(255, 255, 255, 0.08);
+	--color-accent: #a3e635;
+	--color-accent-end: #4ade80;
 }
 
-body {
-	font-family: system-ui, -apple-system, sans-serif;
-	background: #0f0f13;
-	color: #e0e0e0;
-	min-height: 100vh;
-	padding: 2rem;
-}
-
-main {
-	max-width: 900px;
-	margin: 0 auto;
-}
-
-h1 {
-	font-size: 3rem;
-	font-weight: 700;
-	text-align: center;
-	background: linear-gradient(135deg, #667eea, #764ba2);
+/* Gradient text — not possible with Tailwind alone */
+.text-gradient {
+	background: linear-gradient(135deg, var(--color-accent), var(--color-accent-end));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 }
 
-.subtitle {
-	text-align: center;
-	color: #888;
-	margin-bottom: 3rem;
-}
-
-h2 {
-	margin: 2rem 0 1rem;
-	font-size: 1.5rem;
-}
-
-.grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	gap: 1.5rem;
-}
-
-.card {
-	background: linear-gradient(145deg, #1a1a2e, #16213e);
-	border: 1px solid rgba(255, 255, 255, 0.08);
-	border-radius: 16px;
-	padding: 2rem;
-	cursor: pointer;
-	overflow: hidden;
-}
-
-.card h3 {
-	margin-bottom: 0.5rem;
-	font-size: 1.1rem;
-}
-
-.card p {
-	color: #888;
-	font-size: 0.9rem;
-}
-
-.card-layers {
-	position: relative;
-	min-height: 200px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.layer {
+/* Showcase image layer */
+.showcase-bg {
 	position: absolute;
-	padding: 0.5rem 1rem;
-	border-radius: 8px;
-	font-weight: 600;
-	font-size: 0.85rem;
-}
-
-.layer.bg {
-	background: rgba(102, 126, 234, 0.2);
-	top: 20%;
-	left: 10%;
-}
-
-.layer.mid {
-	background: rgba(118, 75, 162, 0.3);
-}
-
-.layer.fg {
-	background: rgba(234, 102, 180, 0.4);
-	bottom: 20%;
-	right: 10%;
-}
-
-.playground {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 2rem;
-	align-items: start;
-}
-
-.playground-preview {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: 250px;
-}
-
-.playground-preview .card {
+	inset: 0;
 	width: 100%;
-	min-height: 200px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	height: 100%;
+	object-fit: cover;
+	border-radius: inherit;
 }
 
-.playground-controls {
-	display: flex;
-	flex-direction: column;
-	gap: 0.75rem;
+/* Custom toggle switch */
+.toggle-switch {
+	appearance: none;
+	width: 40px;
+	height: 22px;
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: 11px;
+	position: relative;
+	cursor: pointer;
+	transition: background 0.2s;
 }
 
-.playground-controls label {
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
-	font-size: 0.85rem;
-	color: #aaa;
+.toggle-switch::after {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	background: #9ca3af;
+	border-radius: 50%;
+	transition: transform 0.2s, background 0.2s;
 }
 
-.playground-controls label span {
-	display: flex;
-	justify-content: space-between;
+.toggle-switch:checked {
+	background: var(--color-accent);
+	border-color: var(--color-accent);
 }
 
-.playground-controls label output {
-	color: #667eea;
-	font-variant-numeric: tabular-nums;
+.toggle-switch:checked::after {
+	transform: translateX(18px);
+	background: #111827;
 }
 
-.playground-controls input[type="range"] {
-	width: 100%;
-	accent-color: #667eea;
+/* Phone tilt animation */
+@keyframes tilt-hint {
+	0%, 100% { transform: rotate(-8deg); }
+	50% { transform: rotate(8deg); }
 }
 
-.playground-controls label.toggle {
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.playground-controls input[type="checkbox"] {
-	width: 18px;
-	height: 18px;
-	accent-color: #667eea;
-}
-
-@media (max-width: 600px) {
-	.playground {
-		grid-template-columns: 1fr;
-	}
-}
-
-.info {
-	color: #888;
-	font-size: 0.85rem;
-	margin-bottom: 1rem;
+.animate-tilt {
+	animation: tilt-hint 3s ease-in-out infinite;
 }

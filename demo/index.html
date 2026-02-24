@@ -3,108 +3,169 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Levita — 3D Tilt & Parallax Demo</title>
+		<title>Levita — 3D Tilt & Parallax</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" href="./src/style.css" />
 	</head>
-	<body>
-		<main>
-			<h1>Levita</h1>
-			<p class="subtitle">Lightweight 3D tilt & parallax with accelerometer support</p>
+	<body class="bg-bg text-white font-[Inter,system-ui,sans-serif] antialiased">
 
-			<section>
-				<h2>Simple Tilt</h2>
-				<div class="grid">
-					<div class="card" id="card-basic">
-						<h3>Basic Tilt</h3>
-						<p>Hover me — default settings</p>
-					</div>
-					<div class="card" id="card-glare">
-						<h3>With Glare</h3>
-						<p>Glare follows cursor</p>
-					</div>
-					<div class="card" id="card-shadow">
-						<h3>With Shadow</h3>
-						<p>Dynamic shadow offset</p>
-					</div>
-					<div class="card" id="card-full">
-						<h3>Glare + Shadow</h3>
-						<p>All effects combined</p>
+		<!-- Hero -->
+		<section class="flex flex-col items-center justify-center min-h-screen px-8 text-center">
+			<h1 class="text-gradient text-5xl sm:text-7xl font-bold leading-tight">Levita</h1>
+			<p class="text-gray-400 text-lg mt-2 mb-12">Lightweight 3D tilt & parallax with accelerometer support</p>
+
+			<div class="relative w-[min(480px,90vw)] aspect-[4/3] rounded-2xl bg-surface border border-border" id="card-hero">
+				<img src="./assets/hero.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+				<div data-levita-offset="50" class="absolute inset-0 flex flex-col items-center justify-center z-10">
+					<p class="text-5xl font-bold text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.7)]">Explore</p>
+					<p class="text-lg text-gray-200 mt-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">The Alps</p>
+				</div>
+			</div>
+
+			<div class="flex gap-4 mt-10">
+				<a href="https://github.com/Jeromearsene/levita#getting-started" class="inline-flex items-center px-7 py-3 rounded-xl font-semibold bg-linear-to-br from-accent to-accent-end text-bg hover:opacity-90 transition">Get Started</a>
+				<a href="https://github.com/Jeromearsene/levita" class="inline-flex items-center px-7 py-3 rounded-xl font-semibold border border-border text-white hover:border-white/20 transition">GitHub</a>
+			</div>
+			<p class="text-gray-500 text-sm mt-4">~2KB gzipped</p>
+		</section>
+
+		<!-- Showcase -->
+		<section class="max-w-5xl mx-auto px-8 py-16">
+			<h2 class="text-3xl font-bold text-center mb-2">Showcase</h2>
+			<p class="text-center text-gray-400 mb-10">Hover the cards to see the effect in action</p>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+				<!-- Profile -->
+				<div class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer" id="card-profile">
+					<img src="./assets/showcase-profile.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+					<div data-levita-offset="45" class="absolute bottom-6 left-6 right-6 z-10">
+						<p class="text-2xl font-bold drop-shadow-lg">Jane Doe</p>
+						<p class="text-sm text-gray-300 mt-1 drop-shadow-lg">Designer</p>
 					</div>
 				</div>
-			</section>
 
-			<section>
-				<h2>Parallax Layers</h2>
-				<div class="grid">
-					<div class="card card-layers" id="card-parallax">
-						<div data-levita-offset="-5" class="layer bg">Background</div>
-						<div data-levita-offset="0" class="layer mid">Middle</div>
-						<div data-levita-offset="10" class="layer fg">Foreground</div>
+				<!-- Product -->
+				<div class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer" id="card-product">
+					<img src="./assets/showcase-product.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+					<div data-levita-offset="50" class="absolute top-5 right-5 flex flex-col items-end gap-2 z-10">
+						<span class="px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-br from-accent to-accent-end text-bg drop-shadow-lg">New</span>
+						<p class="text-3xl font-bold drop-shadow-lg">€129</p>
 					</div>
 				</div>
-			</section>
 
-			<section>
-				<h2>Playground</h2>
-				<div class="playground">
-					<div class="playground-preview">
-						<div class="card" id="card-playground">
-							<h3>Live Preview</h3>
-							<p>Adjust the controls</p>
+				<!-- Poster -->
+				<div class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer" id="card-poster">
+					<img src="./assets/showcase-poster.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+					<div data-levita-offset="45" class="absolute inset-0 flex flex-col items-center justify-center z-10">
+						<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg">Nightfall</p>
+						<p class="text-sm text-gray-300 mt-1 drop-shadow-lg">A visual journey</p>
+					</div>
+				</div>
+
+				<!-- Artwork -->
+				<div class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer" id="card-artwork">
+					<img src="./assets/showcase-artwork.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+					<div data-levita-offset="50" class="absolute inset-0 flex items-center justify-center z-10">
+						<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg">Abstract</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Playground -->
+		<section class="max-w-5xl mx-auto px-8 py-16">
+			<h2 class="text-3xl font-bold text-center mb-2">Playground</h2>
+			<p class="text-center text-gray-400 mb-10">Tweak every parameter in real-time</p>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+				<!-- Preview -->
+				<div class="flex items-center justify-center">
+					<div class="relative aspect-[3/4] w-full rounded-2xl bg-surface border border-border cursor-pointer" id="card-playground">
+						<img src="./assets/showcase-poster.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+						<div data-levita-offset="45" class="absolute inset-0 flex items-center justify-center z-10">
+							<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg">Preview</p>
 						</div>
 					</div>
-					<div class="playground-controls" id="playground-controls">
-						<label>
-							<span>max <output id="out-max">15</output></span>
-							<input type="range" id="ctrl-max" min="1" max="45" value="15" />
-						</label>
-						<label>
-							<span>perspective <output id="out-perspective">1000</output></span>
-							<input type="range" id="ctrl-perspective" min="300" max="2000" value="1000" />
-						</label>
-						<label>
-							<span>scale <output id="out-scale">1.05</output></span>
-							<input type="range" id="ctrl-scale" min="1" max="1.3" step="0.01" value="1.05" />
-						</label>
-						<label>
-							<span>speed <output id="out-speed">200</output></span>
-							<input type="range" id="ctrl-speed" min="100" max="1000" value="200" />
-						</label>
-						<label class="toggle">
-							<span>reverse</span>
-							<input type="checkbox" id="ctrl-reverse" />
-						</label>
-						<label class="toggle">
-							<span>glare</span>
-							<input type="checkbox" id="ctrl-glare" />
-						</label>
-						<label>
-							<span>maxGlare <output id="out-maxGlare">0.5</output></span>
-							<input type="range" id="ctrl-maxGlare" min="0" max="1" step="0.05" value="0.5" />
-						</label>
-						<label class="toggle">
-							<span>shadow</span>
-							<input type="checkbox" id="ctrl-shadow" />
-						</label>
-						<label class="toggle">
-							<span>disabled</span>
-							<input type="checkbox" id="ctrl-disabled" />
-						</label>
-					</div>
 				</div>
-			</section>
 
-			<section>
-				<h2>Accelerometer</h2>
-				<p class="info" id="gyro-info">Tap the card below on a mobile device to enable gyroscope.</p>
-				<div class="grid">
-					<div class="card" id="card-gyro">
-						<h3>Gyroscope</h3>
-						<p>Tilt your device</p>
+				<!-- Controls -->
+				<div class="flex flex-col gap-6">
+					<div class="flex flex-col gap-3" id="playground-controls">
+						<label class="flex flex-col gap-1 text-sm text-gray-400">
+							<span class="flex justify-between">max <output id="out-max" class="text-accent font-semibold tabular-nums">15</output></span>
+							<input type="range" id="ctrl-max" min="1" max="45" value="15" class="w-full accent-accent" />
+						</label>
+						<label class="flex flex-col gap-1 text-sm text-gray-400">
+							<span class="flex justify-between">perspective <output id="out-perspective" class="text-accent font-semibold tabular-nums">1000</output></span>
+							<input type="range" id="ctrl-perspective" min="300" max="2000" value="1000" class="w-full accent-accent" />
+						</label>
+						<label class="flex flex-col gap-1 text-sm text-gray-400">
+							<span class="flex justify-between">scale <output id="out-scale" class="text-accent font-semibold tabular-nums">1.05</output></span>
+							<input type="range" id="ctrl-scale" min="1" max="1.3" step="0.01" value="1.05" class="w-full accent-accent" />
+						</label>
+						<label class="flex flex-col gap-1 text-sm text-gray-400">
+							<span class="flex justify-between">speed <output id="out-speed" class="text-accent font-semibold tabular-nums">200</output></span>
+							<input type="range" id="ctrl-speed" min="0" max="1000" value="200" class="w-full accent-accent" />
+						</label>
+						<label class="flex items-center justify-between text-sm text-gray-400">
+							<span>reverse</span>
+							<input type="checkbox" id="ctrl-reverse" class="toggle-switch" />
+						</label>
+						<label class="flex items-center justify-between text-sm text-gray-400">
+							<span>glare</span>
+							<input type="checkbox" id="ctrl-glare" class="toggle-switch" />
+						</label>
+						<label class="flex flex-col gap-1 text-sm text-gray-400">
+							<span class="flex justify-between">maxGlare <output id="out-maxGlare" class="text-accent font-semibold tabular-nums">0.5</output></span>
+							<input type="range" id="ctrl-maxGlare" min="0" max="1" step="0.05" value="0.5" class="w-full accent-accent" />
+						</label>
+						<label class="flex items-center justify-between text-sm text-gray-400">
+							<span>shadow</span>
+							<input type="checkbox" id="ctrl-shadow" class="toggle-switch" />
+						</label>
+						<label class="flex items-center justify-between text-sm text-gray-400">
+							<span>disabled</span>
+							<input type="checkbox" id="ctrl-disabled" class="toggle-switch" />
+						</label>
+						<button class="w-full px-4 py-2 text-sm rounded-lg bg-surface text-gray-400 border border-border hover:border-white/20 cursor-pointer transition" id="ctrl-reset">Reset</button>
+					</div>
+					<pre class="bg-surface border border-border rounded-xl px-5 py-4 font-mono text-sm text-accent leading-relaxed overflow-x-auto"><code id="playground-snippet">new Levita(el);</code></pre>
+				</div>
+			</div>
+		</section>
+
+		<!-- Gyroscope -->
+		<section class="max-w-5xl mx-auto px-8 py-16">
+			<h2 class="text-3xl font-bold text-center mb-2">Accelerometer</h2>
+			<p class="text-center text-gray-400 mb-10">Works on mobile devices with gyroscope support</p>
+
+			<div class="flex flex-col items-center gap-6">
+				<div class="relative w-[min(300px,80vw)] aspect-[3/4] rounded-2xl bg-linear-to-br from-surface to-[#0f172a] border border-border cursor-pointer" id="card-gyro">
+					<div data-levita-offset="15" class="absolute inset-0 flex flex-col items-center justify-center gap-4 text-gray-400">
+						<svg class="opacity-50 animate-tilt" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+							<line x1="12" y1="18" x2="12.01" y2="18" />
+						</svg>
+						<p class="text-sm">Tilt your device</p>
 					</div>
 				</div>
-			</section>
-		</main>
+				<p class="text-gray-500 text-xs" id="gyro-info">Tap the card on a mobile device to enable gyroscope.</p>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="border-t border-border mt-16 px-8 py-8">
+			<div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+				<span class="text-gradient font-bold text-lg">Levita</span>
+				<nav class="flex gap-6">
+					<a href="https://github.com/Jeromearsene/levita" class="text-gray-400 text-sm hover:text-white transition">GitHub</a>
+					<a href="https://www.npmjs.com/package/levita" class="text-gray-400 text-sm hover:text-white transition">npm</a>
+					<a href="https://github.com/Jeromearsene/levita#api" class="text-gray-400 text-sm hover:text-white transition">Documentation</a>
+				</nav>
+			</div>
+		</footer>
 
 		<script type="module" src="./src/main.ts"></script>
 	</body>
