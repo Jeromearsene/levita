@@ -223,21 +223,23 @@ Measured with [size-limit](https://github.com/ai/size-limit) (tree-shaken, gzipp
 | `@levita/vue` | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-vue.json) |
 | `@levita/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-svelte.json) |
 
-> Sizes are automatically measured on each push to `main`.
+> Automatically updated at each release.
 
 ## Benchmarks
 
 Measured with [Vitest bench](https://vitest.dev/guide/features.html#benchmarking) (happy-dom):
 
-| Scenario                          | ops/s   |
-| --------------------------------- | ------- |
-| Basic init + destroy              | ~29,000 |
-| Init with glare + shadow          | ~16,000 |
-| Init with 5 parallax layers       | ~10,500 |
-| Pointer move update               | ~15,500 |
-| Pointer move with glare + shadow  | ~8,400  |
+| Scenario | ops/s |
+| -------- | ----- |
+| Basic init + destroy | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita---basic-init.json) |
+| Init with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita---init-with-glare---shadow.json) |
+| Init with 5 parallax layers | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita---init-with-5-layers.json) |
+| Pointer move update | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita---pointer-move-update.json) |
+| Pointer move with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita---pointer-move-with-glare---shadow.json) |
 
 Run locally: `pnpm bench` — [View history](https://jeromearsene.github.io/levita/dev/bench/)
+
+> Automatically updated at each release.
 
 ## Development
 
