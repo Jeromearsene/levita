@@ -22,3 +22,6 @@ size-results.json
 
 # Internal docs (design plans, brainstorming)
 docs/plans/
+
+# Design notes (local only)
+docs/brand.md
