@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/jeromearsene/levita">
-    <img src="docs/banner.png" alt="Levita — Lightweight 3D tilt & parallax library with accelerometer support" width="100%" />
+    <img src="docs/banner.webp" alt="Levita — Lightweight 3D tilt & parallax library with accelerometer support" width="100%" />
   </a>
 </p>
 

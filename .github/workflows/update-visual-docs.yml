@@ -33,6 +33,13 @@ jobs:
       - name: Convert to GIF
         run: ./tests/visual/convert-to-gif.sh
 
+      - name: Optimize GIFs
+        run: |
+          sudo apt-get install -y gifsicle
+          for f in docs/animations/*.gif; do
+            gifsicle -O3 --lossy=80 "$f" -o "$f.opt" && mv "$f.opt" "$f"
+          done
+
       - name: Commit updated GIFs
         run: |
           git config user.name "github-actions[bot]"
