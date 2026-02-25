@@ -13,11 +13,11 @@
 
 		<!-- Hero -->
 		<section class="flex flex-col items-center justify-center min-h-screen px-8 text-center">
-			<h1 class="text-gradient text-5xl sm:text-7xl font-bold leading-tight">Levita</h1>
+			<h1 class="bg-linear-to-br from-accent to-accent-end bg-clip-text text-transparent text-5xl sm:text-7xl font-bold leading-tight">Levita</h1>
 			<p class="text-gray-400 text-lg mt-2 mb-12">Lightweight 3D tilt & parallax with accelerometer support</p>
 
 			<div class="relative w-[min(480px,90vw)] aspect-[4/3] rounded-2xl bg-surface border border-border" id="card-hero">
-				<img src="./assets/hero.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+				<img src="./assets/hero.webp" alt="Alps landscape" data-levita-offset="0" class="absolute inset-0 size-full object-cover rounded-[inherit]" />
 				<div data-levita-offset="50" class="absolute inset-0 flex flex-col items-center justify-center z-10">
 					<p class="text-5xl font-bold text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.7)]">Explore</p>
 					<p class="text-lg text-gray-200 mt-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">The Alps</p>
@@ -39,7 +39,7 @@
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 				<!-- Profile -->
 				<div class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer" id="card-profile">
-					<img src="./assets/showcase-profile.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+					<img src="./assets/showcase-profile.webp" alt="Profile portrait" data-levita-offset="0" class="absolute inset-0 size-full object-cover rounded-[inherit]" />
 					<div data-levita-offset="45" class="absolute bottom-6 left-6 right-6 z-10">
 						<p class="text-2xl font-bold drop-shadow-lg">Jane Doe</p>
 						<p class="text-sm text-gray-300 mt-1 drop-shadow-lg">Designer</p>
@@ -48,7 +48,7 @@
 
 				<!-- Product -->
 				<div class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer" id="card-product">
-					<img src="./assets/showcase-product.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+					<img src="./assets/showcase-product.webp" alt="Product" data-levita-offset="0" class="absolute inset-0 size-full object-cover rounded-[inherit]" />
 					<div data-levita-offset="50" class="absolute top-5 right-5 flex flex-col items-end gap-2 z-10">
 						<span class="px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-br from-accent to-accent-end text-bg drop-shadow-lg">New</span>
 						<p class="text-3xl font-bold drop-shadow-lg">€129</p>
@@ -57,7 +57,7 @@
 
 				<!-- Poster -->
 				<div class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer" id="card-poster">
-					<img src="./assets/showcase-poster.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+					<img src="./assets/showcase-poster.webp" alt="Nightfall movie poster" data-levita-offset="0" class="absolute inset-0 size-full object-cover rounded-[inherit]" />
 					<div data-levita-offset="45" class="absolute inset-0 flex flex-col items-center justify-center z-10">
 						<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg">Nightfall</p>
 						<p class="text-sm text-gray-300 mt-1 drop-shadow-lg">A visual journey</p>
@@ -66,10 +66,110 @@
 
 				<!-- Artwork -->
 				<div class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer" id="card-artwork">
-					<img src="./assets/showcase-artwork.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+					<img src="./assets/showcase-artwork.webp" alt="Abstract artwork" data-levita-offset="0" class="absolute inset-0 size-full object-cover rounded-[inherit]" />
 					<div data-levita-offset="50" class="absolute inset-0 flex items-center justify-center z-10">
 						<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg">Abstract</p>
 					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- High Depth -->
+		<section class="max-w-5xl mx-auto px-8 py-16">
+			<h2 class="text-3xl font-bold text-center mb-2">High Depth Parallax</h2>
+			<p class="text-center text-gray-400 mb-10">Layered elements with high offset values for the "wow" effect</p>
+
+			<div class="flex items-center justify-center">
+				<div class="relative w-[min(600px,90vw)] aspect-[16/9] rounded-3xl bg-linear-to-br from-surface to-[#0f172a] border border-border overflow-hidden cursor-pointer" id="card-high-depth">
+					<!-- Background -->
+					<div data-levita-offset="-40" class="absolute inset-0 opacity-30">
+						<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#3b82f6_0%,transparent_70%)]"></div>
+					</div>
+					
+					<!-- Stars -->
+					<div data-levita-offset="-20" class="absolute inset-0">
+						<div class="absolute top-10 left-20 w-1 h-1 bg-white rounded-full"></div>
+						<div class="absolute top-40 left-60 w-1.5 h-1.5 bg-white rounded-full opacity-70"></div>
+						<div class="absolute top-20 right-40 w-1 h-1 bg-white rounded-full"></div>
+						<div class="absolute bottom-40 right-20 w-1 h-1 bg-white rounded-full opacity-50"></div>
+					</div>
+
+					<!-- Middle Ground -->
+					<div data-levita-offset="30" class="absolute inset-0 flex items-center justify-center">
+						<div class="text-6xl font-black text-white/10 uppercase italic tracking-tighter">PARALLAX</div>
+					</div>
+
+					<!-- Foreground -->
+					<div data-levita-offset="80" class="absolute inset-0 flex items-center justify-center">
+						<div class="px-8 py-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl">
+							<h3 class="text-4xl font-bold text-white bg-linear-to-br from-accent to-accent-end bg-clip-text text-transparent">LEVITATE</h3>
+						</div>
+					</div>
+
+					<!-- Floating objects -->
+					<div data-levita-offset="120" class="absolute top-1/4 right-1/4">
+						<div class="w-12 h-12 rounded-xl bg-linear-to-br from-accent to-accent-end shadow-lg rotate-12"></div>
+					</div>
+					<div data-levita-offset="150" class="absolute bottom-1/4 left-1/4">
+						<div class="w-8 h-8 rounded-full bg-white shadow-lg"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Grouped -->
+		<section class="max-w-5xl mx-auto px-8 py-16">
+			<h2 class="text-3xl font-bold text-center mb-2">Grouped Cards</h2>
+			<p class="text-center text-gray-400 mb-10">Multiple cards reacting to a shared container</p>
+
+			<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 p-10 bg-surface/30 rounded-3xl border border-dashed border-border" id="container-grouped">
+				<!-- Pink Floyd - Dark Side of the Moon -->
+				<div class="relative aspect-square card-grouped rounded-[4px] cursor-pointer">
+					<div class="absolute inset-0 pl-[25px] overflow-hidden rounded-r-[4px]">
+						<img src="./assets/dark-side.webp" alt="Pink Floyd - Dark Side of the Moon cover" data-levita-offset="0" class="absolute inset-0 size-full object-cover rounded-[inherit]" />
+					</div>
+					
+					<!-- Prism Glow -->
+					<div data-levita-offset="40" class="absolute inset-0 pl-[25px] bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,0.1)_0%,transparent_60%)]"></div>
+
+					<div data-levita-offset="120" class="absolute bottom-12 left-[25px] right-0 text-center">
+						<p class="text-white font-serif text-sm tracking-[0.4em] uppercase opacity-40 drop-shadow-lg">Pink Floyd</p>
+						<p class="text-white font-serif text-2xl font-bold tracking-widest mt-1 drop-shadow-2xl">DARK SIDE</p>
+					</div>
+					<div class="card-thickness"></div>
+				</div>
+
+				<!-- The Beatles - Abbey Road -->
+				<div class="relative aspect-square card-grouped rounded-[4px] cursor-pointer">
+					<div class="absolute inset-0 pl-[25px] overflow-hidden rounded-r-[4px]">
+						<img src="./assets/abbey-road.webp" alt="The Beatles - Abbey Road cover" data-levita-offset="0" class="absolute inset-0 size-full object-cover rounded-[inherit]" />
+					</div>
+					
+					<div data-levita-offset="40" class="absolute inset-0 pl-[25px] bg-linear-to-b from-black/40 via-transparent to-transparent"></div>
+					
+					<!-- This text will pop out slightly -->
+					<div data-levita-offset="150" class="absolute top-8 left-[25px] right-0 text-center">
+						<p class="text-white font-black text-3xl uppercase tracking-[0.4em] drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]">Abbey Road</p>
+					</div>
+					<div class="card-thickness"></div>
+				</div>
+
+				<!-- Bon Iver - For Emma, Forever Ago -->
+				<div class="relative aspect-square card-grouped rounded-[4px] cursor-pointer">
+					<div class="absolute inset-0 pl-[25px] overflow-hidden rounded-r-[4px]">
+						<img src="./assets/for-emma.webp" alt="Bon Iver - For Emma, Forever Ago cover" data-levita-offset="0" class="absolute inset-0 size-full object-cover rounded-[inherit]" />
+					</div>
+					
+					<!-- Transparent overlay -->
+					<div data-levita-offset="30" class="absolute inset-0 pl-[25px] bg-white/5"></div>
+					
+					<div data-levita-offset="180" class="absolute inset-0 pl-[25px] flex flex-col items-center justify-center">
+						<div class="px-8 py-3 border border-white/40 bg-white/5 backdrop-blur-md shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
+							<p class="text-white font-light text-2xl tracking-[0.4em] uppercase">Bon Iver</p>
+						</div>
+						<p class="mt-6 text-white text-sm italic font-serif tracking-wide drop-shadow-lg">For Emma, Forever Ago</p>
+					</div>
+					<div class="card-thickness"></div>
 				</div>
 			</div>
 		</section>
@@ -83,7 +183,7 @@
 				<!-- Preview -->
 				<div class="flex items-center justify-center">
 					<div class="relative aspect-[3/4] w-full rounded-2xl bg-surface border border-border cursor-pointer" id="card-playground">
-						<img src="./assets/showcase-poster.webp" alt="" data-levita-offset="0" class="showcase-bg" />
+						<img src="./assets/showcase-poster.webp" alt="Playground preview poster" data-levita-offset="0" class="absolute inset-0 size-full object-cover rounded-[inherit]" />
 						<div data-levita-offset="45" class="absolute inset-0 flex items-center justify-center z-10">
 							<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg">Preview</p>
 						</div>
@@ -129,7 +229,7 @@
 							<span>disabled</span>
 							<input type="checkbox" id="ctrl-disabled" class="toggle-switch" />
 						</label>
-						<button class="w-full px-4 py-2 text-sm rounded-lg bg-surface text-gray-400 border border-border hover:border-white/20 cursor-pointer transition" id="ctrl-reset">Reset</button>
+						<button type="button" class="w-full px-4 py-2 text-sm rounded-lg bg-surface text-gray-400 border border-border hover:border-white/20 cursor-pointer transition" id="ctrl-reset">Reset</button>
 					</div>
 					<pre class="bg-surface border border-border rounded-xl px-5 py-4 font-mono text-sm text-accent leading-relaxed overflow-x-auto"><code id="playground-snippet">new Levita(el);</code></pre>
 				</div>
@@ -145,6 +245,7 @@
 				<div class="relative w-[min(300px,80vw)] aspect-[3/4] rounded-2xl bg-linear-to-br from-surface to-[#0f172a] border border-border cursor-pointer" id="card-gyro">
 					<div data-levita-offset="15" class="absolute inset-0 flex flex-col items-center justify-center gap-4 text-gray-400">
 						<svg class="opacity-50 animate-tilt" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+							<title>Smartphone tilting icon</title>
 							<rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
 							<line x1="12" y1="18" x2="12.01" y2="18" />
 						</svg>
@@ -158,7 +259,7 @@
 		<!-- Footer -->
 		<footer class="border-t border-border mt-16 px-8 py-8">
 			<div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-				<span class="text-gradient font-bold text-lg">Levita</span>
+				<span class="bg-linear-to-br from-accent to-accent-end bg-clip-text text-transparent font-bold text-lg">Levita</span>
 				<nav class="flex gap-6">
 					<a href="https://github.com/Jeromearsene/levita" class="text-gray-400 text-sm hover:text-white transition">GitHub</a>
 					<a href="https://www.npmjs.com/package/levita" class="text-gray-400 text-sm hover:text-white transition">npm</a>
