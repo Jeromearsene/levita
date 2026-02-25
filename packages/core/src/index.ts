@@ -1,3 +1,4 @@
+export { buildOptions, DEFAULT_OPTIONS, OPTION_KEYS } from "./constants.js";
 export { Levita } from "./levita.js";
 export type {
 	Axis,
@@ -7,4 +8,3 @@ export type {
 	LevitaOptions,
 	TiltValues,
 } from "./types.js";
-export { buildOptions, DEFAULT_OPTIONS, OPTION_KEYS } from "./constants.js";

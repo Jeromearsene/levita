@@ -47,6 +47,10 @@
 
 /* Layers */
 [data-levita-offset] {
-	transform: translateZ(calc(var(--levita-offset, 0) * 1px));
+	--levita-offset-x: calc(var(--levita-percent-x, 0) * var(--levita-offset, 0) * 0.15px);
+	--levita-offset-y: calc(var(--levita-percent-y, 0) * var(--levita-offset, 0) * 0.15px);
+	--levita-offset-z: calc(var(--levita-offset, 0) * 1px);
+
+	transform: translate3d(var(--levita-offset-x), var(--levita-offset-y), var(--levita-offset-z));
 	transition: transform var(--levita-speed) var(--levita-easing);
 }

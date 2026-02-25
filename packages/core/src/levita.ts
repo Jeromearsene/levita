@@ -1,3 +1,4 @@
+import { DEFAULT_OPTIONS } from "./constants.js";
 import { GlareEffect } from "./effects/glare.js";
 import { ShadowEffect } from "./effects/shadow.js";
 import type { Layer } from "./layers.js";
@@ -5,7 +6,6 @@ import { cleanupLayers, scanLayers } from "./layers.js";
 import { MotionSensor } from "./sensors/motion.js";
 import type { SensorOutput } from "./sensors/pointer.js";
 import { PointerSensor } from "./sensors/pointer.js";
-import { DEFAULT_OPTIONS } from "./constants.js";
 import type { EventCallback, LevitaEventMap, LevitaOptions, TiltValues } from "./types.js";
 
 /**
@@ -62,6 +62,7 @@ export class Levita {
 			() => this.handleEnter(),
 			() => this.handleLeave(),
 			this.options.axis,
+			this.options.eventsEl,
 		);
 
 		if (this.options.gyroscope !== false && MotionSensor.isSupported()) {
@@ -202,6 +203,8 @@ export class Levita {
 		this.el.style.setProperty("--levita-x", `${x}deg`);
 		this.el.style.setProperty("--levita-y", `${y}deg`);
 		this.el.style.setProperty("--levita-scale", String(this.options.scale));
+		this.el.style.setProperty("--levita-percent-x", String(input.x));
+		this.el.style.setProperty("--levita-percent-y", String(input.y));
 
 		this.glareEffect?.update(input.x, input.y);
 		this.shadowEffect?.update(input.x, input.y);
@@ -231,10 +234,7 @@ export class Levita {
 
 	/** Toggle the CSS transition on or off. */
 	private setTransition = (on: boolean): void => {
-		this.el.style.setProperty(
-			"--levita-speed",
-			on ? `${this.options.speed}ms` : "0ms",
-		);
+		this.el.style.setProperty("--levita-speed", on ? `${this.options.speed}ms` : "0ms");
 	};
 
 	/** Reset the element to its neutral (non-tilted) position. */
@@ -242,6 +242,8 @@ export class Levita {
 		this.el.style.setProperty("--levita-x", "0deg");
 		this.el.style.setProperty("--levita-y", "0deg");
 		this.el.style.setProperty("--levita-scale", "1");
+		this.el.style.setProperty("--levita-percent-x", "0");
+		this.el.style.setProperty("--levita-percent-y", "0");
 		this.glareEffect?.update(0, 0);
 		this.shadowEffect?.update(0, 0);
 	};
@@ -261,5 +263,7 @@ export class Levita {
 		this.el.style.removeProperty("--levita-x");
 		this.el.style.removeProperty("--levita-y");
 		this.el.style.removeProperty("--levita-scale");
+		this.el.style.removeProperty("--levita-percent-x");
+		this.el.style.removeProperty("--levita-percent-y");
 	};
 }
