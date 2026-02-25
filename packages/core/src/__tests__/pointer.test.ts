@@ -19,6 +19,7 @@ const createEl = (): HTMLElement => {
 
 /** Dispatch a pointermove event on the given element. */
 const firePointerMove = (el: HTMLElement, clientX: number, clientY: number): void => {
+	el.dispatchEvent(new PointerEvent("pointerenter", { clientX, clientY }));
 	el.dispatchEvent(new PointerEvent("pointermove", { clientX, clientY }));
 };
 

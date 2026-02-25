@@ -42,6 +42,7 @@ describe("Levita", () => {
 		const instance = new Levita(el, { max: 15, gyroscope: false });
 		instance.on("move", onMove);
 
+		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
 		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
 
 		expect(onMove).toHaveBeenCalledOnce();
@@ -54,6 +55,7 @@ describe("Levita", () => {
 		const el = createEl();
 		const instance = new Levita(el, { reset: true, gyroscope: false });
 
+		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
 		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
 		el.dispatchEvent(new PointerEvent("pointerleave"));
 
@@ -69,6 +71,7 @@ describe("Levita", () => {
 		const instance = new Levita(el, { disabled: true, gyroscope: false });
 		instance.on("move", onMove);
 
+		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
 		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
 
 		expect(onMove).not.toHaveBeenCalled();
@@ -155,10 +158,12 @@ describe("Levita", () => {
 		instance.on("move", onMove);
 
 		instance.disable();
+		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
 		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
 		expect(onMove).not.toHaveBeenCalled();
 
 		instance.enable();
+		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
 		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
 		expect(onMove).toHaveBeenCalledOnce();
 
