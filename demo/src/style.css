@@ -8,24 +8,6 @@
 	--color-accent-end: #4ade80;
 }
 
-/* Gradient text — not possible with Tailwind alone */
-.text-gradient {
-	background: linear-gradient(135deg, var(--color-accent), var(--color-accent-end));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-}
-
-/* Showcase image layer */
-.showcase-bg {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-radius: inherit;
-}
-
 /* Custom toggle switch */
 .toggle-switch {
 	appearance: none;
@@ -48,7 +30,9 @@
 	height: 16px;
 	background: #9ca3af;
 	border-radius: 50%;
-	transition: transform 0.2s, background 0.2s;
+	transition:
+		transform 0.2s,
+		background 0.2s;
 }
 
 .toggle-switch:checked {
@@ -63,10 +47,92 @@
 
 /* Phone tilt animation */
 @keyframes tilt-hint {
-	0%, 100% { transform: rotate(-8deg); }
-	50% { transform: rotate(8deg); }
+	0%,
+	100% {
+		transform: rotate(-8deg);
+	}
+	50% {
+		transform: rotate(8deg);
+	}
 }
 
 .animate-tilt {
 	animation: tilt-hint 3s ease-in-out infinite;
+}
+
+/* CD Case styling */
+.card-grouped {
+	border-radius: 4px;
+	background: #111;
+	transform-style: preserve-3d;
+	/* NO overflow:hidden here to allow elements to pop out */
+
+	--x-off: calc(var(--levita-percent-x, 0) * 15px);
+	--y-off: calc(var(--levita-percent-y, 0) * 15px);
+
+	box-shadow:
+		calc(var(--x-off) * 3) calc(var(--y-off) * 3) 50px rgba(0, 0, 0, 0.8),
+		calc(var(--x-off) * 0.1) calc(var(--y-off) * 0.1) 0px #333,
+		calc(var(--x-off) * 0.2) calc(var(--y-off) * 0.2) 0px #333,
+		calc(var(--x-off) * 0.3) calc(var(--y-off) * 0.3) 0px #2a2a2a,
+		calc(var(--x-off) * 0.4) calc(var(--y-off) * 0.4) 0px #2a2a2a,
+		calc(var(--x-off) * 0.5) calc(var(--y-off) * 0.5) 0px #222,
+		calc(var(--x-off) * 0.6) calc(var(--y-off) * 0.6) 0px #222,
+		calc(var(--x-off) * 0.7) calc(var(--y-off) * 0.7) 0px #1a1a1a,
+		calc(var(--x-off) * 0.8) calc(var(--y-off) * 0.8) 0px #1a1a1a,
+		calc(var(--x-off) * 0.9) calc(var(--y-off) * 0.9) 0px #111,
+		calc(var(--x-off) * 1) calc(var(--y-off) * 1) 0px #000;
+
+	position: relative;
+	transition: box-shadow 0.1s linear;
+}
+
+.card-grouped:hover {
+	--x-off: calc(var(--levita-percent-x, 0) * 20px);
+	--y-off: calc(var(--levita-percent-y, 0) * 20px);
+}
+
+/* The plastic spine on the left */
+.card-grouped::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 25px;
+	height: 100%;
+	background: linear-gradient(
+		to right,
+		rgba(255, 255, 255, 0.1) 0%,
+		rgba(255, 255, 255, 0.05) 50%,
+		rgba(0, 0, 0, 0.2) 100%
+	);
+	border-right: 1px solid rgba(255, 255, 255, 0.1);
+	z-index: 20;
+	pointer-events: none;
+}
+
+/* Plastic sheen / reflections */
+.card-grouped::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		125deg,
+		rgba(255, 255, 255, 0.1) 0%,
+		rgba(255, 255, 255, 0) 30%,
+		rgba(255, 255, 255, 0.05) 50%,
+		rgba(255, 255, 255, 0) 70%
+	);
+	z-index: 25;
+	pointer-events: none;
+}
+
+/* Thickness edge simulation */
+.card-thickness {
+	position: absolute;
+	inset: 0;
+	border-radius: 4px;
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	pointer-events: none;
+	z-index: 30;
 }

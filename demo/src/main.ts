@@ -16,6 +16,30 @@ init("card-product", { glare: true, shadow: true, gyroscope: false });
 init("card-poster", { glare: true, shadow: true, gyroscope: false });
 init("card-artwork", { glare: true, shadow: true, gyroscope: false });
 
+// ── High Depth ──
+init("card-high-depth", {
+	glare: true,
+	shadow: true,
+	gyroscope: false,
+	max: 10,
+	perspective: 1500,
+});
+
+// ── Grouped ──
+const groupedContainer = document.getElementById("container-grouped");
+if (groupedContainer) {
+	const cards = groupedContainer.querySelectorAll<HTMLElement>(".card-grouped");
+	for (const card of cards) {
+		new Levita(card, {
+			eventsEl: groupedContainer,
+			glare: true,
+			shadow: true,
+			gyroscope: false,
+			max: 25,
+		});
+	}
+}
+
 // ── Playground ──
 {
 	const playgroundEl = document.getElementById("card-playground");
@@ -66,12 +90,14 @@ init("card-artwork", { glare: true, shadow: true, gyroscope: false });
 			const entries: string[] = [];
 
 			if (opts.max !== defaults.max) entries.push(`  max: ${opts.max}`);
-			if (opts.perspective !== defaults.perspective) entries.push(`  perspective: ${opts.perspective}`);
+			if (opts.perspective !== defaults.perspective)
+				entries.push(`  perspective: ${opts.perspective}`);
 			if (opts.scale !== defaults.scale) entries.push(`  scale: ${opts.scale}`);
 			if (opts.speed !== defaults.speed) entries.push(`  speed: ${opts.speed}`);
 			if (opts.reverse !== defaults.reverse) entries.push(`  reverse: ${opts.reverse}`);
 			if (opts.glare !== defaults.glare) entries.push(`  glare: ${opts.glare}`);
-			if (opts.glare && opts.maxGlare !== defaults.maxGlare) entries.push(`  maxGlare: ${opts.maxGlare}`);
+			if (opts.glare && opts.maxGlare !== defaults.maxGlare)
+				entries.push(`  maxGlare: ${opts.maxGlare}`);
 			if (opts.shadow !== defaults.shadow) entries.push(`  shadow: ${opts.shadow}`);
 			if (opts.disabled !== defaults.disabled) entries.push(`  disabled: ${opts.disabled}`);
 
