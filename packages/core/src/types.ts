@@ -28,6 +28,8 @@ export interface LevitaOptions {
 	gyroscope: GyroscopeMode;
 	/** Disable the effect. Default: false */
 	disabled: boolean;
+	/** Element to listen for pointer events on. Default: the element itself */
+	eventsEl: HTMLElement | null;
 }
 
 export interface TiltValues {

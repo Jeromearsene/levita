@@ -18,7 +18,7 @@ export type SensorCallback = (values: SensorOutput) => void;
  * Uses PointerEvent for unified mouse + touch input.
  */
 export class PointerSensor {
-	private el: HTMLElement;
+	private eventsEl: HTMLElement;
 	private onMove: SensorCallback;
 	private onEnter: (() => void) | null;
 	private onLeave: (() => void) | null;
@@ -32,30 +32,31 @@ export class PointerSensor {
 		onEnter: (() => void) | null,
 		onLeave: (() => void) | null,
 		axis: Axis,
+		eventsEl: HTMLElement | null = null,
 	) {
-		this.el = el;
+		this.eventsEl = eventsEl ?? el;
 		this.onMove = onMove;
 		this.onEnter = onEnter;
 		this.onLeave = onLeave;
 		this.axis = axis;
 	}
 
-	/** Start listening to pointer events on the element. */
+	/** Start listening to pointer events. */
 	start = (): void => {
 		if (this.active) return;
 		this.active = true;
-		this.el.addEventListener("pointermove", this.handlePointerMove);
-		this.el.addEventListener("pointerenter", this.handlePointerEnter);
-		this.el.addEventListener("pointerleave", this.handlePointerLeave);
+		this.eventsEl.addEventListener("pointermove", this.handlePointerMove);
+		this.eventsEl.addEventListener("pointerenter", this.handlePointerEnter);
+		this.eventsEl.addEventListener("pointerleave", this.handlePointerLeave);
 	};
 
 	/** Stop listening and remove all pointer event listeners. */
 	stop = (): void => {
 		if (!this.active) return;
 		this.active = false;
-		this.el.removeEventListener("pointermove", this.handlePointerMove);
-		this.el.removeEventListener("pointerenter", this.handlePointerEnter);
-		this.el.removeEventListener("pointerleave", this.handlePointerLeave);
+		this.eventsEl.removeEventListener("pointermove", this.handlePointerMove);
+		this.eventsEl.removeEventListener("pointerenter", this.handlePointerEnter);
+		this.eventsEl.removeEventListener("pointerleave", this.handlePointerLeave);
 	};
 
 	/** Update the axis lock at runtime. */
@@ -79,7 +80,7 @@ export class PointerSensor {
 	};
 
 	private handlePointerEnter = (): void => {
-		this.rect = this.el.getBoundingClientRect();
+		this.rect = this.eventsEl.getBoundingClientRect();
 		this.onEnter?.();
 	};
 
