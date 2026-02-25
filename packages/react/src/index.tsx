@@ -59,6 +59,7 @@ export const Tilt = forwardRef<TiltRef, TiltProps>(
 			shadow,
 			gyroscope,
 			disabled,
+			eventsEl,
 			children,
 			...rest
 		},
@@ -96,6 +97,7 @@ export const Tilt = forwardRef<TiltRef, TiltProps>(
 				shadow,
 				gyroscope,
 				disabled,
+				eventsEl,
 			});
 
 			instanceRef.current = new Levita(elRef.current, options);
@@ -118,8 +120,8 @@ export const Tilt = forwardRef<TiltRef, TiltProps>(
 			shadow,
 			gyroscope,
 			disabled,
+			eventsEl,
 		]);
-
 		return (
 			<div ref={elRef} {...rest}>
 				{children}

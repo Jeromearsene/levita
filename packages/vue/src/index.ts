@@ -54,6 +54,7 @@ export const Tilt = defineComponent({
 			default: undefined,
 		},
 		disabled: { type: Boolean, default: undefined },
+		eventsEl: { type: Object as PropType<HTMLElement | null>, default: undefined },
 	},
 
 	slots: Object as SlotsType<{ default: Record<string, never> }>,
