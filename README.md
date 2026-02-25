@@ -118,6 +118,19 @@ Add `data-levita-offset` to children for multi-depth parallax. Positive values c
 new Levita(document.getElementById("scene"));
 ```
 
+## Grouped Instances
+
+You can make multiple Levita instances react to the same pointer movement by using the `eventsEl` option. This is useful for grids where all cards should tilt together:
+
+```typescript
+const container = document.getElementById("grid-container");
+const cards = document.querySelectorAll(".card");
+
+for (const card of cards) {
+  new Levita(card, { eventsEl: container });
+}
+```
+
 ## Accelerometer
 
 Levita auto-detects accelerometer support:
@@ -157,6 +170,7 @@ new Levita(el, { gyroscope: false });
 | `shadow`      | `boolean`            | `false`      | Enable dynamic shadow     |
 | `gyroscope`   | `'auto' \| boolean`  | `'auto'`     | Accelerometer mode        |
 | `disabled`    | `boolean`            | `false`      | Disable the effect        |
+| `eventsEl`    | `HTMLElement \| null`| `null`       | Element to listen for events on |
 
 ## Events
 
