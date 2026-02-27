@@ -1,5 +1,14 @@
 # @levita-js/svelte
 
+## 0.1.3
+
+### Patch Changes
+
+- [`fdbf5c2`](https://github.com/Jeromearsene/levita/commit/fdbf5c2c4535cea8ac7b593950844e5cf1a25350) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - docs: include individual README files for NPM packages.
+
+- Updated dependencies [[`fdbf5c2`](https://github.com/Jeromearsene/levita/commit/fdbf5c2c4535cea8ac7b593950844e5cf1a25350)]:
+  - levita-js@0.1.3
+
 ## 0.1.2
 
 ### Patch Changes
