@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772218500431,
+  "lastUpdate": 1772218752125,
   "repoUrl": "https://github.com/Jeromearsene/levita",
   "entries": {
     "Benchmark": [
@@ -685,6 +685,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "Levita — pointer move with glare + shadow",
             "value": 6497.26,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "committer": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "distinct": true,
+          "id": "8ac83d1d7b5f7d86f4306af4c3d2a545af83206a",
+          "message": "ci: fix OIDC authentication for changesets using explicit .npmrc and provenance config",
+          "timestamp": "2026-02-27T19:57:53+01:00",
+          "tree_id": "b87d810d014ce426c88ffc451ad67dbeafc5a63a",
+          "url": "https://github.com/Jeromearsene/levita/commit/8ac83d1d7b5f7d86f4306af4c3d2a545af83206a"
+        },
+        "date": 1772218751205,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Levita — basic init",
+            "value": 11656.99,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with glare + shadow",
+            "value": 6993.14,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with 5 layers",
+            "value": 4719.73,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move update",
+            "value": 10506.87,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move with glare + shadow",
+            "value": 6111.29,
             "unit": "ops/sec"
           }
         ]
