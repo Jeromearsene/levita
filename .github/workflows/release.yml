@@ -56,8 +56,12 @@ jobs:
             # Suppression du .npmrc parasite généré par Changesets
             rm -f .npmrc
             for dir in packages/core packages/react packages/vue packages/svelte; do
-              echo "Publishing $dir..."
-              npm publish "$dir" --access public --provenance
+              if [ -d "$dir" ]; then
+                echo "Publishing $dir..."
+                cd "$dir"
+                npm publish --access public --provenance
+                cd ../..
+              fi
             done
           else
             echo "Changesets still present, skipping publish step (PR should be created/updated)."
