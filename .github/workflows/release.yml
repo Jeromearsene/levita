@@ -53,16 +53,13 @@ jobs:
           if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md')" ]; then
             echo "No changesets found, attempting to publish..."
             pnpm build
-            # Suppression du .npmrc parasite généré par Changesets
+            # Suppression radicale de toute configuration d'authentification
+            # pour laisser npm publish utiliser OIDC nativement
             rm -f .npmrc
-            for dir in packages/core packages/react packages/vue packages/svelte; do
-              if [ -d "$dir" ]; then
-                echo "Publishing $dir..."
-                cd "$dir"
-                npm publish --access public --provenance
-                cd ../..
-              fi
-            done
+            npm publish ./packages/core --access public --provenance
+            npm publish ./packages/react --access public --provenance
+            npm publish ./packages/vue --access public --provenance
+            npm publish ./packages/svelte --access public --provenance
           else
             echo "Changesets still present, skipping publish step (PR should be created/updated)."
           fi
