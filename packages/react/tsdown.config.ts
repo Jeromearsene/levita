@@ -5,5 +5,5 @@ export default defineConfig({
 	format: ["esm", "cjs"],
 	dts: true,
 	clean: true,
-	external: ["react", "react-dom", "levita"],
+	external: ["react", "react-dom", "levita-js"],
 });

@@ -8,7 +8,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"levita": "workspace:*"
+		"levita-js": "workspace:*"
 	},
 	"devDependencies": {
 		"@tailwindcss/vite": "^4.2.1",

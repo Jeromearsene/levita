@@ -1,5 +1,5 @@
-import { Levita } from "levita";
-import "levita/style.css";
+import { Levita } from "levita-js";
+import "levita-js/style.css";
 
 /** Initialize a Levita instance on an element found by ID. */
 const init = (id: string, options: ConstructorParameters<typeof Levita>[1]) => {

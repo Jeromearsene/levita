@@ -1,5 +1,5 @@
 {
-	"name": "@levita/vue",
+	"name": "@levita-js/vue",
 	"version": "0.1.0",
 	"description": "Vue wrapper for Levita 3D tilt & parallax",
 	"type": "module",
@@ -29,7 +29,7 @@
 		"vue": ">=3.3"
 	},
 	"dependencies": {
-		"levita": "workspace:*"
+		"levita-js": "workspace:*"
 	},
 	"devDependencies": {
 		"@vue/test-utils": "^2.4.6",

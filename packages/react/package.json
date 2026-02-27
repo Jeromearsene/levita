@@ -1,5 +1,5 @@
 {
-	"name": "@levita/react",
+	"name": "@levita-js/react",
 	"version": "0.1.0",
 	"description": "React wrapper for Levita 3D tilt & parallax",
 	"type": "module",
@@ -30,7 +30,7 @@
 		"react-dom": ">=18"
 	},
 	"dependencies": {
-		"levita": "workspace:*"
+		"levita-js": "workspace:*"
 	},
 	"devDependencies": {
 		"@testing-library/react": "^16.3.2",

@@ -17,8 +17,8 @@ import type { EventCallback, LevitaEventMap, LevitaOptions, TiltValues } from ".
  *
  * @example
  * ```ts
- * import { Levita } from 'levita';
- * import 'levita/style.css';
+ * import { Levita } from 'levita-js';
+ * import 'levita-js/style.css';
  *
  * const tilt = new Levita(element, { glare: true, shadow: true });
  * tilt.on('move', ({ x, y }) => console.log(x, y));
