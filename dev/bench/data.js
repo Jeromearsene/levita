@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772218752125,
+  "lastUpdate": 1772219046385,
   "repoUrl": "https://github.com/Jeromearsene/levita",
   "entries": {
     "Benchmark": [
@@ -734,6 +734,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "Levita — pointer move with glare + shadow",
             "value": 6111.29,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "committer": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "distinct": true,
+          "id": "8b3d0c751959ff94dc16261f20a0269a9cfa8ceb",
+          "message": "ci: simplify release workflow for OIDC publishing",
+          "timestamp": "2026-02-27T20:02:50+01:00",
+          "tree_id": "f1a9de765a56898bdb7ad2a0706e4380d98adbe2",
+          "url": "https://github.com/Jeromearsene/levita/commit/8b3d0c751959ff94dc16261f20a0269a9cfa8ceb"
+        },
+        "date": 1772219045359,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Levita — basic init",
+            "value": 11623.68,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with glare + shadow",
+            "value": 7033.38,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with 5 layers",
+            "value": 4435.88,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move update",
+            "value": 10586.79,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move with glare + shadow",
+            "value": 6285.48,
             "unit": "ops/sec"
           }
         ]
