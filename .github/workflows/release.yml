@@ -36,13 +36,24 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      - name: Create Release PR or Publish
+      - name: Create Release PR
+        id: changesets
         uses: changesets/action@v1
         with:
-          publish: npx changeset publish
           version: pnpm version-packages
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+
+      - name: Publish to NPM (OIDC)
+        # On publie seulement si on est sur main et qu'il n'y a plus de changesets à traiter
+        if: github.ref == 'refs/heads/main'
+        run: |
+          if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md')" ]; then
+            echo "No changesets found, attempting to publish..."
+            pnpm build
+            pnpm -r publish --access public --no-git-checks --provenance
+          else
+            echo "Changesets still present, skipping publish step (PR should be created/updated)."
+          fi
