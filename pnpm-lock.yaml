@@ -38,13 +38,13 @@ importers:
 
   benchmarks:
     dependencies:
-      levita:
+      levita-js:
         specifier: workspace:*
         version: link:../packages/core
 
   demo:
     dependencies:
-      levita:
+      levita-js:
         specifier: workspace:*
         version: link:../packages/core
     devDependencies:
@@ -69,7 +69,7 @@ importers:
 
   packages/react:
     dependencies:
-      levita:
+      levita-js:
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -94,7 +94,7 @@ importers:
 
   packages/svelte:
     dependencies:
-      levita:
+      levita-js:
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -107,7 +107,7 @@ importers:
 
   packages/vue:
     dependencies:
-      levita:
+      levita-js:
         specifier: workspace:*
         version: link:../core
     devDependencies:

@@ -1,5 +1,5 @@
-import type { LevitaOptions } from "levita";
-import { buildOptions, Levita } from "levita";
+import type { LevitaOptions } from "levita-js";
+import { buildOptions, Levita } from "levita-js";
 
 /**
  * Svelte action that applies the Levita 3D tilt effect to an element.
@@ -7,8 +7,8 @@ import { buildOptions, Levita } from "levita";
  * @example
  * ```svelte
  * <script>
- *   import { tilt } from '@levita/svelte';
- *   import 'levita/style.css';
+ *   import { tilt } from '@levita-js/svelte';
+ *   import 'levita-js/style.css';
  * </script>
  *
  * <div use:tilt={{ glare: true, shadow: true }}>

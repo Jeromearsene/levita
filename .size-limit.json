@@ -1,24 +1,24 @@
 [
 	{
-		"name": "levita (core)",
+		"name": "levita-js (core)",
 		"path": "packages/core/dist/index.mjs",
 		"import": "{ Levita }",
 		"gzip": true
 	},
 	{
-		"name": "@levita/react",
+		"name": "@levita-js/react",
 		"path": "packages/react/dist/index.mjs",
 		"import": "{ Tilt }",
 		"gzip": true
 	},
 	{
-		"name": "@levita/vue",
+		"name": "@levita-js/vue",
 		"path": "packages/vue/dist/index.mjs",
 		"import": "{ Tilt }",
 		"gzip": true
 	},
 	{
-		"name": "@levita/svelte",
+		"name": "@levita-js/svelte",
 		"path": "packages/svelte/dist/index.mjs",
 		"import": "{ tilt }",
 		"gzip": true

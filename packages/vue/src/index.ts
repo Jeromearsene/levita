@@ -1,5 +1,5 @@
-import type { Axis, GyroscopeMode } from "levita";
-import { buildOptions, Levita, OPTION_KEYS } from "levita";
+import type { Axis, GyroscopeMode } from "levita-js";
+import { buildOptions, Levita, OPTION_KEYS } from "levita-js";
 import {
 	defineComponent,
 	h,
@@ -23,8 +23,8 @@ import {
  * @example
  * ```vue
  * <script setup>
- * import { Tilt } from '@levita/vue';
- * import 'levita/style.css';
+ * import { Tilt } from '@levita-js/vue';
+ * import 'levita-js/style.css';
  * </script>
  *
  * <template>

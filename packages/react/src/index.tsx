@@ -1,5 +1,5 @@
-import type { LevitaOptions } from "levita";
-import { buildOptions, Levita } from "levita";
+import type { LevitaOptions } from "levita-js";
+import { buildOptions, Levita } from "levita-js";
 import {
 	forwardRef,
 	type HTMLAttributes,
@@ -35,8 +35,8 @@ export interface TiltRef {
  *
  * @example
  * ```tsx
- * import { Tilt } from '@levita/react';
- * import 'levita/style.css';
+ * import { Tilt } from '@levita-js/react';
+ * import 'levita-js/style.css';
  *
  * <Tilt glare shadow max={20}>
  *   <h1>Hello</h1>

@@ -8,8 +8,8 @@
 
 <p align="center">
   <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://github.com/jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <a href="https://www.npmjs.com/package/levita"><img src="https://img.shields.io/npm/v/levita" alt="npm" /></a>
-  <a href="https://www.npmjs.com/package/levita"><img src="https://img.shields.io/npm/dm/levita" alt="npm downloads" /></a>
+  <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/v/levita-js" alt="npm" /></a>
+  <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/dm/levita-js" alt="npm downloads" /></a>
   <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size.json" alt="bundle size" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/jeromearsene/levita" alt="license" /></a>
   <a href="https://jeromearsene.github.io/levita/"><img src="https://img.shields.io/badge/demo-live-blueviolet" alt="demo" /></a>
@@ -33,16 +33,16 @@
 
 ```bash
 # Core (vanilla JS/TS)
-npm install levita
+npm install levita-js
 
 # React wrapper
-npm install @levita/react
+npm install @levita-js/react
 
 # Vue wrapper
-npm install @levita/vue
+npm install @levita-js/vue
 
 # Svelte wrapper
-npm install @levita/svelte
+npm install @levita-js/svelte
 ```
 
 ## Quick Start
@@ -50,8 +50,8 @@ npm install @levita/svelte
 ### Vanilla
 
 ```typescript
-import { Levita } from "levita";
-import "levita/style.css";
+import { Levita } from "levita-js";
+import "levita-js/style.css";
 
 new Levita(document.getElementById("card"), {
   glare: true,
@@ -62,8 +62,8 @@ new Levita(document.getElementById("card"), {
 ### React
 
 ```tsx
-import { Tilt } from "@levita/react";
-import "levita/style.css";
+import { Tilt } from "@levita-js/react";
+import "levita-js/style.css";
 
 function Card() {
   return (
@@ -78,8 +78,8 @@ function Card() {
 
 ```vue
 <script setup>
-import { Tilt } from "@levita/vue";
-import "levita/style.css";
+import { Tilt } from "@levita-js/vue";
+import "levita-js/style.css";
 </script>
 
 <template>
@@ -93,8 +93,8 @@ import "levita/style.css";
 
 ```svelte
 <script>
-  import { tilt } from "@levita/svelte";
-  import "levita/style.css";
+  import { tilt } from "@levita-js/svelte";
+  import "levita-js/style.css";
 </script>
 
 <div use:tilt={{ glare: true, shadow: true }}>
@@ -232,10 +232,10 @@ Measured with [size-limit](https://github.com/ai/size-limit) (tree-shaken, gzipp
 
 | Package | Size (gzip) |
 | ------- | ----------- |
-| `levita` (core) | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita--core-.json) |
-| `@levita/react` | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-react.json) |
-| `@levita/vue` | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-vue.json) |
-| `@levita/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-svelte.json) |
+| `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) |
+| `@levita-js/react` | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-js-react.json) |
+| `@levita-js/vue` | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-js-vue.json) |
+| `@levita-js/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-js-svelte.json) |
 
 > Automatically updated at each release.
 

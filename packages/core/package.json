@@ -1,5 +1,5 @@
 {
-	"name": "levita",
+	"name": "levita-js",
 	"version": "0.1.0",
 	"description": "Lightweight 3D tilt & parallax with accelerometer support",
 	"type": "module",

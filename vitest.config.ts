@@ -4,7 +4,7 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
 	resolve: {
 		alias: {
-			levita: resolve(__dirname, "packages/core/src/index.ts"),
+			"levita-js": resolve(__dirname, "packages/core/src/index.ts"),
 		},
 	},
 	test: {
