@@ -52,13 +52,12 @@ jobs:
         run: |
           if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md')" ]; then
             echo "No changesets found, attempting to publish..."
-            for dir in packages/*; do
-              if [ -d "$dir" ]; then
-                echo "Publishing $dir..."
-                cd "$dir"
-                npm publish --access public --provenance
-                cd ../..
-              fi
+            pnpm build
+            # Suppression du .npmrc parasite généré par Changesets
+            rm -f .npmrc
+            for dir in packages/core packages/react packages/vue packages/svelte; do
+              echo "Publishing $dir..."
+              npm publish "$dir" --access public --provenance
             done
           else
             echo "Changesets still present, skipping publish step (PR should be created/updated)."
