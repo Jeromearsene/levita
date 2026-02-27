@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772216439797,
+  "lastUpdate": 1772216935540,
   "repoUrl": "https://github.com/Jeromearsene/levita",
   "entries": {
     "Benchmark": [
@@ -538,6 +538,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "Levita — pointer move with glare + shadow",
             "value": 6398.95,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6804f6fd01f6552ab047736034f0bc29f5c08a21",
+          "message": "Merge pull request #3 from Jeromearsene/changeset-release/main\n\nchore: version packages",
+          "timestamp": "2026-02-27T19:27:37+01:00",
+          "tree_id": "11c923d46d6a9d8caeeffd6bc0d036c01646ed87",
+          "url": "https://github.com/Jeromearsene/levita/commit/6804f6fd01f6552ab047736034f0bc29f5c08a21"
+        },
+        "date": 1772216934458,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Levita — basic init",
+            "value": 11976.88,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with glare + shadow",
+            "value": 6877.3,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with 5 layers",
+            "value": 4647.2,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move update",
+            "value": 10541.06,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move with glare + shadow",
+            "value": 6452.53,
             "unit": "ops/sec"
           }
         ]
