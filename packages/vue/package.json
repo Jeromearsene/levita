@@ -40,6 +40,10 @@
 		"vue": "^3.5.0"
 	},
 	"license": "MIT",
-	"repository": "Jeromearsene/levita",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Jeromearsene/levita.git",
+		"directory": "packages/vue"
+	},
 	"homepage": "https://github.com/Jeromearsene/levita#readme"
 }

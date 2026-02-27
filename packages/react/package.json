@@ -44,6 +44,10 @@
 		"tsdown": "^0.20.3"
 	},
 	"license": "MIT",
-	"repository": "Jeromearsene/levita",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Jeromearsene/levita.git",
+		"directory": "packages/react"
+	},
 	"homepage": "https://github.com/Jeromearsene/levita#readme"
 }
