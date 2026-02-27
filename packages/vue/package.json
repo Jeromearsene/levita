@@ -21,6 +21,9 @@
 	"files": [
 		"dist"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"sideEffects": false,
 	"scripts": {
 		"build": "tsdown"

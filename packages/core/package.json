@@ -22,6 +22,9 @@
 	"files": [
 		"dist"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"sideEffects": [
 		"*.css"
 	],
