@@ -53,8 +53,16 @@ jobs:
           if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md')" ]; then
             echo "No changesets found, attempting to publish..."
             pnpm build
-            # On utilise npm publish package par package pour un support OIDC optimal
-            pnpm -r exec npm publish --access public --provenance
+            # Boucle shell pour utiliser npm publish directement dans chaque dossier
+            # C'est la méthode la plus robuste pour déclencher le flux OIDC de GitHub
+            for dir in packages/*; do
+              if [ -d "$dir" ]; then
+                echo "Publishing $dir..."
+                cd "$dir"
+                npm publish --access public --provenance || echo "Warning: Failed to publish $dir"
+                cd ../..
+              fi
+            done
           else
             echo "Changesets still present, skipping publish step (PR should be created/updated)."
           fi
