@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772220184612,
+  "lastUpdate": 1772220379156,
   "repoUrl": "https://github.com/Jeromearsene/levita",
   "entries": {
     "Benchmark": [
@@ -1028,6 +1028,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "Levita — pointer move with glare + shadow",
             "value": 6230.43,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "committer": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "distinct": true,
+          "id": "7d7def4bc75918d0e4dc7720a76faee21f7d699b",
+          "message": "ci: remove forced registry config to let npm handle OIDC auth natively",
+          "timestamp": "2026-02-27T20:25:09+01:00",
+          "tree_id": "6fda48bc203d88d814f81be40001ea00dc6ae1a3",
+          "url": "https://github.com/Jeromearsene/levita/commit/7d7def4bc75918d0e4dc7720a76faee21f7d699b"
+        },
+        "date": 1772220378720,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Levita — basic init",
+            "value": 11955.14,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with glare + shadow",
+            "value": 7001.69,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with 5 layers",
+            "value": 4845.9,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move update",
+            "value": 10851.12,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move with glare + shadow",
+            "value": 6222.76,
             "unit": "ops/sec"
           }
         ]
