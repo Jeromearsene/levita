@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772220023628,
+  "lastUpdate": 1772220184612,
   "repoUrl": "https://github.com/Jeromearsene/levita",
   "entries": {
     "Benchmark": [
@@ -979,6 +979,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "Levita — pointer move with glare + shadow",
             "value": 6532.64,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "committer": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "distinct": true,
+          "id": "017889fe80aac711e3d207d4658fe1bc0ba4baa5",
+          "message": "ci: use official setup-node OIDC config and clean environment",
+          "timestamp": "2026-02-27T20:21:53+01:00",
+          "tree_id": "2e591ae452e294f3c60d8d7ac2e186994a16e3aa",
+          "url": "https://github.com/Jeromearsene/levita/commit/017889fe80aac711e3d207d4658fe1bc0ba4baa5"
+        },
+        "date": 1772220184180,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Levita — basic init",
+            "value": 11446.72,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with glare + shadow",
+            "value": 6841.6,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with 5 layers",
+            "value": 4473.36,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move update",
+            "value": 9876.45,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move with glare + shadow",
+            "value": 6230.43,
             "unit": "ops/sec"
           }
         ]
