@@ -34,6 +34,11 @@ jobs:
       - name: Build packages
         run: pnpm build
 
+      - name: Configure npm for OIDC
+        run: |
+          echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+          echo "registry=https://registry.npmjs.org/" >> .npmrc
+
       - name: Create Release PR or Publish
         uses: changesets/action@v1
         with:
@@ -43,3 +48,4 @@ jobs:
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
