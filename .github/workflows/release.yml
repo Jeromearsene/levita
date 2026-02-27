@@ -49,15 +49,28 @@ jobs:
       - name: Publish to NPM (OIDC)
         # On publie seulement si on est sur main et qu'il n'y a plus de changesets à traiter
         if: github.ref == 'refs/heads/main'
-        env:
-          NPM_CONFIG_PROVENANCE: true
         run: |
           if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md')" ]; then
             echo "No changesets found, attempting to publish..."
             pnpm build
-            # Suppression de sécurité pour forcer OIDC fallback
+            # On supprime tout .npmrc pour laisser l'OIDC natif agir
             rm -f .npmrc
-            pnpm -r publish --access public --no-git-checks
+            
+            # Publication un par un pour éviter les conflits de jetons OIDC
+            echo "Publishing Core..."
+            npm publish ./packages/core --access public --provenance
+            
+            sleep 5
+            echo "Publishing React..."
+            npm publish ./packages/react --access public --provenance
+            
+            sleep 5
+            echo "Publishing Vue..."
+            npm publish ./packages/vue --access public --provenance
+            
+            sleep 5
+            echo "Publishing Svelte..."
+            npm publish ./packages/svelte --access public --provenance
           else
             echo "Changesets still present, skipping publish step (PR should be created/updated)."
           fi
