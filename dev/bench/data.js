@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1772218067658,
+  "lastUpdate": 1772218500431,
   "repoUrl": "https://github.com/Jeromearsene/levita",
   "entries": {
     "Benchmark": [
@@ -636,6 +636,55 @@ window.BENCHMARK_DATA = {
           {
             "name": "Levita — pointer move with glare + shadow",
             "value": 6222.47,
+            "unit": "ops/sec"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "committer": {
+            "email": "9333686+Jeromearsene@users.noreply.github.com",
+            "name": "Jerome",
+            "username": "Jeromearsene"
+          },
+          "distinct": true,
+          "id": "1f2f406d588f7091c30a2769f80e52d9464757f3",
+          "message": "ci: fix OIDC casing and remove invalid .npmrc config",
+          "timestamp": "2026-02-27T19:53:48+01:00",
+          "tree_id": "7f5f9fc867348a8f2b6e5cbc9047ed94a5461ed3",
+          "url": "https://github.com/Jeromearsene/levita/commit/1f2f406d588f7091c30a2769f80e52d9464757f3"
+        },
+        "date": 1772218499978,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Levita — basic init",
+            "value": 11713.51,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with glare + shadow",
+            "value": 7167.08,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — init with 5 layers",
+            "value": 4759.58,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move update",
+            "value": 10551.09,
+            "unit": "ops/sec"
+          },
+          {
+            "name": "Levita — pointer move with glare + shadow",
+            "value": 6497.26,
             "unit": "ops/sec"
           }
         ]
