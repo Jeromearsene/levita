@@ -53,7 +53,8 @@ jobs:
           if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md')" ]; then
             echo "No changesets found, attempting to publish..."
             pnpm build
-            pnpm -r publish --access public --no-git-checks --provenance --registry=https://registry.npmjs.org/
+            # On utilise npm publish package par package pour un support OIDC optimal
+            pnpm -r exec npm publish --access public --provenance
           else
             echo "Changesets still present, skipping publish step (PR should be created/updated)."
           fi
