@@ -1,6 +1,6 @@
 {
 	"name": "@levita-js/svelte",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Svelte wrapper for Levita 3D tilt & parallax",
 	"type": "module",
 	"main": "./dist/index.cjs",
