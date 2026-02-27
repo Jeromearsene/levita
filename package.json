@@ -13,7 +13,7 @@
 		"test:visual:record": "playwright test --grep demo && ./tests/visual/convert-to-gif.sh",
 		"changeset": "changeset",
 		"version-packages": "changeset version",
-		"release": "pnpm build && changeset publish --provenance",
+		"release": "pnpm build && changeset publish --provenance --no-git-checks",
 		"dev": "pnpm build && pnpm --filter levita-demo dev --host",
 		"size": "size-limit",
 		"size:json": "size-limit --json > size-results.json"

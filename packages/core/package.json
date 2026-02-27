@@ -44,10 +44,10 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/jeromearsene/levita.git",
+		"url": "https://github.com/Jeromearsene/levita.git",
 		"directory": "packages/core"
 	},
-	"homepage": "https://github.com/jeromearsene/levita#readme",
+	"homepage": "https://github.com/Jeromearsene/levita#readme",
 	"devDependencies": {
 		"tsdown": "^0.20.3"
 	}
