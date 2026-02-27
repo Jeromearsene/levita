@@ -30,47 +30,21 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build packages
         run: pnpm build
 
-      - name: Create Release PR
-        id: changesets
+      - name: Create Release PR or Publish
         uses: changesets/action@v1
         with:
+          publish: pnpm release
           version: pnpm version-packages
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish to NPM (OIDC)
-        # On publie seulement si on est sur main et qu'il n'y a plus de changesets à traiter
-        if: github.ref == 'refs/heads/main'
-        run: |
-          if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md')" ]; then
-            echo "No changesets found, attempting to publish..."
-            pnpm build
-            # On supprime tout .npmrc pour laisser l'OIDC natif agir
-            rm -f .npmrc
-            
-            # Publication un par un pour éviter les conflits de jetons OIDC
-            echo "Publishing Core..."
-            npm publish ./packages/core --access public --provenance
-            
-            sleep 5
-            echo "Publishing React..."
-            npm publish ./packages/react --access public --provenance
-            
-            sleep 5
-            echo "Publishing Vue..."
-            npm publish ./packages/vue --access public --provenance
-            
-            sleep 5
-            echo "Publishing Svelte..."
-            npm publish ./packages/svelte --access public --provenance
-          else
-            echo "Changesets still present, skipping publish step (PR should be created/updated)."
-          fi

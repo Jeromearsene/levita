@@ -23,7 +23,8 @@
 		"dist"
 	],
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"sideEffects": [
 		"*.css"
