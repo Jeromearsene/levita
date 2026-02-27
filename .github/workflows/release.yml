@@ -29,7 +29,6 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -53,8 +52,6 @@ jobs:
         run: |
           if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md')" ]; then
             echo "No changesets found, attempting to publish..."
-            # On supprime tout .npmrc local qui pourrait interférer avec la config globale OIDC
-            rm -f .npmrc
             for dir in packages/*; do
               if [ -d "$dir" ]; then
                 echo "Publishing $dir..."
