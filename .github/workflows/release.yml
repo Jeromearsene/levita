@@ -29,6 +29,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -52,14 +53,13 @@ jobs:
         run: |
           if [ -z "$(ls .changeset/*.md 2>/dev/null | grep -v 'README.md')" ]; then
             echo "No changesets found, attempting to publish..."
-            pnpm build
-            # Boucle shell pour utiliser npm publish directement dans chaque dossier
-            # C'est la méthode la plus robuste pour déclencher le flux OIDC de GitHub
+            # On supprime tout .npmrc local qui pourrait interférer avec la config globale OIDC
+            rm -f .npmrc
             for dir in packages/*; do
               if [ -d "$dir" ]; then
                 echo "Publishing $dir..."
                 cd "$dir"
-                npm publish --access public --provenance || echo "Warning: Failed to publish $dir"
+                npm publish --access public --provenance
                 cd ../..
               fi
             done
