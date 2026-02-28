@@ -206,10 +206,10 @@ jobs:
         with:
           name: quality-artifacts
           path: |
+            badge-*.json
             size-results.json
             bench-results.json
-            badge-size*.json
-            badge-bench-*.json
+          if-no-files-found: error
 
   deploy:
     needs: [lint, test, build, visual, quality]
@@ -243,12 +243,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: quality-artifacts
-          path: ./
+          path: temp-quality/
+          merge-multiple: true
       - name: Build demo
         run: pnpm --filter levita-demo build
       - name: Include badges and results in demo dist
         run: |
-          cp size-results.json bench-results.json badge-size*.json badge-bench-*.json demo/dist/ 2>/dev/null || true
+          echo "Copying JSON files to demo/dist..."
+          cp temp-quality/*.json demo/dist/ 2>/dev/null || true
+          echo "Content of demo/dist (JSON files only):"
+          ls -1 demo/dist/*.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
