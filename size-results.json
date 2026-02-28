@@ -1,0 +1,18 @@
+[
+  {
+    "name": "levita-js",
+    "size": 2159
+  },
+  {
+    "name": "@levita-js/react",
+    "size": 5819
+  },
+  {
+    "name": "@levita-js/vue",
+    "size": 11757
+  },
+  {
+    "name": "@levita-js/svelte",
+    "size": 2286
+  }
+]
