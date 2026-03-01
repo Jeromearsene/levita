@@ -28,11 +28,14 @@ jobs:
         run: |
           pnpm lint
           pnpm test
-      - name: Upload dist
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dist-artifacts
-          path: packages/*/dist/
+          name: build-artifacts
+          path: |
+            packages/*/dist/
+            size-results.json
+          if-no-files-found: warn
 
   quality:
     needs: build-and-test
@@ -44,16 +47,17 @@ jobs:
         run: volta install node pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Download dist
+      
+      # We download the dist folders back to their original places
+      - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: dist-artifacts
-          path: packages/
+          name: build-artifacts
       
       - name: Measure sizes
         run: pnpm size:json
       
-      - name: Generate badges
+      - name: Generate size badges
         run: |
           node -e "
             const data = JSON.parse(require('fs').readFileSync('size-results.json', 'utf8'));
@@ -91,7 +95,7 @@ jobs:
 
   deploy:
     needs: quality
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
