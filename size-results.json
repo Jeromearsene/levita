@@ -4,15 +4,15 @@
     "size": 2159
   },
   {
-    "name": "@levita-js/react",
+    "name": "react",
     "size": 5819
   },
   {
-    "name": "@levita-js/vue",
+    "name": "vue",
     "size": 11757
   },
   {
-    "name": "@levita-js/svelte",
+    "name": "svelte",
     "size": 2286
   }
 ]

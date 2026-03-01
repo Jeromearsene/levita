@@ -2,26 +2,26 @@
   {
     "name": "Levita — basic init",
     "unit": "ops/sec",
-    "value": 11774.77
+    "value": 11795.79
   },
   {
     "name": "Levita — init with glare + shadow",
     "unit": "ops/sec",
-    "value": 6859.38
+    "value": 6979.67
   },
   {
-    "name": "Levita — init with 5 layers",
+    "name": "Levita — init with",
     "unit": "ops/sec",
-    "value": 4565.32
+    "value": 5
   },
   {
     "name": "Levita — pointer move update",
     "unit": "ops/sec",
-    "value": 10623.36
+    "value": 10339.39
   },
   {
     "name": "Levita — pointer move with glare + shadow",
     "unit": "ops/sec",
-    "value": 6308.79
+    "value": 6059.02
   }
 ]
