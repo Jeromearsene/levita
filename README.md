@@ -1,18 +1,18 @@
 <!-- markdownlint-disable MD033 MD041 -->
 
 <p align="center">
-  <a href="https://github.com/jeromearsene/levita">
+  <a href="https://github.com/Jeromearsene/levita">
     <img src="docs/banner.webp" alt="Levita — Lightweight 3D tilt & parallax library with accelerometer support" width="100%" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://github.com/jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://github.com/Jeromearsene/levita/actions/workflows/ci.yml"><img src="https://github.com/Jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/v/levita-js" alt="npm" /></a>
   <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/dm/levita-js" alt="npm downloads" /></a>
-  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size.json" alt="bundle size" /></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/github/license/jeromearsene/levita" alt="license" /></a>
-  <a href="https://jeromearsene.github.io/levita/"><img src="https://img.shields.io/badge/demo-live-blueviolet" alt="demo" /></a>
+  <a href="https://github.com/Jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size.json" alt="bundle size" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/Jeromearsene/levita" alt="license" /></a>
+  <a href="https://Jeromearsene.github.io/levita/"><img src="https://img.shields.io/badge/demo-live-blueviolet" alt="demo" /></a>
 </p>
 
 - **CSS-driven** — No `requestAnimationFrame` loop. CSS custom properties + compositor = GPU-accelerated.
@@ -232,10 +232,10 @@ Measured with [size-limit](https://github.com/ai/size-limit) (tree-shaken, gzipp
 
 | Package | Size (gzip) |
 | ------- | ----------- |
-| `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) |
-| `@levita-js/react` | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) |
-| `@levita-js/vue` | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) |
-| `@levita-js/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) |
+| `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-levita-js.json) |
+| `@levita-js/react` | ![react size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-react.json) |
+| `@levita-js/vue` | ![vue size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-vue.json) |
+| `@levita-js/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-svelte.json) |
 
 > Automatically updated at each release.
 
@@ -245,13 +245,13 @@ Measured with [Vitest bench](https://vitest.dev/guide/features.html#benchmarking
 
 | Scenario | ops/s |
 | -------- | ----- |
-| Basic init + destroy | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-basic-init.json) |
-| Init with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-init-with-glare-shadow.json) |
-| Init with 5 parallax layers | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-init-with-5-layers.json) |
-| Pointer move update | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-pointer-move-update.json) |
-| Pointer move with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-pointer-move-with-glare-shadow.json) |
+| Basic init + destroy | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-basic-init.json) |
+| Init with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-init-with-glare-shadow.json) |
+| Init with 5 parallax layers | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-init-with-5-layers.json) |
+| Pointer move update | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-pointer-move-update.json) |
+| Pointer move with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-pointer-move-with-glare-shadow.json) |
 
-Run locally: `pnpm bench` — [View history](https://jeromearsene.github.io/levita/dev/bench/)
+Run locally: `pnpm bench` — [View history](https://Jeromearsene.github.io/levita/dev/bench/)
 
 > Automatically updated at each release.
 
@@ -284,12 +284,12 @@ pnpm --filter levita-demo dev
 
 If you find Levita useful, consider supporting its development:
 
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jeromearsene)
-[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/jeromearsene)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/Jeromearsene)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-ea4aaa?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/Jeromearsene)
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jeromearsene/levita&type=Date)](https://star-history.com/#jeromearsene/levita&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Jeromearsene/levita&type=Date)](https://star-history.com/#Jeromearsene/levita&Date)
 
 ## License
 
