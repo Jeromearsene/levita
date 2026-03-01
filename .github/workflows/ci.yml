@@ -206,7 +206,9 @@ jobs:
         with:
           name: quality-artifacts
           path: |
-            badge-*.json
+            badge-size.json
+            badge-size-*.json
+            badge-bench-*.json
             size-results.json
             bench-results.json
           if-no-files-found: error
@@ -244,7 +246,6 @@ jobs:
         with:
           name: quality-artifacts
           path: temp-quality/
-          merge-multiple: true
       - name: Build demo
         run: pnpm --filter levita-demo build
       - name: Include badges and results in demo dist
