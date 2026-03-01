@@ -232,7 +232,7 @@ Measured with [size-limit](https://github.com/ai/size-limit) (tree-shaken, gzipp
 
 | Package | Size (gzip) |
 | ------- | ----------- |
-| `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-levita-js.json) |
+| `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size.json) |
 | `@levita-js/react` | ![react size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-react.json) |
 | `@levita-js/vue` | ![vue size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-vue.json) |
 | `@levita-js/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-svelte.json) |

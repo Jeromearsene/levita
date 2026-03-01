@@ -248,16 +248,14 @@ jobs:
         with:
           name: quality-artifacts
           path: demo/dist/
-      - name: Verify badges in demo dist
+      - name: Inject badges into demo dist
         run: |
-          echo "Verifying JSON files in demo/dist..."
-          if ls -1 demo/dist/*.json >/dev/null 2>&1; then
-            ls -1 demo/dist/*.json
-            echo "✅ All badges are present."
-          else
-            echo "❌ ERROR: No JSON files found in demo/dist!"
-            exit 1
-          fi
+          echo "Injecting badges into demo/dist..."
+          # Create .nojekyll to prevent Jekyll from processing the site
+          touch demo/dist/.nojekyll
+          cp -v temp-badges/*.json demo/dist/
+          echo "Final content of demo/dist (all files):"
+          ls -F demo/dist/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
