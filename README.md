@@ -10,7 +10,7 @@
   <a href="https://github.com/Jeromearsene/levita/actions/workflows/ci.yml"><img src="https://github.com/Jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/v/levita-js" alt="npm" /></a>
   <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/dm/levita-js" alt="npm downloads" /></a>
-  <a href="https://github.com/Jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size.json?v=2" alt="bundle size" /></a>
+  <a href="https://github.com/Jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-size-core.json%3Fv%3D3" alt="bundle size" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/Jeromearsene/levita" alt="license" /></a>
   <a href="https://Jeromearsene.github.io/levita/"><img src="https://img.shields.io/badge/demo-live-blueviolet" alt="demo" /></a>
 </p>
@@ -232,10 +232,10 @@ Measured with [size-limit](https://github.com/ai/size-limit) (tree-shaken, gzipp
 
 | Package | Size (gzip) |
 | ------- | ----------- |
-| `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size.json?v=2) |
-| `@levita-js/react` | ![react size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-react.json?v=2) |
-| `@levita-js/vue` | ![vue size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-vue.json?v=2) |
-| `@levita-js/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-size-svelte.json?v=2) |
+| `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-size-core.json%3Fv%3D3) |
+| `@levita-js/react` | ![react size](https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-size-react.json%3Fv%3D3) |
+| `@levita-js/vue` | ![vue size](https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-size-vue.json%3Fv%3D3) |
+| `@levita-js/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-size-svelte.json%3Fv%3D3) |
 
 > Automatically updated at each release.
 
@@ -245,11 +245,11 @@ Measured with [Vitest bench](https://vitest.dev/guide/features.html#benchmarking
 
 | Scenario | ops/s |
 | -------- | ----- |
-| Basic init + destroy | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-basic-init.json?v=2) |
-| Init with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-init-with-glare-shadow.json?v=2) |
-| Init with 5 parallax layers | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-init-with-5-layers.json?v=2) |
-| Pointer move update | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-pointer-move-update.json?v=2) |
-| Pointer move with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://Jeromearsene.github.io/levita/badge-bench-levita-pointer-move-with-glare-shadow.json?v=2) |
+| Basic init + destroy | ![bench](https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-bench-levita-basic-init.json%3Fv%3D3) |
+| Init with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-bench-levita-init-with-glare-shadow.json%3Fv%3D3) |
+| Init with 5 parallax layers | ![bench](https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-bench-levita-init-with-5-layers.json%3Fv%3D3) |
+| Pointer move update | ![bench](https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-bench-levita-pointer-move-update.json%3Fv%3D3) |
+| Pointer move with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https%3A%2F%2FJeromearsene.github.io%2Flevita%2Fbadge-bench-levita-pointer-move-with-glare-shadow.json%3Fv%3D3) |
 
 Run locally: `pnpm bench` — [View history](https://Jeromearsene.github.io/levita/dev/bench/)
 
