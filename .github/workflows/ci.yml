@@ -174,7 +174,7 @@ jobs:
           "
       - name: Benchmark
         run: |
-          pnpm bench --run 2>&1 | sed 's/\x1b\[[0-9;]*m//g' > bench-raw.txt
+          pnpm bench 2>&1 | sed 's/\x1b\[[0-9;]*m//g' > bench-raw.txt
           node benchmarks/convert-results.cjs
       - name: Store benchmark results
         uses: benchmark-action/github-action-benchmark@v1
@@ -247,13 +247,17 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: quality-artifacts
-          path: temp-badges
-      - name: Inject badges into demo dist
+          path: demo/dist/
+      - name: Verify badges in demo dist
         run: |
-          echo "Injecting badges into demo/dist..."
-          cp -v temp-badges/*.json demo/dist/
-          echo "Final content of demo/dist:"
-          ls -F demo/dist/
+          echo "Verifying JSON files in demo/dist..."
+          if ls -1 demo/dist/*.json >/dev/null 2>&1; then
+            ls -1 demo/dist/*.json
+            echo "✅ All badges are present."
+          else
+            echo "❌ ERROR: No JSON files found in demo/dist!"
+            exit 1
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
