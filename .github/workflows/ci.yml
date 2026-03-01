@@ -247,7 +247,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: quality-artifacts
-          path: demo/dist/
+          path: temp-badges
       - name: Inject badges into demo dist
         run: |
           echo "Injecting badges into demo/dist..."
