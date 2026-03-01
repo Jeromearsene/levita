@@ -22,15 +22,6 @@ jobs:
       - uses: volta-cli/action@v4
       - name: Install toolchain
         run: volta install node pnpm
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Lint
@@ -43,15 +34,6 @@ jobs:
       - uses: volta-cli/action@v4
       - name: Install toolchain
         run: volta install node pnpm
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Test
@@ -64,15 +46,6 @@ jobs:
       - uses: volta-cli/action@v4
       - name: Install toolchain
         run: volta install node pnpm
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build
@@ -96,15 +69,6 @@ jobs:
       - uses: volta-cli/action@v4
       - name: Install toolchain
         run: volta install node pnpm
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Download build artifacts
@@ -123,13 +87,6 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Visual regression tests
         run: pnpm test:visual
-      - name: Upload visual diff on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-test-results
-          path: test-results/
-          retention-days: 7
 
   quality:
     needs: build
@@ -139,15 +96,6 @@ jobs:
       - uses: volta-cli/action@v4
       - name: Install toolchain
         run: volta install node pnpm
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Download build artifacts
@@ -176,18 +124,6 @@ jobs:
         run: |
           pnpm bench 2>&1 | sed 's/\x1b\[[0-9;]*m//g' > bench-raw.txt
           node benchmarks/convert-results.cjs
-      - name: Store benchmark results
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          name: Vitest Benchmark
-          tool: 'customBiggerIsBetter'
-          output-file-path: bench-results.json
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          auto-push: false
-          alert-threshold: '130%'
-          comment-on-alert: true
-          summary-always: true
-          comment-always: ${{ github.event_name == 'pull_request' }}
       - name: Generate benchmark badges
         run: |
           node -e "
@@ -215,25 +151,13 @@ jobs:
 
   deploy:
     needs: [lint, test, build, visual, quality]
-    if: (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')) && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
       - name: Install toolchain
         run: volta install node pnpm
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Download build artifacts
@@ -247,18 +171,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: quality-artifacts
-          path: temp-badges
-      - name: Inject badges into demo dist
-        run: |
-          echo "Injecting badges into demo/dist..."
-          # Create .nojekyll to prevent Jekyll from processing the site
-          touch demo/dist/.nojekyll
-          cp -v temp-badges/*.json demo/dist/
-          echo "Final content of demo/dist (all files):"
-          ls -F demo/dist/
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+          path: demo/dist/
+      - name: Deploy to GitHub Pages Branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: demo/dist
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./demo/dist
+          publish_branch: gh-pages
+          force_orphan: false
