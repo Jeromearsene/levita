@@ -247,11 +247,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: quality-artifacts
-          path: demo/dist/
-      - name: Verify badges in demo dist
+          path: temp-badges
+      - name: Inject badges into demo dist
         run: |
-          echo "Content of demo/dist (JSON files only):"
-          ls -1 demo/dist/*.json || echo "No JSON files found!"
+          echo "Injecting badges into demo/dist..."
+          cp -v temp-badges/*.json demo/dist/
+          echo "Final content of demo/dist:"
+          ls -F demo/dist/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
