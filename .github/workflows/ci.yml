@@ -174,7 +174,7 @@ jobs:
           "
       - name: Benchmark
         run: |
-          pnpm bench 2>&1 | sed 's/\x1b\[[0-9;]*m//g' > bench-raw.txt
+          pnpm bench --run 2>&1 | sed 's/\x1b\[[0-9;]*m//g' > bench-raw.txt
           node benchmarks/convert-results.cjs
       - name: Store benchmark results
         uses: benchmark-action/github-action-benchmark@v1
@@ -241,19 +241,17 @@ jobs:
         with:
           name: dist-artifacts
           path: packages/
+      - name: Build demo
+        run: pnpm --filter levita-demo build
       - name: Download quality artifacts
         uses: actions/download-artifact@v4
         with:
           name: quality-artifacts
-          path: temp-quality/
-      - name: Build demo
-        run: pnpm --filter levita-demo build
-      - name: Include badges and results in demo dist
+          path: demo/dist/
+      - name: Verify badges in demo dist
         run: |
-          echo "Copying JSON files to demo/dist..."
-          cp temp-quality/*.json demo/dist/ 2>/dev/null || true
           echo "Content of demo/dist (JSON files only):"
-          ls -1 demo/dist/*.json
+          ls -1 demo/dist/*.json || echo "No JSON files found!"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

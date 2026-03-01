@@ -5,6 +5,8 @@ const raw = fs.readFileSync("bench-raw.txt", "utf8");
 const lines = raw.split("\n").filter((l) => l.includes("·"));
 const results = lines
 	.map((line) => {
+		// Matches: · Name   12,345.67
+		// The regex looks for the dot, then the name, then a gap of spaces, then the numeric value
 		const match = line.match(/·\s+(.+?)\s{2,}([\d,.]+)/);
 		if (!match) return null;
 		return {
