@@ -255,30 +255,9 @@ Run locally: `pnpm bench` — [View history](https://jeromearsene.github.io/levi
 
 > Automatically updated at each release.
 
-## Development
+## Contributing
 
-```bash
-# Prerequisites: Volta (manages Node + pnpm versions)
-# Install: https://volta.sh
-
-# Install dependencies
-pnpm install
-
-# Build all packages
-pnpm build
-
-# Run tests
-pnpm test
-
-# Run benchmarks
-pnpm bench
-
-# Lint
-pnpm lint
-
-# Demo dev server
-pnpm --filter levita-demo dev
-```
+Levita is a monorepo managed with pnpm. For details on how to set up the development environment, run tests, and understand our release workflow, check out our [Development Guide](./DEVELOPMENT.md).
 
 ## Sponsors
 
