@@ -48,17 +48,20 @@ pnpm lint
 Levita uses [Changesets](https://github.com/changesets/changesets) for automated versioning and NPM publishing.
 
 ### 1. Adding a Change (Changeset)
+
 Whenever you make a change that warrants a version bump, you must create a changeset:
 
 ```bash
 pnpm changeset
 ```
+
 - Select the affected packages.
 - Choose the bump type (`patch`, `minor`, `major`).
 - Write a summary (this will populate the `CHANGELOG.md`).
 - **Commit the generated file** with your PR.
 
 ### 2. The Automated CI Pipeline
+
 The release process is fully automated to ensure consistency:
 
 1. **Pull Request**: Create a PR with your changes and a changeset file (generated via `pnpm changeset`).

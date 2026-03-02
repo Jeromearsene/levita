@@ -1,0 +1,5 @@
+node_modules
+dist
+CHANGELOG.md
+packages/*/CHANGELOG.md
+docs/plans/**
