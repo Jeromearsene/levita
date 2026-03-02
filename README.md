@@ -213,18 +213,18 @@ This means:
 
 ## Comparison
 
-| Feature              | Levita           | Atropos          | vanilla-tilt    |
+| Feature              | **Levita** | Atropos          | vanilla-tilt    |
 | -------------------- | ---------------- | ---------------- | --------------- |
-| Bundle size (gzip)   | ~2KB             | ~2KB             | ~3-4KB          |
-| Animation            | CSS custom props | CSS transitions  | rAF loop        |
-| Tree-shakeable       | ✅               | ❌               | ❌              |
-| Multi-layer parallax | ✅ (data attrs)  | ✅ (data attrs)  | ❌ (manual)     |
-| Accelerometer        | Auto + manual    | ❌               | Partial (buggy) |
-| React                | Official         | Official         | Community       |
-| Vue                  | Official         | Web Component    | Community       |
-| Svelte               | Official         | ❌               | ❌              |
-| TypeScript           | Native           | ✅               | Types only      |
-| Maintained           | ✅               | ❌               | ❌              |
+| Bundle size (gzip)   | **~2KB** | ~2KB             | ~3-4KB          |
+| Animation            | **CSS custom props** | CSS transitions  | rAF loop        |
+| Tree-shakeable       | **✅** | ❌               | ❌              |
+| Multi-layer parallax | **✅ (data attrs)** | ✅ (data attrs)  | ❌ (manual)     |
+| Accelerometer        | **Auto + manual** | ❌               | Partial (buggy) |
+| React                | **Official** | Official         | Community       |
+| Vue                  | **Official** | Web Component    | Community       |
+| Svelte               | **Official** | ❌               | ❌              |
+| TypeScript           | **Native** | **✅** | Types only      |
+| Maintained           | **✅** | ❌               | ❌              |
 
 ## Bundle Size
 
