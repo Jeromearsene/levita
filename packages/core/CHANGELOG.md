@@ -1,5 +1,11 @@
 # levita-js
 
+## 0.1.4
+
+### Patch Changes
+
+- [`82f1399`](https://github.com/Jeromearsene/levita/commit/82f13991f37c4b5ae99f7cbdbeae1a838822ded5) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - fix: improve touch tracking on mobile devices by using pointer capture and touch-action: none.
+
 ## 0.1.3
 
 ### Patch Changes
