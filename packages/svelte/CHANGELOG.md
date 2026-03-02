@@ -1,5 +1,12 @@
 # @levita-js/svelte
 
+## 0.1.4
+
+### Patch Changes
+
+- Updated dependencies [[`82f1399`](https://github.com/Jeromearsene/levita/commit/82f13991f37c4b5ae99f7cbdbeae1a838822ded5)]:
+  - levita-js@0.1.4
+
 ## 0.1.3
 
 ### Patch Changes
