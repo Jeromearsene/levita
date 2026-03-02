@@ -10,7 +10,7 @@
   <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://github.com/jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
   <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/v/levita-js" alt="npm" /></a>
   <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/dm/levita-js" alt="npm downloads" /></a>
-  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size.json" alt="bundle size" /></a>
+  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fjeromearsene.github.io%2Flevita%2Fbadge-size.json" alt="bundle size" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/jeromearsene/levita" alt="license" /></a>
   <a href="https://jeromearsene.github.io/levita/"><img src="https://img.shields.io/badge/demo-live-blueviolet" alt="demo" /></a>
 </p>
