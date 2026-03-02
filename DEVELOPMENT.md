@@ -68,9 +68,7 @@ The release process is fully automated to ensure consistency:
 
 ## 📈 Performance Tracking
 
-Benchmarks are automatically run during CI. Results are:
-- Converted to JSON badges in the README.
-- Tracked in a historical graph on [GitHub Pages](https://jeromearsene.github.io/levita/dev/bench/).
+Benchmarks are automatically run during CI. Results are converted to JSON badges in the README.
 
 ---
 

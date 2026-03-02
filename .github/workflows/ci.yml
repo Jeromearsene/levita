@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
     tags: ["**"]
+    paths-ignore:
+      - 'CHANGELOG.md'
+      - '**/package.json'
   pull_request:
     branches: [main]
 
@@ -124,18 +127,6 @@ jobs:
               fs.writeFileSync('badges/badge-bench-' + slug + '.json', JSON.stringify({ schemaVersion: 1, label: entry.name.split(/[-—–]/).pop().trim(), message: value + ' ops/s', color: 'blue' }));
             }
           "
-
-      - name: Store benchmark results
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          name: Vitest Benchmark
-          tool: 'customBiggerIsBetter'
-          output-file-path: bench-results.json
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          auto-push: false
-          alert-threshold: '130%'
-          comment-on-alert: true
-          summary-always: true
       
       - name: Upload quality results
         uses: actions/upload-artifact@v4

@@ -251,7 +251,7 @@ Measured with [Vitest bench](https://vitest.dev/guide/features.html#benchmarking
 | Pointer move update | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-pointer-move-update.json) |
 | Pointer move with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-pointer-move-with-glare-shadow.json) |
 
-Run locally: `pnpm bench` — [View history](https://jeromearsene.github.io/levita/dev/bench/)
+Run locally: `pnpm bench`
 
 > Automatically updated at each release.
 
