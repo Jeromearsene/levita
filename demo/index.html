@@ -231,7 +231,39 @@
 						</label>
 						<button type="button" class="w-full px-4 py-2 text-sm rounded-lg bg-surface text-gray-400 border border-border hover:border-white/20 cursor-pointer transition" id="ctrl-reset">Reset</button>
 					</div>
-					<pre class="bg-surface border border-border rounded-xl px-5 py-4 font-mono text-sm text-accent leading-relaxed overflow-x-auto"><code id="playground-snippet">new Levita(el);</code></pre>
+					
+					<div class="flex flex-col gap-2">
+						<!-- Tabs -->
+						<div class="flex gap-2 p-1 bg-surface border border-border rounded-lg overflow-x-auto no-scrollbar" id="playground-tabs">
+							<button type="button" class="px-4 py-1.5 text-xs font-semibold rounded-md transition cursor-pointer bg-white/10 text-white" data-framework="vanilla">Vanilla</button>
+							<button type="button" class="px-4 py-1.5 text-xs font-semibold rounded-md transition cursor-pointer text-gray-400 hover:text-white" data-framework="react">React</button>
+							<button type="button" class="px-4 py-1.5 text-xs font-semibold rounded-md transition cursor-pointer text-gray-400 hover:text-white" data-framework="vue">Vue</button>
+							<button type="button" class="px-4 py-1.5 text-xs font-semibold rounded-md transition cursor-pointer text-gray-400 hover:text-white" data-framework="svelte">Svelte</button>
+						</div>
+
+						<!-- Code Block -->
+						<div class="relative group">
+							<pre class="bg-surface border border-border rounded-xl px-5 py-4 font-mono text-sm text-accent leading-relaxed overflow-x-auto min-h-[160px]"><code id="playground-snippet">new Levita(el);</code></pre>
+							
+							<!-- Action Bar -->
+							<div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+								<button type="button" id="btn-copy" class="p-2 rounded-lg bg-surface border border-white/20 text-gray-300 hover:text-white hover:bg-white/10 transition cursor-pointer shadow-xl" title="Copy code">
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<title>Copy code</title>
+										<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+										<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+									</svg>
+								</button>
+								<button type="button" id="btn-stackblitz" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-white/20 text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition cursor-pointer shadow-xl" title="Open in StackBlitz">
+									<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<title>StackBlitz</title>
+										<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+									</svg>
+									StackBlitz
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>

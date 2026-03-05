@@ -1,0 +1,28 @@
+{
+	"name": "levita-react-example",
+	"description": "React example for Levita",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"levita-js": "^0.1.4",
+		"@levita-js/react": "^0.1.4",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.0",
+		"@types/react-dom": "^19.0.0",
+		"@vitejs/plugin-react": "^4.3.4",
+		"typescript": "^5.7.3",
+		"vite": "^5.4.11"
+	}
+}

@@ -24,7 +24,7 @@
 ## Effects
 
 | Tilt | Glare |
-|:----:|:-----:|
+| :---: | :---: |
 | ![Tilt](docs/animations/tilt.gif) | ![Glare](docs/animations/glare.gif) |
 | **Shadow** | **Combined** |
 | ![Shadow](docs/animations/shadow.gif) | ![Combined](docs/animations/combined.gif) |
@@ -155,22 +155,22 @@ new Levita(el, { gyroscope: false });
 
 ## Options
 
-| Option        | Type                 | Default      | Description               |
-| ------------- | -------------------- | ------------ | ------------------------- |
-| `max`         | `number`             | `15`         | Max tilt angle in degrees |
-| `perspective` | `number`             | `1000`       | CSS perspective in px     |
-| `scale`       | `number`             | `1.05`       | Scale factor on hover     |
-| `speed`       | `number`             | `200`        | Transition duration in ms |
-| `easing`      | `string`             | `'ease-out'` | CSS easing function       |
-| `reverse`     | `boolean`            | `false`      | Invert tilt direction     |
-| `axis`        | `'x' \| 'y' \| null` | `null`       | Lock to single axis       |
-| `reset`       | `boolean`            | `true`       | Reset on pointer leave    |
-| `glare`       | `boolean`            | `false`      | Enable glare effect       |
-| `maxGlare`    | `number`             | `0.5`        | Max glare opacity (0-1)   |
-| `shadow`      | `boolean`            | `false`      | Enable dynamic shadow     |
-| `gyroscope`   | `'auto' \| boolean`  | `'auto'`     | Accelerometer mode        |
-| `disabled`    | `boolean`            | `false`      | Disable the effect        |
-| `eventsEl`    | `HTMLElement \| null`| `null`       | Element to listen for events on |
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `max` | `number` | `15` | Max tilt angle in degrees |
+| `perspective` | `number` | `1000` | CSS perspective in px |
+| `scale` | `number` | `1.05` | Scale factor on hover |
+| `speed` | `number` | `200` | Transition duration in ms |
+| `easing` | `string` | `'ease-out'` | CSS easing function |
+| `reverse` | `boolean` | `false` | Invert tilt direction |
+| `axis` | `'x' \| 'y' \| null` | `null` | Lock to single axis |
+| `reset` | `boolean` | `true` | Reset on pointer leave |
+| `glare` | `boolean` | `false` | Enable glare effect |
+| `maxGlare` | `number` | `0.5` | Max glare opacity (0-1) |
+| `shadow` | `boolean` | `false` | Enable dynamic shadow |
+| `gyroscope` | `'auto' \| boolean` | `'auto'` | Accelerometer mode |
+| `disabled` | `boolean` | `false` | Disable the effect |
+| `eventsEl` | `HTMLElement \| null` | `null` | Element to listen for events on |
 
 ## Events
 
@@ -213,25 +213,25 @@ This means:
 
 ## Comparison
 
-| Feature              | **Levita** | Atropos          | vanilla-tilt    |
-| -------------------- | ---------------- | ---------------- | --------------- |
-| Bundle size (gzip)   | **~2KB** | ~2KB             | ~3-4KB          |
-| Animation            | **CSS custom props** | CSS transitions  | rAF loop        |
-| Tree-shakeable       | **✅** | ❌               | ❌              |
-| Multi-layer parallax | **✅ (data attrs)** | ✅ (data attrs)  | ❌ (manual)     |
-| Accelerometer        | **Auto + manual** | ❌               | Partial (buggy) |
-| React                | **Official** | Official         | Community       |
-| Vue                  | **Official** | Web Component    | Community       |
-| Svelte               | **Official** | ❌               | ❌              |
-| TypeScript           | **Native** | **✅** | Types only      |
-| Maintained           | **✅** | ❌               | ❌              |
+| Feature | **Levita** | Atropos | vanilla-tilt |
+| --- | --- | --- | --- |
+| Bundle size (gzip) | **~2KB** | ~2KB | ~3-4KB |
+| Animation | **CSS custom props** | CSS transitions | rAF loop |
+| Tree-shakeable | **✅** | ❌ | ❌ |
+| Multi-layer parallax | **✅ (data attrs)** | ✅ (data attrs) | ❌ (manual) |
+| Accelerometer | **Auto + manual** | ❌ | Partial (buggy) |
+| React | **Official** | Official | Community |
+| Vue | **Official** | Web Component | Community |
+| Svelte | **Official** | ❌ | ❌ |
+| TypeScript | **Native** | ✅ | Types only |
+| Maintained | **✅** | ❌ | ❌ |
 
 ## Bundle Size
 
 Measured with [size-limit](https://github.com/ai/size-limit) (tree-shaken, gzipped):
 
 | Package | Size (gzip) |
-| ------- | ----------- |
+| --- | --- |
 | `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) |
 | `@levita-js/react` | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) |
 | `@levita-js/vue` | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) |
@@ -244,7 +244,7 @@ Measured with [size-limit](https://github.com/ai/size-limit) (tree-shaken, gzipp
 Measured with [Vitest bench](https://vitest.dev/guide/features.html#benchmarking) (happy-dom):
 
 | Scenario | ops/s |
-| -------- | ----- |
+| --- | --- |
 | Basic init + destroy | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-basic-init.json) |
 | Init with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-init-with-glare-shadow.json) |
 | Init with 5 parallax layers | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-init-with-5-layers.json) |

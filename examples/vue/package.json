@@ -1,0 +1,26 @@
+{
+	"name": "levita-vue-example",
+	"description": "Vue example for Levita",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"levita-js": "^0.1.4",
+		"@levita-js/vue": "^0.1.4",
+		"vue": "^3.5.13"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^5.2.1",
+		"typescript": "^5.7.3",
+		"vite": "^5.4.11",
+		"vue-tsc": "^2.2.0"
+	}
+}

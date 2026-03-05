@@ -1,0 +1,22 @@
+{
+	"name": "levita-vanilla-example",
+	"description": "Vanilla JS example for Levita",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"levita-js": "^0.1.4"
+	},
+	"devDependencies": {
+		"typescript": "^5.7.3",
+		"vite": "^5.4.11"
+	}
+}
