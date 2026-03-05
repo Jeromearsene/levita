@@ -11,7 +11,9 @@
 		"levita-js": "workspace:*"
 	},
 	"devDependencies": {
+		"@preact/preset-vite": "^2.10.3",
 		"@tailwindcss/vite": "^4.2.1",
+		"preact": "^10.26.4",
 		"tailwindcss": "^4.2.1",
 		"typescript": "^5.9.3",
 		"vite": "^7.3.1"

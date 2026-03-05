@@ -1,5 +1,4 @@
 <script>
-// biome-ignore lint/correctness/noUnusedImports: used in template as Svelte action
 import { tilt } from "@levita-js/svelte";
 import "levita-js/style.css";
 </script>
