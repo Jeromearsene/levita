@@ -23,6 +23,28 @@
 - **Framework first** — Official, lightweight wrappers for React, Vue & Svelte.
 - **Styling agnostic** — Works with any CSS framework (Tailwind, Bootstrap, etc.) or vanilla CSS. [See examples](https://jeromearsene.github.io/levita/#styling).
 
+## Table of Contents
+
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layers.svg" width="16" height="16" valign="middle" alt="Ecosystem"> [Ecosystem](#ecosystem)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/sparkles.svg" width="16" height="16" valign="middle" alt="Effects"> [Effects](#effects)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/download.svg" width="16" height="16" valign="middle" alt="Install"> [Install](#install)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/rocket.svg" width="16" height="16" valign="middle" alt="Quick Start"> [Quick Start](#quick-start)
+  - [Vanilla](#vanilla)
+  - [React](#react)
+  - [Vue](#vue)
+  - [Svelte](#svelte)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/component.svg" width="16" height="16" valign="middle" alt="Parallax Layers"> [Parallax Layers](#parallax-layers)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layout-grid.svg" width="16" height="16" valign="middle" alt="Grouped Instances"> [Grouped Instances](#grouped-instances)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/smartphone.svg" width="16" height="16" valign="middle" alt="Accelerometer"> [Accelerometer](#accelerometer)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/settings-2.svg" width="16" height="16" valign="middle" alt="Options"> [Options](#options)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/activity.svg" width="16" height="16" valign="middle" alt="Events"> [Events](#events)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/box.svg" width="16" height="16" valign="middle" alt="Methods"> [Methods](#methods)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/cpu.svg" width="16" height="16" valign="middle" alt="How It Works"> [How It Works](#how-it-works)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/scale.svg" width="16" height="16" valign="middle" alt="Comparison"> [Comparison](#comparison)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/gauge.svg" width="16" height="16" valign="middle" alt="Benchmarks"> [Benchmarks](#benchmarks)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/heart.svg" width="16" height="16" valign="middle" alt="Contributing"> [Contributing](#contributing)
+- <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/shield.svg" width="16" height="16" valign="middle" alt="License"> [License](#license)
+
 ## Ecosystem
 
 Levita is designed to be framework-agnostic. Choose your flavor:
