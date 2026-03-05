@@ -86,7 +86,7 @@ export class Levita {
 	 * and switch from pointer to motion sensor if granted.
 	 */
 	private handleFirstTouch = async (): Promise<void> => {
-		if (this.gyroscopeRequested || !this.motionSensor) return;
+		if (this.destroyed || this.gyroscopeRequested || !this.motionSensor) return;
 		this.gyroscopeRequested = true;
 
 		const granted = await this.motionSensor.requestPermission();
