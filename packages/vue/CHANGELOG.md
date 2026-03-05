@@ -1,5 +1,18 @@
 # @levita-js/vue
 
+## 0.1.5
+
+### Patch Changes
+
+- [`e611099`](https://github.com/Jeromearsene/levita/commit/e611099a9825f86e3ae0e1141f4b322818a85d28) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - - **Examples**: Added standalone framework examples (Vanilla, React, Vue, Svelte) with one-click StackBlitz integration for real-time experimentation.
+  - **Demo**: Completely refactored the landing page using Preact for better maintainability and responsiveness.
+  - **Styling**: Added a new "Styling Agnostic" section showcasing Levita working seamlessly with Tailwind CSS, Bootstrap, Bulma, Semantic UI, and Flowbite.
+  - **Core**: Added a safety check to prevent accelerometer permission requests on destroyed instances.
+  - **Documentation**: Improved README with an interactive Table of Contents, consolidated Ecosystem section, and official StackBlitz badges.
+  - **CI/CD**: Integrated Gitleaks for secret scanning and markdownlint for documentation quality.
+- Updated dependencies [[`e611099`](https://github.com/Jeromearsene/levita/commit/e611099a9825f86e3ae0e1141f4b322818a85d28)]:
+  - levita-js@0.1.5
+
 ## 0.1.4
 
 ### Patch Changes
