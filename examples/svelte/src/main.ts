@@ -1,8 +1,9 @@
+import { mount } from "svelte";
 import App from "./App.svelte";
 
 const target = document.getElementById("app");
 if (target) {
-	new App({
+	mount(App, {
 		target,
 	});
 }

@@ -28,6 +28,17 @@
 			"includes": ["**/*.md"],
 			"linter": { "enabled": false },
 			"formatter": { "enabled": false }
+		},
+		{
+			"includes": ["**/*.svelte"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedImports": "off",
+						"noUnusedVariables": "off"
+					}
+				}
+			}
 		}
 	],
 	"javascript": {
