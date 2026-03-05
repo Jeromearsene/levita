@@ -11,6 +11,7 @@
   <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/v/levita-js" alt="npm" /></a>
   <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/dm/levita-js" alt="npm downloads" /></a>
   <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fjeromearsene.github.io%2Flevita%2Fbadge-size.json" alt="bundle size" /></a>
+  <a href="https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla"><img src="https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white" alt="StackBlitz" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/jeromearsene/levita" alt="license" /></a>
   <a href="https://jeromearsene.github.io/levita/"><img src="https://img.shields.io/badge/demo-live-blueviolet" alt="demo" /></a>
 </p>
@@ -59,6 +60,8 @@ new Levita(document.getElementById("card"), {
 });
 ```
 
+[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla)
+
 ### React
 
 ```tsx
@@ -73,6 +76,8 @@ function Card() {
   );
 }
 ```
+
+[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react)
 
 ### Vue
 
@@ -89,6 +94,8 @@ import "levita-js/style.css";
 </template>
 ```
 
+[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue)
+
 ### Svelte
 
 ```svelte
@@ -101,6 +108,8 @@ import "levita-js/style.css";
   <h2>Hello</h2>
 </div>
 ```
+
+[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte)
 
 ## Parallax Layers
 
@@ -230,12 +239,12 @@ This means:
 
 Measured with [size-limit](https://github.com/ai/size-limit) (tree-shaken, gzipped):
 
-| Package | Size (gzip) |
-| --- | --- |
-| `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) |
-| `@levita-js/react` | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) |
-| `@levita-js/vue` | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) |
-| `@levita-js/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) |
+| Package | Size (gzip) | Playground |
+| --- | --- | --- |
+| `levita-js` (core) | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla) |
+| `@levita-js/react` | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react) |
+| `@levita-js/vue` | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue) |
+| `@levita-js/svelte` | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte) |
 
 > Automatically updated at each release.
 
