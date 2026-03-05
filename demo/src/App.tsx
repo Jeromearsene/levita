@@ -1,5 +1,6 @@
 import "levita-js/style.css";
 import { Accelerometer } from "./components/Accelerometer";
+import { CssFrameworks } from "./components/CssFrameworks";
 import { Footer } from "./components/Footer";
 import { GroupedCards } from "./components/GroupedCards";
 import { Hero } from "./components/Hero";
@@ -16,6 +17,7 @@ export function App() {
 		<>
 			<Hero />
 			<Showcase />
+			<CssFrameworks />
 			<HighDepth />
 			<GroupedCards />
 			<Playground />

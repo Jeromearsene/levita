@@ -21,6 +21,7 @@
 - **Accelerometer** — Auto-detects gyroscope, handles iOS permissions transparently.
 - **Multi-layer parallax** — `data-levita-offset` on children for depth layering.
 - **Framework first** — Official, lightweight wrappers for React, Vue & Svelte.
+- **Styling agnostic** — Works with any CSS framework (Tailwind, Bootstrap, etc.) or vanilla CSS. [See examples](https://jeromearsene.github.io/levita/#styling).
 
 ## Ecosystem
 
@@ -28,10 +29,10 @@ Levita is designed to be framework-agnostic. Choose your flavor:
 
 | Framework | Size (gzip) | Playground |
 | :--- | :--- | :--- |
-| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/file-code.svg" width="18" height="18" valign="middle"> **[Vanilla JS](#vanilla)** | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla) |
-| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/atom.svg" width="18" height="18" valign="middle"> **[React](#react)** | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react) |
-| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layers.svg" width="18" height="18" valign="middle"> **[Vue](#vue)** | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue) |
-| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/zap.svg" width="18" height="18" valign="middle"> **[Svelte](#svelte)** | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/file-code.svg" width="18" height="18" valign="middle" alt="Vanilla JS"> **[Vanilla JS](#vanilla)** | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/atom.svg" width="18" height="18" valign="middle" alt="React"> **[React](#react)** | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layers.svg" width="18" height="18" valign="middle" alt="Vue"> **[Vue](#vue)** | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/zap.svg" width="18" height="18" valign="middle" alt="Svelte"> **[Svelte](#svelte)** | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte) |
 
 ## Effects
 
@@ -60,6 +61,7 @@ npm install @levita-js/svelte
 ## Quick Start
 
 <a name="vanilla"></a>
+
 ### Vanilla
 
 ```typescript
@@ -73,6 +75,7 @@ new Levita(document.getElementById("card"), {
 ```
 
 <a name="react"></a>
+
 ### React
 
 ```tsx
@@ -89,6 +92,7 @@ function Card() {
 ```
 
 <a name="vue"></a>
+
 ### Vue
 
 ```vue
@@ -105,6 +109,7 @@ import "levita-js/style.css";
 ```
 
 <a name="svelte"></a>
+
 ### Svelte
 
 ```svelte
