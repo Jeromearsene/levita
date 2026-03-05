@@ -114,7 +114,7 @@ export function Playground() {
 	};
 
 	return (
-		<section class="max-w-5xl mx-auto px-8 py-16">
+		<section id="playground" class="max-w-5xl mx-auto px-8 py-16">
 			<h2 class="text-3xl font-bold text-center mb-2">Playground</h2>
 			<p class="text-center text-gray-400 mb-10">Tweak every parameter in real-time</p>
 

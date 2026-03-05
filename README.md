@@ -20,7 +20,7 @@
 - **~2KB gzipped** — Core engine only.
 - **Accelerometer** — Auto-detects gyroscope, handles iOS permissions transparently.
 - **Multi-layer parallax** — `data-levita-offset` on children for depth layering.
-- **Framework first** — Official, lightweight wrappers for React, Vue & Svelte.
+- **Framework first** — Official, lightweight wrappers for React, Vue & Svelte. [See examples](https://jeromearsene.github.io/levita/#playground).
 - **Styling agnostic** — Works with any CSS framework (Tailwind, Bootstrap, etc.) or vanilla CSS. [See examples](https://jeromearsene.github.io/levita/#styling).
 
 ## Table of Contents
