@@ -1,0 +1,81 @@
+name: Quality and Deployment
+
+on:
+  workflow_call:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: .
+          
+      - name: Download compatibility results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: compat-*
+          path: compat-results
+          merge-multiple: true
+      
+      - name: Generate size badges
+        run: node scripts/generate-size-badges.js
+      
+      - name: Benchmark
+        run: |
+          pnpm bench 2>&1 | sed 's/\x1b\[[0-9;]*m//g' > bench-raw.txt
+          node benchmarks/convert-results.cjs
+          node scripts/generate-bench-badges.js
+      
+      - name: Generate version badges
+        run: node scripts/generate-version-badges.js
+
+      - name: Upload quality results
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-artifacts
+          path: badges/
+
+  deploy:
+    needs: [quality]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: .
+      
+      - name: Build demo
+        run: pnpm --filter levita-demo build
+      
+      - name: Download quality results
+        uses: actions/download-artifact@v4
+        with:
+          name: quality-artifacts
+          path: demo/dist/
+      
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: demo/dist/
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

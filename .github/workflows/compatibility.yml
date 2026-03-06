@@ -1,0 +1,110 @@
+name: Framework Compatibility
+
+on:
+  workflow_call:
+
+jobs:
+  test-compatibility:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package: react
+            framework: react
+            version: "16.8.0"
+          - package: react
+            framework: react
+            version: "17.0.2"
+          - package: react
+            framework: react
+            version: "18.3.1"
+          - package: react
+            framework: react
+            version: "19.0.0"
+          - package: svelte
+            framework: svelte
+            version: "3.59.2"
+          - package: svelte
+            framework: svelte
+            version: "4.2.19"
+          - package: svelte
+            framework: svelte
+            version: "5.0.0"
+          - package: vue
+            framework: vue
+            version: "3.3.0"
+          - package: vue
+            framework: vue
+            version: "3.4.0"
+          - package: vue
+            framework: vue
+            version: "3.5.0"
+          - package: angular
+            framework: "@angular/core"
+            version: "14.0.0"
+            node-version: "18"
+          - package: angular
+            framework: "@angular/core"
+            version: "15.0.0"
+            node-version: "18"
+          - package: angular
+            framework: "@angular/core"
+            version: "16.0.0"
+          - package: angular
+            framework: "@angular/core"
+            version: "17.0.0"
+          - package: angular
+            framework: "@angular/core"
+            version: "18.0.0"
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node ${{ matrix.node-version }}
+        if: ${{ matrix.node-version != '' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Setup Project
+        if: ${{ matrix.node-version == '' }}
+        uses: ./.github/actions/setup
+        
+      - name: Manual Setup for old Node
+        if: ${{ matrix.node-version != '' }}
+        shell: bash
+        run: |
+          if [ "${{ matrix.node-version }}" = "16" ]; then
+            npm install -g pnpm@8
+          else
+            npm install -g pnpm@9
+          fi
+          pnpm install --no-frozen-lockfile
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: .
+
+      - name: Test ${{ matrix.package }}@${{ matrix.version }}
+        uses: ./.github/actions/run-compat-test
+        with:
+          package: ${{ matrix.package }}
+          framework: ${{ matrix.framework }}
+          version: ${{ matrix.version }}
+
+      - name: Save result
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/compat-results
+          echo "${{ job.status }}" > $GITHUB_WORKSPACE/compat-results/${{ matrix.package }}-${{ matrix.version }}.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compat-${{ matrix.package }}-${{ matrix.version }}
+          path: compat-results/
+          if-no-files-found: error

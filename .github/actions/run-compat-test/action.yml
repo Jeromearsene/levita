@@ -1,0 +1,95 @@
+name: Run Compatibility Test
+description: Run framework compatibility test in an isolated directory
+
+inputs:
+  package:
+    description: The package name (e.g. react, vue)
+    required: true
+  framework:
+    description: The framework package name (e.g. react, @angular/core)
+    required: true
+  version:
+    description: The version to test
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run isolated test
+      shell: bash
+      run: |
+        ROOT_DIR=$(pwd)
+        COMPAT_DIR="/tmp/compat-${{ inputs.package }}-${{ inputs.version }}"
+        mkdir -p $COMPAT_DIR/package
+        
+        # Copy package source
+        cp -r packages/${{ inputs.package }}/src $COMPAT_DIR/package/
+        
+        # Copy core build to temp dir to avoid monorepo links
+        cp -r packages/core $COMPAT_DIR/core
+        
+        # Create a standalone package.json in the temp package
+        echo '{
+          "name": "compat-test",
+          "private": true,
+          "type": "module",
+          "dependencies": {
+            "levita-js": "file:../core"
+          },
+          "devDependencies": {
+            "${{ inputs.framework }}": "${{ inputs.version }}",
+            "vitest": "4.0.18",
+            "happy-dom": "20.7.0"
+          }
+        }' > $COMPAT_DIR/package/package.json
+
+        # Create a minimal tsconfig.json for esbuild/vitest
+        JSX_RUNTIME="react-jsx"
+        if [ "${{ inputs.package }}" = "react" ] && [ "${{ inputs.version }}" = "16.8.0" ]; then
+          JSX_RUNTIME="react"
+        fi
+        echo "{
+          \"compilerOptions\": {
+            \"target\": \"ES2022\",
+            \"module\": \"ESNext\",
+            \"moduleResolution\": \"bundler\",
+            \"jsx\": \"$JSX_RUNTIME\",
+            \"experimentalDecorators\": true,
+            \"emitDecoratorMetadata\": true,
+            \"skipLibCheck\": true
+          }
+        }" > $COMPAT_DIR/package/tsconfig.json
+
+        cd $COMPAT_DIR/package
+        # Add framework-specific testing tools
+        if [ "${{ inputs.package }}" = "react" ]; then
+          RTL_VERSION="16.3.2"
+          if [ "${{ inputs.version }}" = "16.8.0" ] || [ "${{ inputs.version }}" = "17.0.2" ]; then
+            RTL_VERSION="12.1.5"
+          fi
+          pnpm add -D react-dom@${{ inputs.version }} @testing-library/react@$RTL_VERSION @testing-library/dom @types/react @types/react-dom --no-strict-peer-dependencies
+        elif [ "${{ inputs.package }}" = "vue" ]; then
+          pnpm add -D @vue/test-utils@2.4.6 --no-strict-peer-dependencies
+        elif [ "${{ inputs.package }}" = "angular" ]; then
+          pnpm add -D @angular/compiler@${{ inputs.version }} @angular/platform-browser-dynamic@${{ inputs.version }} zone.js reflect-metadata --no-strict-peer-dependencies
+        fi
+
+        # Install (standalone)
+        pnpm install --no-frozen-lockfile --no-strict-peer-dependencies
+
+        # Run tests with the dedicated compat config
+        cp $ROOT_DIR/vitest.compat.config.ts ./vitest.config.ts
+        
+        # Framework specific setup
+        if [ "${{ inputs.package }}" = "angular" ]; then
+          echo "import 'zone.js';" > setup.ts
+          echo "import 'zone.js/testing';" >> setup.ts
+          echo "import 'reflect-metadata';" >> setup.ts
+          sed -i "s|test: {|test: { setupFiles: ['./setup.ts'],|" vitest.config.ts
+        elif [ "${{ inputs.package }}" = "react" ] && [ "${{ inputs.version }}" = "16.8.0" ]; then
+          # Inject React global for legacy JSX transform
+          echo "import * as React from 'react'; globalThis.React = React;" > setup.ts
+          sed -i "s|test: {|test: { setupFiles: ['./setup.ts'],|" vitest.config.ts
+        fi
+        
+        pnpm exec vitest run src
