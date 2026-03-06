@@ -1,6 +1,7 @@
 import posterImg from "@assets/showcase-poster.webp";
 import type { LevitaOptions } from "levita-js";
 import { useMemo, useState } from "preact/hooks";
+import { FRAMEWORKS, type Framework } from "../constants";
 import { Tilt } from "./Tilt";
 
 /**
@@ -8,7 +9,7 @@ import { Tilt } from "./Tilt";
  * Allows users to tweak Levita parameters and see the resulting code for various frameworks.
  */
 export function Playground() {
-	const [currentFramework, setCurrentFramework] = useState("vanilla");
+	const [currentFramework, setCurrentFramework] = useState<Framework>("vanilla");
 
 	/** Current options state, subset of LevitaOptions used in the playground. */
 	const [opts, setOpts] = useState<Partial<LevitaOptions>>({
@@ -211,7 +212,7 @@ export function Playground() {
 
 					<div class="flex flex-col gap-2">
 						<div class="flex gap-2 p-1 bg-surface border border-border rounded-lg overflow-x-auto no-scrollbar">
-							{["vanilla", "react", "vue", "svelte", "angular"].map((fw) => (
+							{FRAMEWORKS.map((fw) => (
 								<button
 									key={fw}
 									type="button"
