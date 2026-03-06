@@ -54,6 +54,14 @@ export function Footer() {
 						npm
 					</a>
 					<a
+						href="https://github.com/users/Jeromearsene/projects/7"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-gray-400 text-sm hover:text-white transition"
+					>
+						Roadmap
+					</a>
+					<a
 						href="https://github.com/Jeromearsene/levita#api"
 						target="_blank"
 						rel="noopener noreferrer"

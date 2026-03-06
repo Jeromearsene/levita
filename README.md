@@ -44,6 +44,7 @@
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:scale.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:scale.svg?color=%23000000" width="16" height="16" valign="middle" alt="Comparison"></picture> [Comparison](#comparison)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:gauge.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:gauge.svg?color=%23000000" width="16" height="16" valign="middle" alt="Benchmarks"></picture> [Benchmarks](#benchmarks)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:heart.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:heart.svg?color=%23000000" width="16" height="16" valign="middle" alt="Contributing"></picture> [Contributing](#contributing)
+- <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:map.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:map.svg?color=%23000000" width="16" height="16" valign="middle" alt="Roadmap"></picture> [Roadmap](#roadmap)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:shield.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:shield.svg?color=%23000000" width="16" height="16" valign="middle" alt="License"></picture> [License](#license)
 
 ## Ecosystem
@@ -336,6 +337,12 @@ If you find Levita useful, consider supporting its development:
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=jeromearsene/levita&type=Date)](https://star-history.com/#jeromearsene/levita&Date)
+
+## Roadmap
+
+Interested in what's coming next? You can follow the development progress and upcoming features on our public project board:
+
+[![Levita Project Board](https://img.shields.io/badge/Roadmap-View_Kanban-blueviolet?style=for-the-badge&logo=github)](https://github.com/users/Jeromearsene/projects/7)
 
 ## License
 

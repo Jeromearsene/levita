@@ -54,6 +54,14 @@ export function Hero() {
 				>
 					GitHub
 				</a>
+				<a
+					href="https://github.com/users/Jeromearsene/projects/7"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="hidden sm:inline-flex items-center px-7 py-3 rounded-xl font-semibold border border-border text-white hover:border-white/20 transition"
+				>
+					Roadmap
+				</a>
 			</div>
 			<p class="text-gray-500 text-sm mt-4">~2KB gzipped</p>
 		</section>
