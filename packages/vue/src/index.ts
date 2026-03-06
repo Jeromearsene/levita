@@ -59,7 +59,7 @@ export const Tilt = defineComponent({
 
 	slots: Object as SlotsType<{ default: Record<string, never> }>,
 
-	setup(props, { slots, expose }) {
+	setup(props, { slots, attrs, expose }) {
 		const elRef = ref<HTMLElement | null>(null);
 		let instance: Levita | null = null;
 
@@ -99,6 +99,6 @@ export const Tilt = defineComponent({
 			() => init(),
 		);
 
-		return () => h("div", { ref: elRef }, slots.default?.({}));
+		return () => h("div", { ...attrs, ref: elRef }, slots.default?.({}));
 	},
 });

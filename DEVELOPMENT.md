@@ -29,6 +29,22 @@ pnpm build
 
 We use **Vitest** for unit tests and **Playwright** for visual regression.
 
+### Framework Compatibility
+
+To ensure wrappers work across multiple versions of their respective frameworks, follow these steps:
+
+1. **Manual Link Test**:
+   - In an empty directory, install the target version of the framework (e.g., `npm install react@16.8`).
+   - Link your local package (e.g., `npm link ../packages/react`).
+   - Verify if it compiles and runs without issues.
+
+2. **TypeScript Check**:
+   - Run `pnpm type-check` in the package directory. It uses the `devDependencies` version.
+   - To test older versions, temporarily downgrade the framework in `package.json` (devDependencies) and run `pnpm install && pnpm type-check`.
+
+3. **Automated CI Matrix**:
+   - Every push to `main` and all Pull Requests trigger a GitHub Action matrix that runs unit tests against a wide range of framework versions (e.g., React 16.8 to 19, Svelte 3 to 5). This ensures we never break compatibility with our supported minimum versions.
+
 ```bash
 # Run unit tests
 pnpm test
@@ -75,4 +91,4 @@ Benchmarks are automatically run during CI. Results are converted to JSON badges
 
 ---
 
-*Levita — Lightweight 3D tilt & parallax library.*
+_Levita — Lightweight 3D tilt & parallax library._

@@ -33,8 +33,8 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Lint
         run: pnpm lint
-      - name: Build Core Types
-        run: pnpm --filter levita-js build
+      - name: Build All Packages
+        run: pnpm build
       - name: Type check
         run: pnpm -r run type-check
       - name: Check documentation
@@ -47,6 +47,180 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Test
         run: pnpm test
+
+  test-compatibility:
+    needs: [build]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - package: react
+            framework: react
+            version: "16.8.0"
+          - package: react
+            framework: react
+            version: "17.0.2"
+          - package: react
+            framework: react
+            version: "18.3.1"
+          - package: react
+            framework: react
+            version: "19.0.0"
+          - package: svelte
+            framework: svelte
+            version: "3.59.2"
+          - package: svelte
+            framework: svelte
+            version: "4.2.19"
+          - package: svelte
+            framework: svelte
+            version: "5.0.0"
+          - package: vue
+            framework: vue
+            version: "3.3.0"
+          - package: vue
+            framework: vue
+            version: "3.4.0"
+          - package: vue
+            framework: vue
+            version: "3.5.0"
+          - package: angular
+            framework: "@angular/core"
+            version: "14.0.0"
+            node-version: "18"
+          - package: angular
+            framework: "@angular/core"
+            version: "15.0.0"
+            node-version: "18"
+          - package: angular
+            framework: "@angular/core"
+            version: "16.0.0"
+          - package: angular
+            framework: "@angular/core"
+            version: "17.0.0"
+          - package: angular
+            framework: "@angular/core"
+            version: "18.0.0"
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node ${{ matrix.node-version }}
+        if: ${{ matrix.node-version != '' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Setup Project
+        if: ${{ matrix.node-version == '' }}
+        uses: ./.github/actions/setup
+        
+      - name: Manual Setup for old Node
+        if: ${{ matrix.node-version != '' }}
+        shell: bash
+        run: |
+          if [ "${{ matrix.node-version }}" = "16" ]; then
+            npm install -g pnpm@8
+          else
+            npm install -g pnpm@9
+          fi
+          pnpm install --no-frozen-lockfile
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: .
+
+      - name: Test ${{ matrix.package }}@${{ matrix.version }}
+        run: |
+          ROOT_DIR=$(pwd)
+          COMPAT_DIR="/tmp/compat-${{ matrix.package }}-${{ matrix.version }}"
+          mkdir -p $COMPAT_DIR/package
+          
+          # Copy package source
+          cp -r packages/${{ matrix.package }}/src $COMPAT_DIR/package/
+          
+          # Copy core build to temp dir to avoid monorepo links
+          cp -r packages/core $COMPAT_DIR/core
+          
+          echo '{
+            "name": "compat-test",
+            "private": true,
+            "type": "module",
+            "dependencies": {
+              "levita-js": "file:../core"
+            },
+            "devDependencies": {
+              "${{ matrix.framework }}": "${{ matrix.version }}",
+              "vitest": "4.0.18",
+              "happy-dom": "20.7.0"
+            }
+          }' > $COMPAT_DIR/package/package.json
+
+          # Create a minimal tsconfig.json for esbuild/vitest
+          JSX_RUNTIME="react-jsx"
+          if [ "${{ matrix.package }}" = "react" ] && [ "${{ matrix.version }}" = "16.8.0" ]; then
+            JSX_RUNTIME="react"
+          fi
+          echo "{
+            \"compilerOptions\": {
+              \"target\": \"ES2022\",
+              \"module\": \"ESNext\",
+              \"moduleResolution\": \"bundler\",
+              \"jsx\": \"$JSX_RUNTIME\",
+              \"experimentalDecorators\": true,
+              \"emitDecoratorMetadata\": true,
+              \"skipLibCheck\": true
+            }
+          }" > $COMPAT_DIR/package/tsconfig.json
+
+          cd $COMPAT_DIR/package
+          # Add framework-specific testing tools
+          if [ "${{ matrix.package }}" = "react" ]; then
+            RTL_VERSION="16.3.2"
+            if [ "${{ matrix.version }}" = "16.8.0" ] || [ "${{ matrix.version }}" = "17.0.2" ]; then
+              RTL_VERSION="12.1.5"
+            fi
+            pnpm add -D react-dom@${{ matrix.version }} @testing-library/react@$RTL_VERSION @testing-library/dom @types/react @types/react-dom --no-strict-peer-dependencies
+          elif [ "${{ matrix.package }}" = "vue" ]; then
+            pnpm add -D @vue/test-utils@2.4.6 --no-strict-peer-dependencies
+          elif [ "${{ matrix.package }}" = "angular" ]; then
+            pnpm add -D @angular/compiler@${{ matrix.version }} @angular/platform-browser-dynamic@${{ matrix.version }} zone.js reflect-metadata --no-strict-peer-dependencies
+          fi
+
+          # 5. Install (standalone)
+          pnpm install --no-frozen-lockfile --no-strict-peer-dependencies
+
+          # 6. Run tests with the dedicated compat config
+          cp $ROOT_DIR/vitest.compat.config.ts ./vitest.config.ts
+          
+          # Framework specific setup
+          if [ "${{ matrix.package }}" = "angular" ]; then
+            echo "import 'zone.js';" > setup.ts
+            echo "import 'zone.js/testing';" >> setup.ts
+            echo "import 'reflect-metadata';" >> setup.ts
+            sed -i "s|test: {|test: { setupFiles: ['./setup.ts'],|" vitest.config.ts
+          elif [ "${{ matrix.package }}" = "react" ] && [ "${{ matrix.version }}" = "16.8.0" ]; then
+            # Inject React global for legacy JSX transform
+            echo "import * as React from 'react'; globalThis.React = React;" > setup.ts
+            sed -i "s|test: {|test: { setupFiles: ['./setup.ts'],|" vitest.config.ts
+          fi
+          
+          pnpm exec vitest run src
+
+      - name: Save result
+        if: always()
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/compat-results
+          echo "${{ job.status }}" > $GITHUB_WORKSPACE/compat-results/${{ matrix.package }}-${{ matrix.version }}.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compat-${{ matrix.package }}-${{ matrix.version }}
+          path: compat-results/
 
   test-visual:
     runs-on: ubuntu-latest
@@ -93,7 +267,7 @@ jobs:
           if-no-files-found: error
 
   quality:
-    needs: [build, test]
+    needs: [build, test, test-compatibility]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -104,6 +278,13 @@ jobs:
         with:
           name: build-artifacts
           path: .
+          
+      - name: Download compatibility results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: compat-*
+          path: compat-results
+          merge-multiple: true
       
       - name: Generate size badges
         run: |
@@ -138,6 +319,70 @@ jobs:
             }
           "
       
+      - name: Generate version badges
+        run: |
+          mkdir -p badges
+          node -e "
+            const fs = require('fs');
+            const path = 'compat-results';
+            if (!fs.existsSync(path)) {
+              console.log('No compatibility results found');
+              process.exit(0);
+            }
+            const files = fs.readdirSync(path);
+            const packages = ['react', 'svelte', 'vue', 'angular'];
+            const results = {};
+            
+            for (const file of files) {
+              // Extract package and version from filename like 'react-16.8.0.txt'
+              const parts = file.replace('.txt', '').split(/-(?=[0-9])/);
+              const pkg = parts[0];
+              const version = parts[1];
+              const status = fs.readFileSync(path + '/' + file, 'utf8').trim();
+              if (!results[pkg]) results[pkg] = [];
+              results[pkg].push({ version, status });
+            }
+            
+            for (const pkg of packages) {
+              const pkgResults = results[pkg] || [];
+              const successful = pkgResults.filter(r => r.status === 'success');
+              
+              let versionDisplay = 'unknown';
+              if (successful.length > 0) {
+                // Find minimum version
+                const sorted = successful.map(r => r.version).sort((a, b) => {
+                  const partsA = a.split('.').map(Number);
+                  const partsB = b.split('.').map(Number);
+                  for (let i = 0; i < 3; i++) {
+                    if ((partsA[i] || 0) < (partsB[i] || 0)) return -1;
+                    if ((partsA[i] || 0) > (partsB[i] || 0)) return 1;
+                  }
+                  return 0;
+                });
+                const minVersion = sorted[0];
+                // For the badge, we usually show major or major.minor
+                const parts = minVersion.split('.');
+                versionDisplay = (parts[0] === '0' ? parts[0] + '.' + parts[1] : parts[0]) + '+';
+              } else {
+                // Fallback to peerDependencies if no tests succeeded (should not happen if CI passes)
+                try {
+                  const content = JSON.parse(fs.readFileSync('packages/' + pkg + '/package.json', 'utf8'));
+                  const peerDeps = content.peerDependencies || {};
+                  const frameworkName = pkg === 'angular' ? '@angular/core' : pkg;
+                  const version = peerDeps[frameworkName] || 'unknown';
+                  versionDisplay = version.replace('>=', '') + '+';
+                } catch (e) {}
+              }
+              
+              fs.writeFileSync('badges/badge-version-' + pkg + '.json', JSON.stringify({
+                schemaVersion: 1,
+                label: 'version',
+                message: versionDisplay,
+                color: 'blue'
+              }));
+            }
+          "
+
       - name: Upload quality results
         uses: actions/upload-artifact@v4
         with:

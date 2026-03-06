@@ -1,6 +1,7 @@
 import {
 	Directive,
-	type ElementRef,
+	ElementRef,
+	Inject,
 	Input,
 	type OnChanges,
 	type OnDestroy,
@@ -28,7 +29,7 @@ export class LevitaDirective implements OnChanges, OnDestroy {
 
 	private instance?: Levita;
 
-	constructor(private el: ElementRef<HTMLElement>) {}
+	constructor(@Inject(ElementRef) private el: ElementRef<HTMLElement>) {}
 
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes.options) {

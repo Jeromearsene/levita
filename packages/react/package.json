@@ -31,8 +31,8 @@
 		"type-check": "tsc --noEmit"
 	},
 	"peerDependencies": {
-		"react": ">=18",
-		"react-dom": ">=18"
+		"react": ">=16.8",
+		"react-dom": ">=16.8"
 	},
 	"dependencies": {
 		"levita-js": "workspace:*"

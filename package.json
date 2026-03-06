@@ -27,6 +27,7 @@
 	},
 	"packageManager": "pnpm@10.5.2",
 	"devDependencies": {
+		"@angular/platform-browser-dynamic": "^21.2.0",
 		"@biomejs/biome": "^2.4.4",
 		"@changesets/changelog-github": "^0.5.2",
 		"@changesets/cli": "^2.29.8",
@@ -34,6 +35,7 @@
 		"@size-limit/preset-small-lib": "^12.0.0",
 		"happy-dom": "^20.7.0",
 		"markdownlint-cli": "^0.47.0",
+		"reflect-metadata": "^0.2.2",
 		"size-limit": "^12.0.0",
 		"typescript": "^5.9.3",
 		"vitest": "^4.0.18"
