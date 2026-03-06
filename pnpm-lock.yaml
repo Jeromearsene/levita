@@ -125,11 +125,11 @@ importers:
   examples/react:
     dependencies:
       '@levita-js/react':
-        specifier: ^0.1.4
-        version: 0.1.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: workspace:*
+        version: link:../../packages/react
       levita-js:
-        specifier: ^0.1.4
-        version: 0.1.5
+        specifier: workspace:*
+        version: link:../../packages/core
       react:
         specifier: ^19.0.0
         version: 19.2.4
@@ -156,11 +156,11 @@ importers:
   examples/svelte:
     dependencies:
       '@levita-js/svelte':
-        specifier: ^0.1.4
-        version: 0.1.5(svelte@5.53.5)
+        specifier: workspace:*
+        version: link:../../packages/svelte
       levita-js:
-        specifier: ^0.1.4
-        version: 0.1.5
+        specifier: workspace:*
+        version: link:../../packages/core
       svelte:
         specifier: ^5.53.5
         version: 5.53.5
@@ -178,8 +178,8 @@ importers:
   examples/vanilla:
     dependencies:
       levita-js:
-        specifier: ^0.1.4
-        version: 0.1.5
+        specifier: workspace:*
+        version: link:../../packages/core
     devDependencies:
       typescript:
         specifier: ^5.7.3
@@ -191,11 +191,11 @@ importers:
   examples/vue:
     dependencies:
       '@levita-js/vue':
-        specifier: ^0.1.4
-        version: 0.1.5(vue@3.5.28(typescript@5.9.3))
+        specifier: workspace:*
+        version: link:../../packages/vue
       levita-js:
-        specifier: ^0.1.4
-        version: 0.1.5
+        specifier: workspace:*
+        version: link:../../packages/core
       vue:
         specifier: ^3.5.13
         version: 3.5.28(typescript@5.9.3)
@@ -904,22 +904,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
-
-  '@levita-js/react@0.1.5':
-    resolution: {integrity: sha512-Q7rWHUhzdYCiDFgH/6e98HHyvbsokHqNk/GbabPbyo3U98IpxFHgkWJa9n8Ym2qKGujf4+3CuBHvZ6NRb/h0OQ==}
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-
-  '@levita-js/svelte@0.1.5':
-    resolution: {integrity: sha512-/bnmGrcbrhq2AhwldsfReT82f379qmGlrPMpjYicntOfdbYPXWh//RyO1zpZ3vz1gMv5GjNzWm+Jg670XZ4Gyw==}
-    peerDependencies:
-      svelte: '>=5'
-
-  '@levita-js/vue@0.1.5':
-    resolution: {integrity: sha512-LGS4PaQDdZ+gI6VWyR0yWR/cM/n3lNORMubC7qoR6USRV2E6nRaXVQGPta5pIPXpqoYVNmwpvlBG43kDaKuwog==}
-    peerDependencies:
-      vue: '>=3.3'
 
   '@lmdb/lmdb-darwin-arm64@3.5.1':
     resolution: {integrity: sha512-tpfN4kKrrMpQ+If1l8bhmoNkECJi0iOu6AEdrTJvWVC+32sLxTARX5Rsu579mPImRP9YFWfWgeRQ5oav7zApQQ==}
@@ -2646,9 +2630,6 @@ packages:
   kolorist@1.8.0:
     resolution: {integrity: sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ==}
 
-  levita-js@0.1.5:
-    resolution: {integrity: sha512-9/Ipib3zpiOYQBqeiSqAo1q+GjiYzo7Du3qdCoaLVKO67fmKwiW2B6Mfqu7EZ9l2NGX6H9wx6AkrES1n6++3wA==}
-
   lightningcss-android-arm64@1.31.1:
     resolution: {integrity: sha512-HXJF3x8w9nQ4jbXRiNppBCqeZPIAfUo8zE/kOEGbW5NZvGc/K7nMxbhIr+YlFlHW5mpbg/YFPdbnCh1wAXCKFg==}
     engines: {node: '>= 12.0.0'}
@@ -4288,22 +4269,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@levita-js/react@0.1.5(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
-    dependencies:
-      levita-js: 0.1.5
-      react: 19.2.4
-      react-dom: 19.2.4(react@19.2.4)
-
-  '@levita-js/svelte@0.1.5(svelte@5.53.5)':
-    dependencies:
-      levita-js: 0.1.5
-      svelte: 5.53.5
-
-  '@levita-js/vue@0.1.5(vue@3.5.28(typescript@5.9.3))':
-    dependencies:
-      levita-js: 0.1.5
-      vue: 3.5.28(typescript@5.9.3)
-
   '@lmdb/lmdb-darwin-arm64@3.5.1':
     optional: true
 
@@ -5766,8 +5731,6 @@ snapshots:
       commander: 8.3.0
 
   kolorist@1.8.0: {}
-
-  levita-js@0.1.5: {}
 
   lightningcss-android-arm64@1.31.1:
     optional: true
