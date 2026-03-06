@@ -216,7 +216,7 @@ export function Playground() {
 								<button
 									key={fw}
 									type="button"
-									class={`px-4 py-1.5 text-xs font-semibold rounded-md transition ${currentFramework === fw ? "bg-white/10 text-white" : "text-gray-400 hover:text-white"}`}
+									class={`px-4 py-1.5 text-xs font-semibold rounded-md transition ${currentFramework === fw ? "bg-accent text-bg" : "text-gray-400 hover:text-white"}`}
 									onClick={() => setCurrentFramework(fw)}
 								>
 									{fw.charAt(0).toUpperCase() + fw.slice(1)}

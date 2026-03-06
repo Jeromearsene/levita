@@ -255,7 +255,7 @@ export function CssFrameworks() {
 						<button
 							key={f.id}
 							type="button"
-							class={`px-4 py-2 text-sm font-semibold rounded-lg transition ${activeTab === f.id ? "bg-white/10 text-white" : "text-gray-400 hover:text-white"}`}
+							class={`px-4 py-2 text-sm font-semibold rounded-lg transition ${activeTab === f.id ? "bg-accent text-bg" : "text-gray-400 hover:text-white"}`}
 							onClick={() => setActiveTab(f.id)}
 						>
 							{f.name}
