@@ -101,6 +101,8 @@ new Levita(document.getElementById("card"), {
 });
 ```
 
+[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla)
+
 <a name="react"></a>
 
 ### React
@@ -117,6 +119,8 @@ function Card() {
   );
 }
 ```
+
+[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react)
 
 <a name="vue"></a>
 
@@ -135,6 +139,8 @@ import "levita-js/style.css";
 </template>
 ```
 
+[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue)
+
 <a name="svelte"></a>
 
 ### Svelte
@@ -149,6 +155,8 @@ import "levita-js/style.css";
   <h2>Hello</h2>
 </div>
 ```
+
+[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte)
 
 <a name="angular"></a>
 
