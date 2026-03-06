@@ -33,8 +33,10 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Lint
         run: pnpm lint
+      - name: Build Core Types
+        run: pnpm --filter levita-js build
       - name: Type check
-        run: pnpm type-check
+        run: pnpm -r run type-check
       - name: Check documentation
         run: node scripts/sync-docs.js
 
