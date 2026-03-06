@@ -52,11 +52,11 @@ Levita is designed to be framework-agnostic. Choose your flavor:
 
 | Framework | Size (gzip) | Playground |
 | :--- | :--- | :--- |
-| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/file-code.svg" width="18" height="18" valign="middle" alt="Vanilla JS"> **[Vanilla JS](#vanilla)** | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla) |
-| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/atom.svg" width="18" height="18" valign="middle" alt="React"> **[React](#react)** | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react) |
-| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layers.svg" width="18" height="18" valign="middle" alt="Vue"> **[Vue](#vue)** | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue) |
-| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/zap.svg" width="18" height="18" valign="middle" alt="Svelte"> **[Svelte](#svelte)** | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte) |
-| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/box.svg" width="18" height="18" valign="middle" alt="Angular"> **[Angular](#angular)** | ![angular size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-angular.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/angular) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/file-code.svg" width="18" height="18" valign="middle" alt="Vanilla JS"> **[Vanilla JS](#vanilla)** | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) | [![Try Vanilla JS on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/atom.svg" width="18" height="18" valign="middle" alt="React"> **[React](#react)** | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) | [![Try React on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layers.svg" width="18" height="18" valign="middle" alt="Vue"> **[Vue](#vue)** | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) | [![Try Vue on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/zap.svg" width="18" height="18" valign="middle" alt="Svelte"> **[Svelte](#svelte)** | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) | [![Try Svelte on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/box.svg" width="18" height="18" valign="middle" alt="Angular"> **[Angular](#angular)** | ![angular size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-angular.json) | [![Try Angular on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/angular) |
 
 ## Effects
 
@@ -101,7 +101,7 @@ new Levita(document.getElementById("card"), {
 });
 ```
 
-[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla)
+[![Open Vanilla JS example in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla)
 
 <a name="react"></a>
 
@@ -120,7 +120,7 @@ function Card() {
 }
 ```
 
-[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react)
+[![Open React example in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react)
 
 <a name="vue"></a>
 
@@ -139,7 +139,7 @@ import "levita-js/style.css";
 </template>
 ```
 
-[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue)
+[![Open Vue example in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue)
 
 <a name="svelte"></a>
 
@@ -156,7 +156,7 @@ import "levita-js/style.css";
 </div>
 ```
 
-[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte)
+[![Open Svelte example in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte)
 
 <a name="angular"></a>
 
@@ -179,7 +179,7 @@ import "levita-js/style.css";
 export class CardComponent {}
 ```
 
-[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/angular)
+[![Open Angular example in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/angular)
 
 ## Parallax Layers
 
