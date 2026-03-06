@@ -232,7 +232,7 @@ export function Playground() {
 								<button
 									type="button"
 									onClick={copyCode}
-									class="p-2 rounded-lg bg-surface border border-white/20 text-gray-300 hover:text-white hover:bg-white/10 transition shadow-xl"
+									class="p-2 rounded-lg bg-surface border border-white/20 text-gray-300 hover:text-white hover:bg-slate-700 hover:border-accent transition shadow-xl"
 									title="Copy code"
 								>
 									{copyStatus ? (
@@ -265,7 +265,7 @@ export function Playground() {
 								<button
 									type="button"
 									onClick={openStackBlitz}
-									class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-white/20 text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/10 transition shadow-xl"
+									class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-white/20 text-xs font-semibold text-gray-300 hover:text-white hover:bg-slate-700 hover:border-accent transition shadow-xl"
 								>
 									<svg
 										width="14"
@@ -280,7 +280,7 @@ export function Playground() {
 									</svg>
 									StackBlitz
 								</button>
-							</div>
+							</div>{" "}
 						</div>
 					</div>
 				</div>
