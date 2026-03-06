@@ -13,7 +13,7 @@
 		"test:visual:update": "playwright test --grep-invert demo --update-snapshots",
 		"test:visual:record": "playwright test --grep demo && ./tests/visual/convert-to-gif.sh",
 		"changeset": "changeset",
-		"version-packages": "changeset version",
+		"version-packages": "changeset version && node scripts/sync-examples.js",
 		"release": "pnpm build && changeset publish",
 		"dev": "pnpm build && pnpm --filter levita-demo dev --host",
 		"size": "size-limit",
