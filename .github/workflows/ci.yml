@@ -35,6 +35,8 @@ jobs:
         run: pnpm lint
       - name: Type check
         run: pnpm type-check
+      - name: Check documentation
+        run: node scripts/sync-docs.js
 
   test:
     runs-on: ubuntu-latest
