@@ -2,9 +2,17 @@
 	"$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
 	"changelog": ["@changesets/changelog-github", { "repo": "jeromearsene/levita" }],
 	"commit": false,
-	"fixed": [["levita-js", "@levita-js/react", "@levita-js/vue", "@levita-js/svelte"]],
+	"fixed": [
+		["levita-js", "@levita-js/react", "@levita-js/vue", "@levita-js/svelte", "@levita-js/angular"]
+	],
 	"access": "public",
 	"baseBranch": "main",
 	"updateInternalDependencies": "patch",
-	"ignore": []
+	"ignore": [
+		"levita-vanilla-example",
+		"levita-react-example",
+		"levita-vue-example",
+		"levita-svelte-example",
+		"levita-angular-example"
+	]
 }
