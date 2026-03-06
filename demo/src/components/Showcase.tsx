@@ -9,7 +9,7 @@ import { Tilt } from "./Tilt";
  */
 export function Showcase() {
 	return (
-		<section class="max-w-5xl mx-auto px-8 py-16">
+		<section class="max-w-5xl mx-auto px-16 sm:px-8 py-16">
 			<h2 class="text-3xl font-bold text-center mb-2">Showcase</h2>
 			<p class="text-center text-gray-400 mb-10">Hover the cards to see the effect in action</p>
 

@@ -5,14 +5,14 @@ import { Tilt } from "./Tilt";
  */
 export function HighDepth() {
 	return (
-		<section class="max-w-5xl mx-auto px-8 py-16">
+		<section class="max-w-5xl mx-auto px-16 sm:px-8 py-16">
 			<h2 class="text-3xl font-bold text-center mb-2">High Depth Parallax</h2>
 			<p class="text-center text-gray-400 mb-10">Layered elements with high offset values</p>
 
 			<div class="flex items-center justify-center">
 				<Tilt
 					options={{ glare: true, shadow: true, gyroscope: false, max: 10, perspective: 1500 }}
-					class="relative w-[min(600px,90vw)] aspect-[16/9] rounded-3xl bg-linear-to-br from-surface to-[#0f172a] border border-border overflow-hidden cursor-pointer"
+					class="relative w-[min(600px,70vw)] aspect-[16/9] rounded-3xl bg-linear-to-br from-surface to-[#0f172a] border border-border overflow-hidden cursor-pointer"
 				>
 					<div data-levita-offset="-40" class="absolute inset-0 opacity-30">
 						<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#3b82f6_0%,transparent_70%)]"></div>

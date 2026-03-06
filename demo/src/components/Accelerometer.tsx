@@ -15,7 +15,7 @@ export function Accelerometer() {
 	};
 
 	return (
-		<section class="max-w-5xl mx-auto px-8 py-16">
+		<section class="max-w-5xl mx-auto px-16 sm:px-8 py-16">
 			<h2 class="text-3xl font-bold text-center mb-2">Accelerometer</h2>
 			<p class="text-center text-gray-400 mb-10">Works on mobile devices with gyroscope support</p>
 
@@ -23,7 +23,7 @@ export function Accelerometer() {
 				<Tilt
 					options={{ gyroscope: "auto", glare: true, shadow: true }}
 					onMove={handleGyroMove}
-					class="relative w-[min(300px,80vw)] aspect-[3/4] rounded-2xl bg-linear-to-br from-surface to-[#0f172a] border border-border cursor-pointer"
+					class="relative w-[min(300px,60vw)] aspect-[3/4] rounded-2xl bg-linear-to-br from-surface to-[#0f172a] border border-border cursor-pointer"
 				>
 					<div
 						data-levita-offset="15"

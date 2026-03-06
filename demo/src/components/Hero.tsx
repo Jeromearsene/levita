@@ -7,7 +7,7 @@ import { Tilt } from "./Tilt";
  */
 export function Hero() {
 	return (
-		<section class="flex flex-col items-center justify-center min-h-screen px-8 text-center">
+		<section class="flex flex-col items-center justify-center min-h-screen px-16 sm:px-8 text-center">
 			<h1 class="bg-linear-to-br from-accent to-accent-end bg-clip-text text-transparent text-5xl sm:text-7xl font-bold leading-tight">
 				Levita
 			</h1>
@@ -18,7 +18,7 @@ export function Hero() {
 			<Tilt
 				options={{ glare: true, shadow: true, gyroscope: false }}
 				id="card-hero"
-				class="relative w-[min(480px,90vw)] aspect-[4/3] rounded-2xl bg-surface border border-border"
+				class="relative w-[min(480px,70vw)] aspect-[4/3] rounded-2xl bg-surface border border-border"
 			>
 				<img
 					src={heroImg}

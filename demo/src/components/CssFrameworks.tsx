@@ -241,7 +241,7 @@ export function CssFrameworks() {
 	if (!currentFramework) return null;
 
 	return (
-		<section id="styling" class="max-w-5xl mx-auto px-8 py-16">
+		<section id="styling" class="max-w-5xl mx-auto px-16 sm:px-8 py-16">
 			<div class="text-center mb-12">
 				<h2 class="text-3xl font-bold mb-2">Styling Agnostic</h2>
 				<p class="text-gray-400">

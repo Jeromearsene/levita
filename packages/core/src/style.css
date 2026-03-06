@@ -11,7 +11,7 @@
 	transform-style: preserve-3d;
 	transition: transform var(--levita-speed) var(--levita-easing);
 	will-change: transform;
-	touch-action: none;
+	touch-action: pinch-zoom;
 }
 
 /* Glare overlay */
