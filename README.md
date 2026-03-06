@@ -302,7 +302,8 @@ This means:
 | React | **Official** | Official | Community |
 | Vue | **Official** | Web Component | Community |
 | Svelte | **Official** | ❌ | ❌ |
-| TypeScript | **Native** | ✅ | Types only |
+| Angular | **Official** | Web Component | Community |
+| TypeScript | **Native** | Built-in types | External types |
 | Maintained | **✅** | ❌ | ❌ |
 
 ## Benchmarks
