@@ -40,12 +40,16 @@ export function Hero() {
 			<div class="flex gap-4 mt-10">
 				<a
 					href="https://github.com/Jeromearsene/levita#getting-started"
+					target="_blank"
+					rel="noopener noreferrer"
 					class="inline-flex items-center px-7 py-3 rounded-xl font-semibold bg-linear-to-br from-accent to-accent-end text-bg hover:opacity-90 transition"
 				>
 					Get Started
 				</a>
 				<a
 					href="https://github.com/Jeromearsene/levita"
+					target="_blank"
+					rel="noopener noreferrer"
 					class="inline-flex items-center px-7 py-3 rounded-xl font-semibold border border-border text-white hover:border-white/20 transition"
 				>
 					GitHub

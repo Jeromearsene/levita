@@ -47,12 +47,16 @@ export function Footer() {
 					</a>
 					<a
 						href="https://www.npmjs.com/package/levita"
+						target="_blank"
+						rel="noopener noreferrer"
 						class="text-gray-400 text-sm hover:text-white transition"
 					>
 						npm
 					</a>
 					<a
 						href="https://github.com/Jeromearsene/levita#api"
+						target="_blank"
+						rel="noopener noreferrer"
 						class="text-gray-400 text-sm hover:text-white transition"
 					>
 						Documentation

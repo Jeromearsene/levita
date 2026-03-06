@@ -1,19 +1,19 @@
 <!-- markdownlint-disable MD033 MD041 -->
 
 <p align="center">
-  <a href="https://github.com/jeromearsene/levita">
+  <a href="https://github.com/jeromearsene/levita" target="_blank" rel="noopener noreferrer">
     <img src="docs/banner.webp" alt="Levita — Lightweight 3D tilt & parallax library with accelerometer support" width="100%" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://github.com/jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/v/levita-js" alt="npm" /></a>
-  <a href="https://www.npmjs.com/package/levita-js"><img src="https://img.shields.io/npm/dm/levita-js" alt="npm downloads" /></a>
-  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fjeromearsene.github.io%2Flevita%2Fbadge-size.json" alt="bundle size" /></a>
-  <a href="https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla"><img src="https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white" alt="StackBlitz" /></a>
+  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml" target="_blank" rel="noopener noreferrer"><img src="https://github.com/jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://www.npmjs.com/package/levita-js" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/levita-js" alt="npm" /></a>
+  <a href="https://www.npmjs.com/package/levita-js" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/dm/levita-js" alt="npm downloads" /></a>
+  <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fjeromearsene.github.io%2Flevita%2Fbadge-size.json" alt="bundle size" /></a>
+  <a href="https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white" alt="StackBlitz" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/jeromearsene/levita" alt="license" /></a>
-  <a href="https://jeromearsene.github.io/levita/"><img src="https://img.shields.io/badge/demo-live-blueviolet" alt="demo" /></a>
+  <a href="https://jeromearsene.github.io/levita/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/demo-live-blueviolet" alt="demo" /></a>
 </p>
 
 - **CSS-driven** — No `requestAnimationFrame` loop. CSS custom properties + compositor = GPU-accelerated.
