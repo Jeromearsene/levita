@@ -1,0 +1,50 @@
+{
+	"name": "@levita-js/angular",
+	"version": "0.1.5",
+	"description": "Angular wrapper for Levita 3D tilt & parallax",
+	"type": "module",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.mts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsdown"
+	},
+	"peerDependencies": {
+		"@angular/core": ">=14.0.0"
+	},
+	"dependencies": {
+		"levita-js": "workspace:*"
+	},
+	"devDependencies": {
+		"@angular/core": "^21.2.0",
+		"rxjs": "^7.8.1",
+		"tsdown": "^0.20.3"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Jeromearsene/levita.git",
+		"directory": "packages/angular"
+	},
+	"homepage": "https://github.com/Jeromearsene/levita#readme"
+}

@@ -1,0 +1,4 @@
+{
+	"installDefault": true,
+	"startCommand": "npm run dev"
+}

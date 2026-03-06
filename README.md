@@ -20,7 +20,7 @@
 - **~2KB gzipped** — Core engine only.
 - **Accelerometer** — Auto-detects gyroscope, handles iOS permissions transparently.
 - **Multi-layer parallax** — `data-levita-offset` on children for depth layering.
-- **Framework first** — Official, lightweight wrappers for React, Vue & Svelte. [See examples](https://jeromearsene.github.io/levita/#playground).
+- **Framework first** — Official, lightweight wrappers for React, Vue, Svelte & Angular. [See examples](https://jeromearsene.github.io/levita/#playground).
 - **Styling agnostic** — Works with any CSS framework (Tailwind, Bootstrap, etc.) or vanilla CSS. [See examples](https://jeromearsene.github.io/levita/#styling).
 
 ## Table of Contents
@@ -33,6 +33,7 @@
   - [React](#react)
   - [Vue](#vue)
   - [Svelte](#svelte)
+  - [Angular](#angular)
 - <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/component.svg" width="16" height="16" valign="middle" alt="Parallax Layers"> [Parallax Layers](#parallax-layers)
 - <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layout-grid.svg" width="16" height="16" valign="middle" alt="Grouped Instances"> [Grouped Instances](#grouped-instances)
 - <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/smartphone.svg" width="16" height="16" valign="middle" alt="Accelerometer"> [Accelerometer](#accelerometer)
@@ -55,6 +56,7 @@ Levita is designed to be framework-agnostic. Choose your flavor:
 | <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/atom.svg" width="18" height="18" valign="middle" alt="React"> **[React](#react)** | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react) |
 | <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layers.svg" width="18" height="18" valign="middle" alt="Vue"> **[Vue](#vue)** | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue) |
 | <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/zap.svg" width="18" height="18" valign="middle" alt="Svelte"> **[Svelte](#svelte)** | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte) |
+| <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/box.svg" width="18" height="18" valign="middle" alt="Angular"> **[Angular](#angular)** | ![angular size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-angular.json) | [![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/angular) |
 
 ## Effects
 
@@ -78,6 +80,9 @@ npm install @levita-js/vue
 
 # Svelte wrapper
 npm install @levita-js/svelte
+
+# Angular wrapper
+npm install @levita-js/angular
 ```
 
 ## Quick Start
@@ -144,6 +149,29 @@ import "levita-js/style.css";
   <h2>Hello</h2>
 </div>
 ```
+
+<a name="angular"></a>
+
+### Angular
+
+```typescript
+import { LevitaDirective } from "@levita-js/angular";
+import "levita-js/style.css";
+
+@Component({
+  selector: "app-card",
+  standalone: true,
+  imports: [LevitaDirective],
+  template: `
+    <div [levita]="{ glare: true, shadow: true }">
+      <h2>Hello</h2>
+    </div>
+  `,
+})
+export class CardComponent {}
+```
+
+[![Open in StackBlitz](https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/angular)
 
 ## Parallax Layers
 

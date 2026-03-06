@@ -69,6 +69,19 @@ export function Playground() {
 					.join(", ");
 				return `<div use:tilt${svelteOpts.length > 0 ? `={{ ${svelteOpts} }}` : ""} class="card">\n  Svelte\n</div>`;
 			}
+			case "angular": {
+				const angOpts = props
+					.map((p) => {
+						if (p.includes("={"))
+							return p
+								.replace(/={|}/g, ": ")
+								.replace(/max:|perspective:|scale:|speed:|maxGlare:/, (m) => `${m.slice(0, -1)}:`);
+						return `${p}: true`;
+					})
+					.join(", ");
+				const angPropsString = angOpts.length > 0 ? `[levita]="{ ${angOpts} }"` : "levita";
+				return `<div ${angPropsString} class="card">\n  Angular\n</div>`;
+			}
 			default: {
 				const entries: string[] = [];
 				if (opts.max !== defaults.max) entries.push(`  max: ${opts.max}`);
@@ -198,7 +211,7 @@ export function Playground() {
 
 					<div class="flex flex-col gap-2">
 						<div class="flex gap-2 p-1 bg-surface border border-border rounded-lg overflow-x-auto no-scrollbar">
-							{["vanilla", "react", "vue", "svelte"].map((fw) => (
+							{["vanilla", "react", "vue", "svelte", "angular"].map((fw) => (
 								<button
 									key={fw}
 									type="button"
