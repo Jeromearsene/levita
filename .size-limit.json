@@ -22,5 +22,11 @@
 		"path": "packages/svelte/dist/index.mjs",
 		"import": "{ tilt }",
 		"gzip": true
+	},
+	{
+		"name": "angular",
+		"path": "packages/angular/dist/index.mjs",
+		"import": "{ LevitaDirective }",
+		"gzip": true
 	}
 ]
