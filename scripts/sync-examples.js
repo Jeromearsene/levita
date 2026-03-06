@@ -3,44 +3,66 @@ import path from "node:path";
 
 /**
  * Automatically synchronizes the version of Levita packages in all example projects
- * with the current version found in packages/core/package.json.
+ * and peerDependencies in official packages with the current version found in packages/core/package.json.
  */
 
 const ROOT = process.cwd();
 const CORE_PKG_PATH = path.join(ROOT, "packages/core/package.json");
 const EXAMPLES_DIR = path.join(ROOT, "examples");
+const PACKAGES_DIR = path.join(ROOT, "packages");
 
 // Get the current target version from core
 const corePkg = JSON.parse(fs.readFileSync(CORE_PKG_PATH, "utf8"));
 const version = corePkg.version;
 
-console.log(`Syncing examples to version: ^${version}`);
+console.log(`Syncing workspace to version: ${version}`);
 
-const examples = fs.readdirSync(EXAMPLES_DIR);
+/** Sync a package.json file with the target version. */
+function syncPackageJson(pkgPath, isExample = false) {
+	if (!fs.existsSync(pkgPath)) return;
 
-for (const example of examples) {
-	const examplePath = path.join(EXAMPLES_DIR, example);
-	const pkgPath = path.join(examplePath, "package.json");
+	const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+	let changed = false;
 
-	if (fs.existsSync(pkgPath)) {
-		const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
-		let changed = false;
-
-		if (pkg.dependencies) {
-			for (const dep of Object.keys(pkg.dependencies)) {
-				// Check for our own packages
-				if (dep === "levita-js" || dep.startsWith("@levita-js/")) {
-					if (pkg.dependencies[dep] !== `^${version}`) {
-						pkg.dependencies[dep] = `^${version}`;
-						changed = true;
-					}
+	// Update dependencies (for examples)
+	if (pkg.dependencies) {
+		for (const dep of Object.keys(pkg.dependencies)) {
+			if (dep === "levita-js" || dep.startsWith("@levita-js/")) {
+				const targetValue = isExample ? `^${version}` : "workspace:*";
+				if (pkg.dependencies[dep] !== targetValue) {
+					pkg.dependencies[dep] = targetValue;
+					changed = true;
 				}
 			}
 		}
+	}
 
-		if (changed) {
-			fs.writeFileSync(pkgPath, `${JSON.stringify(pkg, null, "\t")}\n`);
-			console.log(`✅ Updated ${example}/package.json`);
+	// Update peerDependencies (for official wrappers)
+	if (pkg.peerDependencies) {
+		for (const dep of Object.keys(pkg.peerDependencies)) {
+			if (dep === "levita-js") {
+				const targetValue = `>=${version}`;
+				if (pkg.peerDependencies[dep] !== targetValue) {
+					pkg.peerDependencies[dep] = targetValue;
+					changed = true;
+				}
+			}
 		}
 	}
+
+	if (changed) {
+		fs.writeFileSync(pkgPath, `${JSON.stringify(pkg, null, "\t")}\n`);
+		console.log(`✅ Updated ${path.relative(ROOT, pkgPath)}`);
+	}
+}
+
+// 1. Sync all examples
+for (const example of fs.readdirSync(EXAMPLES_DIR)) {
+	syncPackageJson(path.join(EXAMPLES_DIR, example, "package.json"), true);
+}
+
+// 2. Sync all official packages peerDeps
+for (const pkg of fs.readdirSync(PACKAGES_DIR)) {
+	if (pkg === "core") continue;
+	syncPackageJson(path.join(PACKAGES_DIR, pkg, "package.json"), false);
 }
