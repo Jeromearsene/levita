@@ -10,6 +10,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vue-tsc && vite build",
+		"type-check": "vue-tsc --noEmit",
 		"preview": "vite preview"
 	},
 	"dependencies": {

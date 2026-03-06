@@ -31,6 +31,7 @@
 	],
 	"scripts": {
 		"build": "tsdown && cp src/style.css dist/style.css",
+		"type-check": "tsc --noEmit",
 		"dev": "tsdown --watch"
 	},
 	"keywords": [

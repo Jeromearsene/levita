@@ -6,7 +6,7 @@
 		"build": "pnpm -r --filter './packages/*' run build",
 		"build:examples": "pnpm -r --filter './examples/*' run build",
 		"lint": "biome check . && pnpm lint:md",
-		"type-check": "pnpm -r exec tsc --noEmit",
+		"type-check": "pnpm -r run type-check",
 		"lint:md": "markdownlint .",
 		"lint:fix": "biome check --write . && markdownlint . --fix",
 		"test": "vitest run",

@@ -27,7 +27,8 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"build": "tsdown"
+		"build": "tsdown",
+		"type-check": "tsc --noEmit"
 	},
 	"peerDependencies": {
 		"@angular/core": ">=14.0.0"

@@ -88,11 +88,11 @@ importers:
         specifier: ^21.2.0
         version: 21.2.1(@angular/common@21.2.1(@angular/core@21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/compiler@21.2.1)(@angular/core@21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.1(@angular/common@21.2.1(@angular/core@21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1)))
       '@levita-js/angular':
-        specifier: workspace:*
-        version: link:../../packages/angular
+        specifier: ^0.1.6
+        version: 0.1.6(@angular/core@21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1))
       levita-js:
-        specifier: workspace:*
-        version: link:../../packages/core
+        specifier: ^0.1.6
+        version: 0.1.6
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
@@ -125,11 +125,11 @@ importers:
   examples/react:
     dependencies:
       '@levita-js/react':
-        specifier: workspace:*
-        version: link:../../packages/react
+        specifier: ^0.1.6
+        version: 0.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       levita-js:
-        specifier: workspace:*
-        version: link:../../packages/core
+        specifier: ^0.1.6
+        version: 0.1.6
       react:
         specifier: ^19.0.0
         version: 19.2.4
@@ -156,11 +156,11 @@ importers:
   examples/svelte:
     dependencies:
       '@levita-js/svelte':
-        specifier: workspace:*
-        version: link:../../packages/svelte
+        specifier: ^0.1.6
+        version: 0.1.6(svelte@5.53.5)
       levita-js:
-        specifier: workspace:*
-        version: link:../../packages/core
+        specifier: ^0.1.6
+        version: 0.1.6
       svelte:
         specifier: ^5.53.5
         version: 5.53.5
@@ -178,8 +178,8 @@ importers:
   examples/vanilla:
     dependencies:
       levita-js:
-        specifier: workspace:*
-        version: link:../../packages/core
+        specifier: ^0.1.6
+        version: 0.1.6
     devDependencies:
       typescript:
         specifier: ^5.7.3
@@ -191,11 +191,11 @@ importers:
   examples/vue:
     dependencies:
       '@levita-js/vue':
-        specifier: workspace:*
-        version: link:../../packages/vue
+        specifier: ^0.1.6
+        version: 0.1.6(vue@3.5.28(typescript@5.9.3))
       levita-js:
-        specifier: workspace:*
-        version: link:../../packages/core
+        specifier: ^0.1.6
+        version: 0.1.6
       vue:
         specifier: ^3.5.13
         version: 3.5.28(typescript@5.9.3)
@@ -227,13 +227,13 @@ importers:
         version: 7.8.2
       tsdown:
         specifier: ^0.20.3
-        version: 0.20.3(typescript@5.9.3)
+        version: 0.20.3(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))
 
   packages/core:
     devDependencies:
       tsdown:
         specifier: ^0.20.3
-        version: 0.20.3(typescript@5.9.3)
+        version: 0.20.3(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))
 
   packages/react:
     dependencies:
@@ -258,7 +258,7 @@ importers:
         version: 19.2.4(react@19.2.4)
       tsdown:
         specifier: ^0.20.3
-        version: 0.20.3(typescript@5.9.3)
+        version: 0.20.3(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))
 
   packages/svelte:
     dependencies:
@@ -271,7 +271,7 @@ importers:
         version: 5.53.5
       tsdown:
         specifier: ^0.20.3
-        version: 0.20.3(typescript@5.9.3)
+        version: 0.20.3(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))
 
   packages/vue:
     dependencies:
@@ -284,10 +284,13 @@ importers:
         version: 2.4.6
       tsdown:
         specifier: ^0.20.3
-        version: 0.20.3(typescript@5.9.3)
+        version: 0.20.3(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))
       vue:
         specifier: ^3.5.0
         version: 3.5.28(typescript@5.9.3)
+      vue-tsc:
+        specifier: ^2.2.0
+        version: 2.2.12(typescript@5.9.3)
 
 packages:
 
@@ -904,6 +907,27 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@levita-js/angular@0.1.6':
+    resolution: {integrity: sha512-XWmBmK87z9MlIS7SntoBqo6PBX48VtXAFtiZNWtkKrG2RCiGVSlSA+mtyDo5tOO+nx60rVSper7tw2YoSi3c3A==}
+    peerDependencies:
+      '@angular/core': '>=14.0.0'
+
+  '@levita-js/react@0.1.6':
+    resolution: {integrity: sha512-12edSLc26u0WwmNOm3sABRmqDpKg7oJchPWkQ4ywLzp9Gamzd53lGklqlsilqsKTu7cPfqiEHAdlvEojs/Vfcg==}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
+
+  '@levita-js/svelte@0.1.6':
+    resolution: {integrity: sha512-jnPu1xWYaC6PICb6+FW9V9CPgzCoj+Mjt3LKE3Gk4GVr0b5jRuHGjAJiLZODwC/1LbjzbwC+pM/82c7M4UapbQ==}
+    peerDependencies:
+      svelte: '>=5'
+
+  '@levita-js/vue@0.1.6':
+    resolution: {integrity: sha512-fjXISApAneygJHLfdlKlXuYNPg5r65k7BsEyRdjGWiWL+EIbdZcgHXnMbZNss19WegeT1hYH9cctNcgQLz4BXw==}
+    peerDependencies:
+      vue: '>=3.3'
 
   '@lmdb/lmdb-darwin-arm64@3.5.1':
     resolution: {integrity: sha512-tpfN4kKrrMpQ+If1l8bhmoNkECJi0iOu6AEdrTJvWVC+32sLxTARX5Rsu579mPImRP9YFWfWgeRQ5oav7zApQQ==}
@@ -2630,6 +2654,9 @@ packages:
   kolorist@1.8.0:
     resolution: {integrity: sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ==}
 
+  levita-js@0.1.6:
+    resolution: {integrity: sha512-iBQqJoNqYa5hnB4N6/m7YpQAzhd1nP73R/ThDWk3GLybdEIkKreIW1Cw+k6ifnt4M0dX1Uwadmu5hEdDNwQjOg==}
+
   lightningcss-android-arm64@1.31.1:
     resolution: {integrity: sha512-HXJF3x8w9nQ4jbXRiNppBCqeZPIAfUo8zE/kOEGbW5NZvGc/K7nMxbhIr+YlFlHW5mpbg/YFPdbnCh1wAXCKFg==}
     engines: {node: '>= 12.0.0'}
@@ -4269,6 +4296,27 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  '@levita-js/angular@0.1.6(@angular/core@21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1))':
+    dependencies:
+      '@angular/core': 21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1)
+      levita-js: 0.1.6
+
+  '@levita-js/react@0.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+    dependencies:
+      levita-js: 0.1.6
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+
+  '@levita-js/svelte@0.1.6(svelte@5.53.5)':
+    dependencies:
+      levita-js: 0.1.6
+      svelte: 5.53.5
+
+  '@levita-js/vue@0.1.6(vue@3.5.28(typescript@5.9.3))':
+    dependencies:
+      levita-js: 0.1.6
+      vue: 3.5.28(typescript@5.9.3)
+
   '@lmdb/lmdb-darwin-arm64@3.5.1':
     optional: true
 
@@ -5732,6 +5780,8 @@ snapshots:
 
   kolorist@1.8.0: {}
 
+  levita-js@0.1.6: {}
+
   lightningcss-android-arm64@1.31.1:
     optional: true
 
@@ -6311,7 +6361,7 @@ snapshots:
 
   rfdc@1.4.1: {}
 
-  rolldown-plugin-dts@0.22.1(rolldown@1.0.0-rc.3)(typescript@5.9.3):
+  rolldown-plugin-dts@0.22.1(rolldown@1.0.0-rc.3)(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3)):
     dependencies:
       '@babel/generator': 8.0.0-rc.1
       '@babel/helper-validator-identifier': 8.0.0-rc.1
@@ -6325,6 +6375,7 @@ snapshots:
       rolldown: 1.0.0-rc.3
     optionalDependencies:
       typescript: 5.9.3
+      vue-tsc: 2.2.12(typescript@5.9.3)
     transitivePeerDependencies:
       - oxc-resolver
 
@@ -6611,7 +6662,7 @@ snapshots:
       '@ts-morph/common': 0.22.0
       code-block-writer: 12.0.0
 
-  tsdown@0.20.3(typescript@5.9.3):
+  tsdown@0.20.3(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3)):
     dependencies:
       ansis: 4.2.0
       cac: 6.7.14
@@ -6622,7 +6673,7 @@ snapshots:
       obug: 2.1.1
       picomatch: 4.0.3
       rolldown: 1.0.0-rc.3
-      rolldown-plugin-dts: 0.22.1(rolldown@1.0.0-rc.3)(typescript@5.9.3)
+      rolldown-plugin-dts: 0.22.1(rolldown@1.0.0-rc.3)(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))
       semver: 7.7.4
       tinyexec: 1.0.2
       tinyglobby: 0.2.15
