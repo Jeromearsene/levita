@@ -80,6 +80,8 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Build
         run: pnpm build
+      - name: Build examples
+        run: pnpm build:examples
       - name: Measure sizes
         run: pnpm size:json
       - name: Upload build artifacts
