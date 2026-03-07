@@ -31,7 +31,7 @@ export function Tilt({
 		return () => {
 			instanceRef.current?.destroy();
 		};
-	}, [options, onMove, children]);
+	}, [options, onMove]);
 
 	return (
 		<div ref={elRef} id={id} className={`levita ${className}`}>

@@ -1,5 +1,5 @@
-import type { LevitaEventMap } from "levita-js";
-import { useState } from "preact/hooks";
+import type { LevitaEventMap, LevitaOptions } from "levita-js";
+import { useCallback, useMemo, useState } from "preact/hooks";
 import { Tilt } from "./Tilt";
 
 /**
@@ -9,10 +9,16 @@ import { Tilt } from "./Tilt";
 export function Accelerometer() {
 	const [gyroInfo, setGyroInfo] = useState("Tap the card on a mobile device to enable gyroscope.");
 
+	/** Stable reference for tilt options to avoid unnecessary re-initializations. */
+	const tiltOptions = useMemo<Partial<LevitaOptions>>(
+		() => ({ gyroscope: "auto", glare: true, shadow: true }),
+		[],
+	);
+
 	/** Updates the UI with current tilt degrees from the sensor. */
-	const handleGyroMove = (values: LevitaEventMap["move"]) => {
+	const handleGyroMove = useCallback((values: LevitaEventMap["move"]) => {
 		setGyroInfo(`Gyro active — x: ${values.x.toFixed(1)}° y: ${values.y.toFixed(1)}°`);
-	};
+	}, []);
 
 	return (
 		<section class="max-w-5xl mx-auto px-16 sm:px-8 py-16">
@@ -21,7 +27,7 @@ export function Accelerometer() {
 
 			<div class="flex flex-col items-center gap-6">
 				<Tilt
-					options={{ gyroscope: "auto", glare: true, shadow: true }}
+					options={tiltOptions}
 					onMove={handleGyroMove}
 					class="relative w-[min(300px,60vw)] aspect-[3/4] rounded-2xl bg-linear-to-br from-surface to-[#0f172a] border border-border cursor-pointer"
 				>
