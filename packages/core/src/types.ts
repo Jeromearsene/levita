@@ -1,6 +1,15 @@
 export type Axis = "x" | "y" | null;
 export type GyroscopeMode = "auto" | boolean;
 
+/**
+ * Options that can be updated at runtime via `update()`.
+ * Limited to lightweight options that don't require DOM mutations.
+ */
+export type UpdatableOptions = Pick<
+	LevitaOptions,
+	"max" | "scale" | "speed" | "easing" | "perspective" | "reverse" | "axis" | "reset"
+>;
+
 export interface LevitaOptions {
 	/** Max tilt angle in degrees. Default: 15 */
 	max: number;

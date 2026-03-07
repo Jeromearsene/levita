@@ -7,4 +7,5 @@ export type {
 	LevitaEventMap,
 	LevitaOptions,
 	TiltValues,
+	UpdatableOptions,
 } from "./types.js";

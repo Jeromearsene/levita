@@ -6,7 +6,13 @@ import { cleanupLayers, scanLayers } from "./layers.js";
 import { MotionSensor } from "./sensors/motion.js";
 import type { SensorOutput } from "./sensors/pointer.js";
 import { PointerSensor } from "./sensors/pointer.js";
-import type { EventCallback, LevitaEventMap, LevitaOptions, TiltValues } from "./types.js";
+import type {
+	EventCallback,
+	LevitaEventMap,
+	LevitaOptions,
+	TiltValues,
+	UpdatableOptions,
+} from "./types.js";
 
 /**
  * Main entry point for the Levita 3D tilt effect.
@@ -95,6 +101,25 @@ export class Levita {
 			this.pointerSensor.stop();
 			this.setTransition(false);
 			this.motionSensor.start();
+		}
+	};
+
+	/**
+	 * Update options at runtime without destroying/recreating the instance.
+	 *
+	 * Only "lightweight" options are supported — those that don't require
+	 * DOM mutations. Options like `glare`, `shadow`, `gyroscope`, `eventsEl`,
+	 * `disabled`, and `maxGlare` require a full destroy/recreate cycle
+	 * (or use `enable()`/`disable()` for toggling the effect).
+	 */
+	update = (options: Partial<UpdatableOptions>): void => {
+		if (this.destroyed) return;
+		Object.assign(this.options, options);
+		this.applyBaseProperties();
+
+		if (options.axis !== undefined) {
+			this.pointerSensor.setAxis(options.axis);
+			this.motionSensor?.setAxis(options.axis);
 		}
 	};
 

@@ -161,6 +161,66 @@ describe("Levita", () => {
 		instance.destroy();
 	});
 
+	it("update() changes CSS properties at runtime", () => {
+		const el = createEl();
+		const instance = new Levita(el, {
+			perspective: 800,
+			speed: 200,
+			easing: "linear",
+			gyroscope: false,
+		});
+
+		instance.update({ perspective: 1200, speed: 400, easing: "ease-in" });
+
+		expect(el.style.getPropertyValue("--levita-perspective")).toBe("1200px");
+		expect(el.style.getPropertyValue("--levita-speed")).toBe("400ms");
+		expect(el.style.getPropertyValue("--levita-easing")).toBe("ease-in");
+
+		instance.destroy();
+	});
+
+	it("update() applies max change on next pointer move", () => {
+		const el = createEl();
+		const onMove = vi.fn();
+		const instance = new Levita(el, { max: 15, gyroscope: false });
+		instance.on("move", onMove);
+
+		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
+		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
+		vi.advanceTimersByTime(16);
+
+		const firstMove = onMove.mock.calls[0]?.[0];
+
+		instance.update({ max: 30 });
+
+		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
+		vi.advanceTimersByTime(16);
+
+		const secondMove = onMove.mock.calls[1]?.[0];
+		expect(Math.abs(secondMove.x)).toBeGreaterThan(Math.abs(firstMove.x));
+
+		instance.destroy();
+	});
+
+	it("update() changes axis on sensors", () => {
+		const el = createEl();
+		const onMove = vi.fn();
+		const instance = new Levita(el, { gyroscope: false });
+		instance.on("move", onMove);
+
+		instance.update({ axis: "x" });
+
+		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
+		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
+		vi.advanceTimersByTime(16);
+
+		const result = onMove.mock.calls[0]?.[0];
+		// axis "x" locks sensor Y to 0, which maps to tilt angle x = 0
+		expect(result.x).toBe(0);
+
+		instance.destroy();
+	});
+
 	it("enable() re-activates after disable()", () => {
 		const el = createEl();
 		const onMove = vi.fn();
