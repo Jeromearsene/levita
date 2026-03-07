@@ -35,6 +35,7 @@ export class Levita {
 	private listeners = new Map<string, Set<EventCallback<unknown>>>();
 	private destroyed = false;
 	private gyroscopeRequested = false;
+	private rafId: number | null = null;
 
 	/**
 	 * @param el - The DOM element to apply the tilt effect to
@@ -137,6 +138,7 @@ export class Levita {
 		if (this.destroyed) return;
 		this.destroyed = true;
 
+		if (this.rafId) cancelAnimationFrame(this.rafId);
 		this.pointerSensor.stop();
 		this.motionSensor?.stop();
 		this.glareEffect?.destroy();
@@ -192,6 +194,11 @@ export class Levita {
 	/**
 	 * Process normalized sensor input and update CSS custom properties.
 	 * Maps sensor X/Y to rotateY/rotateX (swapped, rotateX = vertical tilt).
+	 *
+	 * Note: We use requestAnimationFrame to throttle updates. High-polling rate mice
+	 * can fire hundreds of events per second, which would saturate the main thread
+	 * with CSS variable updates and style recalculations. This ensures we only
+	 * update the DOM once per browser frame.
 	 */
 	private handleSensorInput = (input: SensorOutput): void => {
 		if (this.options.disabled) return;
@@ -200,22 +207,29 @@ export class Levita {
 		const x = input.y * this.options.max * multiplier;
 		const y = input.x * this.options.max * multiplier * -1;
 
-		this.el.style.setProperty("--levita-x", `${x}deg`);
-		this.el.style.setProperty("--levita-y", `${y}deg`);
-		this.el.style.setProperty("--levita-scale", String(this.options.scale));
-		this.el.style.setProperty("--levita-percent-x", String(input.x));
-		this.el.style.setProperty("--levita-percent-y", String(input.y));
+		// Cancel any pending update from the same frame to avoid style thrashing
+		if (this.rafId) cancelAnimationFrame(this.rafId);
 
-		this.glareEffect?.update(input.x, input.y);
-		this.shadowEffect?.update(input.x, input.y);
+		this.rafId = requestAnimationFrame(() => {
+			this.el.style.setProperty("--levita-x", `${x}deg`);
+			this.el.style.setProperty("--levita-y", `${y}deg`);
+			this.el.style.setProperty("--levita-scale", String(this.options.scale));
+			this.el.style.setProperty("--levita-percent-x", String(input.x));
+			this.el.style.setProperty("--levita-percent-y", String(input.y));
 
-		const values: TiltValues = {
-			x,
-			y,
-			percentX: input.x,
-			percentY: input.y,
-		};
-		this.emit("move", values);
+			this.glareEffect?.update(input.x, input.y);
+			this.shadowEffect?.update(input.x, input.y);
+
+			const values: TiltValues = {
+				x,
+				y,
+				percentX: input.x,
+				percentY: input.y,
+			};
+			this.emit("move", values);
+
+			this.rafId = null;
+		});
 	};
 
 	private handleEnter = (): void => {
@@ -225,6 +239,10 @@ export class Levita {
 	};
 
 	private handleLeave = (): void => {
+		if (this.rafId) {
+			cancelAnimationFrame(this.rafId);
+			this.rafId = null;
+		}
 		this.setTransition(true);
 		if (this.options.reset) {
 			this.resetTransform();

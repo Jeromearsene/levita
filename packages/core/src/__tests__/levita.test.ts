@@ -1,5 +1,13 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Levita } from "../levita.js";
+
+beforeEach(() => {
+	vi.useFakeTimers();
+});
+
+afterEach(() => {
+	vi.useRealTimers();
+});
 
 const createEl = (): HTMLElement => {
 	const el = document.createElement("div");
@@ -44,6 +52,7 @@ describe("Levita", () => {
 
 		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
 		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
+		vi.advanceTimersByTime(16);
 
 		expect(onMove).toHaveBeenCalledOnce();
 		expect(el.style.getPropertyValue("--levita-x")).not.toBe("0deg");
@@ -57,6 +66,7 @@ describe("Levita", () => {
 
 		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
 		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
+		vi.advanceTimersByTime(16);
 		el.dispatchEvent(new PointerEvent("pointerleave"));
 
 		expect(el.style.getPropertyValue("--levita-x")).toBe("0deg");
@@ -165,6 +175,7 @@ describe("Levita", () => {
 		instance.enable();
 		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
 		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
+		vi.advanceTimersByTime(16);
 		expect(onMove).toHaveBeenCalledOnce();
 
 		instance.destroy();
