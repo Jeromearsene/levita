@@ -213,7 +213,6 @@ export class Levita {
 		this.rafId = requestAnimationFrame(() => {
 			this.el.style.setProperty("--levita-x", `${x}deg`);
 			this.el.style.setProperty("--levita-y", `${y}deg`);
-			this.el.style.setProperty("--levita-scale", String(this.options.scale));
 			this.el.style.setProperty("--levita-percent-x", String(input.x));
 			this.el.style.setProperty("--levita-percent-y", String(input.y));
 
