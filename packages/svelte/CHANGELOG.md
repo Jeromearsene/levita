@@ -1,5 +1,29 @@
 # @levita-js/svelte
 
+## 0.2.0
+
+### Minor Changes
+
+- [`8399af4`](https://github.com/Jeromearsene/levita/commit/8399af47f17421a42ac085eb0752ee1f295e68b5) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - ### Features
+
+  - **update() method**: Update options (`max`, `scale`, `speed`, `easing`, `perspective`, `reverse`, `axis`, `reset`) at runtime without destroying/recreating the instance. New `UpdatableOptions` type exported for TypeScript users.
+
+  ### Performance
+
+  - **rAF throttle**: CSS property updates and `move` event emission are now coalesced via `requestAnimationFrame`, preventing main thread saturation with high-polling rate mice.
+  - **Redundant scale removal**: `--levita-scale` is no longer re-set on every frame — only on enter and reset.
+
+  ### Bug Fixes
+
+  - **Gyroscope calibration**: The initial device position is now captured as baseline on start, so holding the phone at an angle no longer offsets the tilt.
+  - **Edge detection**: Stabilized pointer edge detection to prevent infinite event loops.
+  - **Pointer sensor**: Simplified pointer handling with `offsetWidth`/`offsetHeight` for stable dimensions unaffected by 3D transforms.
+
+### Patch Changes
+
+- Updated dependencies [[`8399af4`](https://github.com/Jeromearsene/levita/commit/8399af47f17421a42ac085eb0752ee1f295e68b5)]:
+  - levita-js@0.2.0
+
 ## 0.1.6
 
 ### Patch Changes
