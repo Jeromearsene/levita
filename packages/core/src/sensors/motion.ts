@@ -25,6 +25,8 @@ export class MotionSensor {
 	private smoothing: number;
 	private lastX = 0;
 	private lastY = 0;
+	private baseBeta: number | null = null;
+	private baseGamma: number | null = null;
 
 	/**
 	 * @param onMove - Callback receiving normalized { x, y } values
@@ -89,6 +91,8 @@ export class MotionSensor {
 	start = (): void => {
 		if (this.active || !this.permitted) return;
 		this.active = true;
+		this.baseBeta = null;
+		this.baseGamma = null;
 		window.addEventListener("deviceorientation", this.handleOrientation);
 	};
 
@@ -116,9 +120,19 @@ export class MotionSensor {
 		const beta = evt.beta ?? 0;
 		const gamma = evt.gamma ?? 0;
 
+		// Calibrate: capture the first reading as the neutral position
+		if (this.baseBeta === null) {
+			this.baseBeta = beta;
+			this.baseGamma = gamma;
+		}
+
+		// Compute tilt relative to initial device position
+		const relativeBeta = beta - this.baseBeta;
+		const relativeGamma = gamma - (this.baseGamma as number);
+
 		const range = this.maxAngle - this.minAngle;
-		const rawX = this.axis === "y" ? 0 : this.clamp(((gamma - this.minAngle) / range) * 2 - 1);
-		const rawY = this.axis === "x" ? 0 : this.clamp(((beta - this.minAngle) / range) * 2 - 1);
+		const rawX = this.axis === "y" ? 0 : this.clamp(relativeGamma / (range / 2));
+		const rawY = this.axis === "x" ? 0 : this.clamp(relativeBeta / (range / 2));
 
 		this.lastX = this.lastX + (rawX - this.lastX) * this.smoothing;
 		this.lastY = this.lastY + (rawY - this.lastY) * this.smoothing;

@@ -52,9 +52,12 @@ describe("MotionSensor", () => {
 		await sensor.requestPermission();
 		sensor.start();
 
+		// First event calibrates the baseline
+		fireOrientation(0, 0);
+		// Second event exceeds the range relative to baseline
 		fireOrientation(90, -90);
 
-		const result = onMove.mock.calls[0]?.[0];
+		const result = onMove.mock.calls[1]?.[0];
 		expect(result.x).toBe(-1);
 		expect(result.y).toBe(1);
 
@@ -67,11 +70,53 @@ describe("MotionSensor", () => {
 		await sensor.requestPermission();
 		sensor.start();
 
+		// Calibrate at origin, then tilt
+		fireOrientation(0, 0);
 		fireOrientation(20, 20);
 
-		const result = onMove.mock.calls[0]?.[0];
+		const result = onMove.mock.calls[1]?.[0];
 		expect(result.x).not.toBe(0);
 		expect(result.y).toBe(0);
+
+		sensor.stop();
+	});
+
+	it("calibrates from initial device position", async () => {
+		const onMove = vi.fn();
+		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		await sensor.requestPermission();
+		sensor.start();
+
+		// Phone held at 45° (natural reading position) — this becomes the baseline
+		fireOrientation(45, 10);
+		expect(onMove.mock.calls[0]?.[0].x).toBe(0);
+		expect(onMove.mock.calls[0]?.[0].y).toBe(0);
+
+		// Tilt 20° further from baseline → should register proportional tilt
+		fireOrientation(65, 30);
+		const result = onMove.mock.calls[1]?.[0];
+		expect(result.x).toBeCloseTo(20 / 45, 5);
+		expect(result.y).toBeCloseTo(20 / 45, 5);
+
+		sensor.stop();
+	});
+
+	it("recalibrates on restart", async () => {
+		const onMove = vi.fn();
+		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		await sensor.requestPermission();
+		sensor.start();
+
+		fireOrientation(30, 10);
+		sensor.stop();
+
+		onMove.mockClear();
+		sensor.start();
+
+		// New baseline should be 50/20, not 30/10
+		fireOrientation(50, 20);
+		expect(onMove.mock.calls[0]?.[0].x).toBe(0);
+		expect(onMove.mock.calls[0]?.[0].y).toBe(0);
 
 		sensor.stop();
 	});
