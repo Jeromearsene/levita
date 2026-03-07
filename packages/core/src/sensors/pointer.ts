@@ -25,7 +25,6 @@ export class PointerSensor {
 	private axis: Axis;
 	private active = false;
 	private rect: DOMRect | null = null;
-	private isPointerDown = false;
 
 	constructor(
 		el: HTMLElement,
@@ -72,15 +71,11 @@ export class PointerSensor {
 	};
 
 	private handlePointerDown = (e: PointerEvent): void => {
-		this.isPointerDown = true;
-		this.eventsEl.setPointerCapture(e.pointerId);
 		this.handlePointerEnter();
 		this.handlePointerMove(e);
 	};
 
-	private handlePointerUp = (e: PointerEvent): void => {
-		this.isPointerDown = false;
-		this.eventsEl.releasePointerCapture(e.pointerId);
+	private handlePointerUp = (): void => {
 		this.handlePointerLeave();
 	};
 
@@ -89,22 +84,16 @@ export class PointerSensor {
 	 * relative to the element's bounding rect. Respects axis locking.
 	 */
 	private handlePointerMove = (e: PointerEvent): void => {
-		// On touch devices, pointermove might be the only event we get after pointerdown
 		if (!this.rect) {
 			this.rect = this.eventsEl.getBoundingClientRect();
 		}
-		if (!this.rect) return;
 
-		const rawX = (e.clientX - this.rect.left) / this.rect.width;
-		const rawY = (e.clientY - this.rect.top) / this.rect.height;
+		// Use offsetWidth/Height for more stable dimensions (not affected by 3D transforms)
+		const width = this.eventsEl.offsetWidth || this.rect.width;
+		const height = this.eventsEl.offsetHeight || this.rect.height;
 
-		// Check if pointer is still within bounds (especially for mouse move without down)
-		const isOut = rawX < 0 || rawX > 1 || rawY < 0 || rawY > 1;
-
-		if (isOut && !this.isPointerDown) {
-			this.handlePointerLeave();
-			return;
-		}
+		const rawX = (e.clientX - this.rect.left) / width;
+		const rawY = (e.clientY - this.rect.top) / height;
 
 		// Clamp values if pointer is captured but outside bounds
 		const clampedX = Math.max(0, Math.min(1, rawX));
@@ -117,6 +106,8 @@ export class PointerSensor {
 	};
 
 	private handlePointerEnter = (): void => {
+		// Refresh rect on enter. If it's already in motion, this might be slightly off,
+		// but it's still better than refreshing it on every move.
 		this.rect = this.eventsEl.getBoundingClientRect();
 		this.onEnter?.();
 	};
