@@ -15,7 +15,7 @@ export function Showcase() {
 
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 				<Tilt
-					options={{ glare: true, shadow: true, gyroscope: false }}
+					options={{ shadow: true, gyroscope: false }}
 					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer"
 				>
 					<img
@@ -31,7 +31,7 @@ export function Showcase() {
 				</Tilt>
 
 				<Tilt
-					options={{ glare: true, shadow: true, gyroscope: false }}
+					options={{ shadow: true, gyroscope: false }}
 					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer"
 				>
 					<img
@@ -52,7 +52,7 @@ export function Showcase() {
 				</Tilt>
 
 				<Tilt
-					options={{ glare: true, shadow: true, gyroscope: false }}
+					options={{ shadow: true, gyroscope: false }}
 					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer"
 				>
 					<img
@@ -71,7 +71,7 @@ export function Showcase() {
 				</Tilt>
 
 				<Tilt
-					options={{ glare: true, shadow: true, gyroscope: false }}
+					options={{ shadow: true, gyroscope: false }}
 					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer"
 				>
 					<img

@@ -16,7 +16,7 @@ export function Hero() {
 			</p>
 
 			<Tilt
-				options={{ glare: true, shadow: true, gyroscope: false }}
+				options={{ shadow: true, gyroscope: false }}
 				id="card-hero"
 				class="relative w-[min(480px,70vw)] aspect-[4/3] rounded-2xl bg-surface border border-border"
 			>
