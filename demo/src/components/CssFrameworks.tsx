@@ -265,7 +265,7 @@ export function CssFrameworks() {
 
 				<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 					<div class="flex justify-center py-10 bg-surface/30 rounded-3xl border border-dashed border-border">
-						<Tilt key={activeTab} options={tiltOptions} class="cursor-pointer">
+						<Tilt key={activeTab} options={tiltOptions} class="rounded-2xl cursor-pointer">
 							{currentFramework.render()}
 						</Tilt>
 					</div>
