@@ -26,3 +26,6 @@ docs/plans/
 
 # Design notes (local only)
 docs/brand.md
+
+# Gemini CLI local configuration
+.gemini/
