@@ -98,6 +98,6 @@ jobs:
     uses: ./.github/workflows/compatibility.yml
 
   # Call quality badges and deployment
-  quality-and-deploy:
+  ci:
     needs: [build, test, lint, test-visual, compatibility]
     uses: ./.github/workflows/quality.yml
