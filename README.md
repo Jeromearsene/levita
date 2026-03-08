@@ -279,33 +279,52 @@ await instance.requestPermission(); // Manual gyroscope permission
 
 ## How It Works
 
-Unlike vanilla-tilt (which runs a `requestAnimationFrame` loop), Levita uses **CSS custom properties**:
+Most tilt libraries (like vanilla-tilt) run a `requestAnimationFrame` loop that recalculates and applies the transform matrix on every frame in JavaScript. This means JS is active between every frame, and high-polling-rate mice (1000Hz+) can flood the main thread with style recalculations.
 
-1. JS calculates tilt angle from input (pointer or accelerometer)
-2. Sets `--levita-x` and `--levita-y` on the element
-3. CSS `transform` and `transition` handle the rest on the **GPU compositor thread**
+Levita takes a different approach with **CSS custom properties**:
 
-This means:
+1. Pointer or accelerometer input fires → JS computes the tilt angle
+2. Updates are **coalesced via `requestAnimationFrame`** — even if the mouse fires 1000 events/sec, only one DOM update happens per frame
+3. JS sets `--levita-x` and `--levita-y` as CSS custom properties on the element
+4. A CSS `transform` rule reads those properties, and `transition` smooths the movement — entirely on the **GPU compositor thread**
 
-- No JS running between frames
-- Browser optimizes the animation path
-- Lower CPU usage, smoother results
+```text
+pointer/gyro event (may fire at 1000Hz)
+  │
+  ▼
+rAF coalescing (1 update per frame)
+  │
+  ▼
+JS sets --levita-x, --levita-y  ← only JS work
+  │
+  ▼
+CSS transform + transition       ← GPU compositor, no JS
+```
+
+The result:
+
+- **No JS between frames** — JavaScript only runs when input changes, once per frame
+- **GPU-accelerated** — the browser's compositor thread handles the animation
+- **High-polling-rate safe** — 1000Hz mice don't saturate the main thread
+- **Lower CPU usage** — measured via Vitest bench, see [Benchmarks](#benchmarks)
 
 ## Comparison
 
-| Feature | **Levita** | Atropos | vanilla-tilt |
+| Feature | Levita | Atropos | vanilla-tilt |
 | --- | --- | --- | --- |
-| Bundle size (gzip) | **~2KB** | ~2KB | ~3-4KB |
-| Animation | **CSS custom props** | CSS transitions | rAF loop |
-| Tree-shakeable | **✅** | ❌ | ❌ |
-| Multi-layer parallax | **✅ (data attrs)** | ✅ (data attrs) | ❌ (manual) |
-| Accelerometer | **Auto + manual** | ❌ | Partial (buggy) |
-| React | **Official** | Official | Community |
-| Vue | **Official** | Web Component | Community |
-| Svelte | **Official** | ❌ | ❌ |
-| Angular | **Official** | Web Component | Community |
-| TypeScript | **Native** | Built-in types | External types |
-| Maintained | **✅** | ❌ | ❌ |
+| Bundle size (gzip) | ~2KB | ~2KB | ~3-4KB |
+| Animation strategy | CSS custom properties | CSS transitions | rAF loop |
+| Tree-shakeable | ✅ | ❌ | ❌ |
+| Multi-layer parallax | ✅ (data attrs) | ✅ (data attrs) | ❌ |
+| Accelerometer | Auto + manual (calibrated) | ❌ | Partial (no calibration) |
+| Grouped instances | ✅ (`eventsEl`) | ✅ (`stretchX/Y/Z`) | ✅ (`mouse-event-element`) |
+| Runtime option update | ✅ (`update()`) | ❌ | ❌ |
+| React | Official wrapper | Official wrapper | Community |
+| Vue | Official wrapper | Web Component | Community |
+| Svelte | Official wrapper | ❌ | ❌ |
+| Angular | Official wrapper | Web Component | Community |
+| TypeScript | Native (source in TS) | Declaration file | DefinitelyTyped |
+| Last published | 2026 | 2023 | 2021 |
 
 ## Benchmarks
 
