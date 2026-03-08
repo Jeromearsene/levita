@@ -43,67 +43,61 @@ export function GroupedCards() {
 				ref={groupedRef}
 				class="grid grid-cols-1 sm:grid-cols-3 gap-6 p-10 bg-surface/30 rounded-3xl border border-dashed border-border"
 			>
-				<div class="relative aspect-square card-grouped rounded-[4px] cursor-pointer">
-					<div class="absolute inset-0 pl-[25px] overflow-hidden rounded-r-[4px]">
-						<img
-							src={darkSideImg}
-							alt="Pink Floyd"
-							data-levita-offset="0"
-							class="absolute inset-0 size-full object-cover rounded-[inherit]"
-						/>
-					</div>
+				<div class="relative aspect-square card-grouped rounded-lg overflow-hidden cursor-pointer">
+					<img
+						src={darkSideImg}
+						alt="Pink Floyd — The Dark Side of the Moon"
+						data-levita-offset="0"
+						class="absolute inset-0 size-full object-cover"
+					/>
 					<div
-						data-levita-offset="40"
-						class="absolute inset-0 pl-[25px] bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,0.1)_0%,transparent_60%)]"
+						data-levita-offset="15"
+						class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent"
 					></div>
-					<div data-levita-offset="120" class="absolute bottom-12 left-[25px] right-0 text-center">
-						<p class="text-white font-serif text-sm tracking-[0.4em] uppercase opacity-40">
-							Pink Floyd
-						</p>
-						<p class="text-white font-serif text-2xl font-bold tracking-widest mt-1">DARK SIDE</p>
-					</div>
-					<div class="card-thickness"></div>
-				</div>
-
-				<div class="relative aspect-square card-grouped rounded-[4px] cursor-pointer">
-					<div class="absolute inset-0 pl-[25px] overflow-hidden rounded-r-[4px]">
-						<img
-							src={abbeyRoadImg}
-							alt="The Beatles"
-							data-levita-offset="0"
-							class="absolute inset-0 size-full object-cover rounded-[inherit]"
-						/>
-					</div>
-					<div
-						data-levita-offset="40"
-						class="absolute inset-0 pl-[25px] bg-linear-to-b from-black/40 via-transparent to-transparent"
-					></div>
-					<div data-levita-offset="150" class="absolute top-8 left-[25px] right-0 text-center">
-						<p class="text-white font-black text-3xl uppercase tracking-[0.4em]">Abbey Road</p>
-					</div>
-					<div class="card-thickness"></div>
-				</div>
-
-				<div class="relative aspect-square card-grouped rounded-[4px] cursor-pointer">
-					<div class="absolute inset-0 pl-[25px] overflow-hidden rounded-r-[4px]">
-						<img
-							src={forEmmaImg}
-							alt="Bon Iver"
-							data-levita-offset="0"
-							class="absolute inset-0 size-full object-cover rounded-[inherit]"
-						/>
-					</div>
-					<div data-levita-offset="30" class="absolute inset-0 pl-[25px] bg-white/5"></div>
-					<div
-						data-levita-offset="180"
-						class="absolute inset-0 pl-[25px] flex flex-col items-center justify-center"
+					<p
+						data-levita-offset="35"
+						class="absolute bottom-4 left-0 right-0 text-center text-white/60 text-xs tracking-[0.3em] uppercase"
 					>
-						<div class="px-8 py-3 border border-white/40 bg-white/5 backdrop-blur-md">
-							<p class="text-white font-light text-2xl tracking-[0.4em] uppercase">Bon Iver</p>
-						</div>
-						<p class="mt-6 text-white text-sm italic font-serif">For Emma, Forever Ago</p>
-					</div>
-					<div class="card-thickness"></div>
+						Pink Floyd
+					</p>
+				</div>
+
+				<div class="relative aspect-square card-grouped rounded-lg overflow-hidden cursor-pointer">
+					<img
+						src={abbeyRoadImg}
+						alt="The Beatles — Abbey Road"
+						data-levita-offset="0"
+						class="absolute inset-0 size-full object-cover"
+					/>
+					<div
+						data-levita-offset="15"
+						class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent"
+					></div>
+					<p
+						data-levita-offset="35"
+						class="absolute bottom-4 left-0 right-0 text-center text-white/60 text-xs tracking-[0.3em] uppercase"
+					>
+						The Beatles
+					</p>
+				</div>
+
+				<div class="relative aspect-square card-grouped rounded-lg overflow-hidden cursor-pointer">
+					<img
+						src={forEmmaImg}
+						alt="Bon Iver — For Emma, Forever Ago"
+						data-levita-offset="0"
+						class="absolute inset-0 size-full object-cover"
+					/>
+					<div
+						data-levita-offset="15"
+						class="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent"
+					></div>
+					<p
+						data-levita-offset="35"
+						class="absolute bottom-4 left-0 right-0 text-center text-white/60 text-xs tracking-[0.3em] uppercase"
+					>
+						Bon Iver
+					</p>
 				</div>
 			</div>
 		</section>

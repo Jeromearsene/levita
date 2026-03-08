@@ -22,7 +22,6 @@ export function Playground() {
 		maxGlare: 0.5,
 		shadow: false,
 		disabled: false,
-		gyroscope: false,
 	});
 
 	/** Default values for comparison to only show modified props in snippets. */
@@ -119,7 +118,7 @@ export function Playground() {
 	};
 
 	const resetPlayground = () => {
-		setOpts({ ...defaults, gyroscope: false });
+		setOpts({ ...defaults });
 	};
 
 	/** Helper to update a single option in the state. */
