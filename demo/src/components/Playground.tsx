@@ -1,5 +1,7 @@
 import posterImg from "@assets/showcase-poster.webp";
-import type { LevitaOptions } from "levita-js";
+import type { HapticPreset } from "@levita-js/haptics";
+import { HAPTIC_PRESETS, haptics, isHapticsSupported } from "@levita-js/haptics";
+import type { LevitaOptions, LevitaPlugin } from "levita-js";
 import { useMemo, useState } from "preact/hooks";
 import { FRAMEWORKS, type Framework } from "../constants";
 import { Tilt } from "./Tilt";
@@ -23,6 +25,26 @@ export function Playground() {
 		shadow: false,
 		disabled: false,
 	});
+
+	const hapticsSupported = useMemo(() => isHapticsSupported(), []);
+	const [hapticsEnabled, setHapticsEnabled] = useState(false);
+	const [hapticsIntensity, setHapticsIntensity] = useState<HapticPreset>("light");
+
+	const plugins: LevitaPlugin[] = useMemo(
+		() =>
+			hapticsEnabled
+				? [
+						haptics({
+							feedbackEvents: {
+								enter: hapticsIntensity,
+								leave: hapticsIntensity,
+								maxTilt: hapticsIntensity,
+							},
+						}),
+					]
+				: [],
+		[hapticsEnabled, hapticsIntensity],
+	);
 
 	/** Default values for comparison to only show modified props in snippets. */
 	const defaults = useMemo(
@@ -119,6 +141,8 @@ export function Playground() {
 
 	const resetPlayground = () => {
 		setOpts({ ...defaults });
+		setHapticsEnabled(false);
+		setHapticsIntensity("light");
 	};
 
 	/** Helper to update a single option in the state. */
@@ -135,6 +159,7 @@ export function Playground() {
 				<div class="flex items-center justify-center">
 					<Tilt
 						options={opts}
+						plugins={plugins}
 						class="relative aspect-[3/4] w-full rounded-2xl bg-surface border border-border cursor-pointer"
 					>
 						<img
@@ -200,6 +225,33 @@ export function Playground() {
 							}
 							return null;
 						})}
+						{hapticsSupported && (
+							<div class="flex flex-col gap-2 pt-2 border-t border-border">
+								<label class="flex items-center justify-between text-sm text-gray-400">
+									<span>haptics</span>
+									<input
+										type="checkbox"
+										checked={hapticsEnabled}
+										onChange={(e) => setHapticsEnabled(e.currentTarget.checked)}
+										class="toggle-switch"
+									/>
+								</label>
+								{hapticsEnabled && (
+									<div class="flex gap-1.5">
+										{HAPTIC_PRESETS.map((preset) => (
+											<button
+												key={preset}
+												type="button"
+												class={`flex-1 px-2 py-1 text-xs font-semibold rounded-md transition ${hapticsIntensity === preset ? "bg-accent text-bg" : "bg-surface text-gray-400 border border-border hover:text-white"}`}
+												onClick={() => setHapticsIntensity(preset)}
+											>
+												{preset}
+											</button>
+										))}
+									</div>
+								)}
+							</div>
+						)}
 						<button
 							type="button"
 							class="w-full px-4 py-2 text-sm rounded-lg bg-surface text-gray-400 border border-border hover:border-white/20 transition"
