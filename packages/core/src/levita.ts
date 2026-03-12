@@ -1,6 +1,6 @@
 import { DEFAULT_OPTIONS } from "./constants.js";
-import { GlareEffect } from "./effects/glare.js";
-import { ShadowEffect } from "./effects/shadow.js";
+import { createGlarePlugin } from "./effects/glare.js";
+import { createShadowPlugin } from "./effects/shadow.js";
 import type { Layer } from "./layers.js";
 import { cleanupLayers, scanLayers } from "./layers.js";
 import { MotionSensor } from "./sensors/motion.js";
@@ -10,6 +10,8 @@ import type {
 	EventCallback,
 	LevitaEventMap,
 	LevitaOptions,
+	LevitaPlugin,
+	PluginContext,
 	TiltValues,
 	UpdatableOptions,
 } from "./types.js";
@@ -35,8 +37,7 @@ export class Levita {
 	private options: LevitaOptions;
 	private pointerSensor: PointerSensor;
 	private motionSensor: MotionSensor | null = null;
-	private glareEffect: GlareEffect | null = null;
-	private shadowEffect: ShadowEffect | null = null;
+	private plugins: LevitaPlugin[] = [];
 	private layers: Layer[] = [];
 	private listeners = new Map<string, Set<EventCallback<unknown>>>();
 	private destroyed = false;
@@ -55,13 +56,6 @@ export class Levita {
 		this.applyBaseProperties();
 
 		this.layers = scanLayers(this.el);
-
-		if (this.options.glare) {
-			this.glareEffect = new GlareEffect(this.el, this.options.maxGlare);
-		}
-		if (this.options.shadow) {
-			this.shadowEffect = new ShadowEffect(this.el);
-		}
 
 		this.pointerSensor = new PointerSensor(
 			this.el,
@@ -82,6 +76,19 @@ export class Levita {
 				this.el.addEventListener("click", this.handleFirstTouch, { once: true });
 			}
 		}
+
+		if (this.options.glare) {
+			this.plugins.push(createGlarePlugin({ maxGlare: this.options.maxGlare }));
+		}
+		if (this.options.shadow) {
+			this.plugins.push(createShadowPlugin());
+		}
+		if (this.options.plugins) {
+			for (const p of this.options.plugins) this.plugins.push(p);
+		}
+
+		const context: PluginContext = { element: this.el, options: this.options, on: this.on };
+		for (const plugin of this.plugins) plugin.init(context);
 
 		if (!this.options.disabled) {
 			this.enable();
@@ -166,8 +173,7 @@ export class Levita {
 		if (this.rafId) cancelAnimationFrame(this.rafId);
 		this.pointerSensor.stop();
 		this.motionSensor?.stop();
-		this.glareEffect?.destroy();
-		this.shadowEffect?.destroy();
+		for (const plugin of this.plugins) plugin.destroy();
 		cleanupLayers(this.layers);
 
 		this.el.classList.remove("levita");
@@ -241,15 +247,14 @@ export class Levita {
 			this.el.style.setProperty("--levita-percent-x", String(input.x));
 			this.el.style.setProperty("--levita-percent-y", String(input.y));
 
-			this.glareEffect?.update(input.x, input.y);
-			this.shadowEffect?.update(input.x, input.y);
-
 			const values: TiltValues = {
 				x,
 				y,
 				percentX: input.x,
 				percentY: input.y,
 			};
+
+			for (const plugin of this.plugins) plugin.update(values);
 			this.emit("move", values);
 
 			this.rafId = null;
@@ -286,8 +291,7 @@ export class Levita {
 		this.el.style.setProperty("--levita-scale", "1");
 		this.el.style.setProperty("--levita-percent-x", "0");
 		this.el.style.setProperty("--levita-percent-y", "0");
-		this.glareEffect?.update(0, 0);
-		this.shadowEffect?.update(0, 0);
+		for (const plugin of this.plugins) plugin.reset?.();
 	};
 
 	/** Apply initial CSS custom properties from options. */

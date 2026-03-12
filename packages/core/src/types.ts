@@ -39,6 +39,8 @@ export interface LevitaOptions {
 	disabled: boolean;
 	/** Element to listen for pointer events on. Default: the element itself */
 	eventsEl: HTMLElement | null;
+	/** External plugins to extend Levita. Default: [] */
+	plugins: LevitaPlugin[];
 }
 
 export interface TiltValues {
@@ -59,3 +61,28 @@ export interface LevitaEventMap {
 }
 
 export type EventCallback<T> = (data: T) => void;
+
+export interface PluginContext {
+	/** The DOM element the tilt effect is applied to */
+	element: HTMLElement;
+	/** Current Levita options */
+	options: LevitaOptions;
+	/** Subscribe to Levita events */
+	on: <K extends keyof LevitaEventMap>(
+		event: K,
+		callback: EventCallback<LevitaEventMap[K]>,
+	) => void;
+}
+
+export interface LevitaPlugin {
+	/** Unique plugin name (used for debugging) */
+	name: string;
+	/** Called once when the Levita instance initializes */
+	init(context: PluginContext): void;
+	/** Called on every tilt update (inside rAF) */
+	update(values: TiltValues): void;
+	/** Called when the element resets to neutral position (optional) */
+	reset?(): void;
+	/** Called when the Levita instance is destroyed — must clean up */
+	destroy(): void;
+}
