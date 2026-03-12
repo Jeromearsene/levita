@@ -1,3 +1,29 @@
+import type { LevitaPlugin, TiltValues } from "../types.js";
+
+/**
+ * Creates a shadow plugin that wraps ShadowEffect for use with Levita's plugin system.
+ */
+export const createShadowPlugin = (): LevitaPlugin => {
+	let effect: ShadowEffect | null = null;
+
+	return {
+		name: "shadow",
+		init(context) {
+			effect = new ShadowEffect(context.element);
+		},
+		update(values: TiltValues) {
+			effect?.update(values.percentX, values.percentY);
+		},
+		reset() {
+			effect?.update(0, 0);
+		},
+		destroy() {
+			effect?.destroy();
+			effect = null;
+		},
+	};
+};
+
 /**
  * Adds a dynamic drop shadow that shifts based on the tilt angle,
  * reinforcing the 3D depth illusion.
