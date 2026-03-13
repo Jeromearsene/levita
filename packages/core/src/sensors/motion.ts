@@ -17,9 +17,12 @@ interface DeviceOrientationEvt extends Event {
  */
 export class MotionSensor {
 	private onMove: SensorCallback;
+	private onFirstEvent: (() => void) | null;
 	private axis: Axis;
 	private active = false;
 	private permitted = false;
+	private receivedEvent = false;
+	private warmup = false;
 	private minAngle: number;
 	private maxAngle: number;
 	private smoothing: number;
@@ -34,13 +37,22 @@ export class MotionSensor {
 	 * @param minAngle - Minimum device angle mapped to -1 (default: -45)
 	 * @param maxAngle - Maximum device angle mapped to 1 (default: 45)
 	 * @param smoothing - Exponential moving average factor 0-1 (default: 0.15, lower = smoother)
+	 * @param onFirstEvent - Called once when the first valid deviceorientation event is received
 	 */
-	constructor(onMove: SensorCallback, axis: Axis, minAngle = -45, maxAngle = 45, smoothing = 0.15) {
+	constructor(
+		onMove: SensorCallback,
+		axis: Axis,
+		minAngle = -45,
+		maxAngle = 45,
+		smoothing = 0.15,
+		onFirstEvent: (() => void) | null = null,
+	) {
 		this.onMove = onMove;
 		this.axis = axis;
 		this.minAngle = minAngle;
 		this.maxAngle = maxAngle;
 		this.smoothing = smoothing;
+		this.onFirstEvent = onFirstEvent;
 	}
 
 	/** Check if the DeviceOrientationEvent API is available in this environment. */
@@ -91,6 +103,8 @@ export class MotionSensor {
 	start = (): void => {
 		if (this.active || !this.permitted) return;
 		this.active = true;
+		this.receivedEvent = false;
+		this.warmup = false;
 		this.baseBeta = null;
 		this.baseGamma = null;
 		window.addEventListener("deviceorientation", this.handleOrientation);
@@ -117,8 +131,23 @@ export class MotionSensor {
 	 */
 	private handleOrientation = (e: Event): void => {
 		const evt = e as DeviceOrientationEvt;
+		if (evt.beta === null && evt.gamma === null) return;
+
+		// Skip first event — some Android browsers fire stale sensor data
+		// that doesn't reflect the actual device position.
+		if (!this.warmup) {
+			this.warmup = true;
+			return;
+		}
+
 		const beta = evt.beta ?? 0;
 		const gamma = evt.gamma ?? 0;
+
+		// Notify on first valid event (used for pointer→motion handoff)
+		if (!this.receivedEvent) {
+			this.receivedEvent = true;
+			this.onFirstEvent?.();
+		}
 
 		// Calibrate: capture the first reading as the neutral position
 		if (this.baseBeta === null) {

@@ -2,11 +2,17 @@ import { describe, expect, it, vi } from "vitest";
 import { MotionSensor } from "../sensors/motion.js";
 
 /** Dispatch a deviceorientation event with the given beta/gamma values. */
-const fireOrientation = (beta: number, gamma: number): void => {
+const fireOrientation = (beta: number | null, gamma: number | null): void => {
 	const event = new Event("deviceorientation");
 	Object.defineProperty(event, "beta", { value: beta });
 	Object.defineProperty(event, "gamma", { value: gamma });
 	window.dispatchEvent(event);
+};
+
+/** Fire a warmup event to get past the initial skip, then fire the actual event. */
+const warmupAndFire = (beta: number, gamma: number): void => {
+	fireOrientation(0, 0); // warmup (skipped)
+	fireOrientation(beta, gamma);
 };
 
 describe("MotionSensor", () => {
@@ -30,13 +36,28 @@ describe("MotionSensor", () => {
 		expect(granted).toBe(true);
 	});
 
-	it("normalizes device orientation to [-1, 1]", async () => {
+	it("skips first event for sensor warmup", async () => {
 		const onMove = vi.fn();
 		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
 		await sensor.requestPermission();
 		sensor.start();
 
 		fireOrientation(0, 0);
+		expect(onMove).not.toHaveBeenCalled();
+
+		fireOrientation(0, 0);
+		expect(onMove).toHaveBeenCalledOnce();
+
+		sensor.stop();
+	});
+
+	it("normalizes device orientation to [-1, 1]", async () => {
+		const onMove = vi.fn();
+		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		await sensor.requestPermission();
+		sensor.start();
+
+		warmupAndFire(0, 0);
 
 		expect(onMove).toHaveBeenCalledOnce();
 		const result = onMove.mock.calls[0]?.[0];
@@ -52,9 +73,9 @@ describe("MotionSensor", () => {
 		await sensor.requestPermission();
 		sensor.start();
 
-		// First event calibrates the baseline
-		fireOrientation(0, 0);
-		// Second event exceeds the range relative to baseline
+		// Warmup + calibration event
+		warmupAndFire(0, 0);
+		// Exceeds range relative to baseline
 		fireOrientation(90, -90);
 
 		const result = onMove.mock.calls[1]?.[0];
@@ -70,8 +91,8 @@ describe("MotionSensor", () => {
 		await sensor.requestPermission();
 		sensor.start();
 
-		// Calibrate at origin, then tilt
-		fireOrientation(0, 0);
+		// Warmup + calibrate at origin, then tilt
+		warmupAndFire(0, 0);
 		fireOrientation(20, 20);
 
 		const result = onMove.mock.calls[1]?.[0];
@@ -86,6 +107,9 @@ describe("MotionSensor", () => {
 		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
 		await sensor.requestPermission();
 		sensor.start();
+
+		// Warmup
+		fireOrientation(0, 0);
 
 		// Phone held at 45° (natural reading position) — this becomes the baseline
 		fireOrientation(45, 10);
@@ -107,14 +131,14 @@ describe("MotionSensor", () => {
 		await sensor.requestPermission();
 		sensor.start();
 
-		fireOrientation(30, 10);
+		warmupAndFire(30, 10);
 		sensor.stop();
 
 		onMove.mockClear();
 		sensor.start();
 
 		// New baseline should be 50/20, not 30/10
-		fireOrientation(50, 20);
+		warmupAndFire(50, 20);
 		expect(onMove.mock.calls[0]?.[0].x).toBe(0);
 		expect(onMove.mock.calls[0]?.[0].y).toBe(0);
 
@@ -130,5 +154,44 @@ describe("MotionSensor", () => {
 
 		fireOrientation(20, 20);
 		expect(onMove).not.toHaveBeenCalled();
+	});
+
+	it("ignores events with null beta and gamma", async () => {
+		const onMove = vi.fn();
+		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		await sensor.requestPermission();
+		sensor.start();
+
+		fireOrientation(null, null);
+		fireOrientation(null, null);
+		expect(onMove).not.toHaveBeenCalled();
+
+		sensor.stop();
+	});
+
+	it("calls onFirstEvent on first valid orientation after warmup", async () => {
+		const onMove = vi.fn();
+		const onFirstEvent = vi.fn();
+		const sensor = new MotionSensor(onMove, null, -45, 45, 1, onFirstEvent);
+		await sensor.requestPermission();
+		sensor.start();
+
+		// Null events don't count
+		fireOrientation(null, null);
+		expect(onFirstEvent).not.toHaveBeenCalled();
+
+		// First valid event is warmup — skipped, no callback yet
+		fireOrientation(5, 5);
+		expect(onFirstEvent).not.toHaveBeenCalled();
+
+		// Second valid event triggers callback
+		fireOrientation(10, 10);
+		expect(onFirstEvent).toHaveBeenCalledOnce();
+
+		// Not called again
+		fireOrientation(20, 20);
+		expect(onFirstEvent).toHaveBeenCalledOnce();
+
+		sensor.stop();
 	});
 });

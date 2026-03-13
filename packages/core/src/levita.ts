@@ -41,6 +41,7 @@ export class Levita {
 	private listeners = new Map<string, Set<EventCallback<unknown>>>();
 	private destroyed = false;
 	private gyroscopeRequested = false;
+	private gyroscopeEvent: string | null = null;
 	private rafId: number | null = null;
 
 	/**
@@ -76,10 +77,17 @@ export class Levita {
 			this.motionSensor = new MotionSensor(
 				(values) => this.handleSensorInput(values),
 				this.options.axis,
+				undefined,
+				undefined,
+				undefined,
+				() => this.handleMotionReady(),
 			);
 
 			if (this.options.gyroscope === "auto") {
-				this.el.addEventListener("click", this.handleFirstTouch, { once: true });
+				// iOS requires "click" for DeviceOrientationEvent.requestPermission(),
+				// Android fires "pointerup" more reliably on touch interactions.
+				this.gyroscopeEvent = MotionSensor.needsPermission() ? "click" : "pointerup";
+				this.el.addEventListener(this.gyroscopeEvent, this.handleFirstTouch, { once: true });
 			}
 		}
 
@@ -89,8 +97,9 @@ export class Levita {
 	}
 
 	/**
-	 * On first touch (iOS auto mode), request accelerometer permission
-	 * and switch from pointer to motion sensor if granted.
+	 * On first interaction, request accelerometer permission and start the
+	 * motion sensor. The pointer sensor keeps running until the first valid
+	 * deviceorientation event is received (see handleMotionReady).
 	 */
 	private handleFirstTouch = async (): Promise<void> => {
 		if (this.destroyed || this.gyroscopeRequested || !this.motionSensor) return;
@@ -98,10 +107,17 @@ export class Levita {
 
 		const granted = await this.motionSensor.requestPermission();
 		if (granted) {
-			this.pointerSensor.stop();
-			this.setTransition(false);
 			this.motionSensor.start();
 		}
+	};
+
+	/**
+	 * Called when the motion sensor receives its first valid event.
+	 * At this point it's safe to hand off from pointer to motion.
+	 */
+	private handleMotionReady = (): void => {
+		this.pointerSensor.stop();
+		this.setTransition(false);
 	};
 
 	/**
@@ -148,8 +164,6 @@ export class Levita {
 		if (!this.motionSensor) return false;
 		const granted = await this.motionSensor.requestPermission();
 		if (granted) {
-			this.pointerSensor.stop();
-			this.setTransition(false);
 			this.motionSensor.start();
 		}
 		return granted;
@@ -174,7 +188,9 @@ export class Levita {
 		this.removeBaseProperties();
 		this.listeners.clear();
 
-		this.el.removeEventListener("click", this.handleFirstTouch);
+		if (this.gyroscopeEvent) {
+			this.el.removeEventListener(this.gyroscopeEvent, this.handleFirstTouch);
+		}
 	};
 
 	/**
