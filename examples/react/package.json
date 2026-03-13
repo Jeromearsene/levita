@@ -14,8 +14,8 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"levita-js": "workspace:*",
-		"@levita-js/react": "workspace:*",
+		"levita-js": "^0.2.1",
+		"@levita-js/react": "^0.2.1",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
 	},
