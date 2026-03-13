@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import preact from "@preact/preset-vite";
 import tailwindcss from "@tailwindcss/vite";
+import basicSsl from "@vitejs/plugin-basic-ssl";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -14,5 +15,8 @@ export default defineConfig({
 	build: {
 		outDir: "dist",
 	},
-	plugins: [tailwindcss(), preact()],
+	server: {
+		host: true,
+	},
+	plugins: [tailwindcss(), preact(), basicSsl()],
 });

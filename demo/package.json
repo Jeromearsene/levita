@@ -14,6 +14,7 @@
 	"devDependencies": {
 		"@preact/preset-vite": "^2.10.3",
 		"@tailwindcss/vite": "^4.2.1",
+		"@vitejs/plugin-basic-ssl": "^2.2.0",
 		"preact": "^10.26.4",
 		"tailwindcss": "^4.2.1",
 		"typescript": "^5.9.3",
