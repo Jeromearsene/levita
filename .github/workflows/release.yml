@@ -40,6 +40,7 @@ jobs:
         run: pnpm build
 
       - name: Create Release PR or Publish
+        id: changesets
         uses: changesets/action@v1
         with:
           publish: pnpm release
@@ -48,3 +49,12 @@ jobs:
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync examples to published versions
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          node scripts/sync-examples.js
+          pnpm install --no-frozen-lockfile
+          git add examples/ pnpm-lock.yaml
+          git commit -m "chore: sync examples to published versions"
+          git push
