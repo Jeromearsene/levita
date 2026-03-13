@@ -40,11 +40,31 @@ jobs:
         run: pnpm build
 
       - name: Create Release PR or Publish
+        id: changesets
         uses: changesets/action@v1
         with:
           publish: pnpm release
           version: pnpm version-packages
           title: "chore: version packages"
           commit: "chore: version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync examples to published versions
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          node scripts/sync-examples.js
+          pnpm install --no-frozen-lockfile
+          branch="chore/sync-examples-$(date +%s)"
+          git checkout -b "$branch"
+          git add examples/ pnpm-lock.yaml
+          git commit -m "chore: sync examples to published versions"
+          git push origin "$branch"
+          pr_url=$(gh pr create \
+            --title "chore: sync examples to published versions" \
+            --body "Auto-generated after npm publish. Updates example dependencies to the newly released version." \
+            --base main \
+            --head "$branch")
+          gh pr merge "$pr_url" --squash --auto
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
