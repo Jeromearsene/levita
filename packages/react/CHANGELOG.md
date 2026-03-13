@@ -1,5 +1,12 @@
 # @levita-js/react
 
+## 0.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`25f1909`](https://github.com/Jeromearsene/levita/commit/25f1909cac019c6dc98e9e311f082851d44cc1a7)]:
+  - levita-js@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes

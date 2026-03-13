@@ -14,8 +14,8 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"levita-js": "workspace:*",
-		"@levita-js/svelte": "workspace:*",
+		"levita-js": "^0.2.1",
+		"@levita-js/svelte": "^0.2.1",
 		"svelte": "^5.53.5"
 	},
 	"devDependencies": {

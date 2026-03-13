@@ -1,5 +1,11 @@
 # levita-js
 
+## 0.2.1
+
+### Patch Changes
+
+- [`25f1909`](https://github.com/Jeromearsene/levita/commit/25f1909cac019c6dc98e9e311f082851d44cc1a7) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Fix gyroscope reliability on Android: use pointerup instead of click for auto-trigger, skip stale first deviceorientation event, filter out null sensor data, and delay pointer-to-motion handoff until a valid sensor event is received.
+
 ## 0.2.0
 
 ### Minor Changes
