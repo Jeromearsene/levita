@@ -1,10 +1,11 @@
-import { Levita, type LevitaEventMap, type LevitaOptions } from "levita-js";
+import { Levita, type LevitaEventMap, type LevitaOptions, type LevitaPlugin } from "levita-js";
 import type { ComponentChildren } from "preact";
 import { useEffect, useRef } from "preact/hooks";
 
 interface TiltProps {
 	children?: ComponentChildren;
 	options?: Partial<LevitaOptions>;
+	plugins?: LevitaPlugin[];
 	class?: string;
 	id?: string;
 	onMove?: (values: LevitaEventMap["move"]) => void;
@@ -13,6 +14,7 @@ interface TiltProps {
 export function Tilt({
 	children,
 	options = {},
+	plugins,
 	class: className = "",
 	id = "",
 	onMove,
@@ -22,7 +24,8 @@ export function Tilt({
 
 	useEffect(() => {
 		if (elRef.current) {
-			instanceRef.current = new Levita(elRef.current, options);
+			const opts = plugins ? { ...options, plugins } : options;
+			instanceRef.current = new Levita(elRef.current, opts);
 			if (onMove) {
 				instanceRef.current.on("move", onMove);
 			}
@@ -31,7 +34,7 @@ export function Tilt({
 		return () => {
 			instanceRef.current?.destroy();
 		};
-	}, [options, onMove]);
+	}, [options, plugins, onMove]);
 
 	return (
 		<div ref={elRef} id={id} className={`levita ${className}`}>

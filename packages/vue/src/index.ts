@@ -1,4 +1,4 @@
-import type { Axis, GyroscopeMode } from "levita-js";
+import type { Axis, GyroscopeMode, LevitaPlugin } from "levita-js";
 import { buildOptions, Levita, OPTION_KEYS } from "levita-js";
 import {
 	defineComponent,
@@ -55,6 +55,7 @@ export const Tilt = defineComponent({
 		},
 		disabled: { type: Boolean, default: undefined },
 		eventsEl: { type: Object as PropType<HTMLElement | null>, default: undefined },
+		plugins: { type: Array as PropType<LevitaPlugin[]>, default: undefined },
 	},
 
 	slots: Object as SlotsType<{ default: Record<string, never> }>,
