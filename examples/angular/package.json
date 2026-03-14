@@ -15,8 +15,8 @@
 	},
 	"dependencies": {
 		"@angular/common": "^21.2.0",
-		"@angular/compiler": "^21.2.0",
-		"@angular/core": "^21.2.0",
+		"@angular/compiler": "^21.2.4",
+		"@angular/core": "^21.2.4",
 		"@angular/platform-browser": "^21.2.0",
 		"@angular/platform-browser-dynamic": "^21.2.0",
 		"@levita-js/angular": "^0.2.0",
