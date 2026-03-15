@@ -26,6 +26,7 @@ export function GroupedCards() {
 						shadow: true,
 						gyroscope: false,
 						max: 25,
+						speed: 800,
 					}),
 				);
 			}
