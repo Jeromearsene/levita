@@ -9,7 +9,7 @@ import { Tilt } from "./Tilt";
  */
 export function Hero() {
 	return (
-		<section class="flex flex-col items-center justify-center min-h-screen px-16 sm:px-8 text-center">
+		<section class="flex flex-col items-center justify-center min-h-screen px-4 sm:px-8 lg:px-16 text-center">
 			<h1 class="bg-linear-to-br from-accent to-accent-end bg-clip-text text-transparent text-5xl sm:text-7xl font-bold leading-tight">
 				Levita
 			</h1>
@@ -39,7 +39,9 @@ export function Hero() {
 				</div>
 			</Tilt>
 
-			<CodeTabs snippets={heroSnippets} collapsed />
+			<div class="w-[min(480px,70vw)]">
+				<CodeTabs snippets={heroSnippets} collapsed />
+			</div>
 
 			<div class="flex gap-4 mt-10">
 				<a
