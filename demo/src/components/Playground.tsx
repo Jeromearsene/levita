@@ -1,7 +1,8 @@
 import posterImg from "@assets/showcase-poster.webp";
 import type { LevitaOptions } from "levita-js";
 import { useMemo, useState } from "preact/hooks";
-import { FRAMEWORKS, type Framework } from "../constants";
+import type { Framework } from "../constants";
+import { CodeTabs } from "./CodeTabs";
 import { Tilt } from "./Tilt";
 
 /**
@@ -40,75 +41,82 @@ export function Playground() {
 		[],
 	);
 
-	/** Generates the code snippet based on selected framework and current options. */
-	const snippet = useMemo(() => {
-		const props: string[] = [];
-		if (opts.max !== defaults.max) props.push(`max={${opts.max}}`);
-		if (opts.perspective !== defaults.perspective) props.push(`perspective={${opts.perspective}}`);
-		if (opts.scale !== defaults.scale) props.push(`scale={${opts.scale}}`);
-		if (opts.speed !== defaults.speed) props.push(`speed={${opts.speed}}`);
-		if (opts.reverse) props.push("reverse");
-		if (opts.glare) props.push("glare");
-		if (opts.glare && opts.maxGlare !== defaults.maxGlare)
-			props.push(`maxGlare={${opts.maxGlare}}`);
-		if (opts.shadow) props.push("shadow");
-		if (opts.disabled) props.push("disabled");
+	/** Generates all code snippets for every framework based on current options. */
+	const snippets = useMemo(() => {
+		const buildSnippet = (framework: Framework): string => {
+			const props: string[] = [];
+			if (opts.max !== defaults.max) props.push(`max={${opts.max}}`);
+			if (opts.perspective !== defaults.perspective)
+				props.push(`perspective={${opts.perspective}}`);
+			if (opts.scale !== defaults.scale) props.push(`scale={${opts.scale}}`);
+			if (opts.speed !== defaults.speed) props.push(`speed={${opts.speed}}`);
+			if (opts.reverse) props.push("reverse");
+			if (opts.glare) props.push("glare");
+			if (opts.glare && opts.maxGlare !== defaults.maxGlare)
+				props.push(`maxGlare={${opts.maxGlare}}`);
+			if (opts.shadow) props.push("shadow");
+			if (opts.disabled) props.push("disabled");
 
-		const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
+			const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
 
-		switch (currentFramework) {
-			case "react":
-				return `<Tilt${propsString}>\n  <div className="card">React</div>\n</Tilt>`;
-			case "vue": {
-				const vueProps = props.map((p) => (p.includes("={") ? `:${p.replace(/={|}/g, "")}` : p));
-				return `<Tilt${vueProps.length > 0 ? ` ${vueProps.join(" ")}` : ""}>\n  <div class="card">Vue</div>\n</Tilt>`;
-			}
-			case "svelte": {
-				const svelteOpts = props
-					.map((p) => (p.includes("={") ? p.replace(/={|}/g, ": ") : `${p}: true`))
-					.join(", ");
-				return `<div use:tilt${svelteOpts.length > 0 ? `={{ ${svelteOpts} }}` : ""} class="card">\n  Svelte\n</div>`;
-			}
-			case "angular": {
-				const angOpts = props
-					.map((p) => {
-						if (p.includes("={"))
-							return p
-								.replace(/={|}/g, ": ")
-								.replace(/max:|perspective:|scale:|speed:|maxGlare:/, (m) => `${m.slice(0, -1)}:`);
-						return `${p}: true`;
-					})
-					.join(", ");
-				const angPropsString = angOpts.length > 0 ? `[levita]="{ ${angOpts} }"` : "levita";
-				return `<div ${angPropsString} class="card">\n  Angular\n</div>`;
-			}
-			default: {
-				const entries: string[] = [];
-				if (opts.max !== defaults.max) entries.push(`  max: ${opts.max}`);
-				if (opts.perspective !== defaults.perspective)
-					entries.push(`  perspective: ${opts.perspective}`);
-				if (opts.scale !== defaults.scale) entries.push(`  scale: ${opts.scale}`);
-				if (opts.speed !== defaults.speed) entries.push(`  speed: ${opts.speed}`);
-				if (opts.reverse) entries.push(`  reverse: ${opts.reverse}`);
-				if (opts.glare) entries.push(`  glare: ${opts.glare}`);
-				if (opts.glare && opts.maxGlare !== defaults.maxGlare)
-					entries.push(`  maxGlare: ${opts.maxGlare}`);
-				if (opts.shadow) entries.push(`  shadow: ${opts.shadow}`);
-				if (opts.disabled) entries.push(`  disabled: ${opts.disabled}`);
+			switch (framework) {
+				case "react":
+					return `<Tilt${propsString}>\n  <div className="card">React</div>\n</Tilt>`;
+				case "vue": {
+					const vueProps = props.map((p) => (p.includes("={") ? `:${p.replace(/={|}/g, "")}` : p));
+					return `<Tilt${vueProps.length > 0 ? ` ${vueProps.join(" ")}` : ""}>\n  <div class="card">Vue</div>\n</Tilt>`;
+				}
+				case "svelte": {
+					const svelteOpts = props
+						.map((p) => (p.includes("={") ? p.replace(/={|}/g, ": ") : `${p}: true`))
+						.join(", ");
+					return `<div use:tilt${svelteOpts.length > 0 ? `={{ ${svelteOpts} }}` : ""} class="card">\n  Svelte\n</div>`;
+				}
+				case "angular": {
+					const angOpts = props
+						.map((p) => {
+							if (p.includes("={"))
+								return p
+									.replace(/={|}/g, ": ")
+									.replace(
+										/max:|perspective:|scale:|speed:|maxGlare:/,
+										(m) => `${m.slice(0, -1)}:`,
+									);
+							return `${p}: true`;
+						})
+						.join(", ");
+					const angPropsString = angOpts.length > 0 ? `[levita]="{ ${angOpts} }"` : "levita";
+					return `<div ${angPropsString} class="card">\n  Angular\n</div>`;
+				}
+				default: {
+					const entries: string[] = [];
+					if (opts.max !== defaults.max) entries.push(`  max: ${opts.max}`);
+					if (opts.perspective !== defaults.perspective)
+						entries.push(`  perspective: ${opts.perspective}`);
+					if (opts.scale !== defaults.scale) entries.push(`  scale: ${opts.scale}`);
+					if (opts.speed !== defaults.speed) entries.push(`  speed: ${opts.speed}`);
+					if (opts.reverse) entries.push(`  reverse: ${opts.reverse}`);
+					if (opts.glare) entries.push(`  glare: ${opts.glare}`);
+					if (opts.glare && opts.maxGlare !== defaults.maxGlare)
+						entries.push(`  maxGlare: ${opts.maxGlare}`);
+					if (opts.shadow) entries.push(`  shadow: ${opts.shadow}`);
+					if (opts.disabled) entries.push(`  disabled: ${opts.disabled}`);
 
-				return entries.length === 0
-					? "new Levita(el);"
-					: `new Levita(el, {\n${entries.join(",\n")},\n});`;
+					return entries.length === 0
+						? "new Levita(el);"
+						: `new Levita(el, {\n${entries.join(",\n")},\n});`;
+				}
 			}
-		}
-	}, [currentFramework, opts, defaults]);
+		};
 
-	const [copyStatus, setCopyStatus] = useState(false);
-	const copyCode = () => {
-		navigator.clipboard.writeText(snippet);
-		setCopyStatus(true);
-		setTimeout(() => setCopyStatus(false), 2000);
-	};
+		return {
+			vanilla: buildSnippet("vanilla"),
+			react: buildSnippet("react"),
+			vue: buildSnippet("vue"),
+			svelte: buildSnippet("svelte"),
+			angular: buildSnippet("angular"),
+		};
+	}, [opts, defaults]);
 
 	const openStackBlitz = () => {
 		window.open(
@@ -209,79 +217,26 @@ export function Playground() {
 						</button>
 					</div>
 
-					<div class="flex flex-col gap-2">
-						<div class="flex gap-2 p-1 bg-surface border border-border rounded-lg overflow-x-auto no-scrollbar">
-							{FRAMEWORKS.map((fw) => (
-								<button
-									key={fw}
-									type="button"
-									class={`px-4 py-1.5 text-xs font-semibold rounded-md transition ${currentFramework === fw ? "bg-accent text-bg" : "text-gray-400 hover:text-white"}`}
-									onClick={() => setCurrentFramework(fw)}
-								>
-									{fw.charAt(0).toUpperCase() + fw.slice(1)}
-								</button>
-							))}
-						</div>
-
-						<div class="relative group">
-							<pre class="bg-surface border border-border rounded-xl px-5 py-4 font-mono text-sm text-accent leading-relaxed overflow-x-auto min-h-[160px]">
-								<code>{snippet}</code>
-							</pre>
-							<div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-								<button
-									type="button"
-									onClick={copyCode}
-									class="p-2 rounded-lg bg-surface border border-white/20 text-gray-300 hover:text-white hover:bg-slate-700 hover:border-accent transition shadow-xl"
-									title="Copy code"
-								>
-									{copyStatus ? (
-										<svg
-											width="16"
-											height="16"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="#2dd4bf"
-											stroke-width="2"
-										>
-											<title>Success</title>
-											<polyline points="20 6 9 17 4 12"></polyline>
-										</svg>
-									) : (
-										<svg
-											width="16"
-											height="16"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-										>
-											<title>Copy</title>
-											<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-											<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-										</svg>
-									)}
-								</button>
-								<button
-									type="button"
-									onClick={openStackBlitz}
-									class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-white/20 text-xs font-semibold text-gray-300 hover:text-white hover:bg-slate-700 hover:border-accent transition shadow-xl"
-								>
-									<svg
-										width="14"
-										height="14"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-									>
-										<title>StackBlitz</title>
-										<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-									</svg>
-									StackBlitz
-								</button>
-							</div>{" "}
-						</div>
-					</div>
+					<CodeTabs snippets={snippets} onFrameworkChange={setCurrentFramework}>
+						<button
+							type="button"
+							onClick={openStackBlitz}
+							class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-white/20 text-xs font-semibold text-gray-300 hover:text-white hover:bg-slate-700 hover:border-accent transition shadow-xl"
+						>
+							<svg
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<title>StackBlitz</title>
+								<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+							</svg>
+							StackBlitz
+						</button>
+					</CodeTabs>
 				</div>
 			</div>
 		</section>

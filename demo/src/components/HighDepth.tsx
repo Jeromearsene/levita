@@ -1,3 +1,5 @@
+import { snippets as highDepthSnippets } from "../snippets/high-depth";
+import { CodeTabs } from "./CodeTabs";
 import { Tilt } from "./Tilt";
 
 /**
@@ -9,7 +11,7 @@ export function HighDepth() {
 			<h2 class="text-3xl font-bold text-center mb-2">High Depth Parallax</h2>
 			<p class="text-center text-gray-400 mb-10">Layered elements with high offset values</p>
 
-			<div class="flex items-center justify-center">
+			<div class="flex flex-col items-center">
 				<Tilt
 					options={{ glare: true, shadow: true, gyroscope: false, max: 10, perspective: 1500 }}
 					class="relative w-[min(600px,70vw)] aspect-[16/9] rounded-3xl bg-linear-to-br from-surface to-[#0f172a] border border-border overflow-hidden cursor-pointer"
@@ -42,6 +44,9 @@ export function HighDepth() {
 						<div class="w-8 h-8 rounded-full bg-white shadow-lg"></div>
 					</div>
 				</Tilt>
+				<div class="w-[min(600px,70vw)]">
+					<CodeTabs snippets={highDepthSnippets} collapsed />
+				</div>
 			</div>
 		</section>
 	);

@@ -3,6 +3,8 @@ import darkSideImg from "@assets/dark-side.webp";
 import forEmmaImg from "@assets/for-emma.webp";
 import { Levita } from "levita-js";
 import { useEffect, useRef } from "preact/hooks";
+import { snippets as groupedCardsSnippets } from "../snippets/grouped-cards";
+import { CodeTabs } from "./CodeTabs";
 
 /**
  * Section showcasing multiple cards sharing a single event container.
@@ -100,6 +102,8 @@ export function GroupedCards() {
 					</p>
 				</div>
 			</div>
+
+			<CodeTabs snippets={groupedCardsSnippets} collapsed />
 		</section>
 	);
 }

@@ -1,4 +1,6 @@
 import heroImg from "@assets/hero.webp";
+import { snippets as heroSnippets } from "../snippets/hero";
+import { CodeTabs } from "./CodeTabs";
 import { Tilt } from "./Tilt";
 
 /**
@@ -36,6 +38,8 @@ export function Hero() {
 					<p class="text-lg text-gray-200 mt-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">The Alps</p>
 				</div>
 			</Tilt>
+
+			<CodeTabs snippets={heroSnippets} collapsed />
 
 			<div class="flex gap-4 mt-10">
 				<a
