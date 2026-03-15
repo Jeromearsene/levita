@@ -1,0 +1,24 @@
+<div id="container">
+  <div class="card">
+    <img data-levita-offset="0" src="album.jpg" />
+    <div data-levita-offset="15"><!-- Gradient overlay --></div>
+    <p data-levita-offset="35">Artist Name</p>
+  </div>
+  <!-- More cards... -->
+</div>
+
+<script type="module">
+  import Levita from "levita-js";
+
+  const container = document.getElementById("container");
+  const cards = container.querySelectorAll(".card");
+
+  for (const card of cards) {
+    new Levita(card, {
+      eventsEl: container,
+      glare: true,
+      shadow: true,
+      max: 25,
+    });
+  }
+</script>

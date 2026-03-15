@@ -1,0 +1,38 @@
+<!-- app.component.ts -->
+import Levita from "levita-js";
+
+@Component({ ... })
+export class AppComponent implements AfterViewInit, OnDestroy {
+  @ViewChild("container") containerRef: ElementRef;
+  private instances: Levita[] = [];
+
+  ngAfterViewInit() {
+    const el = this.containerRef.nativeElement;
+    const cards = el.querySelectorAll(".card");
+
+    for (const card of cards) {
+      this.instances.push(
+        new Levita(card, {
+          eventsEl: el,
+          glare: true,
+          shadow: true,
+          max: 25,
+        })
+      );
+    }
+  }
+
+  ngOnDestroy() {
+    this.instances.forEach((i) => i.destroy());
+  }
+}
+
+<!-- app.component.html -->
+<div #container>
+  <div class="card">
+    <img data-levita-offset="0" src="album.jpg" />
+    <div data-levita-offset="15"><!-- Gradient overlay --></div>
+    <p data-levita-offset="35">Artist Name</p>
+  </div>
+  <!-- More cards... -->
+</div>

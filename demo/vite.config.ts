@@ -15,6 +15,9 @@ export default defineConfig({
 	build: {
 		outDir: "dist",
 	},
+	optimizeDeps: {
+		entries: ["index.html"],
+	},
 	server: {
 		host: true,
 	},
