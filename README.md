@@ -233,6 +233,19 @@ button.addEventListener("click", async () => {
 new Levita(el, { gyroscope: false });
 ```
 
+### Fine-tuning gyroscope behavior
+
+```typescript
+new Levita(el, {
+  gyroscope: "auto",
+  gyroRange: 40,       // More reactive (less tilt needed)
+  gyroSmoothing: 0.1,  // Smoother movement
+});
+```
+
+- `gyroRange` — Total physical tilt range in degrees mapped to full effect. Lower = more reactive. Default: `60`.
+- `gyroSmoothing` — Exponential moving average factor. Lower = smoother but more latent. Default: `0.15`.
+
 ## Options
 
 | Option | Type | Default | Description |
@@ -249,6 +262,8 @@ new Levita(el, { gyroscope: false });
 | `maxGlare` | `number` | `0.5` | Max glare opacity (0-1) |
 | `shadow` | `boolean` | `false` | Enable dynamic shadow |
 | `gyroscope` | `'auto' \| boolean` | `'auto'` | Accelerometer mode |
+| `gyroRange` | `number` | `60` | Physical tilt range in degrees |
+| `gyroSmoothing` | `number` | `0.15` | Sensor smoothing factor (0-1) |
 | `disabled` | `boolean` | `false` | Disable the effect |
 | `eventsEl` | `HTMLElement \| null` | `null` | Element to listen for events on |
 
