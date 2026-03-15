@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Levita } from "../levita.js";
+import type { LevitaPlugin, PluginContext, TiltValues } from "../types.js";
 
 beforeEach(() => {
 	vi.useFakeTimers();
@@ -239,5 +240,111 @@ describe("Levita", () => {
 		expect(onMove).toHaveBeenCalledOnce();
 
 		instance.destroy();
+	});
+});
+
+const createMockPlugin = () => {
+	const plugin = {
+		name: "mock",
+		init: vi.fn<(ctx: PluginContext) => void>(),
+		update: vi.fn<(values: TiltValues) => void>(),
+		reset: vi.fn<() => void>(),
+		destroy: vi.fn<() => void>(),
+	};
+	return plugin;
+};
+
+describe("Plugin system", () => {
+	it("calls init on plugins with correct context", () => {
+		const el = createEl();
+		const plugin = createMockPlugin();
+		const instance = new Levita(el, { gyroscope: false, plugins: [plugin] });
+
+		expect(plugin.init).toHaveBeenCalledOnce();
+		expect(plugin.init.mock.calls[0]?.[0]).toEqual(
+			expect.objectContaining({
+				element: el,
+				options: expect.any(Object),
+				on: expect.any(Function),
+			}),
+		);
+
+		instance.destroy();
+	});
+
+	it("calls update on plugins during tilt", () => {
+		const el = createEl();
+		const plugin = createMockPlugin();
+		const instance = new Levita(el, { gyroscope: false, plugins: [plugin] });
+
+		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
+		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
+		vi.advanceTimersByTime(16);
+
+		expect(plugin.update).toHaveBeenCalledOnce();
+		const values = plugin.update.mock.calls[0]?.[0];
+		expect(values).toHaveProperty("x");
+		expect(values).toHaveProperty("y");
+		expect(values).toHaveProperty("percentX");
+		expect(values).toHaveProperty("percentY");
+
+		instance.destroy();
+	});
+
+	it("calls reset on plugins on pointer leave", () => {
+		const el = createEl();
+		const plugin = createMockPlugin();
+		const instance = new Levita(el, { gyroscope: false, reset: true, plugins: [plugin] });
+
+		el.dispatchEvent(new PointerEvent("pointerenter", { clientX: 150, clientY: 150 }));
+		el.dispatchEvent(new PointerEvent("pointermove", { clientX: 150, clientY: 150 }));
+		vi.advanceTimersByTime(16);
+		el.dispatchEvent(new PointerEvent("pointerleave"));
+
+		expect(plugin.reset).toHaveBeenCalledOnce();
+
+		instance.destroy();
+	});
+
+	it("calls destroy on plugins", () => {
+		const el = createEl();
+		const plugin = createMockPlugin();
+		const instance = new Levita(el, { gyroscope: false, plugins: [plugin] });
+
+		instance.destroy();
+
+		expect(plugin.destroy).toHaveBeenCalledOnce();
+	});
+
+	it("plugins can subscribe to events via context.on", () => {
+		const el = createEl();
+		const enterHandler = vi.fn();
+		const plugin: LevitaPlugin = {
+			name: "event-test",
+			init(ctx) {
+				ctx.on("enter", enterHandler);
+			},
+			update() {},
+			destroy() {},
+		};
+		const instance = new Levita(el, { gyroscope: false, plugins: [plugin] });
+
+		el.dispatchEvent(new PointerEvent("pointerenter"));
+		expect(enterHandler).toHaveBeenCalledOnce();
+
+		instance.destroy();
+	});
+
+	it("glare and shadow still work via internal plugins", () => {
+		const el = createEl();
+		const instance = new Levita(el, { glare: true, shadow: true, gyroscope: false });
+
+		expect(el.querySelector(".levita-glare")).not.toBeNull();
+		expect(el.classList.contains("levita-shadow")).toBe(true);
+
+		instance.destroy();
+
+		expect(el.querySelector(".levita-glare")).toBeNull();
+		expect(el.classList.contains("levita-shadow")).toBe(false);
 	});
 });

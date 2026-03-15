@@ -40,6 +40,7 @@
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:settings-2.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:settings-2.svg?color=%23000000" width="16" height="16" valign="middle" alt="Options"></picture> [Options](#options)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:activity.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:activity.svg?color=%23000000" width="16" height="16" valign="middle" alt="Events"></picture> [Events](#events)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:box.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:box.svg?color=%23000000" width="16" height="16" valign="middle" alt="Methods"></picture> [Methods](#methods)
+- <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:plug.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:plug.svg?color=%23000000" width="16" height="16" valign="middle" alt="Plugins"></picture> [Plugins](#plugins)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:cpu.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:cpu.svg?color=%23000000" width="16" height="16" valign="middle" alt="How It Works"></picture> [How It Works](#how-it-works)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:scale.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:scale.svg?color=%23000000" width="16" height="16" valign="middle" alt="Comparison"></picture> [Comparison](#comparison)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:gauge.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:gauge.svg?color=%23000000" width="16" height="16" valign="middle" alt="Benchmarks"></picture> [Benchmarks](#benchmarks)
@@ -58,6 +59,7 @@ Levita is designed to be framework-agnostic. Choose your flavor:
 | <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:layers.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:layers.svg?color=%23000000" width="18" height="18" valign="middle" alt="Vue"></picture> **[Vue](#vue)** | ![vue min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-vue.json) | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) | [![Try Vue on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue) |
 | <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:zap.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:zap.svg?color=%23000000" width="18" height="18" valign="middle" alt="Svelte"></picture> **[Svelte](#svelte)** | ![svelte min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-svelte.json) | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) | [![Try Svelte on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte) |
 | <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:box.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:box.svg?color=%23000000" width="18" height="18" valign="middle" alt="Angular"></picture> **[Angular](#angular)** | ![angular min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-angular.json) | ![angular size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-angular.json) | [![Try Angular on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/angular) |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:plug.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:plug.svg?color=%23000000" width="18" height="18" valign="middle" alt="Haptics Plugin"></picture> **[Haptics Plugin](#haptics-plugin-levita-jshaptics)** | **-** | ![haptics size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-haptics.json) | - |
 
 ## Effects
 
@@ -276,6 +278,47 @@ instance.disable(); // Pause and reset
 instance.destroy(); // Full cleanup
 await instance.requestPermission(); // Manual gyroscope permission
 ```
+
+## Plugins
+
+Levita has a plugin system for extending its functionality. Plugins hook into the tilt lifecycle to add custom behaviors:
+
+```typescript
+interface LevitaPlugin {
+  name: string;
+  init(context: PluginContext): void;
+  update(values: TiltValues): void;
+  reset?(): void;
+  destroy(): void;
+}
+```
+
+```typescript
+new Levita(el, {
+  plugins: [myPlugin()]
+});
+```
+
+### Haptics Plugin (`@levita-js/haptics`)
+
+Adds vibration feedback on tilt events (Android only, via the Vibration API).
+
+```bash
+npm install @levita-js/haptics
+```
+
+```typescript
+import { Levita } from 'levita-js';
+import { haptics, isHapticsSupported } from '@levita-js/haptics';
+
+new Levita(el, {
+  plugins: isHapticsSupported()
+    ? [haptics()]   // default: enter/leave/maxTilt feedback
+    : []
+});
+```
+
+> **Note:** Haptics requires the [Vibration API](https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API) (Android / Chrome). iOS Safari does not support this API.
 
 ## How It Works
 

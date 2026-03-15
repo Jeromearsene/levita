@@ -53,6 +53,9 @@ importers:
 
   demo:
     dependencies:
+      '@levita-js/haptics':
+        specifier: workspace:^
+        version: link:../packages/haptics
       levita-js:
         specifier: workspace:*
         version: link:../packages/core
@@ -246,6 +249,15 @@ importers:
 
   packages/core:
     devDependencies:
+      tsdown:
+        specifier: ^0.20.3
+        version: 0.20.3(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))
+
+  packages/haptics:
+    devDependencies:
+      levita-js:
+        specifier: workspace:*
+        version: link:../core
       tsdown:
         specifier: ^0.20.3
         version: 0.20.3(typescript@5.9.3)(vue-tsc@2.2.12(typescript@5.9.3))

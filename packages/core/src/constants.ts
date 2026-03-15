@@ -16,6 +16,7 @@ export const OPTION_KEYS: readonly (keyof LevitaOptions)[] = [
 	"gyroscope",
 	"disabled",
 	"eventsEl",
+	"plugins",
 ] as const;
 
 /**
@@ -48,4 +49,5 @@ export const DEFAULT_OPTIONS: LevitaOptions = {
 	gyroscope: "auto",
 	disabled: false,
 	eventsEl: null,
+	plugins: [],
 };
