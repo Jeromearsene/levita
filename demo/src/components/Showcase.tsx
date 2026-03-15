@@ -2,6 +2,8 @@ import artworkImg from "@assets/showcase-artwork.webp";
 import posterImg from "@assets/showcase-poster.webp";
 import productImg from "@assets/showcase-product.webp";
 import profileImg from "@assets/showcase-profile.webp";
+import { snippets as showcaseSnippets } from "../snippets/showcase";
+import { CodeTabs } from "./CodeTabs";
 import { Tilt } from "./Tilt";
 
 /**
@@ -88,6 +90,8 @@ export function Showcase() {
 					</div>
 				</Tilt>
 			</div>
+
+			<CodeTabs snippets={showcaseSnippets} collapsed />
 		</section>
 	);
 }
