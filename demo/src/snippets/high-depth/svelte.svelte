@@ -1,0 +1,12 @@
+<script>
+  import { tilt } from "levita-svelte";
+</script>
+
+<div use:tilt={{ glare: true, shadow: true, max: 10, perspective: 1500 }}>
+  <div data-levita-offset="-40"><!-- Background --></div>
+  <div data-levita-offset="-20"><!-- Stars --></div>
+  <div data-levita-offset="30">PARALLAX</div>
+  <div data-levita-offset="80">LEVITATE</div>
+  <div data-levita-offset="120"><!-- Shape --></div>
+  <div data-levita-offset="150"><!-- Dot --></div>
+</div>
