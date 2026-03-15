@@ -2,6 +2,7 @@ import posterImg from "@assets/showcase-poster.webp";
 import type { LevitaOptions } from "levita-js";
 import { useMemo, useState } from "preact/hooks";
 import type { Framework } from "../constants";
+import { buildAllSnippets } from "../utils/snippet-builder";
 import { CodeTabs } from "./CodeTabs";
 import { Tilt } from "./Tilt";
 
@@ -43,79 +44,42 @@ export function Playground() {
 
 	/** Generates all code snippets for every framework based on current options. */
 	const snippets = useMemo(() => {
-		const buildSnippet = (framework: Framework): string => {
-			const props: string[] = [];
-			if (opts.max !== defaults.max) props.push(`max={${opts.max}}`);
-			if (opts.perspective !== defaults.perspective)
-				props.push(`perspective={${opts.perspective}}`);
-			if (opts.scale !== defaults.scale) props.push(`scale={${opts.scale}}`);
-			if (opts.speed !== defaults.speed) props.push(`speed={${opts.speed}}`);
-			if (opts.reverse) props.push("reverse");
-			if (opts.glare) props.push("glare");
-			if (opts.glare && opts.maxGlare !== defaults.maxGlare)
-				props.push(`maxGlare={${opts.maxGlare}}`);
-			if (opts.shadow) props.push("shadow");
-			if (opts.disabled) props.push("disabled");
+		const props: string[] = [];
+		if (opts.max !== defaults.max) props.push(`max={${opts.max}}`);
+		if (opts.perspective !== defaults.perspective) props.push(`perspective={${opts.perspective}}`);
+		if (opts.scale !== defaults.scale) props.push(`scale={${opts.scale}}`);
+		if (opts.speed !== defaults.speed) props.push(`speed={${opts.speed}}`);
+		if (opts.reverse) props.push("reverse");
+		if (opts.glare) props.push("glare");
+		if (opts.glare && opts.maxGlare !== defaults.maxGlare)
+			props.push(`maxGlare={${opts.maxGlare}}`);
+		if (opts.shadow) props.push("shadow");
+		if (opts.disabled) props.push("disabled");
 
-			const propsString = props.length > 0 ? ` ${props.join(" ")}` : "";
+		const entries: string[] = [];
+		if (opts.max !== defaults.max) entries.push(`  max: ${opts.max}`);
+		if (opts.perspective !== defaults.perspective)
+			entries.push(`  perspective: ${opts.perspective}`);
+		if (opts.scale !== defaults.scale) entries.push(`  scale: ${opts.scale}`);
+		if (opts.speed !== defaults.speed) entries.push(`  speed: ${opts.speed}`);
+		if (opts.reverse) entries.push(`  reverse: ${opts.reverse}`);
+		if (opts.glare) entries.push(`  glare: ${opts.glare}`);
+		if (opts.glare && opts.maxGlare !== defaults.maxGlare)
+			entries.push(`  maxGlare: ${opts.maxGlare}`);
+		if (opts.shadow) entries.push(`  shadow: ${opts.shadow}`);
+		if (opts.disabled) entries.push(`  disabled: ${opts.disabled}`);
 
-			switch (framework) {
-				case "react":
-					return `<Tilt${propsString}>\n  <div className="card">React</div>\n</Tilt>`;
-				case "vue": {
-					const vueProps = props.map((p) => (p.includes("={") ? `:${p.replace(/={|}/g, "")}` : p));
-					return `<Tilt${vueProps.length > 0 ? ` ${vueProps.join(" ")}` : ""}>\n  <div class="card">Vue</div>\n</Tilt>`;
-				}
-				case "svelte": {
-					const svelteOpts = props
-						.map((p) => (p.includes("={") ? p.replace(/={|}/g, ": ") : `${p}: true`))
-						.join(", ");
-					return `<div use:tilt${svelteOpts.length > 0 ? `={{ ${svelteOpts} }}` : ""} class="card">\n  Svelte\n</div>`;
-				}
-				case "angular": {
-					const angOpts = props
-						.map((p) => {
-							if (p.includes("={"))
-								return p
-									.replace(/={|}/g, ": ")
-									.replace(
-										/max:|perspective:|scale:|speed:|maxGlare:/,
-										(m) => `${m.slice(0, -1)}:`,
-									);
-							return `${p}: true`;
-						})
-						.join(", ");
-					const angPropsString = angOpts.length > 0 ? `[levita]="{ ${angOpts} }"` : "levita";
-					return `<div ${angPropsString} class="card">\n  Angular\n</div>`;
-				}
-				default: {
-					const entries: string[] = [];
-					if (opts.max !== defaults.max) entries.push(`  max: ${opts.max}`);
-					if (opts.perspective !== defaults.perspective)
-						entries.push(`  perspective: ${opts.perspective}`);
-					if (opts.scale !== defaults.scale) entries.push(`  scale: ${opts.scale}`);
-					if (opts.speed !== defaults.speed) entries.push(`  speed: ${opts.speed}`);
-					if (opts.reverse) entries.push(`  reverse: ${opts.reverse}`);
-					if (opts.glare) entries.push(`  glare: ${opts.glare}`);
-					if (opts.glare && opts.maxGlare !== defaults.maxGlare)
-						entries.push(`  maxGlare: ${opts.maxGlare}`);
-					if (opts.shadow) entries.push(`  shadow: ${opts.shadow}`);
-					if (opts.disabled) entries.push(`  disabled: ${opts.disabled}`);
-
-					return entries.length === 0
-						? "new Levita(el);"
-						: `new Levita(el, {\n${entries.join(",\n")},\n});`;
-				}
-			}
-		};
-
-		return {
-			vanilla: buildSnippet("vanilla"),
-			react: buildSnippet("react"),
-			vue: buildSnippet("vue"),
-			svelte: buildSnippet("svelte"),
-			angular: buildSnippet("angular"),
-		};
+		return buildAllSnippets({
+			props,
+			entries,
+			children: {
+				react: '<div className="card">React</div>',
+				vue: '<div class="card">Vue</div>',
+				svelte: "Svelte",
+				angular: "Angular",
+			},
+			wrapperClass: "card",
+		});
 	}, [opts, defaults]);
 
 	const openStackBlitz = () => {

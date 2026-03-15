@@ -19,10 +19,12 @@ export function Tilt({
 }: TiltProps) {
 	const elRef = useRef<HTMLDivElement>(null);
 	const instanceRef = useRef<Levita | null>(null);
+	const initialOptionsRef = useRef(options);
 
+	// Create instance once — preserves gyroscope permission on iOS
 	useEffect(() => {
 		if (elRef.current) {
-			instanceRef.current = new Levita(elRef.current, options);
+			instanceRef.current = new Levita(elRef.current, initialOptionsRef.current);
 			if (onMove) {
 				instanceRef.current.on("move", onMove);
 			}
@@ -31,7 +33,12 @@ export function Tilt({
 		return () => {
 			instanceRef.current?.destroy();
 		};
-	}, [options, onMove]);
+	}, [onMove]);
+
+	// Propagate option changes without destroying the instance
+	useEffect(() => {
+		instanceRef.current?.update(options);
+	}, [options]);
 
 	return (
 		<div ref={elRef} id={id} className={`levita ${className}`}>
