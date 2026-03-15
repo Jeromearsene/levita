@@ -8,6 +8,7 @@ import { Hero } from "./components/Hero";
 import { HighDepth } from "./components/HighDepth";
 import { Playground } from "./components/Playground";
 import { Showcase } from "./components/Showcase";
+import { ThemeToggle } from "./components/ThemeToggle";
 
 /**
  * Main Application component for the Levita Demo.
@@ -30,6 +31,7 @@ export function App() {
 
 	return (
 		<>
+			<ThemeToggle />
 			<Hero />
 			<Showcase />
 			<CssFrameworks />

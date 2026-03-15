@@ -58,18 +58,20 @@ export function Accelerometer() {
 	return (
 		<section class="max-w-5xl mx-auto px-16 sm:px-8 py-16">
 			<h2 class="text-3xl font-bold text-center mb-2">Accelerometer</h2>
-			<p class="text-center text-gray-400 mb-10">Fine-tune gyroscope behavior on mobile devices</p>
+			<p class="text-center text-text-secondary mb-10">
+				Fine-tune gyroscope behavior on mobile devices
+			</p>
 
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 				<div class="flex flex-col items-center gap-4">
 					<Tilt
 						options={tiltOptions}
 						onMove={handleGyroMove}
-						class="relative w-[min(300px,60vw)] aspect-[3/4] rounded-2xl bg-linear-to-br from-surface to-[#0f172a] border border-border cursor-pointer"
+						class="relative w-[min(300px,60vw)] aspect-[3/4] rounded-2xl bg-linear-to-br from-surface to-bg border border-border cursor-pointer"
 					>
 						<div
 							data-levita-offset="15"
-							class="absolute inset-0 flex flex-col items-center justify-center gap-4 text-gray-400"
+							class="absolute inset-0 flex flex-col items-center justify-center gap-4 text-text-secondary"
 						>
 							<svg
 								class="opacity-50 animate-tilt"
@@ -87,14 +89,14 @@ export function Accelerometer() {
 							<p class="text-sm">Tilt your device</p>
 						</div>
 					</Tilt>
-					<p class="text-gray-500 text-xs">{gyroInfo}</p>
+					<p class="text-text-muted text-xs">{gyroInfo}</p>
 				</div>
 
 				<div class="flex flex-col gap-6">
 					<div class="flex flex-col gap-3">
-						<label class="flex flex-col gap-1 text-sm text-gray-400">
+						<label class="flex flex-col gap-1 text-sm text-text-secondary">
 							<span class="flex justify-between">
-								max <output class="text-accent font-semibold tabular-nums">{opts.max}</output>
+								max <output class="text-accent-text font-semibold tabular-nums">{opts.max}</output>
 							</span>
 							<input
 								type="range"
@@ -107,10 +109,12 @@ export function Accelerometer() {
 							/>
 						</label>
 
-						<label class="flex flex-col gap-1 text-sm text-gray-400">
+						<label class="flex flex-col gap-1 text-sm text-text-secondary">
 							<span class="flex justify-between">
 								gyroRange{" "}
-								<output class="text-accent font-semibold tabular-nums">{opts.gyroRange}</output>
+								<output class="text-accent-text font-semibold tabular-nums">
+									{opts.gyroRange}
+								</output>
 							</span>
 							<input
 								type="range"
@@ -123,10 +127,10 @@ export function Accelerometer() {
 							/>
 						</label>
 
-						<label class="flex flex-col gap-1 text-sm text-gray-400">
+						<label class="flex flex-col gap-1 text-sm text-text-secondary">
 							<span class="flex justify-between">
 								gyroSmoothing{" "}
-								<output class="text-accent font-semibold tabular-nums">
+								<output class="text-accent-text font-semibold tabular-nums">
 									{opts.gyroSmoothing.toFixed(2)}
 								</output>
 							</span>
@@ -145,7 +149,7 @@ export function Accelerometer() {
 
 						<button
 							type="button"
-							class="w-full px-4 py-2 text-sm rounded-lg bg-surface text-gray-400 border border-border hover:border-white/20 transition"
+							class="w-full px-4 py-2 text-sm rounded-lg bg-surface text-text-secondary border border-border hover:border-overlay transition"
 							onClick={resetOpts}
 						>
 							Reset

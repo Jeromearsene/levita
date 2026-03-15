@@ -7,8 +7,14 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<script>
+			const t = localStorage.getItem("theme");
+			if (t === "dark" || (!t && matchMedia("(prefers-color-scheme: dark)").matches)) {
+				document.documentElement.classList.add("dark");
+			}
+		</script>
 	</head>
-	<body class="bg-bg text-white font-[Inter,system-ui,sans-serif] antialiased">
+	<body class="bg-bg text-text font-[Inter,system-ui,sans-serif] antialiased">
 		<div id="app"></div>
 		<script type="module" src="./src/main.tsx"></script>
 	</body>
