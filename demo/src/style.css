@@ -6,6 +6,7 @@
 	--color-border: rgba(0, 0, 0, 0.08);
 	--color-accent: #a3e635;
 	--color-accent-end: #4ade80;
+	--color-accent-text: #4d7c0f;
 	--color-text: #1f2937;
 	--color-text-secondary: #6b7280;
 	--color-text-muted: #9ca3af;
@@ -16,6 +17,7 @@
 	--color-bg: #111827;
 	--color-surface: #1f2937;
 	--color-border: rgba(255, 255, 255, 0.08);
+	--color-accent-text: #a3e635;
 	--color-text: #ffffff;
 	--color-text-secondary: #9ca3af;
 	--color-text-muted: #6b7280;

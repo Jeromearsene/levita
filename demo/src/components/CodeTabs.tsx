@@ -71,7 +71,7 @@ export function CodeTabs({
 							<button
 								key={framework}
 								type="button"
-								class={`px-4 py-1.5 text-xs font-semibold rounded-md transition ${currentFramework === framework ? "bg-accent text-bg" : "text-text-secondary hover:text-text"}`}
+								class={`px-4 py-1.5 text-xs font-semibold rounded-md transition ${currentFramework === framework ? "bg-accent text-gray-900" : "text-text-secondary hover:text-text"}`}
 								onClick={() => handleFrameworkChange(framework)}
 							>
 								{framework.charAt(0).toUpperCase() + framework.slice(1)}
@@ -80,14 +80,14 @@ export function CodeTabs({
 					</div>
 
 					<div class="relative group">
-						<pre class="bg-surface border border-border rounded-xl px-5 py-4 font-mono text-sm text-accent leading-relaxed overflow-x-auto min-h-[160px]">
+						<pre class="bg-[#1f2937] border border-[rgba(255,255,255,0.08)] rounded-xl px-5 py-4 font-mono text-sm text-[#a3e635] leading-relaxed overflow-x-auto min-h-[160px]">
 							<code>{snippet}</code>
 						</pre>
 						<div class="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
 							<button
 								type="button"
 								onClick={copyCode}
-								class="p-2 rounded-lg bg-surface border border-overlay text-text-secondary hover:text-text hover:bg-overlay hover:border-accent transition shadow-xl"
+								class="p-2 rounded-lg bg-[#1f2937] border border-[rgba(255,255,255,0.1)] text-[#9ca3af] hover:text-white hover:bg-[rgba(255,255,255,0.1)] hover:border-accent transition shadow-xl"
 								title="Copy code"
 							>
 								{copyStatus ? (

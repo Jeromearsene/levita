@@ -119,7 +119,7 @@ export function Playground() {
 							data-levita-offset="45"
 							class="absolute inset-0 flex items-center justify-center z-10"
 						>
-							<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg text-text">
+							<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg text-white">
 								{currentFramework.charAt(0).toUpperCase() + currentFramework.slice(1)}
 							</p>
 						</div>
@@ -135,7 +135,8 @@ export function Playground() {
 								return (
 									<label key={key} class="flex flex-col gap-1 text-sm text-text-secondary">
 										<span class="flex justify-between">
-											{key} <output class="text-accent font-semibold tabular-nums">{value}</output>
+											{key}{" "}
+											<output class="text-accent-text font-semibold tabular-nums">{value}</output>
 										</span>
 										<input
 											type="range"
@@ -188,7 +189,7 @@ export function Playground() {
 						<button
 							type="button"
 							onClick={openStackBlitz}
-							class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-overlay text-xs font-semibold text-text-secondary hover:text-text hover:bg-overlay hover:border-accent transition shadow-xl"
+							class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#1f2937] border border-[rgba(255,255,255,0.1)] text-xs font-semibold text-[#9ca3af] hover:text-white hover:bg-[rgba(255,255,255,0.1)] hover:border-accent transition shadow-xl"
 						>
 							<svg
 								width="14"

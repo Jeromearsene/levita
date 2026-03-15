@@ -255,7 +255,7 @@ export function CssFrameworks() {
 						<button
 							key={f.id}
 							type="button"
-							class={`px-4 py-2 text-sm font-semibold rounded-lg transition ${activeTab === f.id ? "bg-accent text-bg" : "text-text-secondary hover:text-text"}`}
+							class={`px-4 py-2 text-sm font-semibold rounded-lg transition ${activeTab === f.id ? "bg-accent text-gray-900" : "text-text-secondary hover:text-text"}`}
 							onClick={() => setActiveTab(f.id)}
 						>
 							{f.name}
@@ -271,10 +271,10 @@ export function CssFrameworks() {
 					</div>
 
 					<div class="relative group">
-						<div class="absolute -top-3 left-4 px-2 py-0.5 bg-accent text-bg text-[10px] font-bold uppercase tracking-widest rounded">
+						<div class="absolute -top-3 left-4 px-2 py-0.5 bg-accent text-gray-900 text-[10px] font-bold uppercase tracking-widest rounded">
 							{currentFramework.name} Code
 						</div>
-						<pre class="bg-surface border border-border rounded-xl px-5 py-6 font-mono text-sm text-accent leading-relaxed overflow-x-auto min-h-[200px]">
+						<pre class="bg-[#1f2937] border border-[rgba(255,255,255,0.08)] rounded-xl px-5 py-6 font-mono text-sm text-[#a3e635] leading-relaxed overflow-x-auto min-h-[200px]">
 							<code>{currentFramework.code}</code>
 						</pre>
 					</div>

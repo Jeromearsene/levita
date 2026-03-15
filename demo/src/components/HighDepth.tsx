@@ -14,7 +14,7 @@ export function HighDepth() {
 			<div class="flex flex-col items-center">
 				<Tilt
 					options={{ glare: true, shadow: true, gyroscope: false, max: 10, perspective: 1500 }}
-					class="relative w-[min(600px,70vw)] aspect-[16/9] rounded-3xl bg-linear-to-br from-surface to-[#0f172a] border border-border overflow-hidden cursor-pointer"
+					class="relative w-[min(600px,70vw)] aspect-[16/9] rounded-3xl bg-linear-to-br from-[#1f2937] to-[#0f172a] border border-[rgba(255,255,255,0.08)] overflow-hidden cursor-pointer"
 				>
 					<div data-levita-offset="-40" class="absolute inset-0 opacity-30">
 						<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#3b82f6_0%,transparent_70%)]"></div>

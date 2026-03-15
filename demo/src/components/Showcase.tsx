@@ -29,8 +29,8 @@ export function Showcase() {
 						class="absolute inset-0 size-full object-cover rounded-[inherit]"
 					/>
 					<div data-levita-offset="45" class="absolute bottom-6 left-6 right-6 z-10">
-						<p class="text-2xl font-bold drop-shadow-lg">Jane Doe</p>
-						<p class="text-sm text-text-secondary mt-1 drop-shadow-lg">Designer</p>
+						<p class="text-2xl font-bold text-white drop-shadow-lg">Jane Doe</p>
+						<p class="text-sm text-gray-300 mt-1 drop-shadow-lg">Designer</p>
 					</div>
 				</Tilt>
 
@@ -48,10 +48,10 @@ export function Showcase() {
 						data-levita-offset="50"
 						class="absolute top-5 right-5 flex flex-col items-end gap-2 z-10"
 					>
-						<span class="px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-br from-accent to-accent-end text-bg drop-shadow-lg">
+						<span class="px-3 py-1 rounded-full text-xs font-semibold bg-linear-to-br from-accent to-accent-end text-gray-900 drop-shadow-lg">
 							New
 						</span>
-						<p class="text-3xl font-bold drop-shadow-lg">€129</p>
+						<p class="text-3xl font-bold text-white drop-shadow-lg">€129</p>
 					</div>
 				</Tilt>
 
@@ -69,8 +69,10 @@ export function Showcase() {
 						data-levita-offset="45"
 						class="absolute inset-0 flex flex-col items-center justify-center z-10"
 					>
-						<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg">Nightfall</p>
-						<p class="text-sm text-text-secondary mt-1 drop-shadow-lg">A visual journey</p>
+						<p class="text-3xl font-bold text-white uppercase tracking-wider drop-shadow-lg">
+							Nightfall
+						</p>
+						<p class="text-sm text-gray-300 mt-1 drop-shadow-lg">A visual journey</p>
 					</div>
 				</Tilt>
 
@@ -88,7 +90,9 @@ export function Showcase() {
 						data-levita-offset="50"
 						class="absolute inset-0 flex items-center justify-center z-10"
 					>
-						<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg">Abstract</p>
+						<p class="text-3xl font-bold text-white uppercase tracking-wider drop-shadow-lg">
+							Abstract
+						</p>
 					</div>
 				</Tilt>
 			</div>

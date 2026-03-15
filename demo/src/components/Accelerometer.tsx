@@ -96,7 +96,7 @@ export function Accelerometer() {
 					<div class="flex flex-col gap-3">
 						<label class="flex flex-col gap-1 text-sm text-text-secondary">
 							<span class="flex justify-between">
-								max <output class="text-accent font-semibold tabular-nums">{opts.max}</output>
+								max <output class="text-accent-text font-semibold tabular-nums">{opts.max}</output>
 							</span>
 							<input
 								type="range"
@@ -112,7 +112,9 @@ export function Accelerometer() {
 						<label class="flex flex-col gap-1 text-sm text-text-secondary">
 							<span class="flex justify-between">
 								gyroRange{" "}
-								<output class="text-accent font-semibold tabular-nums">{opts.gyroRange}</output>
+								<output class="text-accent-text font-semibold tabular-nums">
+									{opts.gyroRange}
+								</output>
 							</span>
 							<input
 								type="range"
@@ -128,7 +130,7 @@ export function Accelerometer() {
 						<label class="flex flex-col gap-1 text-sm text-text-secondary">
 							<span class="flex justify-between">
 								gyroSmoothing{" "}
-								<output class="text-accent font-semibold tabular-nums">
+								<output class="text-accent-text font-semibold tabular-nums">
 									{opts.gyroSmoothing.toFixed(2)}
 								</output>
 							</span>
