@@ -22,7 +22,7 @@ describe("MotionSensor", () => {
 
 	it("does not start without permission", () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, null);
+		const sensor = new MotionSensor({ onMove, axis: null });
 		sensor.start();
 
 		fireOrientation(0, 0);
@@ -31,14 +31,20 @@ describe("MotionSensor", () => {
 
 	it("requestPermission grants on Android (no requestPermission method)", async () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, null);
+		const sensor = new MotionSensor({ onMove, axis: null });
 		const granted = await sensor.requestPermission();
 		expect(granted).toBe(true);
 	});
 
 	it("skips first event for sensor warmup", async () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
 		await sensor.requestPermission();
 		sensor.start();
 
@@ -53,7 +59,13 @@ describe("MotionSensor", () => {
 
 	it("normalizes device orientation to [-1, 1]", async () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
 		await sensor.requestPermission();
 		sensor.start();
 
@@ -69,7 +81,13 @@ describe("MotionSensor", () => {
 
 	it("clamps values outside angle range", async () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
 		await sensor.requestPermission();
 		sensor.start();
 
@@ -87,7 +105,13 @@ describe("MotionSensor", () => {
 
 	it("respects axis lock", async () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, "x", -45, 45, 1);
+		const sensor = new MotionSensor({
+			onMove,
+			axis: "x",
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
 		await sensor.requestPermission();
 		sensor.start();
 
@@ -104,7 +128,13 @@ describe("MotionSensor", () => {
 
 	it("calibrates from initial device position", async () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
 		await sensor.requestPermission();
 		sensor.start();
 
@@ -127,7 +157,13 @@ describe("MotionSensor", () => {
 
 	it("recalibrates on restart", async () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
 		await sensor.requestPermission();
 		sensor.start();
 
@@ -147,7 +183,13 @@ describe("MotionSensor", () => {
 
 	it("does not fire events after stop()", async () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
 		await sensor.requestPermission();
 		sensor.start();
 		sensor.stop();
@@ -158,7 +200,13 @@ describe("MotionSensor", () => {
 
 	it("ignores events with null beta and gamma", async () => {
 		const onMove = vi.fn();
-		const sensor = new MotionSensor(onMove, null, -45, 45, 1);
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
 		await sensor.requestPermission();
 		sensor.start();
 
@@ -169,10 +217,89 @@ describe("MotionSensor", () => {
 		sensor.stop();
 	});
 
+	it("setRange updates min/max angle", async () => {
+		const onMove = vi.fn();
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
+		await sensor.requestPermission();
+		sensor.start();
+
+		warmupAndFire(0, 0);
+		fireOrientation(15, 15);
+
+		// With ±45 range: 15/45 ≈ 0.333
+		const before = onMove.mock.calls[1]?.[0];
+		expect(before.x).toBeCloseTo(15 / 45, 2);
+
+		sensor.stop();
+		onMove.mockClear();
+
+		// Change to ±15 range
+		sensor.setRange(-15, 15);
+		sensor.start();
+
+		warmupAndFire(0, 0);
+		fireOrientation(15, 15);
+
+		// With ±15 range: 15/15 = 1 (clamped)
+		const after = onMove.mock.calls[1]?.[0];
+		expect(after.x).toBeCloseTo(1, 2);
+
+		sensor.stop();
+	});
+
+	it("setSmoothing updates smoothing factor", async () => {
+		const onMove = vi.fn();
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+		});
+		await sensor.requestPermission();
+		sensor.start();
+
+		warmupAndFire(0, 0);
+		fireOrientation(30, 30);
+
+		// With smoothing=1 (no smoothing): raw value
+		const raw = onMove.mock.calls[1]?.[0];
+		expect(raw.x).toBeCloseTo(30 / 45, 2);
+
+		sensor.stop();
+		onMove.mockClear();
+
+		// Change to heavy smoothing
+		sensor.setSmoothing(0.01);
+		sensor.start();
+
+		warmupAndFire(0, 0);
+		fireOrientation(30, 30);
+
+		// With smoothing=0.01: output is heavily smoothed toward 0, so much less than raw
+		const smoothed = onMove.mock.calls[1]?.[0];
+		expect(smoothed.x).toBeLessThan(raw.x);
+
+		sensor.stop();
+	});
+
 	it("calls onFirstEvent on first valid orientation after warmup", async () => {
 		const onMove = vi.fn();
 		const onFirstEvent = vi.fn();
-		const sensor = new MotionSensor(onMove, null, -45, 45, 1, onFirstEvent);
+		const sensor = new MotionSensor({
+			onMove,
+			axis: null,
+			minAngle: -45,
+			maxAngle: 45,
+			smoothing: 1,
+			onFirstEvent,
+		});
 		await sensor.requestPermission();
 		sensor.start();
 

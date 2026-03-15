@@ -74,14 +74,14 @@ export class Levita {
 		);
 
 		if (this.options.gyroscope !== false && MotionSensor.isSupported()) {
-			this.motionSensor = new MotionSensor(
-				(values) => this.handleSensorInput(values),
-				this.options.axis,
-				undefined,
-				undefined,
-				undefined,
-				() => this.handleMotionReady(),
-			);
+			this.motionSensor = new MotionSensor({
+				onMove: (values) => this.handleSensorInput(values),
+				axis: this.options.axis,
+				minAngle: -(this.options.gyroRange / 2),
+				maxAngle: this.options.gyroRange / 2,
+				smoothing: this.options.gyroSmoothing,
+				onFirstEvent: () => this.handleMotionReady(),
+			});
 
 			if (this.options.gyroscope === "auto") {
 				// iOS requires "click" for DeviceOrientationEvent.requestPermission(),
@@ -136,6 +136,12 @@ export class Levita {
 		if (options.axis !== undefined) {
 			this.pointerSensor.setAxis(options.axis);
 			this.motionSensor?.setAxis(options.axis);
+		}
+		if (options.gyroRange !== undefined) {
+			this.motionSensor?.setRange(-(options.gyroRange / 2), options.gyroRange / 2);
+		}
+		if (options.gyroSmoothing !== undefined) {
+			this.motionSensor?.setSmoothing(options.gyroSmoothing);
 		}
 	};
 

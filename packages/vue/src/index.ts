@@ -53,6 +53,8 @@ export const Tilt = defineComponent({
 			type: [String, Boolean] as PropType<GyroscopeMode>,
 			default: undefined,
 		},
+		gyroRange: { type: Number, default: undefined },
+		gyroSmoothing: { type: Number, default: undefined },
 		disabled: { type: Boolean, default: undefined },
 		eventsEl: { type: Object as PropType<HTMLElement | null>, default: undefined },
 	},

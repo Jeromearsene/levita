@@ -14,6 +14,8 @@ export const OPTION_KEYS: readonly (keyof LevitaOptions)[] = [
 	"maxGlare",
 	"shadow",
 	"gyroscope",
+	"gyroRange",
+	"gyroSmoothing",
 	"disabled",
 	"eventsEl",
 ] as const;
@@ -46,6 +48,8 @@ export const DEFAULT_OPTIONS: LevitaOptions = {
 	maxGlare: 0.5,
 	shadow: false,
 	gyroscope: "auto",
+	gyroRange: 60,
+	gyroSmoothing: 0.15,
 	disabled: false,
 	eventsEl: null,
 };

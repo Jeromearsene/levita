@@ -7,7 +7,16 @@ export type GyroscopeMode = "auto" | boolean;
  */
 export type UpdatableOptions = Pick<
 	LevitaOptions,
-	"max" | "scale" | "speed" | "easing" | "perspective" | "reverse" | "axis" | "reset"
+	| "max"
+	| "scale"
+	| "speed"
+	| "easing"
+	| "perspective"
+	| "reverse"
+	| "axis"
+	| "reset"
+	| "gyroRange"
+	| "gyroSmoothing"
 >;
 
 export interface LevitaOptions {
@@ -35,6 +44,10 @@ export interface LevitaOptions {
 	shadow: boolean;
 	/** Gyroscope mode. Default: 'auto' */
 	gyroscope: GyroscopeMode;
+	/** Physical tilt range in degrees for gyroscope input. Default: 60 */
+	gyroRange: number;
+	/** Gyroscope smoothing factor (0-1, lower = smoother). Default: 0.15 */
+	gyroSmoothing: number;
 	/** Disable the effect. Default: false */
 	disabled: boolean;
 	/** Element to listen for pointer events on. Default: the element itself */

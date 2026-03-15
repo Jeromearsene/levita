@@ -6,6 +6,21 @@ interface DeviceOrientationEvt extends Event {
 	gamma: number | null;
 }
 
+export interface MotionSensorOptions {
+	/** Callback receiving normalized { x, y } values */
+	onMove: SensorCallback;
+	/** Restrict input to a single axis, or null for both */
+	axis: Axis;
+	/** Minimum device angle mapped to -1 (default: -30) */
+	minAngle?: number;
+	/** Maximum device angle mapped to 1 (default: 30) */
+	maxAngle?: number;
+	/** Exponential moving average factor 0-1 (default: 0.15, lower = smoother) */
+	smoothing?: number;
+	/** Called once when the first valid deviceorientation event is received */
+	onFirstEvent?: (() => void) | null;
+}
+
 /**
  * Reads device orientation (accelerometer/gyroscope) and normalizes
  * the tilt angles to a [-1, 1] range.
@@ -31,22 +46,14 @@ export class MotionSensor {
 	private baseBeta: number | null = null;
 	private baseGamma: number | null = null;
 
-	/**
-	 * @param onMove - Callback receiving normalized { x, y } values
-	 * @param axis - Restrict input to a single axis, or null for both
-	 * @param minAngle - Minimum device angle mapped to -1 (default: -45)
-	 * @param maxAngle - Maximum device angle mapped to 1 (default: 45)
-	 * @param smoothing - Exponential moving average factor 0-1 (default: 0.15, lower = smoother)
-	 * @param onFirstEvent - Called once when the first valid deviceorientation event is received
-	 */
-	constructor(
-		onMove: SensorCallback,
-		axis: Axis,
-		minAngle = -45,
-		maxAngle = 45,
+	constructor({
+		onMove,
+		axis,
+		minAngle = -30,
+		maxAngle = 30,
 		smoothing = 0.15,
-		onFirstEvent: (() => void) | null = null,
-	) {
+		onFirstEvent = null,
+	}: MotionSensorOptions) {
 		this.onMove = onMove;
 		this.axis = axis;
 		this.minAngle = minAngle;
@@ -120,6 +127,17 @@ export class MotionSensor {
 	/** Update the axis lock at runtime. */
 	setAxis = (axis: Axis): void => {
 		this.axis = axis;
+	};
+
+	/** Update the angle range at runtime. */
+	setRange = (minAngle: number, maxAngle: number): void => {
+		this.minAngle = minAngle;
+		this.maxAngle = maxAngle;
+	};
+
+	/** Update the smoothing factor at runtime. */
+	setSmoothing = (smoothing: number): void => {
+		this.smoothing = smoothing;
 	};
 
 	/**
