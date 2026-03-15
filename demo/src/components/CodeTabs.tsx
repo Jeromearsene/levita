@@ -45,7 +45,7 @@ export function CodeTabs({
 			{collapsed && (
 				<button
 					type="button"
-					class="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition w-fit"
+					class="flex items-center gap-2 text-sm text-text-secondary hover:text-text transition w-fit"
 					onClick={toggle}
 				>
 					<svg
@@ -71,7 +71,7 @@ export function CodeTabs({
 							<button
 								key={framework}
 								type="button"
-								class={`px-4 py-1.5 text-xs font-semibold rounded-md transition ${currentFramework === framework ? "bg-accent text-bg" : "text-gray-400 hover:text-white"}`}
+								class={`px-4 py-1.5 text-xs font-semibold rounded-md transition ${currentFramework === framework ? "bg-accent text-bg" : "text-text-secondary hover:text-text"}`}
 								onClick={() => handleFrameworkChange(framework)}
 							>
 								{framework.charAt(0).toUpperCase() + framework.slice(1)}
@@ -87,7 +87,7 @@ export function CodeTabs({
 							<button
 								type="button"
 								onClick={copyCode}
-								class="p-2 rounded-lg bg-surface border border-white/20 text-gray-300 hover:text-white hover:bg-slate-700 hover:border-accent transition shadow-xl"
+								class="p-2 rounded-lg bg-surface border border-overlay text-text-secondary hover:text-text hover:bg-overlay hover:border-accent transition shadow-xl"
 								title="Copy code"
 							>
 								{copyStatus ? (

@@ -101,7 +101,7 @@ export function Playground() {
 	return (
 		<section id="playground" class="max-w-5xl mx-auto px-16 sm:px-8 py-16">
 			<h2 class="text-3xl font-bold text-center mb-2">Playground</h2>
-			<p class="text-center text-gray-400 mb-10">Tweak every parameter in real-time</p>
+			<p class="text-center text-text-secondary mb-10">Tweak every parameter in real-time</p>
 
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 				<div class="flex items-center justify-center">
@@ -119,7 +119,7 @@ export function Playground() {
 							data-levita-offset="45"
 							class="absolute inset-0 flex items-center justify-center z-10"
 						>
-							<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg text-white">
+							<p class="text-3xl font-bold uppercase tracking-wider drop-shadow-lg text-text">
 								{currentFramework.charAt(0).toUpperCase() + currentFramework.slice(1)}
 							</p>
 						</div>
@@ -133,7 +133,7 @@ export function Playground() {
 						).map(([key, value]) => {
 							if (typeof value === "number") {
 								return (
-									<label key={key} class="flex flex-col gap-1 text-sm text-gray-400">
+									<label key={key} class="flex flex-col gap-1 text-sm text-text-secondary">
 										<span class="flex justify-between">
 											{key} <output class="text-accent font-semibold tabular-nums">{value}</output>
 										</span>
@@ -159,7 +159,10 @@ export function Playground() {
 							}
 							if (typeof value === "boolean") {
 								return (
-									<label key={key} class="flex items-center justify-between text-sm text-gray-400">
+									<label
+										key={key}
+										class="flex items-center justify-between text-sm text-text-secondary"
+									>
 										<span>{key}</span>
 										<input
 											type="checkbox"
@@ -174,7 +177,7 @@ export function Playground() {
 						})}
 						<button
 							type="button"
-							class="w-full px-4 py-2 text-sm rounded-lg bg-surface text-gray-400 border border-border hover:border-white/20 transition"
+							class="w-full px-4 py-2 text-sm rounded-lg bg-surface text-text-secondary border border-border hover:border-overlay transition"
 							onClick={resetPlayground}
 						>
 							Reset
@@ -185,7 +188,7 @@ export function Playground() {
 						<button
 							type="button"
 							onClick={openStackBlitz}
-							class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-white/20 text-xs font-semibold text-gray-300 hover:text-white hover:bg-slate-700 hover:border-accent transition shadow-xl"
+							class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface border border-overlay text-xs font-semibold text-text-secondary hover:text-text hover:bg-overlay hover:border-accent transition shadow-xl"
 						>
 							<svg
 								width="14"

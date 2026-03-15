@@ -1,11 +1,25 @@
 @import "tailwindcss";
 
 @theme {
+	--color-bg: #f8fafc;
+	--color-surface: #ffffff;
+	--color-border: rgba(0, 0, 0, 0.08);
+	--color-accent: #a3e635;
+	--color-accent-end: #4ade80;
+	--color-text: #1f2937;
+	--color-text-secondary: #6b7280;
+	--color-text-muted: #9ca3af;
+	--color-overlay: rgba(0, 0, 0, 0.05);
+}
+
+.dark {
 	--color-bg: #111827;
 	--color-surface: #1f2937;
 	--color-border: rgba(255, 255, 255, 0.08);
-	--color-accent: #a3e635;
-	--color-accent-end: #4ade80;
+	--color-text: #ffffff;
+	--color-text-secondary: #9ca3af;
+	--color-text-muted: #6b7280;
+	--color-overlay: rgba(255, 255, 255, 0.1);
 }
 
 /* Custom toggle switch */
@@ -28,7 +42,7 @@
 	left: 2px;
 	width: 16px;
 	height: 16px;
-	background: #9ca3af;
+	background: var(--color-text-muted);
 	border-radius: 50%;
 	transition:
 		transform 0.2s,
@@ -42,7 +56,7 @@
 
 .toggle-switch:checked::after {
 	transform: translateX(18px);
-	background: #111827;
+	background: var(--color-bg);
 }
 
 /* Phone tilt animation */

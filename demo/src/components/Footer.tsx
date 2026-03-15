@@ -29,7 +29,7 @@ export function Footer() {
 						href="https://github.com/Jeromearsene/levita"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-gray-400 hover:text-white hover:border-white/20 transition group"
+						class="flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-text-secondary hover:text-text hover:border-overlay transition group"
 					>
 						<svg
 							width="16"
@@ -38,7 +38,7 @@ export function Footer() {
 							fill="none"
 							stroke="currentColor"
 							stroke-width="2"
-							class="group-hover:scale-110 transition-transform text-white/50 group-hover:text-white"
+							class="group-hover:scale-110 transition-transform text-text-muted group-hover:text-text"
 						>
 							<title>GitHub</title>
 							<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
@@ -49,7 +49,7 @@ export function Footer() {
 						href="https://www.npmjs.com/package/levita"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-gray-400 text-sm hover:text-white transition"
+						class="text-text-secondary text-sm hover:text-text transition"
 					>
 						npm
 					</a>
@@ -57,7 +57,7 @@ export function Footer() {
 						href="https://github.com/users/Jeromearsene/projects/7"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-gray-400 text-sm hover:text-white transition"
+						class="text-text-secondary text-sm hover:text-text transition"
 					>
 						Roadmap
 					</a>
@@ -65,7 +65,7 @@ export function Footer() {
 						href="https://github.com/Jeromearsene/levita#api"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-gray-400 text-sm hover:text-white transition"
+						class="text-text-secondary text-sm hover:text-text transition"
 					>
 						Documentation
 					</a>

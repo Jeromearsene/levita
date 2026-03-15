@@ -244,7 +244,7 @@ export function CssFrameworks() {
 		<section id="styling" class="max-w-5xl mx-auto px-16 sm:px-8 py-16">
 			<div class="text-center mb-12">
 				<h2 class="text-3xl font-bold mb-2">Styling Agnostic</h2>
-				<p class="text-gray-400">
+				<p class="text-text-secondary">
 					Levita only cares about data attributes. Use it with any CSS solution.
 				</p>
 			</div>
@@ -255,7 +255,7 @@ export function CssFrameworks() {
 						<button
 							key={f.id}
 							type="button"
-							class={`px-4 py-2 text-sm font-semibold rounded-lg transition ${activeTab === f.id ? "bg-accent text-bg" : "text-gray-400 hover:text-white"}`}
+							class={`px-4 py-2 text-sm font-semibold rounded-lg transition ${activeTab === f.id ? "bg-accent text-bg" : "text-text-secondary hover:text-text"}`}
 							onClick={() => setActiveTab(f.id)}
 						>
 							{f.name}
