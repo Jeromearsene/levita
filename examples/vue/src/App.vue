@@ -6,7 +6,7 @@ import "levita-js/style.css";
 
 <template>
   <div class="container">
-    <Tilt glare :max-glare="0.5" shadow>
+    <Tilt glare :max-glare="0.5" shadow style="border-radius: 20px">
       <div class="card">Vue</div>
     </Tilt>
   </div>

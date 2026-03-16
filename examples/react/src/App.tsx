@@ -26,7 +26,7 @@ function App() {
 
 	return (
 		<div style={containerStyle}>
-			<Tilt glare maxGlare={0.5} shadow>
+			<Tilt glare maxGlare={0.5} shadow style={{ borderRadius: "20px" }}>
 				<div style={cardStyle}>React</div>
 			</Tilt>
 		</div>
