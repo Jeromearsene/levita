@@ -1,5 +1,16 @@
 # @levita-js/vue
 
+## 0.3.0
+
+### Minor Changes
+
+- [`9b8cdc4`](https://github.com/Jeromearsene/levita/commit/9b8cdc4fff988db50ddc5f0d5e5060bf656efb63) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Add gyroRange and gyroSmoothing options for fine-tuning gyroscope behavior
+
+### Patch Changes
+
+- Updated dependencies [[`9b8cdc4`](https://github.com/Jeromearsene/levita/commit/9b8cdc4fff988db50ddc5f0d5e5060bf656efb63)]:
+  - levita-js@0.3.0
+
 ## 0.2.1
 
 ### Patch Changes
