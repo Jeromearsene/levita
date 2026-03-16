@@ -14,6 +14,9 @@ test-results/
 bench-raw.txt
 bench-results.json
 
+# Angular CLI cache
+.angular/
+
 # OS files
 .DS_Store
 

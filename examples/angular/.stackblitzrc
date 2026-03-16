@@ -1,4 +1,4 @@
 {
-	"installDefault": true,
-	"startCommand": "npm run dev"
+	"installDependencies": true,
+	"startCommand": "npm start"
 }
