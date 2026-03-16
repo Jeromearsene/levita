@@ -37,7 +37,7 @@
 		"levita-js": "workspace:*"
 	},
 	"devDependencies": {
-		"@angular/core": "^21.2.0",
+		"@angular/core": "^21.2.4",
 		"@angular/platform-browser-dynamic": "^21.2.0",
 		"reflect-metadata": "^0.2.2",
 		"rxjs": "^7.8.1",
