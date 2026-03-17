@@ -1,5 +1,14 @@
 # @levita-js/svelte
 
+## 0.3.1
+
+### Patch Changes
+
+- [`e3204c9`](https://github.com/Jeromearsene/levita/commit/e3204c9b9a6c838b1588b6fd26d136ad9a38096c) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Framework packages now re-export style.css from the core package. Users can import styles directly from their framework package (e.g. `import '@levita-js/react/style.css'`) instead of importing from `levita-js`.
+
+- Updated dependencies []:
+  - levita-js@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
