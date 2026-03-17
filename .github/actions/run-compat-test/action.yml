@@ -22,8 +22,9 @@ runs:
         COMPAT_DIR="/tmp/compat-${{ inputs.package }}-${{ inputs.version }}"
         mkdir -p $COMPAT_DIR/package
         
-        # Copy package source
+        # Copy package source and built assets
         cp -r packages/${{ inputs.package }}/src $COMPAT_DIR/package/
+        cp -r packages/${{ inputs.package }}/dist $COMPAT_DIR/package/
         
         # Copy core build to temp dir to avoid monorepo links
         cp -r packages/core $COMPAT_DIR/core

@@ -16,7 +16,8 @@
 				"types": "./dist/index.d.cts",
 				"default": "./dist/index.cjs"
 			}
-		}
+		},
+		"./style.css": "./dist/style.css"
 	},
 	"files": [
 		"dist"
@@ -25,9 +26,11 @@
 		"access": "public",
 		"provenance": true
 	},
-	"sideEffects": false,
+	"sideEffects": [
+		"*.css"
+	],
 	"scripts": {
-		"build": "tsdown",
+		"build": "tsdown && cp ../core/src/style.css dist/style.css",
 		"type-check": "vue-tsc --noEmit"
 	},
 	"peerDependencies": {

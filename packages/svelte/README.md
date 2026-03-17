@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-npm install levita-js @levita-js/svelte
+npm install @levita-js/svelte
 ```
 
 ## Quick Start
@@ -13,7 +13,7 @@ npm install levita-js @levita-js/svelte
 ```svelte
 <script>
   import { tilt } from "@levita-js/svelte";
-  import "levita-js/style.css";
+  import "@levita-js/svelte/style.css";
 </script>
 
 <div use:tilt={{ glare: true, shadow: true, max: 20 }}>

@@ -36,7 +36,7 @@ export interface TiltRef {
  * @example
  * ```tsx
  * import { Tilt } from '@levita-js/react';
- * import 'levita-js/style.css';
+ * import '@levita-js/react/style.css';
  *
  * <Tilt glare shadow max={20}>
  *   <h1>Hello</h1>

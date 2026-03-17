@@ -5,14 +5,14 @@
 ## Installation
 
 ```bash
-npm install levita-js @levita-js/react
+npm install @levita-js/react
 ```
 
 ## Quick Start
 
 ```tsx
 import { Tilt } from "@levita-js/react";
-import "levita-js/style.css";
+import "@levita-js/react/style.css";
 
 function MyCard() {
   return (

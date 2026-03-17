@@ -110,7 +110,7 @@ new Levita(document.getElementById("card"), {
 
 ```tsx
 import { Tilt } from "@levita-js/react";
-import "levita-js/style.css";
+import "@levita-js/react/style.css";
 
 function Card() {
   return (
@@ -130,7 +130,7 @@ function Card() {
 ```vue
 <script setup>
 import { Tilt } from "@levita-js/vue";
-import "levita-js/style.css";
+import "@levita-js/vue/style.css";
 </script>
 
 <template>
@@ -149,7 +149,7 @@ import "levita-js/style.css";
 ```svelte
 <script>
   import { tilt } from "@levita-js/svelte";
-  import "levita-js/style.css";
+  import "@levita-js/svelte/style.css";
 </script>
 
 <div use:tilt={{ glare: true, shadow: true }}>
@@ -165,7 +165,7 @@ import "levita-js/style.css";
 
 ```typescript
 import { LevitaDirective } from "@levita-js/angular";
-import "levita-js/style.css";
+import "@levita-js/angular/style.css";
 
 @Component({
   selector: "app-card",

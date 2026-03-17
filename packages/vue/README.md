@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-npm install levita-js @levita-js/vue
+npm install @levita-js/vue
 ```
 
 ## Quick Start
@@ -13,7 +13,7 @@ npm install levita-js @levita-js/vue
 ```vue
 <script setup>
 import { Tilt } from "@levita-js/vue";
-import "levita-js/style.css";
+import "@levita-js/vue/style.css";
 </script>
 
 <template>

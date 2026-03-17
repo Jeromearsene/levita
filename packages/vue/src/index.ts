@@ -24,7 +24,7 @@ import {
  * ```vue
  * <script setup>
  * import { Tilt } from '@levita-js/vue';
- * import 'levita-js/style.css';
+ * import '@levita-js/vue/style.css';
  * </script>
  *
  * <template>

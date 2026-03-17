@@ -8,7 +8,7 @@ import { buildOptions, Levita } from "levita-js";
  * ```svelte
  * <script>
  *   import { tilt } from '@levita-js/svelte';
- *   import 'levita-js/style.css';
+ *   import '@levita-js/svelte/style.css';
  * </script>
  *
  * <div use:tilt={{ glare: true, shadow: true }}>
