@@ -1,0 +1,7 @@
+[build]
+  command = "pnpm run build && pnpm --filter levita-demo build"
+  publish = "demo/dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  VITE_BASE = "/"
