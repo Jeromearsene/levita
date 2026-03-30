@@ -38,6 +38,7 @@ export class Levita {
 	private glareEffect: GlareEffect | null = null;
 	private shadowEffect: ShadowEffect | null = null;
 	private layers: Layer[] = [];
+	private hasLayers = false;
 	private listeners = new Map<string, Set<EventCallback<unknown>>>();
 	private destroyed = false;
 	private gyroscopeRequested = false;
@@ -56,6 +57,13 @@ export class Levita {
 		this.applyBaseProperties();
 
 		this.layers = scanLayers(this.el);
+
+		// Only enable preserve-3d when layers exist — it causes sub-pixel
+		// blur on text due to GPU compositing in 3D space.
+		this.hasLayers = this.layers.length > 0;
+		if (this.hasLayers) {
+			this.el.style.transformStyle = "preserve-3d";
+		}
 
 		if (this.options.glare) {
 			this.glareEffect = new GlareEffect(this.el, this.options.maxGlare);
@@ -117,6 +125,7 @@ export class Levita {
 	 */
 	private handleMotionReady = (): void => {
 		this.pointerSensor.stop();
+		this.el.style.willChange = "transform";
 		this.setTransition(false);
 	};
 
@@ -191,6 +200,9 @@ export class Levita {
 		cleanupLayers(this.layers);
 
 		this.el.classList.remove("levita");
+		if (this.hasLayers) {
+			this.el.style.transformStyle = "";
+		}
 		this.removeBaseProperties();
 		this.listeners.clear();
 
@@ -251,8 +263,10 @@ export class Levita {
 		if (this.options.disabled) return;
 
 		const multiplier = this.options.reverse ? -1 : 1;
-		const x = input.y * this.options.max * multiplier;
-		const y = input.x * this.options.max * multiplier * -1;
+		const rawX = input.y * this.options.max * multiplier * 100;
+		const rawY = input.x * this.options.max * multiplier * -100;
+		const x = ((rawX + (rawX > 0 ? 0.5 : -0.5)) | 0) / 100;
+		const y = ((rawY + (rawY > 0 ? 0.5 : -0.5)) | 0) / 100;
 
 		// Cancel any pending update from the same frame to avoid style thrashing
 		if (this.rafId) cancelAnimationFrame(this.rafId);
@@ -279,6 +293,7 @@ export class Levita {
 	};
 
 	private handleEnter = (): void => {
+		this.el.style.willChange = "transform";
 		this.setTransition(false);
 		this.el.style.setProperty("--levita-scale", String(this.options.scale));
 		this.emit("enter", undefined);
@@ -293,6 +308,7 @@ export class Levita {
 		if (this.options.reset) {
 			this.resetTransform();
 		}
+		this.el.style.willChange = "";
 		this.emit("leave", undefined);
 	};
 

@@ -7,10 +7,8 @@
 	--levita-easing: ease-out;
 
 	transform: perspective(var(--levita-perspective)) rotateX(var(--levita-x))
-		rotateY(var(--levita-y)) scale3d(var(--levita-scale), var(--levita-scale), var(--levita-scale));
-	transform-style: preserve-3d;
+		rotateY(var(--levita-y)) scale3d(var(--levita-scale), var(--levita-scale), 1);
 	transition: transform var(--levita-speed) var(--levita-easing);
-	will-change: transform;
 	touch-action: pinch-zoom;
 }
 
