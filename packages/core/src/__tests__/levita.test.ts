@@ -130,21 +130,6 @@ describe("Levita", () => {
 		instance.destroy();
 	});
 
-	it("enables preserve-3d only when layers exist", () => {
-		const el = createEl();
-		const instance = new Levita(el, { gyroscope: false });
-		expect(el.style.transformStyle).toBe("");
-		instance.destroy();
-
-		const elWithLayers = createEl();
-		const child = document.createElement("div");
-		child.dataset.levitaOffset = "5";
-		elWithLayers.appendChild(child);
-		const instanceWithLayers = new Levita(elWithLayers, { gyroscope: false });
-		expect(elWithLayers.style.transformStyle).toBe("preserve-3d");
-		instanceWithLayers.destroy();
-	});
-
 	it("emits enter and leave events", () => {
 		const el = createEl();
 		const onEnter = vi.fn();
