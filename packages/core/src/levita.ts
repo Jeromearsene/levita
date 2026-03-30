@@ -263,6 +263,8 @@ export class Levita {
 		if (this.options.disabled) return;
 
 		const multiplier = this.options.reverse ? -1 : 1;
+		// Round to 2 decimals to reduce sub-pixel blur during 3D transforms.
+		// Bitwise OR truncates to int — adding ±0.5 first gives correct rounding.
 		const rawX = input.y * this.options.max * multiplier * 100;
 		const rawY = input.x * this.options.max * multiplier * -100;
 		const x = ((rawX + (rawX > 0 ? 0.5 : -0.5)) | 0) / 100;
