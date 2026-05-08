@@ -19,13 +19,14 @@ export function Showcase() {
 
 			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 				<Tilt
-					options={{ shadow: true, gyroscope: false }}
-					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer"
+					options={{ activeOffset: 12, shadow: true, gyroscope: false }}
+					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer overflow-hidden"
 				>
 					<img
 						src={profileImg}
 						alt="Profile"
 						data-levita-offset="0"
+						data-levita-active
 						class="absolute inset-0 size-full object-cover rounded-[inherit]"
 					/>
 					<div data-levita-offset="45" class="absolute bottom-6 left-6 right-6 z-10">
@@ -35,13 +36,14 @@ export function Showcase() {
 				</Tilt>
 
 				<Tilt
-					options={{ shadow: true, gyroscope: false }}
-					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer"
+					options={{ activeOffset: 12, shadow: true, gyroscope: false }}
+					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer overflow-hidden"
 				>
 					<img
 						src={productImg}
 						alt="Product"
 						data-levita-offset="0"
+						data-levita-active
 						class="absolute inset-0 size-full object-cover rounded-[inherit]"
 					/>
 					<div
@@ -56,13 +58,14 @@ export function Showcase() {
 				</Tilt>
 
 				<Tilt
-					options={{ shadow: true, gyroscope: false }}
-					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer"
+					options={{ activeOffset: 12, shadow: true, gyroscope: false }}
+					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer overflow-hidden"
 				>
 					<img
 						src={posterImg}
 						alt="Poster"
 						data-levita-offset="0"
+						data-levita-active
 						class="absolute inset-0 size-full object-cover rounded-[inherit]"
 					/>
 					<div
@@ -77,13 +80,14 @@ export function Showcase() {
 				</Tilt>
 
 				<Tilt
-					options={{ shadow: true, gyroscope: false }}
-					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer"
+					options={{ activeOffset: 12, shadow: true, gyroscope: false }}
+					class="relative aspect-[3/4] rounded-2xl bg-surface border border-border cursor-pointer overflow-hidden"
 				>
 					<img
 						src={artworkImg}
 						alt="Artwork"
 						data-levita-offset="0"
+						data-levita-active
 						class="absolute inset-0 size-full object-cover rounded-[inherit]"
 					/>
 					<div
