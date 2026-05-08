@@ -43,6 +43,7 @@ export class Levita {
 	private gyroscopeRequested = false;
 	private gyroscopeEvent: string | null = null;
 	private rafId: number | null = null;
+	private resizeObserver: ResizeObserver | null = null;
 
 	/**
 	 * @param el - The DOM element to apply the tilt effect to
@@ -91,6 +92,11 @@ export class Levita {
 			}
 		}
 
+		if (typeof ResizeObserver !== "undefined") {
+			this.resizeObserver = new ResizeObserver(() => this.calculateActiveScale());
+			this.resizeObserver.observe(this.el);
+		}
+
 		if (!this.options.disabled) {
 			this.enable();
 		}
@@ -133,6 +139,9 @@ export class Levita {
 		Object.assign(this.options, options);
 		this.applyBaseProperties();
 
+		if (options.activeOffset !== undefined) {
+			this.calculateActiveScale();
+		}
 		if (options.axis !== undefined) {
 			this.pointerSensor.setAxis(options.axis);
 			this.motionSensor?.setAxis(options.axis);
@@ -184,6 +193,7 @@ export class Levita {
 		this.destroyed = true;
 
 		if (this.rafId) cancelAnimationFrame(this.rafId);
+		this.resizeObserver?.disconnect();
 		this.pointerSensor.stop();
 		this.motionSensor?.stop();
 		this.glareEffect?.destroy();
@@ -312,11 +322,31 @@ export class Levita {
 		this.shadowEffect?.update(0, 0);
 	};
 
+	/** Recalculate and apply the minimum scale required for the active offset effect. */
+	private calculateActiveScale = (): void => {
+		if (this.options.activeOffset > 0) {
+			const { width, height } = this.el.getBoundingClientRect();
+			if (width > 0 && height > 0) {
+				const scaleX = (width + this.options.activeOffset * 2) / width;
+				const scaleY = (height + this.options.activeOffset * 2) / height;
+				this.el.style.setProperty("--levita-active-scale", String(Math.max(scaleX, scaleY)));
+			} else {
+				// Fallback to a sensible default if dimensions are missing
+				this.el.style.setProperty("--levita-active-scale", "1.1");
+			}
+		} else {
+			this.el.style.removeProperty("--levita-active-scale");
+		}
+	};
+
 	/** Apply initial CSS custom properties from options. */
 	private applyBaseProperties = (): void => {
 		this.el.style.setProperty("--levita-perspective", `${this.options.perspective}px`);
 		this.el.style.setProperty("--levita-speed", `${this.options.speed}ms`);
 		this.el.style.setProperty("--levita-easing", this.options.easing);
+		this.el.style.setProperty("--levita-active-offset", `${this.options.activeOffset}px`);
+
+		this.calculateActiveScale();
 	};
 
 	/** Remove all Levita CSS custom properties from the element. */
@@ -324,6 +354,7 @@ export class Levita {
 		this.el.style.removeProperty("--levita-perspective");
 		this.el.style.removeProperty("--levita-speed");
 		this.el.style.removeProperty("--levita-easing");
+		this.el.style.removeProperty("--levita-active-offset");
 		this.el.style.removeProperty("--levita-x");
 		this.el.style.removeProperty("--levita-y");
 		this.el.style.removeProperty("--levita-scale");

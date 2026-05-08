@@ -17,6 +17,7 @@ export type UpdatableOptions = Pick<
 	| "reset"
 	| "gyroRange"
 	| "gyroSmoothing"
+	| "activeOffset"
 >;
 
 export interface LevitaOptions {
@@ -48,6 +49,8 @@ export interface LevitaOptions {
 	gyroRange: number;
 	/** Gyroscope smoothing factor (0-1, lower = smoother). Default: 0.15 */
 	gyroSmoothing: number;
+	/** Active parallax offset for backgrounds in px. Default: 0 */
+	activeOffset: number;
 	/** Disable the effect. Default: false */
 	disabled: boolean;
 	/** Element to listen for pointer events on. Default: the element itself */
