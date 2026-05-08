@@ -43,4 +43,19 @@ describe("LevitaDirective (Angular)", () => {
 		fixture.destroy();
 		expect(el.classList.contains("levita")).toBe(false);
 	});
+
+	it("applies activeOffset property", () => {
+		@Component({
+			standalone: true,
+			imports: [LevitaDirective],
+			template: `<div [levita]="{ activeOffset: 30, gyroscope: false }">Hello</div>`,
+		})
+		class TestOffsetComponent {}
+
+		const fixture = TestBed.createComponent(TestOffsetComponent);
+		fixture.detectChanges();
+
+		const el = fixture.nativeElement.querySelector("div");
+		expect(el.style.getPropertyValue("--levita-active-offset")).toBe("30px");
+	});
 });
