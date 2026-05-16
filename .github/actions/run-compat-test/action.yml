@@ -62,6 +62,10 @@ runs:
         }" > $COMPAT_DIR/package/tsconfig.json
 
         cd $COMPAT_DIR/package
+        # Install pnpm v9 explicitly for stability in compatibility tests
+        # pnpm v10+ has strict security policies that break isolated tests
+        npm install -g pnpm@9
+        
         # Add framework-specific testing tools
         if [ "${{ inputs.package }}" = "react" ]; then
           RTL_VERSION="16.3.2"
