@@ -34,24 +34,29 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages
-        run: pnpm build
-
-      - name: Create Release PR or Publish
+      - name: Create Release PR
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release
           version: pnpm version-packages
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ""
+
+      - name: Publish to NPM
+        id: publish
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        run: |
+          pnpm build
+          npx changeset publish
+          echo "published=true" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
 
       - name: Sync examples to published versions
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.publish.outputs.published == 'true'
         run: |
           node scripts/sync-examples.js
           pnpm install --no-frozen-lockfile
