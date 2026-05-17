@@ -1,5 +1,16 @@
 # @levita-js/react
 
+## 0.4.0
+
+### Minor Changes
+
+- [#38](https://github.com/Jeromearsene/levita/pull/38) [`73bcb00`](https://github.com/Jeromearsene/levita/commit/73bcb00e554ce701952082e3e923e8ebc296c1ce) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Add "Active Offset" (Discovery Effect) feature. This effect creates a "window" illusion where the background image moves in the opposite direction of the tilt, revealing hidden edges.
+
+### Patch Changes
+
+- Updated dependencies [[`73bcb00`](https://github.com/Jeromearsene/levita/commit/73bcb00e554ce701952082e3e923e8ebc296c1ce)]:
+  - levita-js@0.4.0
+
 ## 0.3.1
 
 ### Patch Changes
