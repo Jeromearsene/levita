@@ -16,6 +16,7 @@ export const OPTION_KEYS: readonly (keyof LevitaOptions)[] = [
 	"gyroscope",
 	"gyroRange",
 	"gyroSmoothing",
+	"activeOffset",
 	"disabled",
 	"eventsEl",
 ] as const;
@@ -50,6 +51,7 @@ export const DEFAULT_OPTIONS: LevitaOptions = {
 	gyroscope: "auto",
 	gyroRange: 60,
 	gyroSmoothing: 0.15,
+	activeOffset: 0,
 	disabled: false,
 	eventsEl: null,
 };

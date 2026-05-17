@@ -55,6 +55,7 @@ export const Tilt = defineComponent({
 		},
 		gyroRange: { type: Number, default: undefined },
 		gyroSmoothing: { type: Number, default: undefined },
+		activeOffset: { type: Number, default: undefined },
 		disabled: { type: Boolean, default: undefined },
 		eventsEl: { type: Object as PropType<HTMLElement | null>, default: undefined },
 	},

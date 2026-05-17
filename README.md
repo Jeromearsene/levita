@@ -35,6 +35,7 @@
   - [Svelte](#svelte)
   - [Angular](#angular)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:component.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:component.svg?color=%23000000" width="16" height="16" valign="middle" alt="Parallax Layers"></picture> [Parallax Layers](#parallax-layers)
+- <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:maximize.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:maximize.svg?color=%23000000" width="16" height="16" valign="middle" alt="Active Offset"></picture> [Active Offset (Discovery Effect)](#active-offset-discovery-effect)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:layout-grid.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:layout-grid.svg?color=%23000000" width="16" height="16" valign="middle" alt="Grouped Instances"></picture> [Grouped Instances](#grouped-instances)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:smartphone.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:smartphone.svg?color=%23000000" width="16" height="16" valign="middle" alt="Accelerometer"></picture> [Accelerometer](#accelerometer)
 - <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:settings-2.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:settings-2.svg?color=%23000000" width="16" height="16" valign="middle" alt="Options"></picture> [Options](#options)
@@ -51,20 +52,20 @@
 
 Levita is designed to be framework-agnostic. Choose your flavor:
 
-| Framework | Min Version | Size (gzip) | Playground |
-| :--- | :--- | :--- | :--- |
-| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:file-code.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:file-code.svg?color=%23000000" width="18" height="18" valign="middle" alt="Vanilla JS"></picture> **[Vanilla JS](#vanilla)** | **-** | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json) | [![Try Vanilla JS on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla) |
-| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:atom.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:atom.svg?color=%23000000" width="18" height="18" valign="middle" alt="React"></picture> **[React](#react)** | ![react min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-react.json) | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json) | [![Try React on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react) |
-| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:layers.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:layers.svg?color=%23000000" width="18" height="18" valign="middle" alt="Vue"></picture> **[Vue](#vue)** | ![vue min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-vue.json) | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json) | [![Try Vue on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue) |
-| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:zap.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:zap.svg?color=%23000000" width="18" height="18" valign="middle" alt="Svelte"></picture> **[Svelte](#svelte)** | ![svelte min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-svelte.json) | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json) | [![Try Svelte on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte) |
-| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:box.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:box.svg?color=%23000000" width="18" height="18" valign="middle" alt="Angular"></picture> **[Angular](#angular)** | ![angular min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-angular.json) | ![angular size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-angular.json) | [![Try Angular on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/angular) |
+| Framework                                                                                                                                                                                                                                                                                               | Min Version                                                                                                                  | Size (gzip)                                                                                                        | Playground                                                                                                                                                                                             |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:file-code.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:file-code.svg?color=%23000000" width="18" height="18" valign="middle" alt="Vanilla JS"></picture> **[Vanilla JS](#vanilla)** | **-**                                                                                                                        | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json)  | [![Try Vanilla JS on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla) |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:atom.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:atom.svg?color=%23000000" width="18" height="18" valign="middle" alt="React"></picture> **[React](#react)**                       | ![react min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-react.json)     | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json)     | [![Try React on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react)        |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:layers.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:layers.svg?color=%23000000" width="18" height="18" valign="middle" alt="Vue"></picture> **[Vue](#vue)**                         | ![vue min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-vue.json)         | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json)         | [![Try Vue on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue)            |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:zap.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:zap.svg?color=%23000000" width="18" height="18" valign="middle" alt="Svelte"></picture> **[Svelte](#svelte)**                      | ![svelte min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-svelte.json)   | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json)   | [![Try Svelte on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte)      |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:box.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:box.svg?color=%23000000" width="18" height="18" valign="middle" alt="Angular"></picture> **[Angular](#angular)**                   | ![angular min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-angular.json) | ![angular size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-angular.json) | [![Try Angular on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/angular)    |
 
 ## Effects
 
-| Tilt | Glare |
-| :---: | :---: |
-| ![Tilt](docs/animations/tilt.gif) | ![Glare](docs/animations/glare.gif) |
-| **Shadow** | **Combined** |
+|                 Tilt                  |                   Glare                   |
+| :-----------------------------------: | :---------------------------------------: |
+|   ![Tilt](docs/animations/tilt.gif)   |    ![Glare](docs/animations/glare.gif)    |
+|              **Shadow**               |               **Combined**                |
 | ![Shadow](docs/animations/shadow.gif) | ![Combined](docs/animations/combined.gif) |
 
 ## Install
@@ -198,6 +199,32 @@ Add `data-levita-offset` to children for multi-depth parallax. Positive values c
 new Levita(document.getElementById("scene"));
 ```
 
+## Active Offset (Discovery Effect)
+
+The "Active Offset" effect creates a "window" illusion where the background image moves in the opposite direction of the tilt, revealing hidden edges.
+
+1. Enable it via the `activeOffset` option (in pixels).
+2. Add `data-levita-active` to the background element.
+3. **Automatic Scaling**: Levita automatically calculates and applies the minimum required `scale()` to the element so that hidden edges are revealed during tilt without showing gaps.
+
+```html
+<div id="card" style="overflow: hidden; border-radius: 12px;">
+  <!-- Levita handles the zoom and movement automatically -->
+  <img
+    data-levita-active
+    src="bg.jpg"
+    style="width: 100%; height: 100%; object-fit: cover;"
+  />
+  <h2 data-levita-offset="20">Floating Text</h2>
+</div>
+```
+
+```typescript
+new Levita(document.getElementById("card"), {
+  activeOffset: 20, // Move bg up to 20px to reveal edges
+});
+```
+
 ## Grouped Instances
 
 You can make multiple Levita instances react to the same pointer movement by using the `eventsEl` option. This is useful for grids where all cards should tilt together:
@@ -238,8 +265,8 @@ new Levita(el, { gyroscope: false });
 ```typescript
 new Levita(el, {
   gyroscope: "auto",
-  gyroRange: 40,       // More reactive (less tilt needed)
-  gyroSmoothing: 0.1,  // Smoother movement
+  gyroRange: 40, // More reactive (less tilt needed)
+  gyroSmoothing: 0.1, // Smoother movement
 });
 ```
 
@@ -264,6 +291,7 @@ new Levita(el, {
 | `gyroscope` | `'auto' \| boolean` | `'auto'` | Accelerometer mode |
 | `gyroRange` | `number` | `60` | Physical tilt range in degrees |
 | `gyroSmoothing` | `number` | `0.15` | Sensor smoothing factor (0-1) |
+| `activeOffset` | `number` | `0` | Active parallax offset for backgrounds in px |
 | `disabled` | `boolean` | `false` | Disable the effect |
 | `eventsEl` | `HTMLElement \| null` | `null` | Element to listen for events on |
 
@@ -325,32 +353,32 @@ The result:
 
 ## Comparison
 
-| Feature | Levita | Atropos | vanilla-tilt |
-| --- | --- | --- | --- |
-| Bundle size (gzip) | ~2KB | ~2KB | ~3-4KB |
-| Animation strategy | CSS custom properties | CSS transitions | rAF loop |
-| Tree-shakeable | ✅ | ❌ | ❌ |
-| Multi-layer parallax | ✅ (data attrs) | ✅ (data attrs) | ❌ |
-| Accelerometer | Auto + manual (calibrated) | ❌ | Partial (no calibration) |
-| Grouped instances | ✅ (`eventsEl`) | ✅ (`stretchX/Y/Z`) | ✅ (`mouse-event-element`) |
-| Runtime option update | ✅ (`update()`) | ❌ | ❌ |
-| React | Official wrapper | Official wrapper | Community |
-| Vue | Official wrapper | Web Component | Community |
-| Svelte | Official wrapper | ❌ | ❌ |
-| Angular | Official wrapper | Web Component | Community |
-| TypeScript | Native (source in TS) | Declaration file | DefinitelyTyped |
-| Last published | 2026 | 2023 | 2021 |
+| Feature               | Levita                     | Atropos             | vanilla-tilt               |
+| --------------------- | -------------------------- | ------------------- | -------------------------- |
+| Bundle size (gzip)    | ~2KB                       | ~2KB                | ~3-4KB                     |
+| Animation strategy    | CSS custom properties      | CSS transitions     | rAF loop                   |
+| Tree-shakeable        | ✅                         | ❌                  | ❌                         |
+| Multi-layer parallax  | ✅ (data attrs)            | ✅ (data attrs)     | ❌                         |
+| Accelerometer         | Auto + manual (calibrated) | ❌                  | Partial (no calibration)   |
+| Grouped instances     | ✅ (`eventsEl`)            | ✅ (`stretchX/Y/Z`) | ✅ (`mouse-event-element`) |
+| Runtime option update | ✅ (`update()`)            | ❌                  | ❌                         |
+| React                 | Official wrapper           | Official wrapper    | Community                  |
+| Vue                   | Official wrapper           | Web Component       | Community                  |
+| Svelte                | Official wrapper           | ❌                  | ❌                         |
+| Angular               | Official wrapper           | Web Component       | Community                  |
+| TypeScript            | Native (source in TS)      | Declaration file    | DefinitelyTyped            |
+| Last published        | 2026                       | 2023                | 2021                       |
 
 ## Benchmarks
 
 Measured with [Vitest bench](https://vitest.dev/guide/features.html#benchmarking) (happy-dom):
 
-| Scenario | ops/s |
-| --- | --- |
-| Basic init + destroy | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-basic-init.json) |
-| Init with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-init-with-glare-shadow.json) |
-| Init with 5 parallax layers | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-init-with-5-layers.json) |
-| Pointer move update | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-pointer-move-update.json) |
+| Scenario                         | ops/s                                                                                                                                      |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Basic init + destroy             | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-basic-init.json)                     |
+| Init with glare + shadow         | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-init-with-glare-shadow.json)         |
+| Init with 5 parallax layers      | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-init-with-5-layers.json)             |
+| Pointer move update              | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-pointer-move-update.json)            |
 | Pointer move with glare + shadow | ![bench](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-bench-levita-pointer-move-with-glare-shadow.json) |
 
 Run locally: `pnpm bench`

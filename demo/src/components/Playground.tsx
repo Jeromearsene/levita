@@ -23,6 +23,7 @@ export function Playground() {
 		glare: false,
 		maxGlare: 0.5,
 		shadow: false,
+		activeOffset: 0,
 		disabled: false,
 	});
 
@@ -37,6 +38,7 @@ export function Playground() {
 			glare: false,
 			maxGlare: 0.5,
 			shadow: false,
+			activeOffset: 0,
 			disabled: false,
 		}),
 		[],
@@ -54,6 +56,8 @@ export function Playground() {
 		if (opts.glare && opts.maxGlare !== defaults.maxGlare)
 			props.push(`maxGlare={${opts.maxGlare}}`);
 		if (opts.shadow) props.push("shadow");
+		if (opts.activeOffset !== defaults.activeOffset)
+			props.push(`activeOffset={${opts.activeOffset}}`);
 		if (opts.disabled) props.push("disabled");
 
 		const entries: string[] = [];
@@ -67,6 +71,8 @@ export function Playground() {
 		if (opts.glare && opts.maxGlare !== defaults.maxGlare)
 			entries.push(`  maxGlare: ${opts.maxGlare}`);
 		if (opts.shadow) entries.push(`  shadow: ${opts.shadow}`);
+		if (opts.activeOffset !== defaults.activeOffset)
+			entries.push(`  activeOffset: ${opts.activeOffset}`);
 		if (opts.disabled) entries.push(`  disabled: ${opts.disabled}`);
 
 		return buildAllSnippets({
@@ -107,14 +113,15 @@ export function Playground() {
 				<div class="flex items-center justify-center">
 					<Tilt
 						options={opts}
-						class="relative aspect-[3/4] w-full rounded-2xl bg-surface border border-border cursor-pointer"
+						class="relative aspect-[3/4] w-full rounded-2xl bg-surface border border-border cursor-pointer overflow-hidden"
 					>
-						<img
-							src={posterImg}
-							alt="Preview"
-							data-levita-offset="0"
-							class="absolute inset-0 size-full object-cover rounded-[inherit]"
-						/>
+						<div class="absolute inset-0 size-full" data-levita-active>
+							<img
+								src={posterImg}
+								alt="Preview"
+								class="absolute inset-0 size-full object-cover rounded-[inherit]"
+							/>
+						</div>
 						<div
 							data-levita-offset="45"
 							class="absolute inset-0 flex items-center justify-center z-10"
@@ -150,7 +157,9 @@ export function Playground() {
 														? 2000
 														: key === "speed"
 															? 1000
-															: 45
+															: key === "activeOffset"
+																? 100
+																: 45
 											}
 											step={key === "scale" ? 0.01 : key === "maxGlare" ? 0.05 : 1}
 											class="w-full accent-accent"

@@ -41,4 +41,13 @@ describe("tilt (Svelte action)", () => {
 
 		action.destroy();
 	});
+
+	it("applies activeOffset property", () => {
+		const el = document.createElement("div");
+		const action = tilt(el, { activeOffset: 20, gyroscope: false });
+
+		expect(el.style.getPropertyValue("--levita-active-offset")).toBe("20px");
+
+		action.destroy();
+	});
 });

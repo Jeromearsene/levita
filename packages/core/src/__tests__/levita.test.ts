@@ -240,4 +240,27 @@ describe("Levita", () => {
 
 		instance.destroy();
 	});
+
+	it("applies activeOffset property", () => {
+		const el = createEl();
+		const instance = new Levita(el, { activeOffset: 20 });
+
+		expect(el.style.getPropertyValue("--levita-active-offset")).toBe("20px");
+		// (200 + 20*2) / 200 = 1.2
+		expect(el.style.getPropertyValue("--levita-active-scale")).toBe("1.2");
+
+		instance.destroy();
+	});
+
+	it("recalculates scale when activeOffset is updated", () => {
+		const el = createEl();
+		const instance = new Levita(el);
+
+		instance.update({ activeOffset: 30 });
+		expect(el.style.getPropertyValue("--levita-active-offset")).toBe("30px");
+		// (200 + 30*2) / 200 = 1.3
+		expect(el.style.getPropertyValue("--levita-active-scale")).toBe("1.3");
+
+		instance.destroy();
+	});
 });
