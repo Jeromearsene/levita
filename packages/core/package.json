@@ -46,8 +46,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Jeromearsene/levita.git",
-		"directory": "packages/core"
+		"url": "git+https://github.com/Jeromearsene/levita.git"
 	},
 	"homepage": "https://github.com/Jeromearsene/levita#readme",
 	"devDependencies": {
