@@ -50,11 +50,10 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Native pnpm recursive publish. 
-          # setup-node with registry-url has prepared the .npmrc
-          # pnpm will natively perform the OIDC handshake without manual token variables.
-          pnpm -r publish --access public --no-git-checks --provenance
-          # Create and push git tags manually since we are not using changeset publish
+          # The OIDC environment is ready via setup-node.
+          # All packages now have explicit publishConfig.registry to avoid 404 errors.
+          pnpm -r publish --no-git-checks
+          # Create and push git tags manually
           npx changeset tag
           git push --tags
           echo "published=true" >> $GITHUB_OUTPUT

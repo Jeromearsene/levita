@@ -24,6 +24,7 @@
 	],
 	"publishConfig": {
 		"access": "public",
+		"registry": "https://registry.npmjs.org/",
 		"provenance": true
 	},
 	"sideEffects": [
