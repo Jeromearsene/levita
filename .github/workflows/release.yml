@@ -44,23 +44,37 @@ jobs:
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: "" # Explicitly trigger OIDC handshake by clearing local token expectations
 
       - name: Publish to NPM
         id: publish
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Now that all packages belong to the same npm organization (levita-js),
-          # native pnpm publish with OIDC will work seamlessly.
-          pnpm -r publish --access public --no-git-checks --provenance
+          # Manual loop using native npm to ensure OIDC handshake is not interrupted by pnpm.
+          # setup-node with registry-url has prepared the system .npmrc for this regsitry.
+          for pkg in packages/*; do
+            if [ -d "$pkg" ]; then
+              echo "Processing $pkg..."
+              cd "$pkg"
+              NAME=$(node -p "require('./package.json').name")
+              VERSION=$(node -p "require('./package.json').version")
+              
+              if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+                echo "$NAME@$VERSION already published, skipping."
+              else
+                echo "Publishing $NAME@$VERSION via native NPM OIDC..."
+                npm publish --access public --provenance
+              fi
+              cd -
+            fi
+          done
           # Create and push git tags manually
           npx changeset tag
           git push --tags
           echo "published=true" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: "" # Explicitly trigger OIDC handshake by clearing local token expectations
+          NODE_AUTH_TOKEN: "" # Signals npm to use the OIDC token from the environment
 
       - name: Sync examples to published versions
         if: steps.publish.outputs.published == 'true'
