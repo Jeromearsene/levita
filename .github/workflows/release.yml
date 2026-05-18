@@ -49,8 +49,8 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Use native npm publish in a loop with config isolation
-          # NPM_CONFIG_USERCONFIG=/dev/null ensures no local .npmrc interferes with OIDC
+          # Loop through packages and publish using native npm with explicit OIDC force mode
+          # The _authType=oidc flag is the key for strict NPM accounts (disallow tokens)
           for pkg in packages/*; do
             if [ -d "$pkg" ]; then
               echo "Checking package in $pkg..."
@@ -58,15 +58,14 @@ jobs:
               NAME=$(node -p "require('./package.json').name")
               VERSION=$(node -p "require('./package.json').version")
               
-              if NPM_CONFIG_USERCONFIG=/dev/null npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+              if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
                 echo "$NAME@$VERSION already published, skipping."
               else
-                echo "Publishing $NAME@$VERSION via native NPM OIDC (isolated)..."
-                NPM_CONFIG_USERCONFIG=/dev/null \
+                echo "Publishing $NAME@$VERSION via OIDC Force Mode..."
                 npm publish \
-                  --registry https://registry.npmjs.org/ \
                   --access public \
-                  --provenance
+                  --provenance \
+                  --//registry.npmjs.org/:_authType=oidc
               fi
               cd -
             fi
