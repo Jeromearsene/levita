@@ -30,6 +30,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -49,27 +50,9 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Loop through packages and publish using native npm with explicit OIDC force mode
-          # The _authType=oidc flag is the key for strict NPM accounts (disallow tokens)
-          for pkg in packages/*; do
-            if [ -d "$pkg" ]; then
-              echo "Checking package in $pkg..."
-              cd "$pkg"
-              NAME=$(node -p "require('./package.json').name")
-              VERSION=$(node -p "require('./package.json').version")
-              
-              if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
-                echo "$NAME@$VERSION already published, skipping."
-              else
-                echo "Publishing $NAME@$VERSION via OIDC Force Mode..."
-                npm publish \
-                  --access public \
-                  --provenance \
-                  --//registry.npmjs.org/:_authType=oidc
-              fi
-              cd -
-            fi
-          done
+          # Use native pnpm publish which is OIDC-aware
+          # The NODE_AUTH_TOKEN is managed by setup-node via OIDC if NPM_TOKEN is absent
+          pnpm -r publish --access public --no-git-checks --provenance
           # Create and push git tags manually
           npx changeset tag
           git push --tags
