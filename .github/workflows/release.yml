@@ -50,11 +50,9 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Inject OIDC auth line into local .npmrc so pnpm actually uses the handshake
-          # This bridges setup-node's config with pnpm's local config priority
-          echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" >> .npmrc
+          # OIDC handshake handled by setup-node + registry-url
+          # npm v11 (pinned via Volta) natively manages monorepos and unscoped packages
           pnpm -r publish --access public --no-git-checks --provenance
-          # Create and push git tags manually
           npx changeset tag
           git push --tags
           echo "published=true" >> $GITHUB_OUTPUT
