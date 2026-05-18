@@ -51,13 +51,23 @@ jobs:
         run: |
           pnpm build
           # OIDC handshake handled by setup-node + registry-url
-          # npm v11 (pinned via Volta) natively manages monorepos and unscoped packages
-          pnpm -r publish --access public --no-git-checks --provenance
+          
+          # 1. Publish scoped packages first (using pnpm for workspace awareness)
+          pnpm -r publish --access public --no-git-checks --provenance --filter "@levita-js/*"
+          
+          # 2. Publish unscoped package (levita-js) with explicit isolation
+          # This avoids known 404 bugs when publishing mixed scopes via OIDC
+          cd packages/core
+          npm publish --access public --provenance
+          cd -
+          
+          # Create and push git tags manually since we are not using changeset publish
           npx changeset tag
           git push --tags
           echo "published=true" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: "" # Explicitly trigger OIDC handshake by clearing local token expectations
 
       - name: Sync examples to published versions
         if: steps.publish.outputs.published == 'true'
