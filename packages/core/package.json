@@ -37,10 +37,10 @@
 	"keywords": [
 		"tilt",
 		"parallax",
-		"3d",
 		"accelerometer",
 		"gyroscope",
-		"css",
+		"3d",
+		"perspective",
 		"vanilla"
 	],
 	"license": "MIT",
