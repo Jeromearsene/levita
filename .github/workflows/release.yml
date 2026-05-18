@@ -50,15 +50,32 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # The OIDC environment is ready via setup-node.
-          # All packages now have explicit publishConfig.registry to avoid 404 errors.
-          pnpm -r publish --no-git-checks
+          # Loop through packages and publish using native npm (standard OIDC flow)
+          # setup-node has prepared the environment.
+          # We use explicit flags instead of publishConfig to avoid known OIDC 404 bugs.
+          for pkg in packages/*; do
+            if [ -d "$pkg" ]; then
+              echo "Processing $pkg..."
+              cd "$pkg"
+              NAME=$(node -p "require('./package.json').name")
+              VERSION=$(node -p "require('./package.json').version")
+              
+              if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+                echo "$NAME@$VERSION already published, skipping."
+              else
+                echo "Publishing $NAME@$VERSION via standard NPM OIDC..."
+                npm publish --access public --provenance
+              fi
+              cd -
+            fi
+          done
           # Create and push git tags manually
           npx changeset tag
           git push --tags
           echo "published=true" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: "" # Necessary to trigger handshake when using registry-url
 
       - name: Sync examples to published versions
         if: steps.publish.outputs.published == 'true'
