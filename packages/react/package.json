@@ -51,7 +51,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Jeromearsene/levita.git",
+		"url": "git+https://github.com/Jeromearsene/levita.git",
 		"directory": "packages/react"
 	},
 	"homepage": "https://github.com/Jeromearsene/levita#readme"

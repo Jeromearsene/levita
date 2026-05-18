@@ -50,8 +50,7 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Use native pnpm publish which is OIDC-aware
-          # The NODE_AUTH_TOKEN is managed by setup-node via OIDC if NPM_TOKEN is absent
+          # Use native pnpm recursive publish with verified OIDC environment
           pnpm -r publish --access public --no-git-checks --provenance
           # Create and push git tags manually
           npx changeset tag
