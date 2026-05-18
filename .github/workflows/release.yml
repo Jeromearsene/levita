@@ -49,9 +49,25 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Use native pnpm publish for best OIDC compatibility
-          pnpm -r publish --access public --no-git-checks --provenance
-          # Create and push git tags manually since we bypassed npx changeset publish
+          # Loop through packages and publish using native npm (best OIDC support)
+          # We use a manual loop to bypass pnpm/changesets internal auth interference
+          for pkg in packages/*; do
+            if [ -d "$pkg" ]; then
+              echo "Checking package in $pkg..."
+              cd "$pkg"
+              NAME=$(node -p "require('./package.json').name")
+              VERSION=$(node -p "require('./package.json').version")
+              
+              if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+                echo "$NAME@$VERSION already published, skipping."
+              else
+                echo "Publishing $NAME@$VERSION via native NPM OIDC..."
+                npm publish --access public --provenance
+              fi
+              cd -
+            fi
+          done
+          # Create and push git tags manually
           npx changeset tag
           git push --tags
           echo "published=true" >> $GITHUB_OUTPUT
