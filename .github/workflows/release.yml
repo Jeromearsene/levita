@@ -51,7 +51,7 @@ jobs:
         run: |
           pnpm build
           # Loop through packages and publish using native npm (standard OIDC flow)
-          # Explicit order to handle the main package first.
+          # We use conditional provenance because npm registry rejects it for the unscoped package (levita-js)
           for pkg in packages/core packages/angular packages/react packages/svelte packages/vue; do
             if [ -d "$pkg" ]; then
               echo "Processing $pkg..."
@@ -63,7 +63,13 @@ jobs:
                 echo "$NAME@$VERSION already published, skipping."
               else
                 echo "Publishing $NAME@$VERSION via native NPM OIDC..."
-                npm publish --access public --provenance
+                if [ "$NAME" = "levita-js" ]; then
+                  # Disable provenance for unscoped package to avoid 404 mapping bug
+                  npm publish --access public
+                else
+                  # Keep provenance for scoped packages (best practice)
+                  npm publish --access public --provenance
+                fi
               fi
               cd -
             fi
