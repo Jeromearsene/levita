@@ -46,8 +46,8 @@ jobs:
               else
                 echo "Publishing $NAME@$VERSION..."
                 if [ "$NAME" = "levita-js" ]; then
-                  # Disable provenance for unscoped package to test 404 mapping
-                  npm publish --access public
+                  # Enable provenance again with normalized URL
+                  npm publish --access public --provenance
                 else
                   npm publish --access public --provenance
                 fi
