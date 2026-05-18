@@ -50,14 +50,32 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Simple OIDC publish without provenance to bypass 404 mapping issues on unscoped packages
-          pnpm -r publish --access public --no-git-checks
+          # Loop through packages and publish using native npm (standard OIDC flow)
+          # We use a manual loop to bypass pnpm workspace interference
+          # We omit provenance temporarily to resolve 404 mapping issues on unscoped packages
+          for pkg in packages/core packages/angular packages/react packages/svelte packages/vue; do
+            if [ -d "$pkg" ]; then
+              echo "Processing $pkg..."
+              cd "$pkg"
+              NAME=$(node -p "require('./package.json').name")
+              VERSION=$(node -p "require('./package.json').version")
+              
+              if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+                echo "$NAME@$VERSION already published, skipping."
+              else
+                echo "Publishing $NAME@$VERSION via native NPM OIDC (No Provenance)..."
+                # Standard publish to maximize compatibility during initial OIDC transition
+                npm publish --access public
+              fi
+              cd -
+            fi
+          done
+          # Create and push git tags manually since we are not using changeset publish
           npx changeset tag
           git push --tags
           echo "published=true" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: "" # Necessary to trigger handshake when using registry-url
 
       - name: Sync examples to published versions
         if: steps.publish.outputs.published == 'true'
