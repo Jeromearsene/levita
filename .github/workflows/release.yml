@@ -1,26 +1,20 @@
-name: Release
+name: Release Sandbox
 
 on:
   push:
     branches:
-      - main
+      - test-oidc
   workflow_dispatch:
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
-
 jobs:
-  release:
-    name: Release
+  publish-test:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
       id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -35,47 +29,29 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Create Release PR
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          version: pnpm version-packages
-          title: "chore: version packages"
-          commit: "chore: version packages"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build packages
+        run: pnpm build
 
-      - name: Publish to NPM
-        id: publish
-        if: steps.changesets.outputs.hasChangesets == 'false'
+      - name: Test Publish
         run: |
-          pnpm build
-          # Handshake OIDC managed by setup-node + registry-url
-          # Using native pnpm recursive publish with explicit provenance
-          # Repository URLs have been normalized to canonical HTTPS to fix 404 mapping bugs
-          pnpm -r publish --access public --no-git-checks --provenance
-          # Create and push git tags manually since we are not using changeset publish
-          npx changeset tag
-          git push --tags
-          echo "published=true" >> $GITHUB_OUTPUT
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Sync examples to published versions
-        if: steps.publish.outputs.published == 'true'
-        run: |
-          node scripts/sync-examples.js
-          pnpm install --no-frozen-lockfile
-          branch="chore/sync-examples-$(date +%s)"
-          git checkout -b "$branch"
-          git add examples/ pnpm-lock.yaml
-          git commit -m "chore: sync examples to published versions"
-          git push origin "$branch"
-          pr_url=$(gh pr create \
-            --title "chore: sync examples to published versions" \
-            --body "Auto-generated after npm publish. Updates example dependencies to the newly released version." \
-            --base main \
-            --head "$branch")
-          gh pr merge "$pr_url" --squash --auto
-        env:
-          GITHUB_TOKEN: ${{ secrets.SYNC_TOKEN }}
+          for pkg in packages/core packages/angular packages/react packages/svelte packages/vue; do
+            if [ -d "$pkg" ]; then
+              echo "Processing $pkg..."
+              cd "$pkg"
+              NAME=$(node -p "require('./package.json').name")
+              VERSION=$(node -p "require('./package.json').version")
+              
+              if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+                echo "$NAME@$VERSION already published."
+              else
+                echo "Publishing $NAME@$VERSION..."
+                if [ "$NAME" = "levita-js" ]; then
+                  # Disable provenance for unscoped package to test 404 mapping
+                  npm publish --access public
+                else
+                  npm publish --access public --provenance
+                fi
+              fi
+              cd -
+            fi
+          done
