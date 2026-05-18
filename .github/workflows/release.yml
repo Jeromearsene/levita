@@ -49,14 +49,14 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Temporarily move .npmrc to avoid interference with OIDC handshake
-          mv .npmrc .npmrc.bak || true
-          npx changeset publish
-          mv .npmrc.bak .npmrc || true
+          # Use native pnpm publish for best OIDC compatibility
+          pnpm -r publish --access public --no-git-checks --provenance
+          # Create and push git tags manually since we bypassed npx changeset publish
+          npx changeset tag
+          git push --tags
           echo "published=true" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
 
       - name: Sync examples to published versions
         if: steps.publish.outputs.published == 'true'
