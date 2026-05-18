@@ -49,8 +49,8 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Loop through packages and publish using native npm (best OIDC support)
-          # We use a manual loop to bypass pnpm/changesets internal auth interference
+          # Use native npm publish in a loop with config isolation
+          # NPM_CONFIG_USERCONFIG=/dev/null ensures no local .npmrc interferes with OIDC
           for pkg in packages/*; do
             if [ -d "$pkg" ]; then
               echo "Checking package in $pkg..."
@@ -58,11 +58,15 @@ jobs:
               NAME=$(node -p "require('./package.json').name")
               VERSION=$(node -p "require('./package.json').version")
               
-              if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+              if NPM_CONFIG_USERCONFIG=/dev/null npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
                 echo "$NAME@$VERSION already published, skipping."
               else
-                echo "Publishing $NAME@$VERSION via native NPM OIDC..."
-                npm publish --access public --provenance
+                echo "Publishing $NAME@$VERSION via native NPM OIDC (isolated)..."
+                NPM_CONFIG_USERCONFIG=/dev/null \
+                npm publish \
+                  --registry https://registry.npmjs.org/ \
+                  --access public \
+                  --provenance
               fi
               cd -
             fi
