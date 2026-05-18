@@ -50,8 +50,14 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Use native pnpm recursive publish with verified OIDC environment
-          pnpm -r publish --access public --no-git-checks --provenance
+          # Use specialized npm-publish CLI for robust OIDC support
+          # This handles token handshake and already-published checks better than raw npm
+          for pkg in packages/*; do
+            if [ -d "$pkg" ]; then
+              echo "Publishing $pkg..."
+              npx @js-devtools/npm-publish "$pkg/package.json" --access public --provenance
+            fi
+          done
           # Create and push git tags manually
           npx changeset tag
           git push --tags
