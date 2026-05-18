@@ -49,13 +49,14 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Explicitly trigger OIDC handshake by clearing registry token
-          npm config set //registry.npmjs.org/:_authToken ""
-          # Use pnpm recursive publish for native OIDC support
-          pnpm -r publish --access public --no-git-checks --provenance
+          # Temporarily move .npmrc to avoid interference with OIDC handshake
+          mv .npmrc .npmrc.bak || true
+          npx changeset publish
+          mv .npmrc.bak .npmrc || true
           echo "published=true" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
 
       - name: Sync examples to published versions
         if: steps.publish.outputs.published == 'true'
