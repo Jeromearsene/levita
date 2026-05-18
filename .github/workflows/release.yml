@@ -50,31 +50,16 @@ jobs:
         if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
           pnpm build
-          # Loop through packages and publish using native npm (standard OIDC flow)
-          # setup-node has prepared the environment, we just need to call npm publish
-          for pkg in packages/*; do
-            if [ -d "$pkg" ]; then
-              echo "Processing $pkg..."
-              cd "$pkg"
-              NAME=$(node -p "require('./package.json').name")
-              VERSION=$(node -p "require('./package.json').version")
-              
-              if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
-                echo "$NAME@$VERSION already published, skipping."
-              else
-                echo "Publishing $NAME@$VERSION via standard NPM OIDC..."
-                npm publish --provenance
-              fi
-              cd -
-            fi
-          done
-          # Create and push git tags manually
+          # Native pnpm recursive publish. 
+          # setup-node with registry-url has prepared the .npmrc
+          # pnpm will natively perform the OIDC handshake without manual token variables.
+          pnpm -r publish --access public --no-git-checks --provenance
+          # Create and push git tags manually since we are not using changeset publish
           npx changeset tag
           git push --tags
           echo "published=true" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: "" # Tell npm to ignore any token and use OIDC
 
       - name: Sync examples to published versions
         if: steps.publish.outputs.published == 'true'
