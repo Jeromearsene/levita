@@ -34,23 +34,20 @@ jobs:
 
       - name: Test Publish
         run: |
-          for pkg in packages/core packages/angular packages/react packages/svelte packages/vue; do
+          # Testing scoped package first to verify OIDC health
+          for pkg in packages/react packages/core packages/angular packages/svelte packages/vue; do
             if [ -d "$pkg" ]; then
+              echo "-----------------------------------"
               echo "Processing $pkg..."
               cd "$pkg"
               NAME=$(node -p "require('./package.json').name")
               VERSION=$(node -p "require('./package.json').version")
               
               if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
-                echo "$NAME@$VERSION already published."
+                echo "$NAME@$VERSION already published, skipping."
               else
-                echo "Publishing $NAME@$VERSION..."
-                if [ "$NAME" = "levita-js" ]; then
-                  # Enable provenance again with normalized URL
-                  npm publish --access public --provenance
-                else
-                  npm publish --access public --provenance
-                fi
+                echo "Publishing $NAME@$VERSION via OIDC..."
+                npm publish --access public --provenance
               fi
               cd -
             fi
