@@ -97,11 +97,11 @@ importers:
         specifier: ^19.2.0
         version: 19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/compiler@19.2.20)(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1)))
       '@levita-js/angular':
-        specifier: ^0.3.1
-        version: 0.3.1(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1))
+        specifier: ^0.4.0
+        version: 0.4.0(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1))
       '@levita-js/core':
-        specifier: ^0.3.1
-        version: 0.3.1
+        specifier: ^0.4.0
+        version: 0.4.0
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
@@ -131,11 +131,11 @@ importers:
   examples/react:
     dependencies:
       '@levita-js/react':
-        specifier: ^0.3.1
-        version: 0.3.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: ^0.4.0
+        version: 0.4.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@levita-js/core':
-        specifier: ^0.3.1
-        version: 0.3.1
+        specifier: ^0.4.0
+        version: 0.4.0
       react:
         specifier: ^19.0.0
         version: 19.2.4
@@ -162,11 +162,11 @@ importers:
   examples/svelte:
     dependencies:
       '@levita-js/svelte':
-        specifier: ^0.3.1
-        version: 0.3.1(svelte@5.53.5)
+        specifier: ^0.4.0
+        version: 0.4.0(svelte@5.53.5)
       '@levita-js/core':
-        specifier: ^0.3.1
-        version: 0.3.1
+        specifier: ^0.4.0
+        version: 0.4.0
       svelte:
         specifier: ^5.53.5
         version: 5.53.5
@@ -184,8 +184,8 @@ importers:
   examples/vanilla:
     dependencies:
       '@levita-js/core':
-        specifier: ^0.3.1
-        version: 0.3.1
+        specifier: ^0.4.0
+        version: 0.4.0
     devDependencies:
       typescript:
         specifier: ^5.7.3
@@ -197,11 +197,11 @@ importers:
   examples/vue:
     dependencies:
       '@levita-js/vue':
-        specifier: ^0.3.1
-        version: 0.3.1(vue@3.5.28(typescript@5.9.3))
+        specifier: ^0.4.0
+        version: 0.4.0(vue@3.5.28(typescript@5.9.3))
       '@levita-js/core':
-        specifier: ^0.3.1
-        version: 0.3.1
+        specifier: ^0.4.0
+        version: 0.4.0
       vue:
         specifier: ^3.5.13
         version: 3.5.28(typescript@5.9.3)
@@ -1813,23 +1813,23 @@ packages:
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
 
-  '@levita-js/angular@0.3.1':
+  '@levita-js/angular@0.4.0':
     resolution: {integrity: sha512-4odCF4KOrqRedQDJyQYCbb45DSddamY65Atq2eph41Vk3Vv8ONkCV8nqqswTqexdRV1O8Va6hXx7CFptmdkzoA==}
     peerDependencies:
       '@angular/core': '>=14.0.0'
 
-  '@levita-js/react@0.3.1':
+  '@levita-js/react@0.4.0':
     resolution: {integrity: sha512-cazASeaeFS8r30EoNqn+BrYk99Z2/L0Rqms7WA/f9Y3g1UEIMs6Ey+cijTGO4U7PDkxZ6keV9Xp60g0rqN2GIQ==}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
 
-  '@levita-js/svelte@0.3.1':
+  '@levita-js/svelte@0.4.0':
     resolution: {integrity: sha512-2hTAAeU1zVN7LBdYwOlnDQm0hfc5lm0ZpXyOvDSuo+Ycx0kdi4NEENEHV7rZunU3D3d+0LRUfPxfbWk/WOPrRA==}
     peerDependencies:
       svelte: '>=3'
 
-  '@levita-js/vue@0.3.1':
+  '@levita-js/vue@0.4.0':
     resolution: {integrity: sha512-AIVvo+UppSwez/s4I82DzC75xVoKrrsqzb3e5E0x/0wu9ZdVyepyHQC/vo1Z0z527ETG3JjG5+c84+vO7mVvIg==}
     peerDependencies:
       vue: '>=3.3'
@@ -4223,7 +4223,7 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  '@levita-js/core@0.3.1':
+  '@levita-js/core@0.4.0':
     resolution: {integrity: sha512-c5TAsuHb3W73TjkBzBFolUwqxTHKuoxL39bA+WKB9zGrhTARcigEqGV5p/GXmgFwGRNSLjkiHzL3Bmpnfxh/FQ==}
 
   license-webpack-plugin@4.0.2:
@@ -7812,23 +7812,23 @@ snapshots:
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
-  '@levita-js/angular@0.3.1(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1))':
+  '@levita-js/angular@0.4.0(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
       '@angular/core': 19.2.20(rxjs@7.8.2)(zone.js@0.15.1)
       '@levita-js/core': 0.3.1
 
-  '@levita-js/react@0.3.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@levita-js/react@0.4.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@levita-js/core': 0.3.1
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
-  '@levita-js/svelte@0.3.1(svelte@5.53.5)':
+  '@levita-js/svelte@0.4.0(svelte@5.53.5)':
     dependencies:
       '@levita-js/core': 0.3.1
       svelte: 5.53.5
 
-  '@levita-js/vue@0.3.1(vue@3.5.28(typescript@5.9.3))':
+  '@levita-js/vue@0.4.0(vue@3.5.28(typescript@5.9.3))':
     dependencies:
       '@levita-js/core': 0.3.1
       vue: 3.5.28(typescript@5.9.3)
@@ -10156,7 +10156,7 @@ snapshots:
       needle: 3.5.0
       source-map: 0.6.1
 
-  '@levita-js/core@0.3.1': {}
+  '@levita-js/core@0.4.0': {}
 
   license-webpack-plugin@4.0.2(webpack@5.105.0):
     dependencies:
