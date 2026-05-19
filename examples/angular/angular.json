@@ -17,7 +17,7 @@
 						"tsConfig": "tsconfig.app.json",
 						"aot": false,
 						"buildOptimizer": false,
-						"styles": ["node_modules/levita-js/dist/style.css"]
+						"styles": ["../../packages/core/dist/style.css"]
 					},
 					"configurations": {
 						"development": {

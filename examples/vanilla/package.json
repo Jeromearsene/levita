@@ -14,7 +14,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"levita-js": "^0.3.1"
+		"@levita-js/core": "^0.3.1"
 	},
 	"devDependencies": {
 		"typescript": "^5.7.3",

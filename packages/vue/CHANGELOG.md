@@ -9,16 +9,16 @@
 ### Patch Changes
 
 - Updated dependencies [[`73bcb00`](https://github.com/Jeromearsene/levita/commit/73bcb00e554ce701952082e3e923e8ebc296c1ce)]:
-  - levita-js@0.4.0
+  - @levita-js/core@0.4.0
 
 ## 0.3.1
 
 ### Patch Changes
 
-- [`e3204c9`](https://github.com/Jeromearsene/levita/commit/e3204c9b9a6c838b1588b6fd26d136ad9a38096c) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Framework packages now re-export style.css from the core package. Users can import styles directly from their framework package (e.g. `import '@levita-js/react/style.css'`) instead of importing from `levita-js`.
+- [`e3204c9`](https://github.com/Jeromearsene/levita/commit/e3204c9b9a6c838b1588b6fd26d136ad9a38096c) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Framework packages now re-export style.css from the core package. Users can import styles directly from their framework package (e.g. `import '@levita-js/react/style.css'`) instead of importing from `@levita-js/core`.
 
 - Updated dependencies []:
-  - levita-js@0.3.1
+  - @levita-js/core@0.3.1
 
 ## 0.3.0
 
@@ -29,14 +29,14 @@
 ### Patch Changes
 
 - Updated dependencies [[`9b8cdc4`](https://github.com/Jeromearsene/levita/commit/9b8cdc4fff988db50ddc5f0d5e5060bf656efb63)]:
-  - levita-js@0.3.0
+  - @levita-js/core@0.3.0
 
 ## 0.2.1
 
 ### Patch Changes
 
 - Updated dependencies [[`25f1909`](https://github.com/Jeromearsene/levita/commit/25f1909cac019c6dc98e9e311f082851d44cc1a7)]:
-  - levita-js@0.2.1
+  - @levita-js/core@0.2.1
 
 ## 0.2.0
 
@@ -60,7 +60,7 @@
 ### Patch Changes
 
 - Updated dependencies [[`8399af4`](https://github.com/Jeromearsene/levita/commit/8399af47f17421a42ac085eb0752ee1f295e68b5)]:
-  - levita-js@0.2.0
+  - @levita-js/core@0.2.0
 
 ## 0.1.6
 
@@ -70,7 +70,7 @@
   - **Examples**: Added standalone framework examples (Vanilla, React, Vue, Svelte, Angular) with one-click StackBlitz integration for real-time experimentation.
   - **Documentation**: Updated README and interactive demo to include Angular.
 - Updated dependencies [[`5ab7845`](https://github.com/Jeromearsene/levita/commit/5ab7845d2ad9a56488bc7d6af7e25af2418bb2fc)]:
-  - levita-js@0.1.6
+  - @levita-js/core@0.1.6
 
 ## 0.1.5
 
@@ -83,14 +83,14 @@
   - **Documentation**: Improved README with an interactive Table of Contents, consolidated Ecosystem section, and official StackBlitz badges.
   - **CI/CD**: Integrated Gitleaks for secret scanning and markdownlint for documentation quality.
 - Updated dependencies [[`e611099`](https://github.com/Jeromearsene/levita/commit/e611099a9825f86e3ae0e1141f4b322818a85d28)]:
-  - levita-js@0.1.5
+  - @levita-js/core@0.1.5
 
 ## 0.1.4
 
 ### Patch Changes
 
 - Updated dependencies [[`82f1399`](https://github.com/Jeromearsene/levita/commit/82f13991f37c4b5ae99f7cbdbeae1a838822ded5)]:
-  - levita-js@0.1.4
+  - @levita-js/core@0.1.4
 
 ## 0.1.3
 
@@ -99,7 +99,7 @@
 - [`fdbf5c2`](https://github.com/Jeromearsene/levita/commit/fdbf5c2c4535cea8ac7b593950844e5cf1a25350) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - docs: include individual README files for NPM packages.
 
 - Updated dependencies [[`fdbf5c2`](https://github.com/Jeromearsene/levita/commit/fdbf5c2c4535cea8ac7b593950844e5cf1a25350)]:
-  - levita-js@0.1.3
+  - @levita-js/core@0.1.3
 
 ## 0.1.2
 
@@ -108,13 +108,13 @@
 - [`a1fe1d9`](https://github.com/Jeromearsene/levita/commit/a1fe1d98880d290c30080e967aafacc119442725) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - docs: include README files for NPM packages.
 
 - Updated dependencies [[`a1fe1d9`](https://github.com/Jeromearsene/levita/commit/a1fe1d98880d290c30080e967aafacc119442725)]:
-  - levita-js@0.1.2
+  - @levita-js/core@0.1.2
 
 ## 0.1.1
 
 ### Patch Changes
 
-- [`ceed77a`](https://github.com/Jeromearsene/levita/commit/ceed77a353027f5448b4b78fb1f2a1a77bc2d442) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Initial release under the `levita-js` and `@levita-js` NPM scope.
+- [`ceed77a`](https://github.com/Jeromearsene/levita/commit/ceed77a353027f5448b4b78fb1f2a1a77bc2d442) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Initial release under the `@levita-js/core` and `@levita-js` NPM scope.
 
 - Updated dependencies [[`ceed77a`](https://github.com/Jeromearsene/levita/commit/ceed77a353027f5448b4b78fb1f2a1a77bc2d442)]:
-  - levita-js@0.1.1
+  - @levita-js/core@0.1.1

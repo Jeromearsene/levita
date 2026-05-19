@@ -1,5 +1,5 @@
-import type { LevitaOptions } from "levita-js";
-import { buildOptions, Levita } from "levita-js";
+import type { LevitaOptions } from "@levita-js/core";
+import { buildOptions, Levita } from "@levita-js/core";
 
 /**
  * Svelte action that applies the Levita 3D tilt effect to an element.

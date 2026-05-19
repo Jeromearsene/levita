@@ -23,8 +23,8 @@ import type {
  *
  * @example
  * ```ts
- * import { Levita } from 'levita-js';
- * import 'levita-js/style.css';
+ * import { Levita } from '@levita-js/core';
+ * import '@levita-js/core/style.css';
  *
  * const tilt = new Levita(element, { glare: true, shadow: true });
  * tilt.on('move', ({ x, y }) => console.log(x, y));

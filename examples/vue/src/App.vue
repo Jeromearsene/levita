@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // biome-ignore lint: Used in template
 import { Tilt } from "@levita-js/vue";
-import "levita-js/style.css";
+import "@levita-js/core/style.css";
 </script>
 
 <template>

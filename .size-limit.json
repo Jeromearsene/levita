@@ -1,6 +1,6 @@
 [
 	{
-		"name": "levita-js",
+		"name": "@levita-js/core",
 		"path": "packages/core/dist/index.mjs",
 		"import": "{ Levita }",
 		"gzip": true

@@ -1,7 +1,7 @@
 import abbeyRoadImg from "@assets/abbey-road.webp";
 import darkSideImg from "@assets/dark-side.webp";
 import forEmmaImg from "@assets/for-emma.webp";
-import { Levita } from "levita-js";
+import { Levita } from "@levita-js/core";
 import { useEffect, useRef } from "preact/hooks";
 import { snippets as groupedCardsSnippets } from "../snippets/grouped-cards";
 import { CodeTabs } from "./CodeTabs";

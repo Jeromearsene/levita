@@ -37,7 +37,7 @@
 		"@angular/core": ">=14.0.0"
 	},
 	"dependencies": {
-		"levita-js": "workspace:*"
+		"@levita-js/core": "workspace:*"
 	},
 	"devDependencies": {
 		"@angular/core": "^21.2.0",

@@ -1,5 +1,5 @@
 <script>
-  import Levita from "levita-js";
+  import Levita from "@levita-js/core";
   import { onMount } from "svelte";
 
   let container;

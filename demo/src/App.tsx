@@ -1,4 +1,4 @@
-import "levita-js/style.css";
+import "@levita-js/core/style.css";
 import { useEffect } from "preact/hooks";
 import { Accelerometer } from "./components/Accelerometer";
 import { CssFrameworks } from "./components/CssFrameworks";

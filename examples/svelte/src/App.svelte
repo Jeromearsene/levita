@@ -1,6 +1,6 @@
 <script>
 import { tilt } from "@levita-js/svelte";
-import "levita-js/style.css";
+import "@levita-js/core/style.css";
 </script>
 
 <div class="container">

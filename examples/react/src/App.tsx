@@ -1,5 +1,5 @@
 import { Tilt } from "@levita-js/react";
-import "levita-js/style.css";
+import "@levita-js/core/style.css";
 
 function App() {
 	const cardStyle = {

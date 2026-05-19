@@ -5,5 +5,5 @@ export default defineConfig({
 	format: ["esm", "cjs"],
 	dts: true,
 	clean: true,
-	external: ["@angular/core", "levita-js"],
+	external: ["@angular/core", "@levita-js/core"],
 });

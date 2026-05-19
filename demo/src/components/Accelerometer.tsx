@@ -1,4 +1,4 @@
-import type { LevitaEventMap, LevitaOptions } from "levita-js";
+import type { LevitaEventMap, LevitaOptions } from "@levita-js/core";
 import { useCallback, useMemo, useState } from "preact/hooks";
 import { buildAllSnippets } from "../utils/snippet-builder";
 import { CodeTabs } from "./CodeTabs";

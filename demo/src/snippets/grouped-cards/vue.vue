@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import Levita from "levita-js";
+import Levita from "@levita-js/core";
 import { onMounted, onUnmounted, ref } from "vue";
 
 const containerRef = ref(null);

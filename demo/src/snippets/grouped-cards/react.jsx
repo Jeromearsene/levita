@@ -1,4 +1,4 @@
-import Levita from "levita-js";
+import Levita from "@levita-js/core";
 import { useEffect, useRef } from "react";
 
 function GroupedCards() {

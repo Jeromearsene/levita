@@ -1,5 +1,5 @@
-import type { Axis, GyroscopeMode } from "levita-js";
-import { buildOptions, Levita, OPTION_KEYS } from "levita-js";
+import type { Axis, GyroscopeMode } from "@levita-js/core";
+import { buildOptions, Levita, OPTION_KEYS } from "@levita-js/core";
 import {
 	defineComponent,
 	h,

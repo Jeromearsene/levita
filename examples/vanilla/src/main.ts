@@ -1,5 +1,5 @@
-import { Levita } from "levita-js";
-import "levita-js/style.css";
+import { Levita } from "@levita-js/core";
+import "@levita-js/core/style.css";
 
 const card = document.getElementById("card");
 if (card) {

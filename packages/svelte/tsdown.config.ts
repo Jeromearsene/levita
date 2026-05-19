@@ -5,5 +5,5 @@ export default defineConfig({
 	format: ["esm", "cjs"],
 	dts: true,
 	clean: true,
-	external: ["svelte", "levita-js"],
+	external: ["svelte", "@levita-js/core"],
 });

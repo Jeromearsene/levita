@@ -6,7 +6,7 @@ Welcome to the Levita development guide! This document explains how to set up th
 
 This is a monorepo managed with **pnpm workspaces**:
 
-- `packages/core`: The vanilla JS/TS engine (published as `levita-js`).
+- `packages/core`: The vanilla JS/TS engine (published as `@levita-js/core`).
 - `packages/react`: React wrapper (`@levita-js/react`).
 - `packages/vue`: Vue wrapper (`@levita-js/vue`).
 - `packages/svelte`: Svelte wrapper (`@levita-js/svelte`).

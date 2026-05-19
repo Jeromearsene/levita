@@ -1,4 +1,4 @@
-# levita-js
+# @levita-js/core
 
 > Lightweight 3D tilt & parallax effect for the modern web with accelerometer support.
 
@@ -7,14 +7,14 @@ Core engine for Levita. No dependencies, GPU-accelerated, and highly performant.
 ## Installation
 
 ```bash
-npm install levita-js
+npm install @levita-js/core
 ```
 
 ## Quick Start
 
 ```typescript
-import { Levita } from "levita-js";
-import "levita-js/style.css";
+import { Levita } from "@levita-js/core";
+import "@levita-js/core/style.css";
 
 const card = document.getElementById("card");
 new Levita(card, {

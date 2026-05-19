@@ -8,8 +8,8 @@
 
 <p align="center">
   <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml" target="_blank" rel="noopener noreferrer"><img src="https://github.com/jeromearsene/levita/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <a href="https://www.npmjs.com/package/levita-js" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/levita-js" alt="npm" /></a>
-  <a href="https://www.npmjs.com/package/levita-js" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/dm/levita-js" alt="npm downloads" /></a>
+  <a href="https://www.npmjs.com/package/@levita-js/core" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/v/@levita-js/core" alt="npm" /></a>
+  <a href="https://www.npmjs.com/package/@levita-js/core" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/npm/dm/@levita-js/core" alt="npm downloads" /></a>
   <a href="https://github.com/jeromearsene/levita/actions/workflows/ci.yml" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fjeromearsene.github.io%2Flevita%2Fbadge-size.json" alt="bundle size" /></a>
   <a href="https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/StackBlitz-Open_Project-1374ef?logo=stackblitz&logoColor=white" alt="StackBlitz" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/jeromearsene/levita" alt="license" /></a>
@@ -54,7 +54,7 @@ Levita is designed to be framework-agnostic. Choose your flavor:
 
 | Framework                                                                                                                                                                                                                                                                                               | Min Version                                                                                                                  | Size (gzip)                                                                                                        | Playground                                                                                                                                                                                             |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:file-code.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:file-code.svg?color=%23000000" width="18" height="18" valign="middle" alt="Vanilla JS"></picture> **[Vanilla JS](#vanilla)** | **-**                                                                                                                        | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-levita-js.json)  | [![Try Vanilla JS on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla) |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:file-code.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:file-code.svg?color=%23000000" width="18" height="18" valign="middle" alt="Vanilla JS"></picture> **[Vanilla JS](#vanilla)** | **-**                                                                                                                        | ![core size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size--levita-js-core.json)  | [![Try Vanilla JS on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vanilla) |
 | <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:atom.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:atom.svg?color=%23000000" width="18" height="18" valign="middle" alt="React"></picture> **[React](#react)**                       | ![react min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-react.json)     | ![react size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-react.json)     | [![Try React on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/react)        |
 | <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:layers.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:layers.svg?color=%23000000" width="18" height="18" valign="middle" alt="Vue"></picture> **[Vue](#vue)**                         | ![vue min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-vue.json)         | ![vue size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-vue.json)         | [![Try Vue on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/vue)            |
 | <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.iconify.design/lucide:zap.svg?color=%23ffffff"><img src="https://api.iconify.design/lucide:zap.svg?color=%23000000" width="18" height="18" valign="middle" alt="Svelte"></picture> **[Svelte](#svelte)**                      | ![svelte min version](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-version-svelte.json)   | ![svelte size](https://img.shields.io/endpoint?url=https://jeromearsene.github.io/levita/badge-size-svelte.json)   | [![Try Svelte on StackBlitz](https://img.shields.io/badge/StackBlitz-Try_it-1374ef?logo=stackblitz&logoColor=white)](https://stackblitz.com/github/jeromearsene/levita/tree/main/examples/svelte)      |
@@ -72,7 +72,7 @@ Levita is designed to be framework-agnostic. Choose your flavor:
 
 ```bash
 # Core (vanilla JS/TS)
-npm install levita-js
+npm install @levita-js/core
 
 # React wrapper
 npm install @levita-js/react
@@ -94,8 +94,8 @@ npm install @levita-js/angular
 ### Vanilla
 
 ```typescript
-import { Levita } from "levita-js";
-import "levita-js/style.css";
+import { Levita } from "@levita-js/core";
+import "@levita-js/core/style.css";
 
 new Levita(document.getElementById("card"), {
   glare: true,

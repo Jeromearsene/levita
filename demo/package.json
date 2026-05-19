@@ -9,7 +9,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"levita-js": "workspace:*"
+		"@levita-js/core": "workspace:*"
 	},
 	"devDependencies": {
 		"@preact/preset-vite": "^2.10.3",

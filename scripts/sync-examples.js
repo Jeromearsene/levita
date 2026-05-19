@@ -28,7 +28,7 @@ for (const example of fs.readdirSync(EXAMPLES_DIR)) {
 
 	if (pkg.dependencies) {
 		for (const dep of Object.keys(pkg.dependencies)) {
-			if (dep === "levita-js" || dep.startsWith("@levita-js/")) {
+			if (dep === "@levita-js/core" || dep.startsWith("@levita-js/")) {
 				const targetValue = `^${version}`;
 				if (pkg.dependencies[dep] !== targetValue) {
 					pkg.dependencies[dep] = targetValue;

@@ -1,4 +1,4 @@
-import { Levita } from "levita-js";
+import { Levita } from "@levita-js/core";
 import { bench, describe } from "vitest";
 import { createEl } from "./helpers.js";
 

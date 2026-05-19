@@ -1,5 +1,5 @@
-import type { LevitaOptions } from "levita-js";
-import { buildOptions, Levita } from "levita-js";
+import type { LevitaOptions } from "@levita-js/core";
+import { buildOptions, Levita } from "@levita-js/core";
 import {
 	forwardRef,
 	type HTMLAttributes,

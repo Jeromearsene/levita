@@ -7,7 +7,7 @@ if (!fs.existsSync("badges")) {
 }
 
 // Core badges
-const core = data.find((d) => d.name === "levita-js") || data[0];
+const core = data.find((d) => d.name === "@levita-js/core") || data[0];
 const coreContent = JSON.stringify({
 	schemaVersion: 1,
 	label: "gzip",

@@ -37,7 +37,7 @@
 		"vue": ">=3.3"
 	},
 	"dependencies": {
-		"levita-js": "workspace:*"
+		"@levita-js/core": "workspace:*"
 	},
 	"devDependencies": {
 		"@vue/test-utils": "^2.4.6",

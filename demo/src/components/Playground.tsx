@@ -1,5 +1,5 @@
 import posterImg from "@assets/showcase-poster.webp";
-import type { LevitaOptions } from "levita-js";
+import type { LevitaOptions } from "@levita-js/core";
 import { useMemo, useState } from "preact/hooks";
 import type { Framework } from "../constants";
 import { buildAllSnippets } from "../utils/snippet-builder";

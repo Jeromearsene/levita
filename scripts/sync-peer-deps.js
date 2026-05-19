@@ -28,7 +28,7 @@ for (const pkg of fs.readdirSync(PACKAGES_DIR)) {
 
 	if (pkgJson.peerDependencies) {
 		for (const dep of Object.keys(pkgJson.peerDependencies)) {
-			if (dep === "levita-js") {
+			if (dep === "@levita-js/core") {
 				const targetValue = `>=${version}`;
 				if (pkgJson.peerDependencies[dep] !== targetValue) {
 					pkgJson.peerDependencies[dep] = targetValue;

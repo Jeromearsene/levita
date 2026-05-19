@@ -15,7 +15,7 @@ interface CssExample {
 /**
  * Helper to wrap HTML in Levita initialization code for display.
  */
-const wrapCode = (html: string) => `import { Levita } from "levita-js";
+const wrapCode = (html: string) => `import { Levita } from "@levita-js/core";
 
 const el = document.querySelector(".card");
 new Levita(el, {

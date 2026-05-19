@@ -1,4 +1,4 @@
-import { Levita, type LevitaEventMap, type LevitaOptions } from "levita-js";
+import { Levita, type LevitaEventMap, type LevitaOptions } from "@levita-js/core";
 import type { ComponentChildren } from "preact";
 import { useEffect, useRef } from "preact/hooks";
 

@@ -5,5 +5,5 @@ export default defineConfig({
 	format: ["esm", "cjs"],
 	dts: true,
 	clean: true,
-	external: ["vue", "levita-js"],
+	external: ["vue", "@levita-js/core"],
 });

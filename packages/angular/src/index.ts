@@ -7,7 +7,7 @@ import {
 	type OnDestroy,
 	type SimpleChanges,
 } from "@angular/core";
-import { buildOptions, Levita, type LevitaOptions } from "levita-js";
+import { buildOptions, Levita, type LevitaOptions } from "@levita-js/core";
 
 /**
  * Angular directive that applies the Levita 3D tilt effect to an element.

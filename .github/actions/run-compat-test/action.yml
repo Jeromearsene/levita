@@ -30,19 +30,19 @@ runs:
         cp -r packages/core $COMPAT_DIR/core
         
         # Create a standalone package.json in the temp package
-        echo '{
+        echo \'{
           "name": "compat-test",
           "private": true,
           "type": "module",
           "dependencies": {
-            "levita-js": "file:../core"
+            "@levita-js/core": "file:../core"
           },
           "devDependencies": {
             "${{ inputs.framework }}": "${{ inputs.version }}",
             "vitest": "4.0.18",
             "happy-dom": "20.7.0"
           }
-        }' > $COMPAT_DIR/package/package.json
+        }\' > $COMPAT_DIR/package/package.json
 
         # Create a minimal tsconfig.json for esbuild/vitest
         JSX_RUNTIME="react-jsx"
