@@ -10156,7 +10156,7 @@ snapshots:
       needle: 3.5.0
       source-map: 0.6.1
 
-  @levita-js/core@0.3.1: {}
+  '@levita-js/core@0.3.1': {}
 
   license-webpack-plugin@4.0.2(webpack@5.105.0):
     dependencies:
