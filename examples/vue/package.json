@@ -14,8 +14,8 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@levita-js/core": "^0.3.1",
-		"@levita-js/vue": "^0.3.1",
+		"@levita-js/core": "^0.4.0",
+		"@levita-js/vue": "^0.4.0",
 		"vue": "^3.5.13"
 	},
 	"devDependencies": {
