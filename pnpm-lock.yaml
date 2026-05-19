@@ -47,13 +47,13 @@ importers:
 
   benchmarks:
     dependencies:
-      levita-js:
+      @levita-js/core:
         specifier: workspace:*
         version: link:../packages/core
 
   demo:
     dependencies:
-      levita-js:
+      @levita-js/core:
         specifier: workspace:*
         version: link:../packages/core
     devDependencies:
@@ -99,7 +99,7 @@ importers:
       '@levita-js/angular':
         specifier: ^0.3.1
         version: 0.3.1(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1))
-      levita-js:
+      @levita-js/core:
         specifier: ^0.3.1
         version: 0.3.1
       rxjs:
@@ -133,7 +133,7 @@ importers:
       '@levita-js/react':
         specifier: ^0.3.1
         version: 0.3.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      levita-js:
+      @levita-js/core:
         specifier: ^0.3.1
         version: 0.3.1
       react:
@@ -164,7 +164,7 @@ importers:
       '@levita-js/svelte':
         specifier: ^0.3.1
         version: 0.3.1(svelte@5.53.5)
-      levita-js:
+      @levita-js/core:
         specifier: ^0.3.1
         version: 0.3.1
       svelte:
@@ -183,7 +183,7 @@ importers:
 
   examples/vanilla:
     dependencies:
-      levita-js:
+      @levita-js/core:
         specifier: ^0.3.1
         version: 0.3.1
     devDependencies:
@@ -199,7 +199,7 @@ importers:
       '@levita-js/vue':
         specifier: ^0.3.1
         version: 0.3.1(vue@3.5.28(typescript@5.9.3))
-      levita-js:
+      @levita-js/core:
         specifier: ^0.3.1
         version: 0.3.1
       vue:
@@ -221,7 +221,7 @@ importers:
 
   packages/angular:
     dependencies:
-      levita-js:
+      @levita-js/core:
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -249,7 +249,7 @@ importers:
 
   packages/react:
     dependencies:
-      levita-js:
+      @levita-js/core:
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -274,7 +274,7 @@ importers:
 
   packages/svelte:
     dependencies:
-      levita-js:
+      @levita-js/core:
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -287,7 +287,7 @@ importers:
 
   packages/vue:
     dependencies:
-      levita-js:
+      @levita-js/core:
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -7815,22 +7815,22 @@ snapshots:
   '@levita-js/angular@0.3.1(@angular/core@19.2.20(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
       '@angular/core': 19.2.20(rxjs@7.8.2)(zone.js@0.15.1)
-      levita-js: 0.3.1
+      @levita-js/core: 0.3.1
 
   '@levita-js/react@0.3.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
-      levita-js: 0.3.1
+      @levita-js/core: 0.3.1
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
 
   '@levita-js/svelte@0.3.1(svelte@5.53.5)':
     dependencies:
-      levita-js: 0.3.1
+      @levita-js/core: 0.3.1
       svelte: 5.53.5
 
   '@levita-js/vue@0.3.1(vue@3.5.28(typescript@5.9.3))':
     dependencies:
-      levita-js: 0.3.1
+      @levita-js/core: 0.3.1
       vue: 3.5.28(typescript@5.9.3)
 
   '@listr2/prompt-adapter-inquirer@2.0.18(@inquirer/prompts@7.3.2(@types/node@25.3.0))':
