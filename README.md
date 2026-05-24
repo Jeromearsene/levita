@@ -61,6 +61,7 @@ Levita is designed to be framework-agnostic. Choose your flavor:
 | ![Tilt](docs/animations/tilt.gif) | ![Glare](docs/animations/glare.gif) |
 | **Shadow** | **Combined** |
 | ![Shadow](docs/animations/shadow.gif) | ![Combined](docs/animations/combined.gif) |
+
 ## Install
 
 ```bash
