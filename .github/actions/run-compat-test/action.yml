@@ -30,7 +30,8 @@ runs:
         cp -r packages/core $COMPAT_DIR/core
         
         # Create a standalone package.json in the temp package
-        echo \'{
+        cat <<EOF > $COMPAT_DIR/package/package.json
+        {
           "name": "compat-test",
           "private": true,
           "type": "module",
@@ -42,7 +43,8 @@ runs:
             "vitest": "4.0.18",
             "happy-dom": "20.7.0"
           }
-        }\' > $COMPAT_DIR/package/package.json
+        }
+        EOF
 
         # Create a minimal tsconfig.json for esbuild/vitest
         JSX_RUNTIME="react-jsx"

@@ -3,7 +3,13 @@
 	"changelog": ["@changesets/changelog-github", { "repo": "jeromearsene/levita" }],
 	"commit": false,
 	"fixed": [
-		["@levita-js/core", "@levita-js/react", "@levita-js/vue", "@levita-js/svelte", "@levita-js/angular"]
+		[
+			"@levita-js/core",
+			"@levita-js/react",
+			"@levita-js/vue",
+			"@levita-js/svelte",
+			"@levita-js/angular"
+		]
 	],
 	"access": "public",
 	"baseBranch": "main",
