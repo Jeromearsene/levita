@@ -18,7 +18,7 @@
 - [`e3204c9`](https://github.com/Jeromearsene/levita/commit/e3204c9b9a6c838b1588b6fd26d136ad9a38096c) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Framework packages now re-export style.css from the core package. Users can import styles directly from their framework package (e.g. `import '@levita-js/react/style.css'`) instead of importing from `@levita-js/core`.
 
 - Updated dependencies []:
-  - @levita-js/core@0.3.1
+  - levita-js@0.3.1
 
 ## 0.3.0
 
@@ -29,14 +29,14 @@
 ### Patch Changes
 
 - Updated dependencies [[`9b8cdc4`](https://github.com/Jeromearsene/levita/commit/9b8cdc4fff988db50ddc5f0d5e5060bf656efb63)]:
-  - @levita-js/core@0.3.0
+  - levita-js@0.3.0
 
 ## 0.2.1
 
 ### Patch Changes
 
 - Updated dependencies [[`25f1909`](https://github.com/Jeromearsene/levita/commit/25f1909cac019c6dc98e9e311f082851d44cc1a7)]:
-  - @levita-js/core@0.2.1
+  - levita-js@0.2.1
 
 ## 0.2.0
 
@@ -60,7 +60,7 @@
 ### Patch Changes
 
 - Updated dependencies [[`8399af4`](https://github.com/Jeromearsene/levita/commit/8399af47f17421a42ac085eb0752ee1f295e68b5)]:
-  - @levita-js/core@0.2.0
+  - levita-js@0.2.0
 
 ## 0.1.6
 
@@ -70,4 +70,4 @@
   - **Examples**: Added standalone framework examples (Vanilla, React, Vue, Svelte, Angular) with one-click StackBlitz integration for real-time experimentation.
   - **Documentation**: Updated README and interactive demo to include Angular.
 - Updated dependencies [[`5ab7845`](https://github.com/Jeromearsene/levita/commit/5ab7845d2ad9a56488bc7d6af7e25af2418bb2fc)]:
-  - @levita-js/core@0.1.6
+  - levita-js@0.1.6
