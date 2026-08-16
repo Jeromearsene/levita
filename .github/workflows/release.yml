@@ -22,9 +22,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # OIDC trusted publishing needs a Node/npm combo that supports the
+          # full handshake. Node 22 kept giving misleading 404s; 24 fixes it.
+          node-version: 24
           cache: pnpm
-          registry-url: "https://registry.npmjs.org"
+          # Deliberately NOT setting registry-url here: setup-node writes an
+          # .npmrc with _authToken=${NODE_AUTH_TOKEN}, and since NODE_AUTH_TOKEN
+          # is never set in this workflow, older pnpm/npm sent that literal
+          # unresolved placeholder as a bearer token instead of falling back
+          # to OIDC — which is exactly what produced our 404s. Each package
+          # already declares its registry via publishConfig.registry, so this
+          # isn't needed for publishing to succeed.
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
