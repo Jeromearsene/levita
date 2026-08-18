@@ -14,8 +14,8 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"levita-js": "^0.3.1",
-		"@levita-js/svelte": "^0.3.1",
+		"levita-js": "^0.4.2",
+		"@levita-js/svelte": "^0.4.2",
 		"svelte": "^5.53.5"
 	},
 	"devDependencies": {
