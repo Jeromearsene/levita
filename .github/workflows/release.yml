@@ -38,9 +38,10 @@ jobs:
         id: changesets
         uses: changesets/action@v2
         with:
-          version: pnpm version-packages
-          title: "chore: version packages"
-          commit: "chore: version packages"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version-script: pnpm version-packages
+          pr-title: "chore: version packages"
+          commit-message: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -56,7 +57,7 @@ jobs:
           # Repository URLs have been normalized to canonical HTTPS to fix 404 mapping bugs
           pnpm -r publish --access public --no-git-checks --provenance
           # Create and push git tags manually since we are not using changeset publish
-          npx changeset tag
+          pnpm changeset git-tag
           git push --tags
           echo "published=true" >> $GITHUB_OUTPUT
         env:
