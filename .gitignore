@@ -32,3 +32,9 @@ docs/brand.md
 
 # Gemini CLI local configuration
 .gemini/
+
+# Codex (OpenAI)
+.codex/
+
+# env
+.envrc

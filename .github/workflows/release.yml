@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -27,29 +28,75 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build packages
-        run: pnpm build
-
-      - name: Create Release PR or Publish
+      - name: Create Release PR
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release
           version: pnpm version-packages
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Sync examples to published versions
-        if: steps.changesets.outputs.published == 'true'
+      - name: Publish to NPM
+        id: publish
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: |
+          pnpm build
+          # OIDC is handled by npm using the workflow id-token permission.
+          # Do not configure registry-url here: setup-node would create an
+          # auth-token placeholder that can interfere with trusted publishing.
+          # Using native pnpm recursive publish with explicit provenance
+          # Repository URLs have been normalized to canonical HTTPS to fix 404 mapping bugs
+          pnpm -r publish --access public --no-git-checks --provenance
+          # Create and push git tags manually since we are not using changeset publish
+          npx changeset tag
+          git push --tags
+          echo "published=true" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync examples to published versions
+        if: steps.publish.outputs.published == 'true'
+        run: |
+          version=$(node -p "require('./packages/core/package.json').version")
+          packages=$(node -e '
+            const fs = require("node:fs");
+            const path = require("node:path");
+
+            for (const directory of fs.readdirSync("packages")) {
+              const pkgPath = path.join("packages", directory, "package.json");
+              if (!fs.existsSync(pkgPath)) continue;
+              const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
+              console.log(pkg.name);
+            }
+          ')
+
+          for package in $packages; do
+            echo "Waiting for $package@$version to be available on npm..."
+
+            for attempt in {1..12}; do
+              if pnpm view "$package@$version" version >/dev/null 2>&1; then
+                echo "✅ $package@$version is available"
+                break
+              fi
+
+              if [ "$attempt" -eq 12 ]; then
+                echo "❌ $package@$version is still unavailable after 2 minutes"
+                exit 1
+              fi
+
+              echo "⏳ $package@$version not available yet (attempt $attempt/12)"
+              sleep 10
+            done
+          done
+
           node scripts/sync-examples.js
           pnpm install --no-frozen-lockfile
           branch="chore/sync-examples-$(date +%s)"
