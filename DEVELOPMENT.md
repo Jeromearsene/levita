@@ -31,6 +31,13 @@ We use **Vitest** for unit tests and **Playwright** for visual regression.
 
 ### Framework Compatibility
 
+Dependency policy: keep the older framework versions in the compatibility-test
+matrix, while using recent stable framework versions in the wrapper packages and
+the standalone examples. A framework upgrade must keep all packages from that
+framework on a compatible major version; do not mix framework majors in one
+package or example. Update the compatibility matrix only when the supported
+range intentionally changes.
+
 To ensure wrappers work across multiple versions of their respective frameworks, follow these steps:
 
 1. **Manual Link Test**:
