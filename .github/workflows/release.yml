@@ -99,6 +99,12 @@ jobs:
 
           node scripts/sync-examples.js
           pnpm install --no-frozen-lockfile
+
+          if git diff --quiet -- examples/ pnpm-lock.yaml; then
+            echo "No example synchronization changes detected"
+            exit 0
+          fi
+
           branch="chore/sync-examples-$(date +%s)"
           git checkout -b "$branch"
           git add examples/ pnpm-lock.yaml
