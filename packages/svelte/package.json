@@ -40,7 +40,7 @@
 		"levita-js": "workspace:*"
 	},
 	"devDependencies": {
-		"svelte": "^5.53.5",
+		"svelte": "^5.55.7",
 		"tsdown": "^0.20.3"
 	},
 	"license": "MIT",
