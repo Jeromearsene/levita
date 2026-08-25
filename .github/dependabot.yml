@@ -1,0 +1,76 @@
+version: 2
+
+updates:
+  # The root pnpm workspace contains the packages and the demo.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    groups:
+      workspace-dependencies:
+        patterns:
+          - "*"
+
+  # Keep example lockfiles and framework updates isolated from one another.
+  - package-ecosystem: npm
+    directory: /examples/angular
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      angular-example-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: npm
+    directory: /examples/react
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      react-example-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: npm
+    directory: /examples/svelte
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      svelte-example-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: npm
+    directory: /examples/vue
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      vue-example-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: npm
+    directory: /examples/vanilla
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      vanilla-example-dependencies:
+        patterns:
+          - "*"
+
+  # Keep GitHub Actions updates separate from JavaScript dependencies.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      github-actions:
+        patterns:
+          - "*"
