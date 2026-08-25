@@ -7,17 +7,17 @@ jobs:
   quality:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
       
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: build-artifacts
           path: .
           
       - name: Download compatibility results
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           pattern: compat-*
           path: compat-results
@@ -36,7 +36,7 @@ jobs:
         run: node scripts/generate-version-badges.js
 
       - name: Upload quality results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: quality-artifacts
           path: badges/
@@ -53,11 +53,11 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
       
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: build-artifacts
           path: .
@@ -66,16 +66,16 @@ jobs:
         run: pnpm --filter levita-demo build
       
       - name: Download quality results
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: quality-artifacts
           path: demo/dist/
       
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: demo/dist/
       
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
