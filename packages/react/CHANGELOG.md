@@ -1,5 +1,14 @@
 # @levita-js/react
 
+## 0.4.2
+
+### Patch Changes
+
+- [#73](https://github.com/Jeromearsene/levita/pull/73) [`9532ef2`](https://github.com/Jeromearsene/levita/commit/9532ef2ed6e69714aa52d96efd2b3f3ca28794a3) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Fix example synchronization after NPM publish
+
+- Updated dependencies [[`9532ef2`](https://github.com/Jeromearsene/levita/commit/9532ef2ed6e69714aa52d96efd2b3f3ca28794a3)]:
+  - levita-js@0.4.2
+
 ## 0.4.1
 
 ### Patch Changes
