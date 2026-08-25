@@ -1,5 +1,11 @@
 # levita-js
 
+## 0.4.1
+
+### Patch Changes
+
+- [#71](https://github.com/Jeromearsene/levita/pull/71) [`2687647`](https://github.com/Jeromearsene/levita/commit/2687647b789b066f03ec5e0a9f6e9a07f6e5362b) Thanks [@Jeromearsene](https://github.com/Jeromearsene)! - Fix CI deployment on NPM
+
 ## 0.4.0
 
 ### Minor Changes

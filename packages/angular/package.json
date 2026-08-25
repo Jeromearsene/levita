@@ -1,6 +1,6 @@
 {
 	"name": "@levita-js/angular",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"description": "Angular wrapper for Levita 3D tilt & parallax",
 	"type": "module",
 	"main": "./dist/index.cjs",
@@ -24,7 +24,7 @@
 	],
 	"publishConfig": {
 		"access": "public",
-		"provenance": true
+		"registry": "https://registry.npmjs.org/"
 	},
 	"sideEffects": [
 		"*.css"
@@ -49,7 +49,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Jeromearsene/levita.git",
+		"url": "https://github.com/Jeromearsene/levita",
 		"directory": "packages/angular"
 	},
 	"homepage": "https://github.com/Jeromearsene/levita#readme"
