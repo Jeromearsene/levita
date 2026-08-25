@@ -51,6 +51,6 @@
 	},
 	"homepage": "https://github.com/Jeromearsene/levita#readme",
 	"devDependencies": {
-		"tsdown": "^0.20.3"
+		"tsdown": "^0.22.14"
 	}
 }
