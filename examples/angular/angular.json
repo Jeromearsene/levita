@@ -20,7 +20,7 @@
 					"configurations": {
 						"development": {
 							"optimization": false,
-						"sourceMap": true
+							"sourceMap": true
 						},
 						"production": {
 							"optimization": true,
