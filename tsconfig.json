@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "ES2022",
+		"experimentalDecorators": true,
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"lib": ["ES2022", "DOM", "DOM.Iterable"],
