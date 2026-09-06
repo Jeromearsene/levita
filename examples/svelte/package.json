@@ -16,7 +16,7 @@
 	"dependencies": {
 		"levita-js": "^0.4.2",
 		"@levita-js/svelte": "^0.4.2",
-		"svelte": "^5.53.5"
+		"svelte": "^5.55.7"
 	},
 	"devDependencies": {
 		"@sveltejs/vite-plugin-svelte": "^7.3.0",
