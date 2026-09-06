@@ -28,17 +28,17 @@
 	},
 	"packageManager": "pnpm@10.5.2",
 	"devDependencies": {
-		"@angular/platform-browser-dynamic": "^22.1.0",
-		"@biomejs/biome": "^2.4.4",
+		"@angular/platform-browser-dynamic": "^22.1.5",
+		"@biomejs/biome": "^2.5.12",
 		"@changesets/changelog-github": "^1.0.0",
 		"@changesets/cli": "^3.0.1",
-		"@playwright/test": "^1.58.2",
-		"@size-limit/preset-small-lib": "^12.0.0",
-		"happy-dom": "^20.8.9",
-		"markdownlint-cli": "^0.48.0",
+		"@playwright/test": "^1.62.1",
+		"@size-limit/preset-small-lib": "^13.0.3",
+		"happy-dom": "^20.13.2",
+		"markdownlint-cli": "^0.49.1",
 		"reflect-metadata": "^0.2.2",
-		"size-limit": "^12.0.0",
-		"typescript": "^5.9.3",
-		"vitest": "^4.1.0"
+		"size-limit": "^13.0.3",
+		"typescript": "^7.0.2",
+		"vitest": "^4.1.11"
 	}
 }
