@@ -10,21 +10,21 @@
 		"build": "echo 'Angular example is dev-only (JIT mode for StackBlitz compatibility)'"
 	},
 	"dependencies": {
-		"@angular/common": "^22.1.0",
-		"@angular/compiler": "^22.1.0",
-		"@angular/core": "^22.1.0",
-		"@angular/platform-browser": "^22.1.0",
-		"@angular/platform-browser-dynamic": "^22.1.0",
+		"@angular/common": "^22.1.5",
+		"@angular/compiler": "^22.1.5",
+		"@angular/core": "^22.1.5",
+		"@angular/platform-browser": "^22.1.5",
+		"@angular/platform-browser-dynamic": "^22.1.5",
 		"@levita-js/angular": "^0.4.2",
 		"levita-js": "^0.4.2",
 		"rxjs": "^7.8.1",
 		"tslib": "^2.8.1",
-		"zone.js": "~0.15.0"
+		"zone.js": "~0.16.3"
 	},
 	"devDependencies": {
-		"@angular/build": "^22.1.0",
-		"@angular/cli": "^22.1.0",
-		"@angular/compiler-cli": "^22.1.0",
-		"typescript": "~6.0.0"
+		"@angular/build": "^22.1.7",
+		"@angular/cli": "^22.1.7",
+		"@angular/compiler-cli": "^22.1.5",
+		"typescript": "~7.0.2"
 	}
 }
