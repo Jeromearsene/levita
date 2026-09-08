@@ -27,6 +27,11 @@
 		"npm": "11.17.0"
 	},
 	"packageManager": "pnpm@10.5.2",
+	"pnpm": {
+		"overrides": {
+			"typescript": "6.0.3"
+		}
+	},
 	"devDependencies": {
 		"@angular/platform-browser-dynamic": "^22.1.5",
 		"@biomejs/biome": "^2.5.12",
@@ -38,7 +43,7 @@
 		"markdownlint-cli": "^0.49.1",
 		"reflect-metadata": "^0.2.2",
 		"size-limit": "^13.0.3",
-		"typescript": "^7.0.2",
+		"typescript": "^6.0.3",
 		"vitest": "^5.0.0"
 	}
 }
