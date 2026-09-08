@@ -3,10 +3,8 @@
 	"compilerOptions": {
 		"jsx": "react-jsx",
 		"jsxImportSource": "preact",
-		"baseUrl": ".",
-		"ignoreDeprecations": "6.0",
 		"paths": {
-			"@assets/*": ["assets/*"]
+			"@assets/*": ["./assets/*"]
 		}
 	},
 	"include": ["src"]
