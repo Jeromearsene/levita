@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - "v[0-9]+.[0-9]+.0" # major/minor releases (e.g. v1.0.0, v1.2.0)
+      - "levita-js@*"
+      - "@levita-js/*@*"
 
 permissions:
   contents: write
@@ -22,7 +23,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build core
-        run: pnpm --filter levita build
+        run: pnpm --filter levita-js build
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
@@ -44,6 +45,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main:main
           git checkout main
           git add docs/animations/*.gif
           if git diff --cached --quiet; then
