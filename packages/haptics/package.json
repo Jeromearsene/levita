@@ -1,0 +1,54 @@
+{
+	"name": "@levita-js/haptics",
+	"version": "0.0.1",
+	"description": "Haptic feedback plugin for Levita — vibration on tilt for mobile devices",
+	"type": "module",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.mts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"scripts": {
+		"build": "tsdown",
+		"type-check": "tsc --noEmit",
+		"dev": "tsdown --watch"
+	},
+	"keywords": [
+		"levita",
+		"haptics",
+		"vibration",
+		"tilt",
+		"mobile"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Jeromearsene/levita.git",
+		"directory": "packages/haptics"
+	},
+	"homepage": "https://github.com/Jeromearsene/levita#readme",
+	"peerDependencies": {
+		"levita-js": ">=0.2.0"
+	},
+	"devDependencies": {
+		"levita-js": "workspace:*",
+		"tsdown": "^0.20.3"
+	}
+}

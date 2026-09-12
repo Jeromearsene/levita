@@ -6,6 +6,8 @@ export type {
 	GyroscopeMode,
 	LevitaEventMap,
 	LevitaOptions,
+	LevitaPlugin,
+	PluginContext,
 	TiltValues,
 	UpdatableOptions,
 } from "./types.js";

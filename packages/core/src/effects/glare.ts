@@ -1,3 +1,5 @@
+import type { LevitaOptions, LevitaPlugin, TiltValues } from "../types.js";
+
 /**
  * Creates a radial gradient overlay that follows the tilt position,
  * simulating light reflection on the surface.
@@ -54,3 +56,27 @@ export class GlareEffect {
 		this.container.remove();
 	};
 }
+
+/**
+ * Factory that wraps `GlareEffect` as a `LevitaPlugin`.
+ */
+export const createGlarePlugin = (options: Pick<LevitaOptions, "maxGlare">): LevitaPlugin => {
+	let effect: GlareEffect | null = null;
+
+	return {
+		name: "glare",
+		init(context) {
+			effect = new GlareEffect(context.element, options.maxGlare);
+		},
+		update(values: TiltValues) {
+			effect?.update(values.percentX, values.percentY);
+		},
+		reset() {
+			effect?.update(0, 0);
+		},
+		destroy() {
+			effect?.destroy();
+			effect = null;
+		},
+	};
+};
