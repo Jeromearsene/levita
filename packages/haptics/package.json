@@ -45,7 +45,7 @@
 	},
 	"homepage": "https://github.com/Jeromearsene/levita#readme",
 	"peerDependencies": {
-		"levita-js": ">=0.2.0"
+		"levita-js": ">=0.5.0"
 	},
 	"devDependencies": {
 		"levita-js": "workspace:*",

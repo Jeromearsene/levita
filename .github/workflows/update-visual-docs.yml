@@ -5,7 +5,7 @@ on:
   push:
     tags:
       - "levita-js@*"
-      - "@levita-js/*@*"
+      - "@levita-js/**@*"
 
 permissions:
   contents: write

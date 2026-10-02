@@ -7,10 +7,16 @@ const PRESETS: Record<HapticPreset, number> = {
 	heavy: 35,
 };
 
+const vibrate = (pattern: number): void => {
+	if (typeof navigator !== "undefined" && typeof navigator.vibrate === "function") {
+		navigator.vibrate(pattern);
+	}
+};
+
 export const triggerPreset = (preset: HapticPreset): void => {
-	navigator.vibrate(PRESETS[preset]);
+	vibrate(PRESETS[preset]);
 };
 
 export const stopVibration = (): void => {
-	navigator.vibrate(0);
+	vibrate(0);
 };
