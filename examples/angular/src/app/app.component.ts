@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { LevitaDirective } from "@levita-js/angular";
+import { LevitaDirective } from "./levita.directive";
 
 @Component({
 	selector: "app-root",

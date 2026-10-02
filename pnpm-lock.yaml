@@ -96,12 +96,6 @@ importers:
       '@angular/platform-browser':
         specifier: ^22.1.5
         version: 22.1.5(@angular/common@22.1.5(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)(zone.js@0.16.3))
-      '@angular/platform-browser-dynamic':
-        specifier: ^22.1.5
-        version: 22.1.5(@angular/common@22.1.5(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/compiler@22.1.5)(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.1.5(@angular/common@22.1.5(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)(zone.js@0.16.3)))
-      '@levita-js/angular':
-        specifier: ^0.4.2
-        version: 0.4.2(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)(zone.js@0.16.3))
       levita-js:
         specifier: ^0.4.2
         version: 0.4.2
@@ -1095,11 +1089,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
-
-  '@levita-js/angular@0.4.2':
-    resolution: {integrity: sha512-DklNcAqtEzo9PfHZkOtrnjkwbxjjvRWJqwrVtaNIg/OzvTv2b1tIqSHKYX+Njia5R6AzL4ADdlzTgYCB9H6Pnw==}
-    peerDependencies:
-      '@angular/core': '>=14.0.0'
 
   '@levita-js/react@0.4.2':
     resolution: {integrity: sha512-XOnkHWdRWNjrbNzMBRUixqVXwGmV5hgMcSskH/PrqeDvU34teCi7jZCaPyERdySSj4ZeW4bM0ey20jB8ITk87g==}
@@ -5292,11 +5281,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
-
-  '@levita-js/angular@0.4.2(@angular/core@22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)(zone.js@0.16.3))':
-    dependencies:
-      '@angular/core': 22.1.5(@angular/compiler@22.1.5)(rxjs@7.8.2)(zone.js@0.16.3)
-      levita-js: 0.4.2
 
   '@levita-js/react@0.4.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
