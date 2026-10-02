@@ -5,8 +5,8 @@
 	"version": "0.1.0",
 	"type": "module",
 	"scripts": {
-		"start": "ng serve --host 0.0.0.0 --allowed-hosts all",
-		"dev": "ng serve --host 0.0.0.0 --allowed-hosts all",
+		"start": "ng serve --host 0.0.0.0 --allowed-hosts",
+		"dev": "ng serve --host 0.0.0.0 --allowed-hosts",
 		"build": "echo 'Angular example is dev-only (JIT mode for StackBlitz compatibility)'"
 	},
 	"dependencies": {
