@@ -1,10 +1,11 @@
-import { Levita, type LevitaEventMap, type LevitaOptions } from "levita-js";
+import { Levita, type LevitaEventMap, type LevitaOptions, type LevitaPlugin } from "levita-js";
 import type { ComponentChildren } from "preact";
 import { useEffect, useRef } from "preact/hooks";
 
 interface TiltProps {
 	children?: ComponentChildren;
 	options?: Partial<LevitaOptions>;
+	plugins?: LevitaPlugin[];
 	class?: string;
 	id?: string;
 	onMove?: (values: LevitaEventMap["move"]) => void;
@@ -13,18 +14,19 @@ interface TiltProps {
 export function Tilt({
 	children,
 	options = {},
+	plugins,
 	class: className = "",
 	id = "",
 	onMove,
 }: TiltProps) {
 	const elRef = useRef<HTMLDivElement>(null);
 	const instanceRef = useRef<Levita | null>(null);
-	const initialOptionsRef = useRef(options);
 
 	// Create instance once — preserves gyroscope permission on iOS
 	useEffect(() => {
 		if (elRef.current) {
-			instanceRef.current = new Levita(elRef.current, initialOptionsRef.current);
+			const opts = plugins ? { ...options, plugins } : options;
+			instanceRef.current = new Levita(elRef.current, opts);
 			if (onMove) {
 				instanceRef.current.on("move", onMove);
 			}
@@ -33,7 +35,7 @@ export function Tilt({
 		return () => {
 			instanceRef.current?.destroy();
 		};
-	}, [onMove]);
+	}, [plugins, onMove]);
 
 	// Propagate option changes without destroying the instance
 	useEffect(() => {

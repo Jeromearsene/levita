@@ -66,7 +66,6 @@ jobs:
       - name: Sync examples to published versions
         if: steps.publish.outputs.published == 'true'
         run: |
-          version=$(node -p "require('./packages/core/package.json').version")
           packages=$(node -e '
             const fs = require("node:fs");
             const path = require("node:path");
@@ -75,28 +74,28 @@ jobs:
               const pkgPath = path.join("packages", directory, "package.json");
               if (!fs.existsSync(pkgPath)) continue;
               const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
-              console.log(pkg.name);
+              console.log(`${pkg.name} ${pkg.version}`);
             }
           ')
 
-          for package in $packages; do
-            echo "Waiting for $package@$version to be available on npm..."
+          while read -r package package_version; do
+            echo "Waiting for $package@$package_version to be available on npm..."
 
             for attempt in {1..12}; do
-              if pnpm view "$package@$version" version >/dev/null 2>&1; then
-                echo "✅ $package@$version is available"
+              if pnpm view "$package@$package_version" version >/dev/null 2>&1; then
+                echo "✅ $package@$package_version is available"
                 break
               fi
 
               if [ "$attempt" -eq 12 ]; then
-                echo "❌ $package@$version is still unavailable after 2 minutes"
+                echo "❌ $package@$package_version is still unavailable after 2 minutes"
                 exit 1
               fi
 
-              echo "⏳ $package@$version not available yet (attempt $attempt/12)"
+              echo "⏳ $package@$package_version not available yet (attempt $attempt/12)"
               sleep 10
             done
-          done
+          done <<< "$packages"
 
           node scripts/sync-examples.js
           pnpm install --no-frozen-lockfile
