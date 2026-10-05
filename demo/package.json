@@ -15,9 +15,9 @@
 		"@preact/preset-vite": "^2.10.6",
 		"@tailwindcss/vite": "^4.3.3",
 		"@vitejs/plugin-basic-ssl": "^2.3.0",
-		"preact": "^10.29.8",
+		"preact": "^11.0.0",
 		"tailwindcss": "^4.3.3",
-		"typescript": "^6.0.3",
-		"vite": "^8.2.2"
+		"typescript": "^7.0.2",
+		"vite": "^8.3.2"
 	}
 }
