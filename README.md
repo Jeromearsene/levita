@@ -62,11 +62,13 @@ Levita is designed to be framework-agnostic. Choose your flavor:
 
 ## Effects
 
-|                 Tilt                  |                   Glare                   |
-| :-----------------------------------: | :---------------------------------------: |
-|   ![Tilt](docs/animations/tilt.gif)   |    ![Glare](docs/animations/glare.gif)    |
-|              **Shadow**               |               **Combined**                |
-| ![Shadow](docs/animations/shadow.gif) | ![Combined](docs/animations/combined.gif) |
+| Tilt                                                                          | Glare                                                                                             |
+| :---------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: |
+| <img src="docs/animations/tilt.webp" alt="Tilt" width="400" />                | <img src="docs/animations/glare.webp" alt="Glare" width="400" />                                  |
+| **Shadow**                                                                    | **Combined**                                                                                      |
+| <img src="docs/animations/shadow.webp" alt="Shadow" width="400" />            | <img src="docs/animations/combined.webp" alt="Combined" width="400" />                            |
+| **Parallax**                                                                  | **Active Offset**                                                                                 |
+| <img src="docs/animations/parallax.webp" alt="Parallax layers" width="400" /> | <img src="docs/animations/active-offset.webp" alt="Active offset discovery effect" width="400" /> |
 
 ## Install
 
