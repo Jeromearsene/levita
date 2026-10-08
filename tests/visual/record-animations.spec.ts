@@ -79,7 +79,10 @@ const animateCircle = async (
 			{ nx, ny, max, glare: opts.glare, shadow: opts.shadow },
 		);
 		await page.waitForTimeout(delay);
-		await page.screenshot({ path: join(framesDirectory, `frame-${String(i).padStart(4, "0")}.png`), scale: "device" });
+		await page.screenshot({
+			path: join(framesDirectory, `frame-${String(i).padStart(4, "0")}.png`),
+			scale: "device",
+		});
 	}
 };
 
