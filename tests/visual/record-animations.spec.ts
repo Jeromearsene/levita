@@ -3,6 +3,9 @@ import { join } from "node:path";
 import { test } from "@playwright/test";
 import { setupAnimatedPage } from "./helpers.js";
 
+// Render documentation assets at 3x density; README displays them at 400px.
+test.use({ deviceScaleFactor: 3 });
+
 /**
  * Record animated WebP previews for documentation.
  * Generate the documentation animation assets with `pnpm test:visual:record`.
