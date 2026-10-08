@@ -53,8 +53,8 @@
 	--levita-offset-y: calc(var(--levita-percent-y, 0) * var(--levita-offset, 0) * 0.15px);
 	--levita-offset-z: calc(var(--levita-offset, 0) * 1px);
 
-	--levita-active-x: calc(var(--levita-percent-x, 0) * var(--levita-active-offset, 0) * -1);
-	--levita-active-y: calc(var(--levita-percent-y, 0) * var(--levita-active-offset, 0) * -1);
+	--levita-active-x: calc(var(--levita-percent-x, 0) * var(--levita-active-offset, 0px) * -1);
+	--levita-active-y: calc(var(--levita-percent-y, 0) * var(--levita-active-offset, 0px) * -1);
 
 	transform: translate3d(
 		calc(var(--levita-offset-x, 0px) + var(--levita-active-x, 0px)),

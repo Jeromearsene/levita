@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  update-gifs:
+  update-animations:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,27 +27,20 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Record animations
+      - name: Record animation frames
         run: npx playwright test --grep demo
 
-      - name: Convert to GIF
-        run: ./tests/visual/convert-to-gif.sh
+      - name: Convert to animated WebP
+        run: sudo apt-get install -y webp && ./tests/visual/convert-to-webp.sh
 
-      - name: Optimize GIFs
-        run: |
-          sudo apt-get install -y gifsicle
-          for f in docs/animations/*.gif; do
-            gifsicle -O3 --lossy=80 "$f" -o "$f.opt" && mv "$f.opt" "$f"
-          done
-
-      - name: Commit updated GIFs
+      - name: Commit updated animations
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout main
-          git add docs/animations/*.gif
+          git add docs/animations/*.webp
           if git diff --cached --quiet; then
-            echo "No GIF changes to commit"
+            echo "No animation changes to commit"
           else
             git commit -m "docs: update animated visual effects [skip ci]"
             git push
