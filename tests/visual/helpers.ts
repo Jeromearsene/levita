@@ -138,6 +138,15 @@ export const setupAnimatedPage = async (page: Page, bodyContent: string): Promis
 			background: radial-gradient(ellipse at 30% 25%, rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.18) 36%, transparent 78%);
 		}
 		.card-parallax .card-orb { top: 34px; right: 50px; }
+		.card-parallax .card-art {
+			border-width: 2px;
+			border-color: rgba(205, 213, 255, 0.36);
+		}
+		.card-parallax .card-art::before,
+		.card-parallax .card-art::after {
+			border-width: 2px;
+			border-color: rgba(218, 225, 255, 0.52);
+		}
 		.card-active { position: relative; }
 		.active-scene { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(155deg, #f9a45c 0%, #c46086 38%, #433a7e 69%, #172544 100%); }
 		.active-scene::before {
@@ -151,8 +160,8 @@ export const setupAnimatedPage = async (page: Page, bodyContent: string): Promis
 		}
 		.active-sun { position: absolute; top: 44px; right: 41px; width: 42px; height: 42px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, #fff7cf, #ffc46d 62%, #f28c74); box-shadow: 0 0 30px rgba(255, 192, 125, .58); }
 		.active-ridge { position: absolute; right: -20px; bottom: 0; left: -20px; }
-		.active-ridge-back { height: 112px; background: linear-gradient(145deg, #7b5a9a, #39406c); clip-path: polygon(0 68%, 20% 30%, 39% 66%, 63% 15%, 83% 58%, 100% 34%, 100% 100%, 0 100%); }
-		.active-ridge-front { height: 75px; background: linear-gradient(155deg, #394d73, #182640); clip-path: polygon(0 55%, 22% 25%, 42% 57%, 65% 17%, 82% 52%, 100% 30%, 100% 100%, 0 100%); }
+		.active-ridge-back { height: 112px; background: linear-gradient(145deg, #7b5a9a, #39406c); clip-path: polygon(0 68%, 20% 30%, 39% 66%, 63% 15%, 83% 58%, 100% 34%, 100% 100%, 0 100%); filter: drop-shadow(0 -1px 0 rgba(255, 210, 232, 0.42)); }
+		.active-ridge-front { height: 75px; background: linear-gradient(155deg, #394d73, #182640); clip-path: polygon(0 55%, 22% 25%, 42% 57%, 65% 17%, 82% 52%, 100% 30%, 100% 100%, 0 100%); filter: drop-shadow(0 -1px 0 rgba(177, 204, 255, 0.42)); }
 		.active-shade { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(12, 17, 39, .58), transparent 85%), linear-gradient(0deg, rgba(9, 14, 31, .62), transparent 75%); }
 		.card-top, .card-bottom { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; }
 		.card-top { position: absolute; top: 17px; right: 18px; left: 18px; }
