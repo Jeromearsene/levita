@@ -19,6 +19,7 @@ export const OPTION_KEYS: readonly (keyof LevitaOptions)[] = [
 	"activeOffset",
 	"disabled",
 	"eventsEl",
+	"plugins",
 ] as const;
 
 /**
@@ -54,4 +55,5 @@ export const DEFAULT_OPTIONS: LevitaOptions = {
 	activeOffset: 0,
 	disabled: false,
 	eventsEl: null,
+	plugins: [],
 };

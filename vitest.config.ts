@@ -9,6 +9,7 @@ export default defineConfig({
 			"@levita-js/vue": resolve(__dirname, "packages/vue/src/index.ts"),
 			"@levita-js/svelte": resolve(__dirname, "packages/svelte/src/index.ts"),
 			"@levita-js/angular": resolve(__dirname, "packages/angular/src/index.ts"),
+			"@levita-js/haptics": resolve(__dirname, "packages/haptics/src/index.ts"),
 		},
 	},
 	test: {
